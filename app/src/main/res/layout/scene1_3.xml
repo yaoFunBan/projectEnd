@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.kimhuang.project.scene1_3">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/background"/>
+
+    <Button
+        android:id="@+id/btn_pause"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/button_pause"
+        android:layout_alignParentRight="true"/>
+
+
+    <ImageView
+        android:id="@+id/box1_3"
+        android:layout_width="650dp"
+        android:layout_height="320dp"
+        android:src="@drawable/box1_3"
+        android:layout_centerHorizontal="true"
+        android:rotationX="90"/>
+
+    <ImageView
+        android:id="@+id/book3"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/book3" />
+
+    <RelativeLayout
+        android:layout_width="650dp"
+        android:layout_height="350dp"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:id="@+id/trees1"
+            android:layout_width="330dp"
+            android:layout_height="500dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/trees"
+            android:rotationX="90"/>
+
+        <ImageView
+            android:id="@+id/grass1"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:src="@drawable/grass"
+            android:layout_alignParentBottom="true"
+            android:rotationX="90"/>
+
+        <ImageView
+            android:id="@+id/grass2"
+            android:layout_width="100dp"
+            android:layout_height="90dp"
+            android:src="@drawable/grass"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/grass1"
+            android:rotationX="90"/>
+
+
+        <ImageView
+            android:id="@+id/house1"
+            android:layout_width="340dp"
+            android:layout_height="400dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/animate_house"
+            android:rotationX="90"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="600dp"
+        android:layout_height="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+
+        <ImageView
+            android:id="@+id/sungthong3"
+            android:layout_width="450dp"
+            android:layout_height="250dp"
+            android:background="@drawable/animate_sungthong1_3"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:rotationX="90"/>
+
+        <ImageView
+            android:id="@+id/chicken1"
+            android:layout_width="150dp"
+            android:layout_height="120dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/animate_chicken"
+            android:layout_alignParentBottom="true"
+            android:rotationX="90"/>
+
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/button_back"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/btn_next"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/button_next"
+        android:visibility="invisible"/>
+
+</RelativeLayout>

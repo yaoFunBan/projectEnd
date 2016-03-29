@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/map4"
+        android:scaleType="fitXY" />
+
+    <ImageView
+        android:id="@+id/palaces"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:src="@drawable/palaces" />
+
+    <ImageView
+        android:id="@+id/house"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/house" />
+
+    <RelativeLayout
+        android:layout_width="630dp"
+        android:layout_height="220dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="320dp"
+        android:layout_alignParentLeft="true">
+
+        <ImageView
+            android:id="@+id/samon"
+            android:layout_width="350dp"
+            android:layout_height="250dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/mapsamon" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="550dp"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true">
+
+        <ImageView
+            android:id="@+id/bowl"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/bowl_f2" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/button_back" />
+
+</RelativeLayout>

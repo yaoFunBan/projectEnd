@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Project</string>
+    <string name="title_activity_page1_32">page1_32</string>
+
+
+    <string name="desc">
+        เกมรับคำราชาศัพท์ ผู้เล่นต้องรับความหมายที่ตกลงมาให้ตรงกับคำราชาศัพท์ที่กำหนดให้
+        หากรับคำผิดเวลาจะลดลง ผู้เล่นมีเวลาทั้งหมด 20 วินาที
+    </string>
+</resources>

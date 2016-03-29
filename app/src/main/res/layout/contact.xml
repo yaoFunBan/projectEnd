@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.kimhuang.project.contact"
+    android:background="@drawable/scene_index">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btn_back"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@drawable/button_back"/>
+
+            <ImageView
+                android:id="@+id/contact1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/contact1"/>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/contact2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/contact2" />
+
+            </RelativeLayout>
+    </LinearLayout>
+</ScrollView>

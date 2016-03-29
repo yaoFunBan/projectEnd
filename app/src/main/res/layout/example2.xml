@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <RelativeLayout
+        android:layout_width="480dp"
+        android:layout_height="630dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/example2" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="3">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.7" />
+
+            <RelativeLayout
+                android:layout_width="400dp"
+                android:layout_height="0dp"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_horizontal|center"
+                android:layout_weight="1.35">
+
+                <ImageView
+                    android:id="@+id/women1"
+                    android:layout_width="130dp"
+                    android:layout_height="300dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/animate_women"/>
+
+                <ImageView
+                    android:id="@+id/figer2"
+                    android:layout_width="100dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/animate_figer"
+                    android:layout_toLeftOf="@+id/women1"
+                    android:layout_centerVertical="true"/>
+
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

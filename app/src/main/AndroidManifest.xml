@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.kimhuang.project">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/logo"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!-- Home -->
+        <activity
+            android:name=".home"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+
+        <activity
+            android:name=".VoActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity
+            android:name=".summary"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Setting -->
+        <activity
+            android:name=".Setting"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <!-- contact -->
+        <activity
+            android:name=".contact"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <!-- Example -->
+        <activity
+            android:name=".DisableSwipeIntro2"
+            android:screenOrientation="landscape" />
+
+        <!-- map -->
+        <activity
+            android:name=".map"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <!-- map1 -->
+        <activity
+            android:name=".map1"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <!-- page1_1 -->
+        <activity
+            android:name=".page1_1"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+
+        <!-- scene1_1 -->
+        <activity
+            android:name=".scene1_1"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <!-- page1_2 -->
+        <activity
+            android:name=".page1_2"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <!-- scene1_2 -->
+        <activity
+            android:name=".scene1_2"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+
+        <!-- page1_3 -->
+        <activity
+            android:name=".page1_3"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <!-- page1_32 -->
+        <activity
+            android:name=".page1_32"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <!-- scene1_3 -->
+        <activity
+            android:name=".scene1_3"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <!-- page1_4 -->
+        <activity
+            android:name=".page1_4"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <!-- scene1_4 -->
+        <activity
+            android:name=".scene1_4"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+
+        <!-- MiniGame1 -->
+        <activity
+            android:name=".minigame1"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <!-- Map2 -->
+        <activity
+            android:name=".map2"
+            android:screenOrientation="landscape"></activity>
+
+        <!-- page2_1 -->
+        <activity
+            android:name=".page2_1"
+            android:screenOrientation="landscape" />
+
+        <!-- scene2_1 -->
+        <activity
+            android:name=".scene2_1"
+            android:screenOrientation="landscape" />
+
+        <!-- page2_2 -->
+        <activity
+            android:name=".page2_2"
+            android:screenOrientation="landscape" />
+
+        <!-- scene2_2 -->
+        <activity
+            android:name=".scene2_2"
+            android:screenOrientation="landscape" />
+
+        <!-- page2_3 -->
+        <activity
+            android:name=".page2_3"
+            android:screenOrientation="landscape" />
+
+        <!-- scene2_3 -->
+        <activity
+            android:name=".scene2_3"
+            android:screenOrientation="landscape"></activity>
+
+        <!-- page2_4 -->
+        <activity
+            android:name=".page2_4"
+            android:screenOrientation="landscape" />
+
+        <!-- scene2_4 -->
+        <activity
+            android:name=".scene2_4"
+            android:screenOrientation="landscape" />
+
+        <!-- Map3 -->
+        <activity
+            android:name=".map3"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <!-- Page3_11 -->
+        <activity
+            android:name=".page3_11"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <!-- Page3_12 -->
+        <activity
+            android:name=".page3_12"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <!-- scene3_1 -->
+        <activity
+            android:name=".scene3_1"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <!-- Page3_21 -->
+        <activity
+            android:name=".page3_21"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <!-- Page3_22 -->
+        <activity
+            android:name=".page3_22"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <!-- scene3_2 -->
+        <activity
+            android:name=".scene3_2"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+
+        <!-- page3_3 -->
+        <activity
+            android:name=".page3_3"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <!-- scene3_3 -->
+        <activity
+            android:name=".scene3_3"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <!-- page3_41 -->
+        <activity
+            android:name=".page3_41"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <!-- page3_42 -->
+        <activity
+            android:name=".page3_42"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <!-- scene3_4 -->
+        <activity
+            android:name=".scene3_4"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <!-- Map4 -->
+
+
+        <!-- page4_11 -->
+        <activity
+            android:name=".page4_11"
+            android:screenOrientation="landscape" />
+
+        <!-- page4_12 -->
+        <activity
+            android:name=".page4_12"
+            android:screenOrientation="landscape" />
+
+        <!-- scene4_1 -->
+        <activity
+            android:name=".scene4_1"
+            android:screenOrientation="landscape" />
+
+        <!-- page4_2 -->
+        <activity
+            android:name=".page4_2"
+            android:screenOrientation="landscape" />
+
+        <!-- scene4_2 -->
+        <activity
+            android:name=".scene4_2"
+            android:screenOrientation="landscape" />
+
+        <!-- page4_3 -->
+        <activity
+            android:name=".page4_3"
+            android:screenOrientation="landscape"></activity>
+
+        <!-- scene4_3 -->
+        <activity
+            android:name=".scene4_3"
+            android:screenOrientation="landscape" />
+
+        <!-- page4_4 -->
+        <activity
+            android:name=".page4_4"
+            android:screenOrientation="landscape" />
+
+        <!-- scene4_4 -->
+        <activity
+            android:name=".scene4_4"
+            android:screenOrientation="landscape" />
+        <activity android:name=".map4"></activity>
+    </application>
+
+</manifest>

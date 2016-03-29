@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.donnapa.fairytale.scene3_1">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background"
+        android:scaleType="fitXY" />
+
+    <ImageView
+        android:id="@+id/book3_1"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="180dp"
+        android:src="@drawable/book3_1" />
+
+    <ImageView
+        android:id="@+id/imgCloud"
+        android:layout_width="660dp"
+        android:layout_height="350dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:rotationX="90"
+        android:src="@drawable/box3_1" />
+
+    <ImageView
+        android:id="@+id/stage"
+        android:layout_width="1000dp"
+        android:layout_height="400dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="250dp"
+        android:layout_marginTop="260dp"
+        android:src="@drawable/stage" />
+
+    <ImageView
+        android:id="@+id/sis"
+        android:layout_width="600dp"
+        android:layout_height="350dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:rotationX="90"
+        android:src="@drawable/sis" />
+
+    <ImageView
+        android:id="@+id/woman1"
+        android:layout_width="130dp"
+        android:layout_height="320dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="370dp"
+        android:layout_marginRight="200dp"
+        android:background="@drawable/animwoman1"
+        android:rotationX="90" />
+
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="230dp"
+        android:layout_marginRight="280dp">
+
+        <ImageView
+            android:id="@+id/word31"
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/word3_11"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/ng1"
+        android:layout_width="150dp"
+        android:layout_height="300dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="180dp"
+        android:layout_marginLeft="330dp"
+        android:background="@drawable/animred"
+        android:rotationX="90"/>
+
+
+    <ImageView
+        android:id="@+id/malai"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="920dp"
+        android:layout_marginTop="190dp"
+        android:background="@drawable/animmalai"
+        android:rotationX="90"/>
+
+
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/button_back"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/btn_next"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/button_next"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/btn_pause"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button_pause" />
+
+</RelativeLayout>

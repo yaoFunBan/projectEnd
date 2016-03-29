@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.kimhuang.project.scene1_4">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/background" />
+
+    <Button
+        android:id="@+id/btn_pause"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/button_pause" />
+
+
+    <ImageView
+        android:id="@+id/box1_4"
+        android:layout_width="650dp"
+        android:layout_height="320dp"
+        android:layout_centerHorizontal="true"
+        android:rotationX="90"
+        android:src="@drawable/box1_4" />
+
+    <ImageView
+        android:id="@+id/book4"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/book4" />
+
+    <RelativeLayout
+        android:layout_width="1000dp"
+        android:layout_height="450dp"
+        android:layout_alignBottom="@+id/book4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="130dp">
+
+        <ImageView
+            android:id="@+id/firsh1"
+            android:layout_width="250dp"
+            android:layout_height="80dp"
+            android:layout_alignLeft="@+id/sungthong4"
+            android:background="@drawable/animate_firsh"
+            android:rotationX="90" />
+
+        <ImageView
+            android:id="@+id/alga1"
+            android:layout_width="150dp"
+            android:layout_height="250dp"
+            android:layout_alignParentBottom="true"
+            android:rotationX="90"
+            android:src="@drawable/alga" />
+
+        <ImageView
+            android:id="@+id/firsh2"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_toRightOf="@+id/alga1"
+            android:background="@drawable/animate_firsh1"
+            android:rotationX="90" />
+
+        <ImageView
+            android:id="@+id/sungthong4"
+            android:layout_width="480dp"
+            android:layout_height="350dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/animate_sungthong1_4"
+            android:rotationX="90" />
+
+        <ImageView
+            android:id="@+id/firsh3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:rotationX="90"
+            android:src="@drawable/firsh" />
+
+        <ImageView
+            android:id="@+id/alga2"
+            android:layout_width="150dp"
+            android:layout_height="250dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:rotationX="90"
+            android:src="@drawable/alga" />
+
+        <!--word7-->
+        <ImageView
+            android:id="@+id/word7"
+            android:layout_width="350dp"
+            android:layout_height="200dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/word7"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <!--word6-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.05" />
+
+        <RelativeLayout
+            android:layout_width="350dp"
+            android:layout_height="0dp"
+            android:layout_alignParentLeft="true"
+            android:layout_weight="0.2">
+
+            <ImageView
+                android:id="@+id/word6"
+                android:layout_width="300dp"
+                android:layout_height="200dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/word6"
+                android:visibility="invisible" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/button_back"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/btn_next"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/button_next"
+        android:visibility="invisible" />
+
+</RelativeLayout>

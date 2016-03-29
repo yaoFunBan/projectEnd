@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".scene2_1">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background" />
+
+    <ImageView
+        android:id="@+id/box4_4"
+        android:layout_width="650dp"
+        android:layout_height="320dp"
+        android:layout_centerHorizontal="true"
+        android:rotationX="90"
+        android:src="@drawable/box1_3" />
+
+    <ImageView
+        android:layout_width="1300dp"
+        android:layout_height="420dp"
+        android:layout_above="@+id/layout_bottom"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/book4_4" />
+
+    <ImageView
+        android:id="@+id/mount"
+        android:layout_width="500dp"
+        android:layout_height="250dp"
+        android:layout_marginLeft="310dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/mountain4_4"
+        android:rotationX="90" />
+
+    <ImageView
+        android:id="@+id/castles4_4"
+        android:layout_width="400dp"
+        android:layout_height="250dp"
+        android:layout_marginLeft="260dp"
+        android:layout_marginTop="160dp"
+        android:background="@drawable/castles4_4"
+        android:rotationX="90" />
+
+    <ImageView
+        android:id="@+id/tress"
+        android:layout_width="320dp"
+        android:layout_height="230dp"
+        android:layout_marginLeft="620dp"
+        android:layout_marginTop="160dp"
+        android:background="@drawable/forest4_1"
+        android:rotationX="90" />
+
+
+    <ImageView
+        android:id="@+id/pasang"
+        android:layout_width="180dp"
+        android:layout_height="240dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="350dp"
+        android:layout_marginTop="320dp"
+        android:background="@drawable/sang4_4"
+        android:rotationX="90" />
+
+    <ImageView
+        android:id="@+id/rosjana"
+        android:layout_width="180dp"
+        android:layout_height="240dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="200dp"
+        android:layout_marginTop="320dp"
+        android:background="@drawable/rosjana4_4"
+        android:rotationX="90" />
+
+    <RelativeLayout
+        android:id="@+id/layout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <!--<Button-->
+            <!--android:id="@+id/btn_next"-->
+            <!--android:layout_width="80dp"-->
+            <!--android:layout_height="80dp"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_marginBottom="10dp"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:background="@drawable/button_next" />-->
+
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/button_back" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_pause"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/button_pause" />
+</RelativeLayout>

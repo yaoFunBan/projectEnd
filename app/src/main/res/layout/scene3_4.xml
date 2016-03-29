@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.donnapa.fairytale.scene3_4">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background"
+        android:scaleType="fitXY" />
+
+    <ImageView
+        android:id="@+id/imgSky"
+        android:layout_width="790dp"
+        android:layout_height="360dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:rotationX="90"
+        android:scaleType="fitXY"
+        android:src="@drawable/box3_3" />
+
+
+    <ImageView
+        android:id="@+id/book3_1"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="180dp"
+        android:src="@drawable/book3_3" />
+
+    <LinearLayout
+        android:id="@+id/wall"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:gravity="center_horizontal"
+        android:rotationX="90">
+
+        <ImageView
+            android:layout_width="880dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/wall" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/prasung"
+        android:layout_width="330dp"
+        android:layout_height="400dp"
+        android:layout_marginLeft="310dp"
+        android:layout_marginTop="160dp"
+        android:background="@drawable/animprasung"
+        android:rotationX="90" />
+
+    <ImageView
+        android:id="@+id/prain"
+        android:layout_width="450dp"
+        android:layout_height="440dp"
+        android:layout_marginLeft="700dp"
+        android:rotationX="90"
+        android:src="@drawable/prain3" />
+
+    <ImageView
+        android:id="@+id/ball"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="690dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/animball"
+        android:rotationX="90" />
+
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/button_back"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/btn_next"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/button_next"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/btn_pause"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button_pause" />
+</RelativeLayout>

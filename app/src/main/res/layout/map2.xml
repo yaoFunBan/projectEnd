@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/map_all">
+
+    <ImageView
+        android:id="@+id/boatM"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="100dp"
+        android:layout_marginRight="240dp"
+        android:src="@drawable/boat_map" />
+
+    <ImageView
+        android:id="@+id/castled1"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="120dp"
+        android:layout_marginLeft="390dp"
+        android:src="@drawable/castles1" />
+
+    <ImageView
+        android:id="@+id/mountain"
+        android:layout_width="300dp"
+        android:layout_height="250dp"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/mountain4_4" />
+
+    <ImageView
+        android:id="@+id/city"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="220dp"
+        android:src="@drawable/city" />
+
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/button_back" />
+
+</RelativeLayout>

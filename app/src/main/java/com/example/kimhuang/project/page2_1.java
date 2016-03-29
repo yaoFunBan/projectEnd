@@ -130,7 +130,6 @@ public class page2_1 extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_back:
-                finish();
                 break;
             case R.id.btn_next:
                 i = new Intent(getApplicationContext(), scene2_1.class);

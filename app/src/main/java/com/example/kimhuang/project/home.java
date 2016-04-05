@@ -15,11 +15,15 @@ public class home extends AppCompatActivity implements View.OnClickListener {
     Button btn_play1, btn_setting1, btn_con1, btn_close;
     Intent i;
     AlertDialog.Builder builder;
+    Intent svc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
+
+        svc = new Intent(this, BackgroundSound.class);
+        startService(svc);
 
         //button_play
         btn_play1 = (Button) findViewById(R.id.btn_play1);

@@ -19,4 +19,7 @@
     </style>
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="ActivityDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@drawable/dialog_setting</item>
+    </style>
 </resources>

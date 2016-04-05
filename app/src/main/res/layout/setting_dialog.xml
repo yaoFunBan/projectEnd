@@ -5,10 +5,25 @@
     android:background="@drawable/dialog_setting"
     android:orientation="vertical">
 
-    <View
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.4" />
+        android:layout_weight="0.5">
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="17dp"
+            android:layout_toLeftOf="@+id/viewVisible"
+            android:background="@drawable/button_close" />
+
+        <View
+            android:id="@+id/viewVisible"
+            android:layout_width="18dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true" />
+
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

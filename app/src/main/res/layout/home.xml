@@ -60,8 +60,7 @@
                 android:layout_width="160dp"
                 android:layout_height="160dp"
                 android:layout_alignParentRight="true"
-                android:background="@drawable/button_homesett"
-                android:enabled="false" />
+                android:background="@drawable/button_homesett" />
 
         </RelativeLayout>
 

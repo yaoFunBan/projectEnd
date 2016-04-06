@@ -11,6 +11,7 @@
         android:layout_weight="0.5">
 
         <Button
+            android:id="@+id/btn_closes"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="17dp"
@@ -52,17 +53,27 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="เสียงประกอบ"
+                    android:textColor="#000000"
                     android:textSize="24sp" />
 
-                <ToggleButton
-                    android:id="@+id/btn_music"
+                <!--<ToggleButton-->
+                <!--android:id="@+id/btn_music"-->
+                <!--android:layout_width="50dp"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:background="@drawable/btn_music"-->
+                <!--android:textOff=""-->
+                <!--android:textOn="" />-->
+
+                <Switch
+                    android:id="@+id/sw_music"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/btn_music"
-                    android:textOff=""
-                    android:textOn="" />
+                    android:textOff="ปิด"
+                    android:textOn="เปิด" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -75,17 +86,17 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="แอปเฟ็กต์"
+                    android:textColor="#000000"
                     android:textSize="24sp" />
 
-                <ToggleButton
-                    android:id="@+id/btn_effect"
+                <Switch
+                    android:id="@+id/sw_effect"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/btn_music"
-                    android:textOff=""
-                    android:textOn="" />
+                    android:textOff="ปิด"
+                    android:textOn="เปิด" />
             </RelativeLayout>
 
             <View

@@ -14,9 +14,12 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Switch;
+import android.widget.ToggleButton;
 
 public class home extends AppCompatActivity implements View.OnClickListener {
-    Button btn_play1, btn_setting1, btn_con1, btn_close;
+    Button btn_play1, btn_setting1, btn_con1, btn_close, btnClose;
+    Switch tgMusic, tgEffect;
     Intent i;
     AlertDialog.Builder builder;
     Intent svc;
@@ -91,15 +94,24 @@ public class home extends AppCompatActivity implements View.OnClickListener {
     }
 
     public void displayDiaglogSetting() {
-        Dialog dsetting = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
+        final Dialog dsetting = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
         dsetting.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dsetting.setContentView(R.layout.setting_dialog);
+
+        btnClose = (Button) dsetting.findViewById(R.id.btn_closes);
+        tgMusic = (Switch) dsetting.findViewById(R.id.sw_music);
+        tgEffect = (Switch) dsetting.findViewById(R.id.sw_effect);
+
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dsetting.cancel();
+            }
+        });
 
         Window window = dsetting.getWindow();
         window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         window.setGravity(Gravity.CENTER);
         dsetting.show();
-
-
     }
 }

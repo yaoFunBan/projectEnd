@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.donnapa.fairytale.game3">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/game3" />
+
+    <TextView
+        android:layout_width="650dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/boxmess" />
+
+    <TextView
+        android:layout_width="700dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="350dp"
+        android:layout_marginTop="20dp"
+        android:text="หนูตกถังข้าวสาร"
+        android:textStyle="bold"
+        android:textSize="80dp" />
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="400dp"
+        android:src="@drawable/rat"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
+
+    <TextView
+        android:layout_width="580dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/boxmess1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ผู้ที่มีฐานะยากจนได้แต่งงานกับคนร่ำรวย"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="70dp"
+        android:layout_marginLeft="70dp"/>
+
+    <TextView
+        android:layout_width="430dp"
+        android:layout_height="100dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="120dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/boxmess1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ผู้ที่มีฐานะเดียวกันแต่งงานกัน"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="70dp"
+        android:layout_marginLeft="150dp"
+        android:layout_marginRight="150dp"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        />
+    <Button
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/button_pause"/>
+
+</RelativeLayout>

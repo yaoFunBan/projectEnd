@@ -33,10 +33,10 @@ public class home extends AppCompatActivity implements View.OnClickListener {
         svc = new Intent(this, BackgroundSound.class);
         startService(svc);
 
-        player = MediaPlayer.create(this, R.raw.bensound);
-        player.setLooping(true);
-        player.setVolume(50, 50);
-        player.start();
+//        player = MediaPlayer.create(this, R.raw.bensound);
+//        player.setLooping(true);
+//        player.setVolume(50, 50);
+//        player.start();
 
         //button_play
         btn_play1 = (Button) findViewById(R.id.btn_play1);
@@ -112,6 +112,20 @@ public class home extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 dsetting.cancel();
+            }
+        });
+
+        swMusic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        swEffect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 

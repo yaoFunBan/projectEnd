@@ -19,9 +19,10 @@ import android.widget.ToggleButton;
 
 public class home extends AppCompatActivity implements View.OnClickListener {
     Button btn_play1, btn_setting1, btn_con1, btn_close, btnClose;
-    Switch tgMusic, tgEffect;
+    Switch swMusic, swEffect;
     Intent i;
     AlertDialog.Builder builder;
+    MediaPlayer player;
     Intent svc;
 
     @Override
@@ -31,6 +32,11 @@ public class home extends AppCompatActivity implements View.OnClickListener {
 
         svc = new Intent(this, BackgroundSound.class);
         startService(svc);
+
+        player = MediaPlayer.create(this, R.raw.bensound);
+        player.setLooping(true);
+        player.setVolume(50, 50);
+        player.start();
 
         //button_play
         btn_play1 = (Button) findViewById(R.id.btn_play1);
@@ -99,8 +105,8 @@ public class home extends AppCompatActivity implements View.OnClickListener {
         dsetting.setContentView(R.layout.setting_dialog);
 
         btnClose = (Button) dsetting.findViewById(R.id.btn_closes);
-        tgMusic = (Switch) dsetting.findViewById(R.id.sw_music);
-        tgEffect = (Switch) dsetting.findViewById(R.id.sw_effect);
+        swMusic = (Switch) dsetting.findViewById(R.id.sw_music);
+        swEffect = (Switch) dsetting.findViewById(R.id.sw_effect);
 
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,6 +114,7 @@ public class home extends AppCompatActivity implements View.OnClickListener {
                 dsetting.cancel();
             }
         });
+
 
         Window window = dsetting.getWindow();
         window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);

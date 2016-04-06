@@ -8,19 +8,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-public class example4 extends Fragment {
-    ImageView figer4, chicken;
+public class example5 extends Fragment {
+    ImageView figer5,shellsung;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.example4, container, false);
+        View rootView = inflater.inflate(R.layout.example5, container, false);
 
         //figen
-        figer4 = (ImageView) rootView.findViewById(R.id.figer4);
-        ((AnimationDrawable) figer4.getBackground()).start();
+        figer5 = (ImageView) rootView.findViewById(R.id.figer5);
+        ((AnimationDrawable) figer5.getBackground()).start();
 
         //chicken
-        chicken = (ImageView) rootView.findViewById(R.id.chicken);
-        ((AnimationDrawable) chicken.getBackground()).start();
+        shellsung = (ImageView) rootView.findViewById(R.id.shellsung);
+        ((AnimationDrawable) shellsung.getBackground()).start();
         return rootView;
     }
 }

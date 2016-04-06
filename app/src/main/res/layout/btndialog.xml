@@ -6,8 +6,8 @@
 
 
     <RelativeLayout
-        android:layout_width="450dp"
-        android:layout_height="250dp"
+        android:layout_width="600dp"
+        android:layout_height="300dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true">
 
@@ -16,38 +16,41 @@
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/scene_index"/>
+            android:background="@drawable/dialog"/>
         <Button
             android:id="@+id/btn_close"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_alignParentRight="true"
             android:background="@drawable/button_close" />
 
         <Button
             android:id="@+id/btn_home"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="60dp"
             android:background="@drawable/button_home" />
 
         <Button
             android:id="@+id/btn_exit"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_centerVertical="true"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="60dp"
             android:layout_toLeftOf="@+id/btn_home"
-            android:layout_marginRight="30dp"
+            android:layout_marginRight="80dp"
             android:background="@drawable/button_exit" />
 
         <Button
             android:id="@+id/btn_setting"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_centerVertical="true"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="60dp"
             android:layout_toRightOf="@+id/btn_home"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="80dp"
             android:background="@drawable/button_setting" />
 
     </RelativeLayout>

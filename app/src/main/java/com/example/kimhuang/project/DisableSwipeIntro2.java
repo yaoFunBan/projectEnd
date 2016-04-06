@@ -47,10 +47,15 @@ public class DisableSwipeIntro2 extends AppCompatActivity {
                             .commit();
                     position += 1;
                 }else if(position == 2) {
-                    getSupportFragmentManager().beginTransaction()
-                            .add(R.id.contentContainer, new example4())
-                            .commit();
-                    position += 1;
+                 getSupportFragmentManager().beginTransaction()
+                         .add(R.id.contentContainer, new example4())
+                         .commit();
+                 position += 1;
+             }else if (position == 3){
+                 getSupportFragmentManager().beginTransaction()
+                         .add(R.id.contentContainer, new example5())
+                         .commit();
+                 position +=1;
                  btnNext.setVisibility(View.GONE);
                  btnDone.setVisibility(View.VISIBLE);
                 }

@@ -10,6 +10,10 @@ import android.widget.ImageView;
 public class map3 extends AppCompatActivity {
     Button btn_back;
     ImageView mapsamon, mapfall, mapmalai, mapball;
+    boolean unlock31 = false;
+    boolean unlock32 = false;
+    boolean unlock33 = false;
+    boolean unlock34 = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +21,7 @@ public class map3 extends AppCompatActivity {
         setContentView(R.layout.map3);
 
         btn_back = (Button) findViewById(R.id.btn_back);
-        final Intent n = new Intent(this ,map.class);
+        final Intent n = new Intent(this, map.class);
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -31,12 +35,14 @@ public class map3 extends AppCompatActivity {
         mapmalai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(malai);
+                if(unlock31){
+                    startActivity(malai);
+                }
             }
         });
 
-         //mapwaterfall
-        mapfall = (ImageView)findViewById(R.id.mapfall);
+        //mapwaterfall
+        mapfall = (ImageView) findViewById(R.id.mapfall);
         final Intent fall = new Intent(this, page3_21.class);
         mapfall.setOnClickListener(new View.OnClickListener() {
             @Override

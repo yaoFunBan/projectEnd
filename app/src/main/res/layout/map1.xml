@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        android:background="@drawable/map1"/>
+        android:background="@drawable/map1"
+        android:scaleType="fitXY" />
 
     <ImageView
         android:id="@+id/palaces"
         android:layout_width="400dp"
         android:layout_height="170dp"
-
-        android:src="@drawable/palaces"/>
+        android:src="@drawable/palaces" />
 
     <ImageView
         android:id="@+id/house"
@@ -22,14 +22,14 @@
         android:layout_height="250dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:src="@drawable/house"/>
+        android:src="@drawable/house_lock" />
 
     <ImageView
         android:id="@+id/shellsung"
         android:layout_width="250dp"
         android:layout_height="150dp"
         android:layout_alignParentRight="true"
-        android:src="@drawable/shellsung2"/>
+        android:src="@drawable/shellsung2_png" />
 
     <RelativeLayout
         android:layout_width="600dp"
@@ -42,7 +42,7 @@
             android:layout_width="200dp"
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/alga1"/>
+            android:src="@drawable/alga1_lock" />
     </RelativeLayout>
 
     <Button

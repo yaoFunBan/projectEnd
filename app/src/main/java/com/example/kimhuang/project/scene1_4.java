@@ -207,7 +207,7 @@ public class scene1_4 extends AppCompatActivity {
 
         //button_next
         btn_next = (Button) findViewById(R.id.btn_next);
-        final Intent i = new Intent(this, map1.class);
+        final Intent i = new Intent(this, minigame1.class);
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

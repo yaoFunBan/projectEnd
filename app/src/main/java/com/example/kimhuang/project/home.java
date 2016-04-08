@@ -24,19 +24,13 @@ public class home extends AppCompatActivity implements View.OnClickListener {
     AlertDialog.Builder builder;
     MediaPlayer player;
     Intent svc;
+    Boolean effOpen = false;
+    startEffect cEffect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
-
-        svc = new Intent(this, BackgroundSound.class);
-        startService(svc);
-
-//        player = MediaPlayer.create(this, R.raw.bensound);
-//        player.setLooping(true);
-//        player.setVolume(50, 50);
-//        player.start();
 
         //button_play
         btn_play1 = (Button) findViewById(R.id.btn_play1);

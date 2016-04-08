@@ -14,6 +14,12 @@ import android.widget.ImageView;
 public class map2 extends Activity implements View.OnClickListener {
     Intent i;
     Button btn_back;
+    ImageView boat, city1, mount, city2;
+    boolean unlock21 = false;
+    boolean unlock22 = false;
+    boolean unlock23 = false;
+    boolean unlock24 = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,10 +27,10 @@ public class map2 extends Activity implements View.OnClickListener {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.map2);
 
-        ImageView boat = (ImageView) findViewById(R.id.boatM);
-        ImageView city1 = (ImageView) findViewById(R.id.castled1);
-        ImageView mount = (ImageView) findViewById(R.id.mountain);
-        ImageView city2 = (ImageView) findViewById(R.id.city);
+        boat = (ImageView) findViewById(R.id.boatM);
+        city1 = (ImageView) findViewById(R.id.castled1);
+        mount = (ImageView) findViewById(R.id.mountain);
+        city2 = (ImageView) findViewById(R.id.city);
 
         btn_back = (Button) findViewById(R.id.btn_back);
         final Intent n = new Intent(this, map.class);
@@ -48,19 +54,31 @@ public class map2 extends Activity implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.boatM:
                 i = new Intent(getApplicationContext(), page2_1.class);
-                startActivity(i);
+                if (unlock21) {
+                    boat.setBackgroundResource(R.drawable.boat_map);
+                    startActivity(i);
+                }
                 break;
             case R.id.castled1:
                 i = new Intent(getApplicationContext(), page2_2.class);
-                startActivity(i);
+                if (unlock22) {
+                    city1.setBackgroundResource(R.drawable.city);
+                    startActivity(i);
+                }
                 break;
             case R.id.mountain:
                 i = new Intent(getApplicationContext(), page2_3.class);
-                startActivity(i);
+                if (unlock23) {
+                    mount.setBackgroundResource(R.drawable.mountain4_4);
+                    startActivity(i);
+                }
                 break;
             case R.id.city:
                 i = new Intent(getApplicationContext(), page2_4.class);
-                startActivity(i);
+                if (unlock24) {
+                    city2.setBackgroundResource(R.drawable.castles1);
+                    startActivity(i);
+                }
                 break;
         }
     }

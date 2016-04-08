@@ -33,7 +33,7 @@ public class page1_1 extends AppCompatActivity {
     AlertDialog.Builder builder;
     Dialog dialog;
     Button dialogset, dialogexit, dialoghome, dialogclose, btnPlayAgain;
-
+    chYnlock unlock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,6 +138,7 @@ public class page1_1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(i);
+                unlock.setPage11(true);
             }
         });
     }

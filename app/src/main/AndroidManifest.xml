@@ -3,13 +3,13 @@
     package="com.example.kimhuang.project">
 
     <application
+        android:name=".customFont"
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name=".customFont">
+        android:theme="@style/AppTheme">
 
         <!-- Home -->
         <activity
@@ -25,13 +25,11 @@
         <activity
             android:name=".VoActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".summary"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
-        </activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
 
         <!-- Setting -->
         <activity
@@ -66,7 +64,7 @@
         <activity
             android:name=".page1_1"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <!-- scene1_1 -->
         <activity
@@ -84,7 +82,7 @@
         <activity
             android:name=".scene1_2"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <!-- page1_3 -->
         <activity
@@ -114,7 +112,7 @@
         <activity
             android:name=".scene1_4"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <!-- MiniGame1 -->
         <activity
@@ -122,10 +120,16 @@
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
+        <!-- Game1 -->
+        <activity
+            android:name=".game1"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
         <!-- Map2 -->
         <activity
             android:name=".map2"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape" />
 
         <!-- page2_1 -->
         <activity
@@ -155,7 +159,7 @@
         <!-- scene2_3 -->
         <activity
             android:name=".scene2_3"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape" />
 
         <!-- page2_4 -->
         <activity
@@ -207,7 +211,7 @@
         <activity
             android:name=".scene3_2"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <!-- page3_3 -->
         <activity
@@ -239,11 +243,12 @@
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
-        <!--game3-->
+        <!-- game3 -->
         <activity
             android:name=".game3"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
         </activity>
 
 
@@ -278,7 +283,7 @@
         <!-- page4_3 -->
         <activity
             android:name=".page4_3"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape" />
 
         <!-- scene4_3 -->
         <activity
@@ -294,7 +299,7 @@
         <activity
             android:name=".scene4_4"
             android:screenOrientation="landscape" />
-        <activity android:name=".map4"></activity>
+        <activity android:name=".map4"/>
     </application>
 
 </manifest>

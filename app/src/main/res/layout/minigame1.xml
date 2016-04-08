@@ -3,22 +3,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.kimhuang.project.minigame1"
-    android:background="@drawable/scene_index">
+    android:background="@drawable/bg_game1"
+    tools:context="com.example.kimhuang.project.minigame1">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:textSize="100dp"
-        android:text="Mini Game1"
-        android:textColor="#000"
-       />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp">
+
+        <Button
+            android:id="@+id/btn_playgame"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_playgame" />
+
+        <Button
+            android:id="@+id/btn_explain"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_explain" />
+    </RelativeLayout>
+
     <Button
         android:id="@+id/btn_back"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/button_back"/>
+        android:background="@drawable/button_back" />
 </RelativeLayout>

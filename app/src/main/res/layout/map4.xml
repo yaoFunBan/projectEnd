@@ -15,28 +15,28 @@
         android:id="@+id/palaces"
         android:layout_width="300dp"
         android:layout_height="150dp"
-        android:src="@drawable/palaces" />
+        android:src="@drawable/palaces_lock" />
 
     <ImageView
         android:id="@+id/house"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/house" />
+        android:src="@drawable/house_lock" />
 
     <RelativeLayout
         android:layout_width="630dp"
         android:layout_height="220dp"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="320dp"
-        android:layout_alignParentLeft="true">
+        android:layout_marginTop="320dp">
 
         <ImageView
             android:id="@+id/samon"
             android:layout_width="350dp"
             android:layout_height="250dp"
             android:layout_alignParentRight="true"
-            android:src="@drawable/mapsamon" />
+            android:src="@drawable/mapsamon_lock" />
     </RelativeLayout>
 
 
@@ -52,7 +52,7 @@
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/bowl_f2" />
+            android:src="@drawable/bowl_f2_lock" />
     </RelativeLayout>
 
     <Button

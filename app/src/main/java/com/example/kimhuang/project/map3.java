@@ -35,7 +35,8 @@ public class map3 extends AppCompatActivity {
         mapmalai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(unlock31){
+                if (unlock31) {
+                    mapmalai.setBackgroundResource(R.drawable.mapmalai);
                     startActivity(malai);
                 }
             }
@@ -47,7 +48,10 @@ public class map3 extends AppCompatActivity {
         mapfall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(fall);
+                if (unlock32) {
+                    mapfall.setBackgroundResource(R.drawable.mapfall);
+                    startActivity(fall);
+                }
             }
         });
 
@@ -57,7 +61,10 @@ public class map3 extends AppCompatActivity {
         mapsamon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(samon);
+                if (unlock33) {
+                    mapsamon.setBackgroundResource(R.drawable.mapsamon);
+                    startActivity(samon);
+                }
             }
         });
 
@@ -67,7 +74,10 @@ public class map3 extends AppCompatActivity {
         mapball.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(ball);
+                if (unlock34) {
+                    mapball.setBackgroundResource(R.drawable.mapball);
+                    startActivity(ball);
+                }
             }
         });
 

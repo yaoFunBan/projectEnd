@@ -11,12 +11,17 @@ public class map4 extends AppCompatActivity {
 
     Button btn_back;
     ImageView palaces, houses, mapsamon, bowls;
+    boolean unlock41 = false;
+    boolean unlock42 = false;
+    boolean unlock43 = false;
+    boolean unlock44 = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map4);
         btn_back = (Button) findViewById(R.id.btn_back);
-        final Intent n = new Intent(this ,map.class);
+        final Intent n = new Intent(this, map.class);
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -30,17 +35,23 @@ public class map4 extends AppCompatActivity {
         palaces.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(palace);
+                if (unlock41) {
+                    palaces.setBackgroundResource(R.drawable.city);
+                    startActivity(palace);
+                }
             }
         });
 
         //houses
-        houses = (ImageView)findViewById(R.id.mapfall);
+        houses = (ImageView) findViewById(R.id.mapfall);
         final Intent house = new Intent(this, page4_2.class);
         houses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(house);
+                if (unlock42) {
+                    houses.setBackgroundResource(R.drawable.house);
+                    startActivity(house);
+                }
             }
         });
 
@@ -50,7 +61,10 @@ public class map4 extends AppCompatActivity {
         mapsamon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(samon);
+                if (unlock44) {
+                    mapsamon.setBackgroundResource(R.drawable.mapsamon);
+                    startActivity(samon);
+                }
             }
         });
 
@@ -60,7 +74,10 @@ public class map4 extends AppCompatActivity {
         bowls.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(bowl);
+                if (unlock44) {
+                    bowls.setBackgroundResource(R.drawable.bowl_f2);
+                    startActivity(bowl);
+                }
             }
         });
 

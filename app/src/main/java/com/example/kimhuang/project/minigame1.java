@@ -1,6 +1,7 @@
 package com.example.kimhuang.project;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,18 +10,29 @@ import android.view.Window;
 import android.widget.Button;
 
 public class minigame1 extends AppCompatActivity {
-    Button btn_back, btn_explain;
+    Button btn_back, btn_playgame,btn_explain;
 
     //Dialog
     AlertDialog.Builder builder;
     Dialog dialog;
     Button dialogclose;
+    Intent i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.minigame1);
-        //button_explain
+        //button_playgame
+        btn_playgame = (Button) findViewById(R.id.btn_playgame);
+        btn_playgame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                i = new Intent(getApplicationContext(),game1.class);
+                startActivity(i);
+            }
+        });
+
+                //button_explain
         btn_explain = (Button) findViewById(R.id.btn_explain);
         builder = new AlertDialog.Builder(this);
         dialog = new Dialog(this);
@@ -41,6 +53,8 @@ public class minigame1 extends AppCompatActivity {
                 dialog.show();
             }
         });
+
+
 
         //button_back
         btn_back = (Button) findViewById(R.id.btn_back);

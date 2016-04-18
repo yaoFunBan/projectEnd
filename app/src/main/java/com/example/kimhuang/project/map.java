@@ -74,7 +74,6 @@ public class map extends AppCompatActivity implements View.OnClickListener {
                 startActivity(i);
                 break;
         }
-
     }
 
     @Override

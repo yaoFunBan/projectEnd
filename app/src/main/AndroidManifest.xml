@@ -26,6 +26,7 @@
             android:name=".VoActivity"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
         <activity
             android:name=".summary"
             android:screenOrientation="landscape"
@@ -201,7 +202,7 @@
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
-        <!-- Page3_22 -->
+        <!-- page3_22 -->
         <activity
             android:name=".page3_22"
             android:screenOrientation="landscape"
@@ -253,6 +254,10 @@
 
 
         <!-- Map4 -->
+        <activity
+            android:name=".map4"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 
 
         <!-- page4_11 -->
@@ -299,7 +304,7 @@
         <activity
             android:name=".scene4_4"
             android:screenOrientation="landscape" />
-        <activity android:name=".map4"/>
+
     </application>
 
 </manifest>

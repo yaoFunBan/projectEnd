@@ -10,7 +10,14 @@
         android:layout_height="match_parent"
         android:background="@drawable/game3" />
 
-    <TextView
+    <ImageView
+        android:layout_width="750dp"
+        android:layout_height="600dp"
+        android:layout_marginTop="60dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/frame"/>
+
+    <ImageView
         android:layout_width="650dp"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
@@ -33,12 +40,12 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"/>
 
-    <TextView
+    <ImageView
         android:layout_width="580dp"
         android:layout_height="100dp"
-        android:layout_marginLeft="50dp"
+        android:layout_marginLeft="20dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/boxmess1" />
 
     <TextView
@@ -48,16 +55,16 @@
         android:textSize="30dp"
         android:textStyle="bold"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="70dp"
-        android:layout_marginLeft="70dp"/>
+        android:layout_marginBottom="50dp"
+        android:layout_marginLeft="50dp"/>
 
-    <TextView
-        android:layout_width="430dp"
+    <ImageView
+        android:layout_width="580dp"
         android:layout_height="100dp"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="120dp"
+        android:layout_marginRight="20dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/boxmess1" />
 
     <TextView
@@ -66,7 +73,7 @@
         android:text="ผู้ที่มีฐานะเดียวกันแต่งงานกัน"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="70dp"
+        android:layout_marginBottom="50dp"
         android:layout_marginLeft="150dp"
         android:layout_marginRight="150dp"
         android:textSize="30dp"

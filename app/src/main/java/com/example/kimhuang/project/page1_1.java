@@ -4,7 +4,6 @@ import android.annotation.TargetApi;
 import android.app.Dialog;
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -18,10 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.ToggleButton;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
-
 public class page1_1 extends AppCompatActivity {
     Button btn_back, btn_next, btn_pause, btnClose;
     Switch swMusic, swEffect;
@@ -33,7 +28,7 @@ public class page1_1 extends AppCompatActivity {
     AlertDialog.Builder builder;
     Dialog dialog;
     Button dialogset, dialogexit, dialoghome, dialogclose, btnPlayAgain;
-    chYnlock unlock;
+    chUnlock unlock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,7 +133,7 @@ public class page1_1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(i);
-                unlock.setPage11(true);
+//                unlock.setPage11(true);
             }
         });
     }

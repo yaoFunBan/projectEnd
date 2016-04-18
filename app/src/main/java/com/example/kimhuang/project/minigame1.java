@@ -10,7 +10,7 @@ import android.view.Window;
 import android.widget.Button;
 
 public class minigame1 extends AppCompatActivity {
-    Button btn_back, btn_playgame,btn_explain;
+    Button btn_back, btn_playgame, btn_explain;
 
     //Dialog
     AlertDialog.Builder builder;
@@ -27,12 +27,12 @@ public class minigame1 extends AppCompatActivity {
         btn_playgame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                i = new Intent(getApplicationContext(),game1.class);
+                i = new Intent(getApplicationContext(), game1.class);
                 startActivity(i);
             }
         });
 
-                //button_explain
+        //button_explain
         btn_explain = (Button) findViewById(R.id.btn_explain);
         builder = new AlertDialog.Builder(this);
         dialog = new Dialog(this);
@@ -53,7 +53,6 @@ public class minigame1 extends AppCompatActivity {
                 dialog.show();
             }
         });
-
 
 
         //button_back

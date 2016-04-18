@@ -10,12 +10,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.view.animation.Animation;
 import android.widget.Button;
 
-public class map extends AppCompatActivity implements View.OnClickListener{
-    Button btn_scene1, btn_scene2, btn_scene3,btn_scene4;
+public class map extends AppCompatActivity implements View.OnClickListener {
+    Button btn_scene1, btn_scene2, btn_scene3, btn_scene4;
     Button btn_back;
     Intent i;
+
+    chUnlock unlock11;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,23 +26,24 @@ public class map extends AppCompatActivity implements View.OnClickListener{
         setContentView(R.layout.map);
 
         //btn_scene1
-        btn_scene1 = (Button)findViewById(R.id.btn_scene1);
+        btn_scene1 = (Button) findViewById(R.id.btn_scene1);
         btn_scene1.setOnClickListener(this);
 
         //btn_scene2
-        btn_scene2 = (Button)findViewById(R.id.btn_scene2);
+        btn_scene2 = (Button) findViewById(R.id.btn_scene2);
         btn_scene2.setOnClickListener(this);
 
         //btn_scene3
-        btn_scene3 = (Button)findViewById(R.id.btn_scene3);
+        btn_scene3 = (Button) findViewById(R.id.btn_scene3);
         btn_scene3.setOnClickListener(this);
 
         //btn_scene4
-        btn_scene4 = (Button)findViewById(R.id.btn_scene4);
+        btn_scene4 = (Button) findViewById(R.id.btn_scene4);
         btn_scene4.setOnClickListener(this);
 
+
         //button_back
-        btn_back = (Button)findViewById(R.id.btn_back);
+        btn_back = (Button) findViewById(R.id.btn_back);
         final Intent n = new Intent(this, home.class);
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +70,7 @@ public class map extends AppCompatActivity implements View.OnClickListener{
                 startActivity(i);
                 break;
             case (R.id.btn_scene4):
-                i = new Intent(this, page4_11.class);
+                i = new Intent(this, map4.class);
                 startActivity(i);
                 break;
         }

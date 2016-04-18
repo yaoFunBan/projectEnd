@@ -3,8 +3,8 @@ package com.example.kimhuang.project;
 /**
  * Created by วัชรัตน์ on 8/4/2559.
  */
-public class chYnlock {
-    private boolean page11, page12, page13, page14;
+public class chUnlock {
+    private static boolean page11 = false, page12, page13, page14;
     private boolean page21, page22, page23, page24;
     private boolean page31, page32, page33, page34;
     private boolean page41, page42, page43, page44;
@@ -34,8 +34,9 @@ public class chYnlock {
     }
 
     public boolean isPage14() {
-        return page14;
+        return page11;
     }
+    
 
     public void setPage14(boolean page14) {
         this.page14 = page14;

@@ -33,6 +33,8 @@ public class scene1_2 extends AppCompatActivity {
     AnimPopUp animPopUp;
     MediaPlayer mediaPlayer;
 
+    chUnlock unlock;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -11,18 +11,20 @@
         android:background="@drawable/map4"
         android:scaleType="fitXY" />
 
-    <ImageView
+    <Button
         android:id="@+id/palaces"
         android:layout_width="300dp"
         android:layout_height="150dp"
-        android:src="@drawable/palaces_lock" />
+        android:background="@drawable/palaces_lock"
+        android:enabled="false" />
 
-    <ImageView
+    <Button
         android:id="@+id/house"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/house_lock" />
+        android:background="@drawable/house_lock"
+        android:enabled="false" />
 
     <RelativeLayout
         android:layout_width="630dp"
@@ -31,12 +33,13 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="320dp">
 
-        <ImageView
+        <Button
             android:id="@+id/samon"
             android:layout_width="350dp"
             android:layout_height="250dp"
             android:layout_alignParentRight="true"
-            android:src="@drawable/mapsamon_lock" />
+            android:background="@drawable/mapsamon_lock"
+            android:enabled="false" />
     </RelativeLayout>
 
 
@@ -46,13 +49,14 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true">
 
-        <ImageView
+        <Button
             android:id="@+id/bowl"
             android:layout_width="200dp"
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/bowl_f2_lock" />
+            android:background="@drawable/bowl_f2_lock"
+            android:enabled="false" />
     </RelativeLayout>
 
     <Button

@@ -10,6 +10,7 @@ import android.os.CountDownTimer;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -26,6 +27,8 @@ public class scene1_1 extends AppCompatActivity {
     boolean yotsawimon = false;
     boolean janta = false;
     boolean flagjantawee, flagjanta, flagyotsawimon;
+
+    chUnlock unlock;
     //Dialog
     AlertDialog.Builder builder;
     Dialog dialog;
@@ -39,6 +42,7 @@ public class scene1_1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scenc1_1);
 
+        unlock = new chUnlock();
         //animpopup
         animPopUp = new AnimPopUp();
 
@@ -221,6 +225,8 @@ public class scene1_1 extends AppCompatActivity {
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                unlock.setPage11(true);
+                Log.i("status unlock page1 ", "is : " + unlock.isPage11());
                 startActivity(i);
             }
         });

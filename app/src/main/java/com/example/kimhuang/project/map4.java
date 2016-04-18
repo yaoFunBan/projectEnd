@@ -10,11 +10,7 @@ import android.widget.ImageView;
 public class map4 extends AppCompatActivity {
 
     Button btn_back;
-    ImageView palaces, houses, mapsamon, bowls;
-    boolean unlock41 = false;
-    boolean unlock42 = false;
-    boolean unlock43 = false;
-    boolean unlock44 = false;
+    Button palaces, houses, mapsamon, bowls;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,54 +26,42 @@ public class map4 extends AppCompatActivity {
         });
 
         //palaces
-        palaces = (ImageView) findViewById(R.id.mapmalai);
+        palaces = (Button) findViewById(R.id.palaces);
         final Intent palace = new Intent(this, page4_11.class);
         palaces.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (unlock41) {
-                    palaces.setBackgroundResource(R.drawable.city);
-                    startActivity(palace);
-                }
+                startActivity(palace);
             }
         });
 
         //houses
-        houses = (ImageView) findViewById(R.id.mapfall);
+        houses = (Button) findViewById(R.id.house);
         final Intent house = new Intent(this, page4_2.class);
         houses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (unlock42) {
-                    houses.setBackgroundResource(R.drawable.house);
-                    startActivity(house);
-                }
+                startActivity(house);
             }
         });
 
         //mapsamon
-        mapsamon = (ImageView) findViewById(R.id.mapsamon);
+        mapsamon = (Button) findViewById(R.id.samon);
         final Intent samon = new Intent(this, page3_3.class);
         mapsamon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (unlock44) {
-                    mapsamon.setBackgroundResource(R.drawable.mapsamon);
-                    startActivity(samon);
-                }
+                startActivity(samon);
             }
         });
 
         //bowl
-        bowls = (ImageView) findViewById(R.id.mapball);
+        bowls = (Button) findViewById(R.id.bowl);
         final Intent bowl = new Intent(this, page3_41.class);
         bowls.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (unlock44) {
-                    bowls.setBackgroundResource(R.drawable.bowl_f2);
-                    startActivity(bowl);
-                }
+                startActivity(bowl);
             }
         });
 

@@ -66,11 +66,10 @@ public class map extends AppCompatActivity implements View.OnClickListener{
                 startActivity(i);
                 break;
             case (R.id.btn_scene4):
-                i = new Intent(this, page4_11.class);
+                i = new Intent(this, map4.class);
                 startActivity(i);
                 break;
         }
-
     }
 
     @Override

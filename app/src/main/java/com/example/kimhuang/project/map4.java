@@ -20,6 +20,7 @@ public class map4 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map4);
+
         btn_back = (Button) findViewById(R.id.btn_back);
         final Intent n = new Intent(this, map.class);
         btn_back.setOnClickListener(new View.OnClickListener() {
@@ -80,7 +81,5 @@ public class map4 extends AppCompatActivity {
                 }
             }
         });
-
-
     }
 }

@@ -11,4 +11,37 @@
         android:background="@drawable/game1"
         android:scaleType="fitXY"/>
 
+    <RelativeLayout
+        android:layout_width="250dp"
+        android:layout_height="200dp"
+        android:layout_marginLeft="50dp">
+
+        <ProgressBar
+            android:id="@+id/pbTimer"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/tvTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="0"
+            android:textStyle="bold"
+            android:textSize="50sp" />
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="Time"
+            android:textSize="30sp" />
+
+    </RelativeLayout>
+
+
 </RelativeLayout>

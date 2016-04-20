@@ -15,10 +15,7 @@ public class map2 extends Activity implements View.OnClickListener {
     Intent i;
     Button btn_back;
     ImageView boat, city1, mount, city2;
-    boolean unlock21 = false;
-    boolean unlock22 = false;
-    boolean unlock23 = false;
-    boolean unlock24 = false;
+    unlock unlock;
 
 
     @Override
@@ -26,6 +23,7 @@ public class map2 extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.map2);
+        unlock = new unlock();
 
         boat = (ImageView) findViewById(R.id.boatM);
         city1 = (ImageView) findViewById(R.id.castled1);
@@ -46,6 +44,7 @@ public class map2 extends Activity implements View.OnClickListener {
         mount.setOnClickListener(this);
         city2.setOnClickListener(this);
 
+        Unlock();
 
     }
 
@@ -54,32 +53,38 @@ public class map2 extends Activity implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.boatM:
                 i = new Intent(getApplicationContext(), page2_1.class);
-                if (unlock21) {
-                    boat.setBackgroundResource(R.drawable.boat_map);
-                    startActivity(i);
-                }
+                startActivity(i);
+
                 break;
             case R.id.castled1:
                 i = new Intent(getApplicationContext(), page2_2.class);
-                if (unlock22) {
-                    city1.setBackgroundResource(R.drawable.city);
-                    startActivity(i);
-                }
+                startActivity(i);
                 break;
             case R.id.mountain:
                 i = new Intent(getApplicationContext(), page2_3.class);
-                if (unlock23) {
-                    mount.setBackgroundResource(R.drawable.mountain4_4);
-                    startActivity(i);
-                }
+                startActivity(i);
+
                 break;
             case R.id.city:
                 i = new Intent(getApplicationContext(), page2_4.class);
-                if (unlock24) {
-                    city2.setBackgroundResource(R.drawable.castles1);
-                    startActivity(i);
-                }
+                startActivity(i);
                 break;
+        }
+    }
+
+    public void Unlock() {
+        if (unlock.getUnlock(4)) {
+            boat.setBackgroundResource(R.drawable.boat_map);
+            boat.setEnabled(true);
+        } else if (unlock.getUnlock(5)) {
+            city1.setBackgroundResource(R.drawable.city);
+            city1.setEnabled(true);
+        } else if (unlock.getUnlock(6)) {
+            mount.setBackgroundResource(R.drawable.mountain4_4);
+            mount.setEnabled(true);
+        } else if (unlock.getUnlock(7)) {
+            city2.setBackgroundResource(R.drawable.castles1);
+            city2.setEnabled(true);
         }
     }
 }

@@ -7,6 +7,7 @@ import android.widget.Button;
 
 public class contact extends AppCompatActivity {
     Button btn_back;
+    unlock unlock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

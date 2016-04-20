@@ -42,7 +42,7 @@
         <activity
             android:name=".contact"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
 
         <!-- Example -->
         <activity
@@ -257,7 +257,7 @@
         <activity
             android:name=".map4"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
 
         <!-- page4_11 -->

@@ -11,12 +11,14 @@ public class map4 extends AppCompatActivity {
 
     Button btn_back;
     Button palaces, houses, mapsamon, bowls;
+    unlock unlock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map4);
 
+        unlock = new unlock();
         btn_back = (Button) findViewById(R.id.btn_back);
         final Intent n = new Intent(this, map.class);
         btn_back.setOnClickListener(new View.OnClickListener() {
@@ -65,5 +67,23 @@ public class map4 extends AppCompatActivity {
                 startActivity(bowl);
             }
         });
+
+        Unlock();
+    }
+
+    public void Unlock() {
+        if (unlock.getUnlock(4)) {
+            palaces.setBackgroundResource(R.drawable.palaces);
+            palaces.setEnabled(true);
+        } else if (unlock.getUnlock(5)) {
+            houses.setBackgroundResource(R.drawable.house);
+            houses.setEnabled(true);
+        } else if (unlock.getUnlock(6)) {
+            mapsamon.setBackgroundResource(R.drawable.mapsamon);
+            mapsamon.setEnabled(true);
+        } else if (unlock.getUnlock(7)) {
+            bowls.setBackgroundResource(R.drawable.bowl_f2);
+            bowls.setEnabled(true);
+        }
     }
 }

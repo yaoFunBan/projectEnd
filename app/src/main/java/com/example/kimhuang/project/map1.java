@@ -1,5 +1,6 @@
 package com.example.kimhuang.project;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -39,13 +40,8 @@ public class map1 extends AppCompatActivity {
         house.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                startActivity(c);
-                try {
-                    unlock.clearTheFile();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    Log.e("File ", "C");
-                }
+                unlock.clearTheFile();
+// startActivity(c);
             }
         });
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
@@ -18,6 +19,7 @@ public class unlock {
     private static final String FileName = "unlock.txt";
     private static boolean[] lock = new boolean[16];
     BufferedReader reader;
+    BufferedWriter writer;
     static int i = 0;
 
 
@@ -62,12 +64,15 @@ public class unlock {
         }
     }
 
-    public void clearTheFile() throws IOException {
-
-        PrintWriter writer = new PrintWriter(FileName);
-        writer.print("");
-        writer.close();
-        Log.e("File ", "Clear");
+    public void clearTheFile() {
+        try {
+            BufferedWriter out = new BufferedWriter(new FileWriter(FileName, true));
+            out.write("");
+            out.close();
+            Log.e("show", "this here");
+        } catch (IOException e) {
+            e.toString();
+        }
     }
 
 

@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 
 public class map1 extends AppCompatActivity {
     Button palaces, house, shellsung, alga1;
@@ -20,7 +21,7 @@ public class map1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map1);
 
-//        unlock = new unlock();
+        unlock = new unlock();
 
         //palaces
         palaces = (Button) findViewById(R.id.palaces);
@@ -39,7 +40,12 @@ public class map1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                startActivity(c);
-                unlock.showAll();
+                try {
+                    unlock.clearTheFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.e("File ", "C");
+                }
             }
         });
 
@@ -75,7 +81,7 @@ public class map1 extends AppCompatActivity {
         });
 
 
-        Unlock();
+//        Unlock();
     }
 
     public void Unlock() {

@@ -8,19 +8,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import java.io.FileInputStream;
+
 public class map1 extends AppCompatActivity {
     Button palaces, house, shellsung, alga1;
     Button btn_back;
-    chUnlock unlock1e;
+    unlock unlock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map1);
 
-        unlock1e = new chUnlock();
-
-        Log.i("status unlock page1 ", "is : " + unlock1e.isPage11());
+//        unlock = new unlock();
 
         //palaces
         palaces = (Button) findViewById(R.id.palaces);
@@ -38,7 +38,8 @@ public class map1 extends AppCompatActivity {
         house.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(c);
+//                startActivity(c);
+                unlock.showAll();
             }
         });
 
@@ -52,11 +53,6 @@ public class map1 extends AppCompatActivity {
                 startActivity(a);
             }
         });
-
-        if (unlock1e.isPage11()) {
-            house.setBackgroundResource(R.drawable.house);
-            house.setEnabled(true);
-        }
 
 
 //        alga
@@ -78,5 +74,20 @@ public class map1 extends AppCompatActivity {
             }
         });
 
+
+        Unlock();
+    }
+
+    public void Unlock() {
+        if (unlock.getUnlock(1)) {
+            house.setBackgroundResource(R.drawable.house);
+            house.setEnabled(true);
+        } else if (unlock.getUnlock(2)) {
+            shellsung.setBackgroundResource(R.drawable.shellsung2);
+            shellsung.setEnabled(true);
+        } else if (unlock.getUnlock(3)) {
+            alga1.setBackgroundResource(R.drawable.alga1);
+            alga1.setEnabled(true);
+        }
     }
 }

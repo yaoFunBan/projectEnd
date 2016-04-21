@@ -33,7 +33,7 @@ public class scene1_2 extends AppCompatActivity {
     AnimPopUp animPopUp;
     MediaPlayer mediaPlayer;
 
-    chUnlock unlock;
+    unlock unlock;
 
 
     @Override
@@ -43,6 +43,7 @@ public class scene1_2 extends AppCompatActivity {
 
         //animPopUp
         animPopUp = new AnimPopUp();
+        unlock = new unlock();
 
         //box1_2
         box1_2 = (ImageView) findViewById(R.id.box1_2);
@@ -203,6 +204,7 @@ public class scene1_2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(i);
+                unlock.setUnlock(2, true);
             }
         });
 

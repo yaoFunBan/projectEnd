@@ -10,15 +10,14 @@ import android.widget.ImageView;
 public class map3 extends AppCompatActivity {
     Button btn_back;
     ImageView mapsamon, mapfall, mapmalai, mapball;
-    boolean unlock31 = false;
-    boolean unlock32 = false;
-    boolean unlock33 = false;
-    boolean unlock34 = false;
+    unlock unlock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map3);
+
+//        unlock = new unlock();
 
         btn_back = (Button) findViewById(R.id.btn_back);
         final Intent n = new Intent(this, map.class);
@@ -35,10 +34,7 @@ public class map3 extends AppCompatActivity {
         mapmalai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (unlock31) {
-                    mapmalai.setBackgroundResource(R.drawable.mapmalai);
-                    startActivity(malai);
-                }
+                startActivity(malai);
             }
         });
 
@@ -48,10 +44,8 @@ public class map3 extends AppCompatActivity {
         mapfall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (unlock32) {
-                    mapfall.setBackgroundResource(R.drawable.mapfall);
-                    startActivity(fall);
-                }
+                startActivity(fall);
+
             }
         });
 
@@ -61,10 +55,8 @@ public class map3 extends AppCompatActivity {
         mapsamon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (unlock33) {
-                    mapsamon.setBackgroundResource(R.drawable.mapsamon);
-                    startActivity(samon);
-                }
+                startActivity(samon);
+
             }
         });
 
@@ -74,12 +66,28 @@ public class map3 extends AppCompatActivity {
         mapball.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (unlock34) {
-                    mapball.setBackgroundResource(R.drawable.mapball);
-                    startActivity(ball);
-                }
+                startActivity(ball);
+
             }
         });
 
+        Unlock();
+
+    }
+
+    public void Unlock() {
+        if (unlock.getUnlock(4)) {
+            mapmalai.setBackgroundResource(R.drawable.boat_map);
+            mapmalai.setEnabled(true);
+        } else if (unlock.getUnlock(5)) {
+            mapfall.setBackgroundResource(R.drawable.mapfall);
+            mapfall.setEnabled(true);
+        } else if (unlock.getUnlock(6)) {
+            mapsamon.setBackgroundResource(R.drawable.mapsamon);
+            mapsamon.setEnabled(true);
+        } else if (unlock.getUnlock(7)) {
+            mapball.setBackgroundResource(R.drawable.mapball);
+            mapball.setEnabled(true);
+        }
     }
 }

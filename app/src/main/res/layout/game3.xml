@@ -12,10 +12,10 @@
 
     <ImageView
         android:layout_width="750dp"
-        android:layout_height="600dp"
-        android:layout_marginTop="60dp"
+        android:layout_height="500dp"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/frame"/>
+        android:layout_marginTop="110dp"
+        android:src="@drawable/frame" />
 
     <ImageView
         android:layout_width="650dp"
@@ -30,59 +30,90 @@
         android:layout_marginLeft="350dp"
         android:layout_marginTop="20dp"
         android:text="หนูตกถังข้าวสาร"
-        android:textStyle="bold"
-        android:textSize="80dp" />
+        android:textSize="80dp"
+        android:textStyle="bold" />
 
     <ImageView
         android:layout_width="300dp"
         android:layout_height="400dp"
-        android:src="@drawable/rat"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"/>
+        android:layout_centerVertical="true"
+        android:src="@drawable/rat" />
 
     <ImageView
         android:layout_width="580dp"
         android:layout_height="100dp"
-        android:layout_marginLeft="20dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
         android:background="@drawable/boxmess1" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ผู้ที่มีฐานะยากจนได้แต่งงานกับคนร่ำรวย"
-        android:textSize="30dp"
-        android:textStyle="bold"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="50dp"
-        android:layout_marginLeft="50dp"/>
+        android:layout_marginLeft="50dp"
+        android:text="ผู้ที่มีฐานะยากจนได้แต่งงานกับคนร่ำรวย"
+        android:textSize="30dp"
+        android:textStyle="bold" />
 
     <ImageView
         android:layout_width="580dp"
         android:layout_height="100dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
         android:layout_marginBottom="20dp"
+        android:layout_marginRight="20dp"
         android:background="@drawable/boxmess1" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ผู้ที่มีฐานะเดียวกันแต่งงานกัน"
-        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
         android:layout_marginBottom="50dp"
         android:layout_marginLeft="150dp"
         android:layout_marginRight="150dp"
+        android:text="ผู้ที่มีฐานะเดียวกันแต่งงานกัน"
         android:textSize="30dp"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
+
     <Button
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_alignParentRight="true"
-        android:background="@drawable/button_pause"/>
+        android:background="@drawable/button_pause" />
+
+    <RelativeLayout
+        android:layout_width="250dp"
+        android:layout_height="200dp"
+        android:layout_marginLeft="20dp">
+
+        <ProgressBar
+            android:id="@+id/pbTimer"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@id/tvTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="0"
+            android:textSize="50sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="Time"
+            android:textSize="30sp" />
+
+    </RelativeLayout>
 
 </RelativeLayout>

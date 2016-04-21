@@ -77,7 +77,7 @@ public class map1 extends AppCompatActivity {
 
         Unlock();
     }
-
+    //ล็อคด่านอื่นๆ
     public void Unlock() {
         if (unlock.getUnlock(1)) {
             house.setBackgroundResource(R.drawable.house);

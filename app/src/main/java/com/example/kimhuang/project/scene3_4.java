@@ -220,14 +220,14 @@ public class scene3_4 extends AppCompatActivity implements View.OnClickListener{
                 finish();
             }
         });
-//        btn_next = (Button) findViewById(R.id.btn_next);
-//        final Intent a = new Intent(this, page3_11.class);
-//        btn_next.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View b) {
-//                startActivity(a);
-//            }
-//        });
+        btn_next = (Button) findViewById(R.id.btn_next);
+        final Intent a = new Intent(this, minigame3.class);
+        btn_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View b) {
+                startActivity(a);
+            }
+        });
     }
 
     @Override

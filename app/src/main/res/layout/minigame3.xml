@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_game1"
-    tools:context="com.example.kimhuang.project.minigame1">
+    android:background="@drawable/game3"
+    tools:context="com.example.kimhuang.project.minigame3">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -15,23 +15,24 @@
         <Button
             android:id="@+id/btn_playgame"
             android:layout_width="300dp"
-            android:layout_height="120dp"
+            android:layout_height="150dp"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/button_startgame" />
+            android:background="@drawable/button_startgame"/>
 
         <Button
             android:id="@+id/btn_explain"
             android:layout_width="300dp"
-            android:layout_height="120dp"
-            android:layout_alignParentBottom="true"
+            android:layout_height="150dp"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/button_desrition" />
-    </RelativeLayout>
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/button_desrition"/>
 
+    </RelativeLayout>
     <Button
         android:id="@+id/btn_back"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/button_back" />
+
 </RelativeLayout>

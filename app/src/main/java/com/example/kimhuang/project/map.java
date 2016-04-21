@@ -18,7 +18,7 @@ public class map extends AppCompatActivity implements View.OnClickListener {
     Button btn_back;
     Intent i;
 
-    chUnlock unlock11;
+//    chUnlock unlock11;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

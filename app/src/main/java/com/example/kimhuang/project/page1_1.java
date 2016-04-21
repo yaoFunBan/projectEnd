@@ -28,7 +28,7 @@ public class page1_1 extends AppCompatActivity {
     AlertDialog.Builder builder;
     Dialog dialog;
     Button dialogset, dialogexit, dialoghome, dialogclose, btnPlayAgain;
-    chUnlock unlock;
+//    chUnlock unlock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

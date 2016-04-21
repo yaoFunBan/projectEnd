@@ -4,17 +4,22 @@ import android.content.Context;
 import android.util.Log;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 
 
 public class unlock {
     private static final String FileName = "unlock.txt";
     private static boolean[] lock = new boolean[16];
     BufferedReader reader;
+    BufferedWriter writer;
     static int i = 0;
 
 
@@ -56,6 +61,17 @@ public class unlock {
     public void showAll() {
         for (i = 0; i < lock.length; i++) {
             Log.e("show all", "lock : " + lock[i]);
+        }
+    }
+
+    public void clearTheFile() {
+        try {
+            BufferedWriter out = new BufferedWriter(new FileWriter(FileName, true));
+            out.write("");
+            out.close();
+            Log.e("show", "this here");
+        } catch (IOException e) {
+            e.toString();
         }
     }
 

@@ -228,7 +228,7 @@ public class scene1_1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(i);
-                unlock.setUnlock(1, true);
+//                unlock.setUnlock(1, true);
             }
         });
 

@@ -1,5 +1,6 @@
 package com.example.kimhuang.project;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 
 public class map1 extends AppCompatActivity {
     Button palaces, house, shellsung, alga1;
@@ -20,7 +22,7 @@ public class map1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map1);
 
-//        unlock = new unlock();
+        unlock = new unlock();
 
         //palaces
         palaces = (Button) findViewById(R.id.palaces);
@@ -38,8 +40,8 @@ public class map1 extends AppCompatActivity {
         house.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                startActivity(c);
-                unlock.showAll();
+                unlock.clearTheFile();
+// startActivity(c);
             }
         });
 
@@ -75,7 +77,7 @@ public class map1 extends AppCompatActivity {
         });
 
 
-        Unlock();
+//        Unlock();
     }
     //ล็อคด่านอื่นๆ
     public void Unlock() {

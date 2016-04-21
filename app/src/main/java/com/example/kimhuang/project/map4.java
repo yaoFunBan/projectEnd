@@ -68,7 +68,7 @@ public class map4 extends AppCompatActivity {
             }
         });
 
-        Unlock();
+//        Unlock();
     }
 
     public void Unlock() {

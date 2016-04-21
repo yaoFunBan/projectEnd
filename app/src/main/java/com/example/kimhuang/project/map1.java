@@ -20,7 +20,7 @@ public class map1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map1);
 
-        unlock = new unlock();
+//        unlock = new unlock();
 
         //palaces
         palaces = (Button) findViewById(R.id.palaces);

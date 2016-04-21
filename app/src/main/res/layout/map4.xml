@@ -15,7 +15,7 @@
         android:id="@+id/palaces"
         android:layout_width="300dp"
         android:layout_height="150dp"
-        android:background="@drawable/palaces_lock"
+        android:background="@drawable/palaces"
         android:enabled="true" />
 
     <Button
@@ -23,7 +23,7 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/house_lock"
+        android:background="@drawable/house"
         android:enabled="true" />
 
     <RelativeLayout
@@ -38,7 +38,7 @@
             android:layout_width="350dp"
             android:layout_height="250dp"
             android:layout_alignParentRight="true"
-            android:background="@drawable/mapsamon_lock"
+            android:background="@drawable/mapsamon"
             android:enabled="true" />
     </RelativeLayout>
 
@@ -55,7 +55,7 @@
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-            android:background="@drawable/bowl_f2_lock"
+            android:background="@drawable/bowl_f2"
             android:enabled="true" />
     </RelativeLayout>
 

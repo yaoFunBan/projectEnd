@@ -23,7 +23,8 @@ public class map2 extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.map2);
-        unlock = new unlock();
+
+//        unlock = new unlock();
 
         boat = (ImageView) findViewById(R.id.boatM);
         city1 = (ImageView) findViewById(R.id.castled1);

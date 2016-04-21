@@ -17,7 +17,7 @@ public class map3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map3);
 
-        unlock = new unlock();
+//        unlock = new unlock();
 
         btn_back = (Button) findViewById(R.id.btn_back);
         final Intent n = new Intent(this, map.class);

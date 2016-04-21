@@ -73,19 +73,19 @@ public class map2 extends Activity implements View.OnClickListener {
         }
     }
 
-    public void Unlock() {
-        if (unlock.getUnlock(4)) {
-            boat.setBackgroundResource(R.drawable.boat_map);
-            boat.setEnabled(true);
-        } else if (unlock.getUnlock(5)) {
-            city1.setBackgroundResource(R.drawable.city);
-            city1.setEnabled(true);
-        } else if (unlock.getUnlock(6)) {
-            mount.setBackgroundResource(R.drawable.mountain4_4);
-            mount.setEnabled(true);
-        } else if (unlock.getUnlock(7)) {
-            city2.setBackgroundResource(R.drawable.castles1);
-            city2.setEnabled(true);
-        }
-    }
+//    public void Unlock() {
+//        if (unlock.getUnlock(4)) {
+//            boat.setBackgroundResource(R.drawable.boat_map);
+//            boat.setEnabled(true);
+//        } else if (unlock.getUnlock(5)) {
+//            city1.setBackgroundResource(R.drawable.city);
+//            city1.setEnabled(true);
+//        } else if (unlock.getUnlock(6)) {
+//            mount.setBackgroundResource(R.drawable.mountain4_4);
+//            mount.setEnabled(true);
+//        } else if (unlock.getUnlock(7)) {
+//            city2.setBackgroundResource(R.drawable.castles1);
+//            city2.setEnabled(true);
+//        }
+//    }
 }

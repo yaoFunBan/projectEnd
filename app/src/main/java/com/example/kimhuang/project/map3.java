@@ -75,19 +75,19 @@ public class map3 extends AppCompatActivity {
 
     }
 
-    public void Unlock() {
-        if (unlock.getUnlock(4)) {
-            mapmalai.setBackgroundResource(R.drawable.boat_map);
-            mapmalai.setEnabled(true);
-        } else if (unlock.getUnlock(5)) {
-            mapfall.setBackgroundResource(R.drawable.mapfall);
-            mapfall.setEnabled(true);
-        } else if (unlock.getUnlock(6)) {
-            mapsamon.setBackgroundResource(R.drawable.mapsamon);
-            mapsamon.setEnabled(true);
-        } else if (unlock.getUnlock(7)) {
-            mapball.setBackgroundResource(R.drawable.mapball);
-            mapball.setEnabled(true);
-        }
-    }
+//    public void Unlock() {
+//        if (unlock.getUnlock(4)) {
+//            mapmalai.setBackgroundResource(R.drawable.boat_map);
+//            mapmalai.setEnabled(true);
+//        } else if (unlock.getUnlock(5)) {
+//            mapfall.setBackgroundResource(R.drawable.mapfall);
+//            mapfall.setEnabled(true);
+//        } else if (unlock.getUnlock(6)) {
+//            mapsamon.setBackgroundResource(R.drawable.mapsamon);
+//            mapsamon.setEnabled(true);
+//        } else if (unlock.getUnlock(7)) {
+//            mapball.setBackgroundResource(R.drawable.mapball);
+//            mapball.setEnabled(true);
+//        }
+//    }
 }

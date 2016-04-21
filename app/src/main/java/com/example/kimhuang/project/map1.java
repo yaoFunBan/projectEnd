@@ -79,17 +79,18 @@ public class map1 extends AppCompatActivity {
 
 //        Unlock();
     }
+    
     //ล็อคด่านอื่นๆ
-    public void Unlock() {
-        if (unlock.getUnlock(1)) {
-            house.setBackgroundResource(R.drawable.house);
-            house.setEnabled(true);
-        } else if (unlock.getUnlock(2)) {
-            shellsung.setBackgroundResource(R.drawable.shellsung2);
-            shellsung.setEnabled(true);
-        } else if (unlock.getUnlock(3)) {
-            alga1.setBackgroundResource(R.drawable.alga1);
-            alga1.setEnabled(true);
-        }
-    }
+//    public void Unlock() {
+//        if (unlock.getUnlock(1)) {
+//            house.setBackgroundResource(R.drawable.house);
+//            house.setEnabled(true);
+//        } else if (unlock.getUnlock(2)) {
+//            shellsung.setBackgroundResource(R.drawable.shellsung2);
+//            shellsung.setEnabled(true);
+//        } else if (unlock.getUnlock(3)) {
+//            alga1.setBackgroundResource(R.drawable.alga1);
+//            alga1.setEnabled(true);
+//        }
+//    }
 }

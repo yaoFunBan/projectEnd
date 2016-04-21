@@ -15,14 +15,14 @@
         <Button
             android:id="@+id/btn_playgame"
             android:layout_width="300dp"
-            android:layout_height="150dp"
+            android:layout_height="120dp"
             android:layout_centerHorizontal="true"
             android:background="@drawable/button_startgame" />
 
         <Button
             android:id="@+id/btn_explain"
             android:layout_width="300dp"
-            android:layout_height="150dp"
+            android:layout_height="120dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:background="@drawable/button_desrition" />

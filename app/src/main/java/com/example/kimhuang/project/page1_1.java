@@ -109,7 +109,7 @@ public class page1_1 extends AppCompatActivity {
                     }
                 });
 
-//                //button_close
+                //button_close
                 dialogclose.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

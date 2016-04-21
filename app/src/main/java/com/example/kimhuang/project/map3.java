@@ -71,7 +71,7 @@ public class map3 extends AppCompatActivity {
             }
         });
 
-        Unlock();
+//        Unlock();
 
     }
 

@@ -45,7 +45,7 @@ public class map2 extends Activity implements View.OnClickListener {
         mount.setOnClickListener(this);
         city2.setOnClickListener(this);
 
-        Unlock();
+//        Unlock();
 
     }
 

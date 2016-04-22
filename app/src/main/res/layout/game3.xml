@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.donnapa.fairytale.game3">
+    tools:context="com.example.kimhuang.project.game3">
 
     <ImageView
         android:layout_width="match_parent"
@@ -80,10 +80,19 @@
         android:textStyle="bold" />
 
     <Button
+        android:id="@+id/btn_pause"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_alignParentRight="true"
         android:background="@drawable/button_pause" />
+
+    <Button
+        android:id="@+id/btn_play_story"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/button_again"
+        android:layout_toLeftOf="@id/btn_pause"
+        android:layout_marginRight="10dp"/>
 
     <RelativeLayout
         android:layout_width="250dp"

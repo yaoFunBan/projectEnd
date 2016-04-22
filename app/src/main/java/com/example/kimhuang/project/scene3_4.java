@@ -250,7 +250,7 @@ public class scene3_4 extends AppCompatActivity implements View.OnClickListener{
     public void checkDown() {
         if (flagball == true && flagHorse == true) {
             btn_back.setVisibility(View.VISIBLE);
-//            btn_next.setVisibility(View.VISIBLE);
+            btn_next.setVisibility(View.VISIBLE);
         }
     }
     @Override

@@ -34,6 +34,8 @@ public class database extends SQLiteOpenHelper {
         String[] mean = {"แม่", "รองเท้า", "สร้อย", "มงกุฎ", "กางเกง", "ข้าว", "เข็มขัด", "เสื้อ", "ประตู", "น้ำกิน", "ผม", "ท้อง", "จุก", "จมูก", "หู", "ผิวหนัง", "ข้อเท้า"
                 , "ปาก", "เนื้อ", "น้ำตา", "ดวงหน้า", "ผิวหน้า", "พ่อ", "พี่สาว", "พ่อตา", "สามี", "แม่", "ลูกสะใภ้", "พี่เขย", "ลูกเขย"};
 
+
+
         ContentValues content = new ContentValues();
         for (int i = 0; i < word.length; i++) {
             content.put(ColType, "1");

@@ -14,15 +14,9 @@
             android:id="@+id/btn_closes"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="17dp"
-            android:layout_toLeftOf="@+id/viewVisible"
+            android:layout_alignParentRight="true"
             android:background="@drawable/button_close" />
 
-        <View
-            android:id="@+id/viewVisible"
-            android:layout_width="18dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true" />
 
     </RelativeLayout>
 

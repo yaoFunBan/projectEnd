@@ -18,7 +18,7 @@ import android.widget.Switch;
 import android.widget.ToggleButton;
 
 public class page1_1 extends AppCompatActivity {
-    Button btn_back, btn_next, btn_pause, btnClose;
+    Button btn_back, btn_next, btn_pause, btnClose, btnPlayAgain;
     Switch swMusic, swEffect;
     ToggleButton btn_music;
     MediaPlayer mediaPlayer;
@@ -27,7 +27,7 @@ public class page1_1 extends AppCompatActivity {
     //Dialog
     AlertDialog.Builder builder;
     Dialog dialog;
-    Button dialogset, dialogexit, dialoghome, dialogclose, btnPlayAgain;
+    Button dialogset, dialogexit, dialoghome, dialogclose;
 //    chUnlock unlock;
 
     @Override
@@ -162,6 +162,7 @@ public class page1_1 extends AppCompatActivity {
         }
     }
 
+    //DiaglogSetting
     public void displayDiaglogSetting() {
         final Dialog dsetting = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
         dsetting.requestWindowFeature(Window.FEATURE_NO_TITLE);

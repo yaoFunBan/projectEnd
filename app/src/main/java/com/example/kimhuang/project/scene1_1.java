@@ -11,25 +11,27 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Switch;
 
 public class scene1_1 extends AppCompatActivity {
     //ImageView
     ImageView jantawee1, janta1, yotsawimon1, chair, box1_1;
     ImageView word1, word2, word3;
+    Switch swMusic, swEffect;
     //Button
-    Button btn_back, btn_next, btn_pause;
+    Button btn_back, btn_next, btn_pause,btnClose;
     //boolean
     boolean jantawee = false;
     boolean yotsawimon = false;
     boolean janta = false;
     boolean flagjantawee, flagjanta, flagyotsawimon;
     unlock unlock;
-
-
     //Dialog
     AlertDialog.Builder builder;
     Dialog dialog;
@@ -194,8 +196,7 @@ public class scene1_1 extends AppCompatActivity {
                 dialogset.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (dialog != null)
-                            dialog.dismiss();
+                        displayDiaglogSetting();
                     }
                 });
 
@@ -291,6 +292,43 @@ public class scene1_1 extends AppCompatActivity {
         word1.setVisibility(View.INVISIBLE);
         word2.setVisibility(View.INVISIBLE);
         word3.setVisibility(View.INVISIBLE);
+    }
+    //DiaglogSetting
+    public void displayDiaglogSetting() {
+        final Dialog dsetting = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
+        dsetting.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dsetting.setContentView(R.layout.setting_dialog);
+
+        btnClose = (Button) dsetting.findViewById(R.id.btn_closes);
+        swMusic = (Switch) dsetting.findViewById(R.id.sw_music);
+        swEffect = (Switch) dsetting.findViewById(R.id.sw_effect);
+
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dsetting.cancel();
+            }
+        });
+
+        swMusic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        swEffect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
+        Window window = dsetting.getWindow();
+        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        window.setGravity(Gravity.CENTER);
+        dsetting.show();
     }
 }
 

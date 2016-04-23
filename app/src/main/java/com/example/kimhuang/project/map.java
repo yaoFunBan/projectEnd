@@ -45,7 +45,8 @@ public class map extends AppCompatActivity implements View.OnClickListener {
         //button_back
         btn_back = (Button) findViewById(R.id.btn_back);
         final Intent n = new Intent(this, home.class);
-        btn_back.setOnClickListener(new View.OnClickListener() {
+        btn_back.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v) {
                 startActivity(n);

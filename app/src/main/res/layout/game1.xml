@@ -69,5 +69,16 @@
 
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/quustion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:text="Answer"
+        android:textColor="#000000"
+        android:textSize="60sp"
+        android:visibility="visible" />
 
 </RelativeLayout>

@@ -3,6 +3,7 @@ package com.example.kimhuang.project;
 import android.annotation.TargetApi;
 import android.app.Dialog;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.support.v7.app.AlertDialog;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class game1 extends AppCompatActivity {
+    private TextView wordAns;
     Button btn_pause, btnClose;
     CountDownTimer cdt;
     TextView tvTimer;
@@ -21,6 +23,9 @@ public class game1 extends AppCompatActivity {
     AlertDialog.Builder builder;
     Dialog dialog;
     Button dialogset, dialogexit, dialoghome, dialogclose;
+    //Databas
+    SQLiteDatabase gameDb;
+    database game1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +33,12 @@ public class game1 extends AppCompatActivity {
         setContentView(R.layout.game1);
 
         tvTimer = (TextView)findViewById(R.id.tvTimer);
+
+        wordAns = (TextView) findViewById(R.id.quustion);
+
+        //decaler database
+        game1 = new database(this);
+        gameDb =  game1.getWritableDatabase();
 
         //button_pause
         btn_pause = (Button) findViewById(R.id.btn_pause);

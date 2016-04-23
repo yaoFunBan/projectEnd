@@ -33,27 +33,27 @@ public class minigame3 extends AppCompatActivity {
             }
         });
 
-//        //ปุ่มอธิบายเกม (button_explain)
-//        btn_explain = (Button) findViewById(R.id.btn_explain);
-//        builder = new AlertDialog.Builder(this);
-//        dialog = new Dialog(this);
-//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        btn_explain.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                dialog.setContentView(R.layout.);
-//                dialogclose = (Button) dialog.findViewById(R.id.btn_close);
-//
-//                //ปุ่มกากบาท button_close
-//                dialogclose.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        dialog.cancel();
-//                    }
-//                });
-//                dialog.show();
-//            }
-//        });
+        //ปุ่มอธิบายเกม (button_explain)
+        btn_explain = (Button) findViewById(R.id.btn_explain);
+        builder = new AlertDialog.Builder(this);
+        dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        btn_explain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.setContentView(R.layout.loggame3);
+                dialogclose = (Button) dialog.findViewById(R.id.btn_close);
+
+                //ปุ่มกากบาท button_close
+                dialogclose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.cancel();
+                    }
+                });
+                dialog.show();
+            }
+        });
 
         //ย้อนกลับไปก่อนหน้านี้
         btn_back = (Button) findViewById(R.id.btn_back);

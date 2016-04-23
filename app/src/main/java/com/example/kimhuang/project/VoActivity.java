@@ -62,7 +62,7 @@ public class VoActivity extends Activity implements View.OnClickListener {
         this.btnLeft = (Button) findViewById(R.id.btn_back);
         this.btnRigth = (Button) findViewById(R.id.btn_next);
         countBefore = (TextView) findViewById(R.id.count_before);
-        btnPlay = (Button) findViewById(R.id.btn_play);
+//        btnPlay = (Button) findViewById(R.id.btn_play);
         btnPause = (Button) findViewById(R.id.btn_pause);
         layout1 = (RelativeLayout) findViewById(R.id.ball1);
         layout2 = (RelativeLayout) findViewById(R.id.ball2);
@@ -181,11 +181,11 @@ public class VoActivity extends Activity implements View.OnClickListener {
                 paramsBaseR.setMargins(left, 1370, 0, 0);
                 imgBase.setLayoutParams(paramsBaseR);
                 break;
-            case R.id.btn_play:
-                countBefore.setVisibility(View.VISIBLE);
-                countdownBefore();
-                btnPlay.setVisibility(View.INVISIBLE);
-                break;
+//            case R.id.btn_play:
+//                countBefore.setVisibility(View.VISIBLE);
+//                countdownBefore();
+//                btnPlay.setVisibility(View.INVISIBLE);
+//                break;
         }
     }
 

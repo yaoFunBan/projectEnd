@@ -3,20 +3,25 @@ package com.example.kimhuang.project;
 import android.annotation.TargetApi;
 import android.app.Dialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 
 public class game1 extends AppCompatActivity {
     private TextView wordAns;
-    Button btn_pause, btnClose;
+    Button btn_pause,btnClose;
+    Switch swMusic, swEffect;
     CountDownTimer cdt;
     TextView tvTimer;
     //Dialog
@@ -26,6 +31,7 @@ public class game1 extends AppCompatActivity {
     //Databas
     SQLiteDatabase gameDb;
     database game1;
+    Cursor mCursor, wCursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +45,13 @@ public class game1 extends AppCompatActivity {
         //decaler database
         game1 = new database(this);
         gameDb =  game1.getWritableDatabase();
+
+        //เป็นการอ่านค่าในตาราง database ว่าจะให้อ่านค่าเป็นคอลัมไปเรื่อยๆ
+        mCursor =  gameDb .rawQuery("SELECT * FROM " +  game1.TableName, null);
+        mCursor.moveToFirst();
+
+        wCursor =  gameDb .rawQuery("SELECT * FROM " +  game1.TableName, null);
+        wordAns.setText(mCursor.getString(mCursor.getColumnIndex( game1.ColWord)));
 
         //button_pause
         btn_pause = (Button) findViewById(R.id.btn_pause);
@@ -84,7 +97,7 @@ public class game1 extends AppCompatActivity {
                     }
                 });
 
-//                //button_close
+                //button_close
                 dialogclose.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -107,6 +120,41 @@ public class game1 extends AppCompatActivity {
         }.start();
     }
 
-    private void displayDiaglogSetting() {
+    //DiaglogSetting
+    public void displayDiaglogSetting() {
+        final Dialog dsetting = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
+        dsetting.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dsetting.setContentView(R.layout.setting_dialog);
+
+        btnClose = (Button) dsetting.findViewById(R.id.btn_closes);
+        swMusic = (Switch) dsetting.findViewById(R.id.sw_music);
+        swEffect = (Switch) dsetting.findViewById(R.id.sw_effect);
+
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dsetting.cancel();
+            }
+        });
+
+        swMusic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        swEffect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
+        Window window = dsetting.getWindow();
+        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        window.setGravity(Gravity.CENTER);
+        dsetting.show();
     }
 }

@@ -9,19 +9,22 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Switch;
 
 public class scene2_1 extends AppCompatActivity implements View.OnClickListener {
-
     ImageView forests, giantAnim, giant1, boat, imgBoat, giantTalk, giantWord, mountain;
-    Button btnNext, btnBack, btnPause, dialogexit, dialoghome, dialogset, dialogclose;
+    Button btnNext, btnBack, btnPause, dialogexit, dialoghome, dialogset, dialogclose,btnClose;
     Intent intent;
     MediaPlayer mp;
     int pIndex = 0;
+    Switch swMusic, swEffect;
 
     int[] resBoat = {R.drawable.suwon, R.drawable.anan, R.drawable.boatage, R.drawable.narai};
     AnimPopUp animPopUp;
@@ -302,11 +305,11 @@ public class scene2_1 extends AppCompatActivity implements View.OnClickListener 
         dialogset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.dismiss();
+                displayDiaglogSetting();
             }
         });
 
-//                //button_close
+                //button_close
         dialogclose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -314,6 +317,43 @@ public class scene2_1 extends AppCompatActivity implements View.OnClickListener 
             }
         });
         dialog.show();
+    }
+    //DiaglogSetting
+    public void displayDiaglogSetting() {
+        final Dialog dsetting = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
+        dsetting.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dsetting.setContentView(R.layout.setting_dialog);
+
+        btnClose = (Button) dsetting.findViewById(R.id.btn_closes);
+        swMusic = (Switch) dsetting.findViewById(R.id.sw_music);
+        swEffect = (Switch) dsetting.findViewById(R.id.sw_effect);
+
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dsetting.cancel();
+            }
+        });
+
+        swMusic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        swEffect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
+        Window window = dsetting.getWindow();
+        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        window.setGravity(Gravity.CENTER);
+        dsetting.show();
     }
 
 }

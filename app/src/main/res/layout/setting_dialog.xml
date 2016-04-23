@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="500dp"
+    android:layout_width="550dp"
     android:layout_height="340dp"
     android:background="@drawable/dialog_setting"
     android:orientation="vertical">
@@ -68,6 +68,7 @@
                     android:layout_centerVertical="true"
                     android:textOff="ปิด"
                     android:textOn="เปิด" />
+
             </RelativeLayout>
 
             <RelativeLayout

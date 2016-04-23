@@ -64,4 +64,5 @@ public class minigame1 extends AppCompatActivity {
             }
         });
     }
+
 }

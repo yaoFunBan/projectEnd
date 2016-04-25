@@ -8,22 +8,29 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.ToggleButton;
 
 public class page3_11 extends AppCompatActivity {
-    Button btn_back, btn_next, btn_pause;
+    Button btn_back, btn_next, btn_pause, btnClose, btnPlayAgain;
+    Switch swMusic, swEffect;
     ToggleButton btn_music;
     MediaPlayer mediaPlayer;
 
     //Dialog
     AlertDialog.Builder builder;
     Dialog dialog;
-    Button dialogset, dialogexit, dialoghome, dialogclose, btnPlayAgain;
+    Button dialogset, dialogexit, dialoghome, dialogclose;
+
+    //boolean
     boolean isOpen = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +57,7 @@ public class page3_11 extends AppCompatActivity {
                     mediaPlayer.start();
                     btn_music.setBackgroundResource(R.drawable.btn_music);
                     isOpen = false;
-                } else{
+                } else {
                     mediaPlayer.pause();
                     btn_music.setBackgroundResource(R.drawable.btn_music_act);
                     isOpen = true;
@@ -98,7 +105,7 @@ public class page3_11 extends AppCompatActivity {
                 dialogset.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        dialog.dismiss();
+                        displayDiaglogSetting();
                     }
                 });
 
@@ -128,25 +135,65 @@ public class page3_11 extends AppCompatActivity {
                 startActivity(a);
             }
         });
-        }
-        //check ให้กลับมาทำงานอีกครั้ง
-        public void onResume() {
-            super.onResume();
-            if (isOpen == true) {
-                mediaPlayer.pause();
-            } else {
-                mediaPlayer.start();
-            }
-        }
-        public void onPause() {
-            super.onPause();
-            mediaPlayer.pause();
-        }
+    }
 
-        public void onDestroy() {
-            super.onDestroy();
-            mediaPlayer.stop();
-            mediaPlayer.release();
-            mediaPlayer = null;
+    //check ให้กลับมาทำงานอีกครั้ง
+    public void onResume() {
+        super.onResume();
+        if (isOpen == true) {
+            mediaPlayer.pause();
+        } else {
+            mediaPlayer.start();
         }
     }
+
+    public void onPause() {
+        super.onPause();
+        mediaPlayer.pause();
+    }
+
+    public void onDestroy() {
+        super.onDestroy();
+        mediaPlayer.stop();
+        mediaPlayer.release();
+        mediaPlayer = null;
+    }
+
+    //DiaglogSetting
+    public void displayDiaglogSetting() {
+        final Dialog dsetting = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
+        dsetting.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dsetting.setContentView(R.layout.setting_dialog);
+
+        btnClose = (Button) dsetting.findViewById(R.id.btn_closes);
+        swMusic = (Switch) dsetting.findViewById(R.id.sw_music);
+        swEffect = (Switch) dsetting.findViewById(R.id.sw_effect);
+
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dsetting.cancel();
+            }
+        });
+
+        swMusic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        swEffect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
+        Window window = dsetting.getWindow();
+        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        window.setGravity(Gravity.CENTER);
+        dsetting.show();
+    }
+}

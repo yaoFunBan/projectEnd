@@ -40,7 +40,7 @@ public class map1 extends AppCompatActivity {
         house.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                unlock.clearTheFile();
+                unlock.readFile(getApplicationContext());
 // startActivity(c);
             }
         });
@@ -52,7 +52,10 @@ public class map1 extends AppCompatActivity {
         shellsung.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(a);
+                unlock.setUnlock(3, true);
+//                unlock.showAll();
+                unlock.writeFile(getApplicationContext());
+//                startActivity(a);
             }
         });
 
@@ -79,7 +82,7 @@ public class map1 extends AppCompatActivity {
 
 //        Unlock();
     }
-    
+
     //ล็อคด่านอื่นๆ
 //    public void Unlock() {
 //        if (unlock.getUnlock(1)) {

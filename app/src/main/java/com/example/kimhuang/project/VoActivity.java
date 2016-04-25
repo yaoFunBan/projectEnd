@@ -20,8 +20,6 @@ import android.widget.TextView;
 import java.util.Random;
 
 public class VoActivity extends Activity implements View.OnClickListener {
-
-
     private static final String TAG = VoActivity.class.getSimpleName();
     private TextView TvSimple3, TvSimple2, TvSimple1, wordAns, y_scrode, Time, tScore;
     ProgressBar pTime;
@@ -62,6 +60,7 @@ public class VoActivity extends Activity implements View.OnClickListener {
         this.btnLeft = (Button) findViewById(R.id.btn_back);
         this.btnRigth = (Button) findViewById(R.id.btn_next);
         countBefore = (TextView) findViewById(R.id.count_before);
+
 //        btnPlay = (Button) findViewById(R.id.btn_play);
         btnPause = (Button) findViewById(R.id.btn_pause);
         layout1 = (RelativeLayout) findViewById(R.id.ball1);

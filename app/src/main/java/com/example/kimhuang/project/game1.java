@@ -30,7 +30,7 @@ public class game1 extends AppCompatActivity {
     Button dialogset, dialogexit, dialoghome, dialogclose;
     //Databas
     SQLiteDatabase gameDb;
-    database game1;
+    datahomony game1;
     Cursor mCursor, wCursor;
 
     @Override
@@ -43,15 +43,27 @@ public class game1 extends AppCompatActivity {
         wordAns = (TextView) findViewById(R.id.quustion);
 
         //decaler database
-        game1 = new database(this);
+        game1 = new datahomony(this);
         gameDb =  game1.getWritableDatabase();
 
         //เป็นการอ่านค่าในตาราง database ว่าจะให้อ่านค่าเป็นคอลัมไปเรื่อยๆ
         mCursor =  gameDb .rawQuery("SELECT * FROM " +  game1.TableName, null);
         mCursor.moveToFirst();
-
         wCursor =  gameDb .rawQuery("SELECT * FROM " +  game1.TableName, null);
-        wordAns.setText(mCursor.getString(mCursor.getColumnIndex( game1.ColWord)));
+
+        wordAns.setText(mCursor.getString(mCursor.getColumnIndex( game1.ColHomony)));
+
+
+        //CountDownTimer
+        CountDownTimer cdt = new CountDownTimer(10000, 1000) {
+            public void onTick(long millisUntilFinished) {
+                // Tick
+            }
+
+            public void onFinish() {
+                // Finish
+            }
+        }.start();
 
         //button_pause
         btn_pause = (Button) findViewById(R.id.btn_pause);
@@ -107,17 +119,6 @@ public class game1 extends AppCompatActivity {
                 dialog.show();
             }
         });
-
-
-        CountDownTimer cdt = new CountDownTimer(10000, 1000) {
-            public void onTick(long millisUntilFinished) {
-                // Tick
-            }
-
-            public void onFinish() {
-                // Finish
-            }
-        }.start();
     }
 
     //DiaglogSetting

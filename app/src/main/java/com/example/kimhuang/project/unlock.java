@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -41,13 +42,16 @@ public class unlock {
     }
 
     public void writeFile(Context ctx) {
-//        try {
-//            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(ctx.openFileOutput("config.txt", Context.MODE_PRIVATE));
-//            outputStreamWriter.write(data);
-//            outputStreamWriter.close();
-//        } catch (IOException e) {
-//            Log.e("Exception", "File write failed: " + e.toString());
-//        }
+        try {
+            FileOutputStream oFile = ctx.openFileOutput(FileName, Context.MODE_PRIVATE);
+            OutputStreamWriter writer = new OutputStreamWriter(oFile);
+
+            writer.write("" + lock[1]);
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setUnlock(int index, boolean unlock) {

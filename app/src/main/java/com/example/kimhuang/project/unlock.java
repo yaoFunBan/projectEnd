@@ -26,6 +26,7 @@ public class unlock {
 
     public void readFile(Context ctx) {
         String line = null;
+        i = 0;
         try {
             final InputStream file = ctx.getAssets().open(FileName);
             reader = new BufferedReader(new InputStreamReader(file));
@@ -36,6 +37,8 @@ public class unlock {
                 Log.d("StackOverflow", "lock : " + lock[i]);
                 i++;
             }
+
+            file.close();
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
@@ -43,11 +46,14 @@ public class unlock {
 
     public void writeFile(Context ctx) {
         try {
-            FileOutputStream oFile = ctx.openFileOutput(FileName, Context.MODE_PRIVATE);
-            OutputStreamWriter writer = new OutputStreamWriter(oFile);
+//            FileOutputStream oFile = ctx.openFileOutput(FileName, Context.MODE_PRIVATE);
+            OutputStreamWriter writer = new OutputStreamWriter(ctx.openFileOutput(FileName, Context.MODE_PRIVATE));
+//            writer.write("test");
+            for (i = 0; i < lock.length; i++) {
+                writer.write(String.valueOf(lock[i]));
+                Log.d("Log" + i, "value = " + lock[i]);
 
-            writer.write("" + lock[1]);
-            writer.flush();
+            }
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -55,7 +61,8 @@ public class unlock {
     }
 
     public void setUnlock(int index, boolean unlock) {
-        lock[index] = unlock;
+        this.lock[index] = unlock;
+        Log.d("lock " + index, " is " + lock[index]);
     }
 
     public boolean getUnlock(int index) {
@@ -67,17 +74,4 @@ public class unlock {
             Log.e("show all", "lock : " + lock[i]);
         }
     }
-
-    public void clearTheFile() {
-        try {
-            BufferedWriter out = new BufferedWriter(new FileWriter(FileName, true));
-            out.write("");
-            out.close();
-            Log.e("show", "this here");
-        } catch (IOException e) {
-            e.toString();
-        }
-    }
-
-
 }

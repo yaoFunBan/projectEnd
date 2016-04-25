@@ -26,7 +26,7 @@ public class VoActivity extends Activity implements View.OnClickListener {
     private TextView TvSimple3, TvSimple2, TvSimple1, wordAns, y_scrode, Time, tScore;
     ProgressBar pTime;
     private ImageView imgBase;
-    private Button btnLeft, btnRigth, btnPause, btnPlay;
+    private Button btnLeft, btnRigth, btnPause, btnPlay, btnexplain, dialogclose;
     CountDownTimer cdt;
     TextView countBefore;
     SQLiteDatabase mDb;
@@ -62,7 +62,8 @@ public class VoActivity extends Activity implements View.OnClickListener {
         this.btnLeft = (Button) findViewById(R.id.btn_back);
         this.btnRigth = (Button) findViewById(R.id.btn_next);
         countBefore = (TextView) findViewById(R.id.count_before);
-//        btnPlay = (Button) findViewById(R.id.btn_play);
+        btnexplain = (Button) findViewById(R.id.btn_explain);
+        btnPlay = (Button) findViewById(R.id.btn_play);
         btnPause = (Button) findViewById(R.id.btn_pause);
         layout1 = (RelativeLayout) findViewById(R.id.ball1);
         layout2 = (RelativeLayout) findViewById(R.id.ball2);
@@ -114,6 +115,7 @@ public class VoActivity extends Activity implements View.OnClickListener {
         btnLeft.setOnClickListener(this);
         btnPause.setOnClickListener(this);
         btnPlay.setOnClickListener(this);
+        btnexplain.setOnClickListener(this);
 
         countTime(time);
         speed2 = randSpeed();
@@ -181,12 +183,30 @@ public class VoActivity extends Activity implements View.OnClickListener {
                 paramsBaseR.setMargins(left, 1370, 0, 0);
                 imgBase.setLayoutParams(paramsBaseR);
                 break;
-//            case R.id.btn_play:
-//                countBefore.setVisibility(View.VISIBLE);
-//                countdownBefore();
-//                btnPlay.setVisibility(View.INVISIBLE);
-//                break;
+            case R.id.btn_play:
+                countBefore.setVisibility(View.VISIBLE);
+                countdownBefore();
+                btnPlay.setVisibility(View.INVISIBLE);
+                break;
+            case R.id.btn_explain:
+                dialogEx();
+                break;
         }
+    }
+
+    public void dialogEx(){
+        final Dialog exDialog = new Dialog(getApplicationContext());
+        exDialog.setContentView(R.layout.loggame2);
+        dialogclose = (Button) exDialog.findViewById(R.id.btn_close);
+
+        //button_close
+        dialogclose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                exDialog.cancel();
+            }
+        });
+        exDialog.show();
     }
 
 

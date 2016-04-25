@@ -47,7 +47,6 @@ public class page1_1 extends AppCompatActivity {
             }
         });
 
-
         // btn_music
         btn_music = (ToggleButton) findViewById(R.id.btn_music);
         btn_music.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

@@ -8,10 +8,13 @@ import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.ToggleButton;
 
 /**
@@ -24,7 +27,8 @@ public class page2_4 extends Activity implements View.OnClickListener {
     ToggleButton btn_music;
     boolean isOpen = false;
     Button btnBack, btnNext, btn_pause;
-    Button dialogset, dialogexit, dialoghome, dialogclose, btnPlayAgain;
+    Switch swMusic, swEffect;
+    Button dialogset, dialogexit, dialoghome, dialogclose, btnPlayAgain, btnClose;
     AlertDialog.Builder builder;
     Dialog dialog;
     Intent i;
@@ -106,11 +110,11 @@ public class page2_4 extends Activity implements View.OnClickListener {
                 dialogset.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        dialog.dismiss();
+                        displayDiaglogSetting();
                     }
                 });
 
-//                //button_close
+               //button_close
                 dialogclose.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -159,9 +163,47 @@ public class page2_4 extends Activity implements View.OnClickListener {
         mediaPlayer.release();
         mediaPlayer = null;
     }
+    //DiaglogSetting
+    public void displayDiaglogSetting() {
+        final Dialog dsetting = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
+        dsetting.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dsetting.setContentView(R.layout.setting_dialog);
+
+        btnClose = (Button) dsetting.findViewById(R.id.btn_closes);
+        swMusic = (Switch) dsetting.findViewById(R.id.sw_music);
+        swEffect = (Switch) dsetting.findViewById(R.id.sw_effect);
+
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dsetting.cancel();
+            }
+        });
+
+        swMusic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        swEffect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
+        Window window = dsetting.getWindow();
+        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        window.setGravity(Gravity.CENTER);
+        dsetting.show();
+    }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
     }
 }
+

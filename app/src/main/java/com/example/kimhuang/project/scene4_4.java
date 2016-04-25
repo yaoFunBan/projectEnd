@@ -7,17 +7,21 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Switch;
 
 /**
  * Created by วัชรัตน์ on 15/2/2559.
  */
 public class scene4_4 extends Activity implements View.OnClickListener {
     Intent intent;
-    Button btnBack, btnPause;
+    Button btnBack, btnPause, btnClose;
+    Switch swMusic, swEffect;
 
     AlertDialog.Builder builder;
     Dialog dialog;
@@ -74,7 +78,7 @@ public class scene4_4 extends Activity implements View.OnClickListener {
                 dialogsetting.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        dialog.dismiss();
+                        displayDiaglogSetting();
                     }
                 });
                 dialogclose.setOnClickListener(new View.OnClickListener() {
@@ -161,7 +165,42 @@ public class scene4_4 extends Activity implements View.OnClickListener {
         System.runFinalization();
         Runtime.getRuntime().gc();
         System.gc();
+    }
+    //DiaglogSetting
+    public void displayDiaglogSetting() {
+        final Dialog dsetting = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
+        dsetting.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dsetting.setContentView(R.layout.setting_dialog);
+
+        btnClose = (Button) dsetting.findViewById(R.id.btn_closes);
+        swMusic = (Switch) dsetting.findViewById(R.id.sw_music);
+        swEffect = (Switch) dsetting.findViewById(R.id.sw_effect);
+
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dsetting.cancel();
+            }
+        });
+
+        swMusic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        swEffect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
 
+        Window window = dsetting.getWindow();
+        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        window.setGravity(Gravity.CENTER);
+        dsetting.show();
     }
 }

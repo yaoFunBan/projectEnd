@@ -20,7 +20,7 @@ import android.widget.TextView;
 
 public class game1 extends AppCompatActivity {
     private TextView wordAns;
-    Button btn_pause,btnClose;
+    Button btn_pause, btnClose;
     Switch swMusic, swEffect;
     CountDownTimer cdt;
     TextView tvTimer;
@@ -38,20 +38,20 @@ public class game1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game1);
 
-        tvTimer = (TextView)findViewById(R.id.tvTimer);
+        tvTimer = (TextView) findViewById(R.id.tvTimer);
 
         wordAns = (TextView) findViewById(R.id.quustion);
 
         //decaler database
         game1 = new database(this);
-        gameDb =  game1.getWritableDatabase();
+        gameDb = game1.getWritableDatabase();
 
         //เป็นการอ่านค่าในตาราง database ว่าจะให้อ่านค่าเป็นคอลัมไปเรื่อยๆ
-        mCursor =  gameDb .rawQuery("SELECT * FROM " +  game1.TableName, null);
+        mCursor = gameDb.rawQuery("SELECT * FROM " + game1.TableName, null);
         mCursor.moveToFirst();
 
-        wCursor =  gameDb .rawQuery("SELECT * FROM " +  game1.TableName, null);
-        wordAns.setText(mCursor.getString(mCursor.getColumnIndex( game1.ColWord)));
+        wCursor = gameDb.rawQuery("SELECT * FROM " + game1.TableName, null);
+        wordAns.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColWord)));
 
         //button_pause
         btn_pause = (Button) findViewById(R.id.btn_pause);

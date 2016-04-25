@@ -194,8 +194,9 @@ public class VoActivity extends Activity implements View.OnClickListener {
         }
     }
 
-    public void dialogEx(){
-        final Dialog exDialog = new Dialog(getApplicationContext());
+    public void dialogEx() {
+        final Dialog exDialog = new Dialog(this);
+        exDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         exDialog.setContentView(R.layout.loggame2);
         dialogclose = (Button) exDialog.findViewById(R.id.btn_close);
 

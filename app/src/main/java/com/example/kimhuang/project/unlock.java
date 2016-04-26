@@ -44,16 +44,19 @@ public class unlock {
         }
     }
 
-    public void writeFile(Context ctx) {
+    public static void writeFile(Context ctx) throws IOException {
         try {
-//            FileOutputStream oFile = ctx.openFileOutput(FileName, Context.MODE_PRIVATE);
-            OutputStreamWriter writer = new OutputStreamWriter(ctx.openFileOutput(FileName, Context.MODE_PRIVATE));
-//            writer.write("test");
+            FileOutputStream oFile = ctx.openFileOutput(FileName, Context.MODE_APPEND);
+            OutputStreamWriter writer = new OutputStreamWriter(oFile);
+            writer.write("test");
             for (i = 0; i < lock.length; i++) {
                 writer.write(String.valueOf(lock[i]));
                 Log.d("Log" + i, "value = " + lock[i]);
-
             }
+
+
+
+            writer.flush();
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -70,8 +73,7 @@ public class unlock {
     }
 
     public void showAll() {
-        for (i = 0; i < lock.length; i++) {
-            Log.e("show all", "lock : " + lock[i]);
-        }
+        Log.e("show all", "lock : " + lock[3]);
+
     }
 }

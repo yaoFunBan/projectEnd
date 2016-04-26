@@ -54,7 +54,11 @@ public class map1 extends AppCompatActivity {
             public void onClick(View v) {
                 unlock.setUnlock(3, true);
 //                unlock.showAll();
-                unlock.writeFile(getApplicationContext());
+                try {
+                    unlock.writeFile(getApplicationContext());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 //                startActivity(a);
             }
         });
@@ -75,8 +79,10 @@ public class map1 extends AppCompatActivity {
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(n);
+//                startActivity(n);
+                unlock.showAll();
             }
+
         });
 
 

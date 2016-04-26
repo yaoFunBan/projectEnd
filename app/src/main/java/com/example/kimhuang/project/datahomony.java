@@ -18,7 +18,7 @@ public class datahomony extends SQLiteOpenHelper {
     public static final String ColType = "Type";
     public static final String ColPicture = "pPicture";
 
-    public datahomony(Context context) {super(context, DbName, null, DB_version);}
+    public datahomony (Context context){super(context , DbName,null,DB_version);}
 
     //การ create, inset, delete ข้อมูลใน database
     @Override
@@ -30,7 +30,8 @@ public class datahomony extends SQLiteOpenHelper {
 
         String [] semantic = {"พระอาทิตย์","ปลา","ลูกชาย","ลูกสาว","ดอกไม้","ยักษ์","ภูเขา","กษัตริย์","ช้าง","น้ำ","แผนดิน","พระอิทร์","ม้า","พระจันทร์","ป่า","เด็ก"
                 ,"เมือง","ผู้หญิง","สวรรค์","ดอกบัว",};
- //เพิ่มข้อมูลลงตารางเรื่อยๆ
+
+        //เพิ่มข้อมูลลงตารางเรื่อยๆ
         ContentValues content = new ContentValues();
         for (int i = 0; i < homony.length; i++) {
             content.put(ColType, "1");

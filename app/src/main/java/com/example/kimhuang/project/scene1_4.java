@@ -19,11 +19,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 public class scene1_4 extends AppCompatActivity {
     ImageView sungthong4, firsh1, firsh2, firsh3, box1_4, alga1, alga2;
     ImageView word6, word7;
-    Switch swMusic, swEffect;
+    ToggleButton swMusic, swEffect;
     Button btn_back, btn_next, btn_pause,btnClose;
     //boolean
     boolean firsh = false;
@@ -288,8 +289,8 @@ public class scene1_4 extends AppCompatActivity {
         dsetting.setContentView(R.layout.setting_dialog);
 
         btnClose = (Button) dsetting.findViewById(R.id.btn_closes);
-        swMusic = (Switch) dsetting.findViewById(R.id.sw_music);
-        swEffect = (Switch) dsetting.findViewById(R.id.sw_effect);
+        swMusic = (ToggleButton) dsetting.findViewById(R.id.sw_music);
+        swEffect = (ToggleButton) dsetting.findViewById(R.id.sw_effect);
 
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override

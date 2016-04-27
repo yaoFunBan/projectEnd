@@ -15,7 +15,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Switch;
+import android.widget.ToggleButton;
 
 /**
  * Created by วัชรัตน์ on 11/12/2558.
@@ -25,7 +25,7 @@ public class scene2_2 extends AppCompatActivity implements View.OnClickListener 
     Button btnNext, btnBack, btnPause, dialogexit, dialoghome, dialogset, dialogclose,btnClose;
     Intent intentNext;
     boolean checkBtn1;
-    Switch swMusic, swEffect;
+    ToggleButton swMusic, swEffect;
     RelativeLayout LaoutTan;
     ImageView sandThong, poolGold, sandGold, poolNormal, head1, head2, kong22, wall;
 
@@ -236,8 +236,8 @@ public class scene2_2 extends AppCompatActivity implements View.OnClickListener 
         dsetting.setContentView(R.layout.setting_dialog);
 
         btnClose = (Button) dsetting.findViewById(R.id.btn_closes);
-        swMusic = (Switch) dsetting.findViewById(R.id.sw_music);
-        swEffect = (Switch) dsetting.findViewById(R.id.sw_effect);
+        swMusic = (ToggleButton) dsetting.findViewById(R.id.sw_music);
+        swEffect = (ToggleButton) dsetting.findViewById(R.id.sw_effect);
 
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override

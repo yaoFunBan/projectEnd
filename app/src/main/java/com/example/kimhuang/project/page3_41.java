@@ -19,7 +19,7 @@ import android.widget.ToggleButton;
 
 public class page3_41 extends AppCompatActivity {
     Button btn_back, btn_next, btn_pause, btnClose;
-    Switch swMusic, swEffect;
+    ToggleButton swMusic, swEffect;
     ToggleButton btn_music;
     MediaPlayer mediaPlayer;
     //Dialog
@@ -159,8 +159,8 @@ public class page3_41 extends AppCompatActivity {
         dsetting.setContentView(R.layout.setting_dialog);
 
         btnClose = (Button) dsetting.findViewById(R.id.btn_closes);
-        swMusic = (Switch) dsetting.findViewById(R.id.sw_music);
-        swEffect = (Switch) dsetting.findViewById(R.id.sw_effect);
+        swMusic = (ToggleButton) dsetting.findViewById(R.id.sw_music);
+        swEffect = (ToggleButton) dsetting.findViewById(R.id.sw_effect);
 
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override

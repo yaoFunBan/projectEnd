@@ -24,7 +24,7 @@ public class page2_3 extends Activity implements View.OnClickListener {
     ToggleButton btn_music;
     boolean isOpen = false;
     Button btnBack, btnNext, btn_pause;
-    Switch swMusic, swEffect;
+    ToggleButton swMusic, swEffect;
     Button dialogset, dialogexit, dialoghome, dialogclose, btnPlayAgain,btnClose;
     AlertDialog.Builder builder;
     Dialog dialog;
@@ -164,8 +164,8 @@ public class page2_3 extends Activity implements View.OnClickListener {
         dsetting.setContentView(R.layout.setting_dialog);
 
         btnClose = (Button) dsetting.findViewById(R.id.btn_closes);
-        swMusic = (Switch) dsetting.findViewById(R.id.sw_music);
-        swEffect = (Switch) dsetting.findViewById(R.id.sw_effect);
+        swMusic = (ToggleButton) dsetting.findViewById(R.id.sw_music);
+        swEffect = (ToggleButton) dsetting.findViewById(R.id.sw_effect);
 
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override

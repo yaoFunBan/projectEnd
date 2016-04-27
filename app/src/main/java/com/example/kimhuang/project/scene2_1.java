@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
+import android.widget.ToggleButton;
 
 public class scene2_1 extends AppCompatActivity implements View.OnClickListener {
     ImageView forests, giantAnim, giant1, boat, imgBoat, giantTalk, giantWord, mountain;
@@ -24,7 +25,7 @@ public class scene2_1 extends AppCompatActivity implements View.OnClickListener 
     Intent intent;
     MediaPlayer mp;
     int pIndex = 0;
-    Switch swMusic, swEffect;
+    ToggleButton swMusic, swEffect;
 
     int[] resBoat = {R.drawable.suwon, R.drawable.anan, R.drawable.boatage, R.drawable.narai};
     AnimPopUp animPopUp;
@@ -325,8 +326,8 @@ public class scene2_1 extends AppCompatActivity implements View.OnClickListener 
         dsetting.setContentView(R.layout.setting_dialog);
 
         btnClose = (Button) dsetting.findViewById(R.id.btn_closes);
-        swMusic = (Switch) dsetting.findViewById(R.id.sw_music);
-        swEffect = (Switch) dsetting.findViewById(R.id.sw_effect);
+        swMusic = (ToggleButton) dsetting.findViewById(R.id.sw_music);
+        swEffect = (ToggleButton) dsetting.findViewById(R.id.sw_effect);
 
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override

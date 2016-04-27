@@ -19,7 +19,7 @@ import android.widget.ToggleButton;
 
 public class home extends AppCompatActivity implements View.OnClickListener {
     Button btn_play1, btn_setting1, btn_con1, btn_close, btnClose;
-    Switch swMusic, swEffect;
+    ToggleButton swMusic, swEffect;
     Intent i;
     AlertDialog.Builder builder;
     MediaPlayer player;
@@ -99,8 +99,8 @@ public class home extends AppCompatActivity implements View.OnClickListener {
         dsetting.setContentView(R.layout.setting_dialog);
 
         btnClose = (Button) dsetting.findViewById(R.id.btn_closes);
-        swMusic = (Switch) dsetting.findViewById(R.id.sw_music);
-        swEffect = (Switch) dsetting.findViewById(R.id.sw_effect);
+        swMusic = (ToggleButton) dsetting.findViewById(R.id.sw_music);
+        swEffect = (ToggleButton) dsetting.findViewById(R.id.sw_effect);
 
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override

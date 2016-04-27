@@ -46,7 +46,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="เสียงประกอบ"
+                    android:text="เสียงดนตรี"
                     android:textColor="#000000"
                     android:textSize="24sp" />
 
@@ -67,7 +67,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:textOff="ปิด"
-                    android:textOn="เปิด" />
+                    android:textOn="เปิด"
+                    android:textSize="24sp"/>
 
             </RelativeLayout>
 
@@ -80,7 +81,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="แอปเฟ็กต์"
+                    android:text="เสียงเอฟเฟค"
                     android:textColor="#000000"
                     android:textSize="24sp" />
 

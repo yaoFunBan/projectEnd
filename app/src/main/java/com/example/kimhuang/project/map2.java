@@ -24,7 +24,7 @@ public class map2 extends Activity implements View.OnClickListener {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.map2);
 
-//        unlock = new unlock();
+        unlock = new unlock();
 
         boat = (ImageView) findViewById(R.id.boatM);
         city1 = (ImageView) findViewById(R.id.castled1);
@@ -45,7 +45,7 @@ public class map2 extends Activity implements View.OnClickListener {
         mount.setOnClickListener(this);
         city2.setOnClickListener(this);
 
-//        Unlock();
+        Unlock();
 
     }
 
@@ -73,19 +73,27 @@ public class map2 extends Activity implements View.OnClickListener {
         }
     }
 
-//    public void Unlock() {
-//        if (unlock.getUnlock(4)) {
-//            boat.setBackgroundResource(R.drawable.boat_map);
-//            boat.setEnabled(true);
-//        } else if (unlock.getUnlock(5)) {
-//            city1.setBackgroundResource(R.drawable.city);
-//            city1.setEnabled(true);
-//        } else if (unlock.getUnlock(6)) {
-//            mount.setBackgroundResource(R.drawable.mountain4_4);
-//            mount.setEnabled(true);
-//        } else if (unlock.getUnlock(7)) {
-//            city2.setBackgroundResource(R.drawable.castles1);
-//            city2.setEnabled(true);
-//        }
-//    }
+    public void Unlock() {
+        unlock.readFile(getApplicationContext());
+        boolean chlock[] = unlock.getUnlock1();
+        for (int i = 0; i < chlock.length; i++) {
+            if (chlock[4]) {
+                boat.setBackgroundResource(R.drawable.boat_map);
+                boat.setEnabled(true);
+            }
+            if (chlock[5]) {
+                city1.setBackgroundResource(R.drawable.city_lock);
+                city1.setEnabled(true);
+            }
+            if (chlock[6]) {
+                mount.setBackgroundResource(R.drawable.mountain4_4);
+                mount.setEnabled(true);
+            }
+
+            if (chlock[7]) {
+                city2.setBackgroundResource(R.drawable.alga1);
+                city2.setEnabled(true);
+            }
+        }
+    }
 }

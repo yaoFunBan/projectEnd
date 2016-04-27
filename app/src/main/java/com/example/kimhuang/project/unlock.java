@@ -77,24 +77,24 @@ public class unlock {
 
     public boolean[] getUnlock2() {
         boolean[] unlock = new boolean[4];
-        for (int i = 4; i <= 7; i++) {
-            unlock[i] = lock[i];
+        for (int i = 0; i <= 3; i++) {
+            unlock[i] = lock[4 + i];
         }
         return unlock;
     }
 
     public boolean[] getUnlock3() {
         boolean[] unlock = new boolean[4];
-        for (int i = 8; i <= 11; i++) {
-            unlock[i] = lock[i];
+        for (int i = 0; i <= 3; i++) {
+            unlock[i] = lock[8 + i];
         }
         return unlock;
     }
 
     public boolean[] getUnlock4() {
         boolean[] unlock = new boolean[4];
-        for (int i = 12; i <= 15; i++) {
-            unlock[i] = lock[i];
+        for (int i = 0; i <= 3; i++) {
+            unlock[i] = lock[10 + i];
         }
         return unlock;
     }

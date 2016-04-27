@@ -75,23 +75,23 @@ public class map2 extends Activity implements View.OnClickListener {
 
     public void Unlock() {
         unlock.readFile(getApplicationContext());
-        boolean chlock[] = unlock.getUnlock1();
+        boolean chlock[] = unlock.getUnlock2();
         for (int i = 0; i < chlock.length; i++) {
-            if (chlock[4]) {
+            if (chlock[0]) {
                 boat.setBackgroundResource(R.drawable.boat_map);
                 boat.setEnabled(true);
             }
-            if (chlock[5]) {
-                city1.setBackgroundResource(R.drawable.city_lock);
+            if (chlock[1]) {
+                city1.setBackgroundResource(R.drawable.castles1);
                 city1.setEnabled(true);
             }
-            if (chlock[6]) {
+            if (chlock[2]) {
                 mount.setBackgroundResource(R.drawable.mountain4_4);
                 mount.setEnabled(true);
             }
 
-            if (chlock[7]) {
-                city2.setBackgroundResource(R.drawable.alga1);
+            if (chlock[3]) {
+                city2.setBackgroundResource(R.drawable.city);
                 city2.setEnabled(true);
             }
         }

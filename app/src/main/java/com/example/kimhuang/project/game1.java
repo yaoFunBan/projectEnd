@@ -32,6 +32,10 @@ public class game1 extends AppCompatActivity {
     SQLiteDatabase gameDb;
     datahomony game1;
     Cursor mCursor, wCursor;
+    int i = 0;
+    //time
+    int time = 50000, tempTime = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,25 +49,46 @@ public class game1 extends AppCompatActivity {
         //decaler database
         game1 = new datahomony(this);
         gameDb = game1.getWritableDatabase();
+<<<<<<< HEAD
+        game1.onUpgrade(gameDb, 1, 1);
+=======
 
+>>>>>>> d656a5302a1aac2cd68e8ef0630854f768b4a085
 
         //เป็นการอ่านค่าในตาราง database ว่าจะให้อ่านค่าเป็นคอลัมไปเรื่อยๆ
         mCursor = gameDb.rawQuery("SELECT * FROM " + game1.TableName, null);
         mCursor.moveToFirst();
+<<<<<<< HEAD
+=======
+
+        wordAns.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColHomony)));
+>>>>>>> d656a5302a1aac2cd68e8ef0630854f768b4a085
 
         wordAns.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColHomony)));
 
-
         //CountDownTimer
-        CountDownTimer cdt = new CountDownTimer(10000, 1000) {
+        CountDownTimer cdt = new CountDownTimer(120000, 1000) {
             public void onTick(long millisUntilFinished) {
-                // Tick
+                //เมื่อเวลาเริ่มนับ Cursor จะทำการอ่านค่าจาก Columnไปเรื่อยๆ
+                mCursor.moveToPosition(i);
+                wordAns.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColHomony)));
+                i++;
+                //ให้วลานับถอยหลังทีละ 1 วินาที
+                tempTime = (int) millisUntilFinished;
+                tvTimer.setText(String.valueOf(tempTime));
+                String strTime = String.format("%1.0f"
+                        , (double) millisUntilFinished / 1000);
+                tvTimer.setText(String.valueOf(strTime));
             }
 
             public void onFinish() {
                 // Finish
             }
         }.start();
+<<<<<<< HEAD
+
+=======
+>>>>>>> d656a5302a1aac2cd68e8ef0630854f768b4a085
 
         //button_pause
         btn_pause = (Button) findViewById(R.id.btn_pause);

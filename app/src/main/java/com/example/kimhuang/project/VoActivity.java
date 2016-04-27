@@ -60,8 +60,13 @@ public class VoActivity extends Activity implements View.OnClickListener {
         this.btnLeft = (Button) findViewById(R.id.btn_back);
         this.btnRigth = (Button) findViewById(R.id.btn_next);
         countBefore = (TextView) findViewById(R.id.count_before);
+<<<<<<< HEAD
 
 //        btnPlay = (Button) findViewById(R.id.btn_play);
+=======
+        btnexplain = (Button) findViewById(R.id.btn_explain);
+        btnPlay = (Button) findViewById(R.id.btn_play);
+>>>>>>> d656a5302a1aac2cd68e8ef0630854f768b4a085
         btnPause = (Button) findViewById(R.id.btn_pause);
         layout1 = (RelativeLayout) findViewById(R.id.ball1);
         layout2 = (RelativeLayout) findViewById(R.id.ball2);

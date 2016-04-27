@@ -49,11 +49,20 @@ public class game1 extends AppCompatActivity {
         //decaler database
         game1 = new datahomony(this);
         gameDb = game1.getWritableDatabase();
+<<<<<<< HEAD
         game1.onUpgrade(gameDb, 1, 1);
+=======
+
+>>>>>>> d656a5302a1aac2cd68e8ef0630854f768b4a085
 
         //เป็นการอ่านค่าในตาราง database ว่าจะให้อ่านค่าเป็นคอลัมไปเรื่อยๆ
         mCursor = gameDb.rawQuery("SELECT * FROM " + game1.TableName, null);
         mCursor.moveToFirst();
+<<<<<<< HEAD
+=======
+
+        wordAns.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColHomony)));
+>>>>>>> d656a5302a1aac2cd68e8ef0630854f768b4a085
 
         wordAns.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColHomony)));
 
@@ -76,7 +85,10 @@ public class game1 extends AppCompatActivity {
                 // Finish
             }
         }.start();
+<<<<<<< HEAD
 
+=======
+>>>>>>> d656a5302a1aac2cd68e8ef0630854f768b4a085
 
         //button_pause
         btn_pause = (Button) findViewById(R.id.btn_pause);

@@ -34,7 +34,7 @@ public class unlock {
             while (line != null) {
                 line = reader.readLine();
                 lock[i] = Boolean.parseBoolean(line);
-                Log.d("StackOverflow", "lock : " + lock[i]);
+                Log.d("StackOverflow", "lock : " + i + lock[i]);
                 i++;
             }
 
@@ -44,16 +44,18 @@ public class unlock {
         }
     }
 
-    public void writeFile(Context ctx) {
+    public static void writeFile(Context ctx) throws IOException {
         try {
-//            FileOutputStream oFile = ctx.openFileOutput(FileName, Context.MODE_PRIVATE);
-            OutputStreamWriter writer = new OutputStreamWriter(ctx.openFileOutput(FileName, Context.MODE_PRIVATE));
-//            writer.write("test");
+            FileOutputStream oFile = ctx.openFileOutput(FileName, Context.MODE_APPEND);
+            OutputStreamWriter writer = new OutputStreamWriter(oFile);
+            writer.write("test");
             for (i = 0; i < lock.length; i++) {
                 writer.write(String.valueOf(lock[i]));
                 Log.d("Log" + i, "value = " + lock[i]);
-
             }
+
+
+            writer.flush();
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -65,13 +67,35 @@ public class unlock {
         Log.d("lock " + index, " is " + lock[index]);
     }
 
-    public boolean getUnlock(int index) {
-        return lock[index];
+    public boolean[] getUnlock1() {
+        boolean[] unlock = new boolean[4];
+        for (int i = 0; i <= 3; i++) {
+            unlock[i] = lock[i];
+        }
+        return unlock;
     }
 
-    public void showAll() {
-        for (i = 0; i < lock.length; i++) {
-            Log.e("show all", "lock : " + lock[i]);
+    public boolean[] getUnlock2() {
+        boolean[] unlock = new boolean[4];
+        for (int i = 4; i <= 7; i++) {
+            unlock[i] = lock[i];
         }
+        return unlock;
+    }
+
+    public boolean[] getUnlock3() {
+        boolean[] unlock = new boolean[4];
+        for (int i = 8; i <= 11; i++) {
+            unlock[i] = lock[i];
+        }
+        return unlock;
+    }
+
+    public boolean[] getUnlock4() {
+        boolean[] unlock = new boolean[4];
+        for (int i = 12; i <= 15; i++) {
+            unlock[i] = lock[i];
+        }
+        return unlock;
     }
 }

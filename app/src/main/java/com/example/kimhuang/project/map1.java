@@ -40,8 +40,7 @@ public class map1 extends AppCompatActivity {
         house.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                unlock.readFile(getApplicationContext());
-// startActivity(c);
+                startActivity(c);
             }
         });
 
@@ -52,10 +51,7 @@ public class map1 extends AppCompatActivity {
         shellsung.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                unlock.setUnlock(3, true);
-//                unlock.showAll();
-                unlock.writeFile(getApplicationContext());
-//                startActivity(a);
+                startActivity(a);
             }
         });
 
@@ -77,23 +73,30 @@ public class map1 extends AppCompatActivity {
             public void onClick(View v) {
                 startActivity(n);
             }
+
         });
 
 
-//        Unlock();
+        Unlock();
     }
 
     //ล็อคด่านอื่นๆ
-//    public void Unlock() {
-//        if (unlock.getUnlock(1)) {
-//            house.setBackgroundResource(R.drawable.house);
-//            house.setEnabled(true);
-//        } else if (unlock.getUnlock(2)) {
-//            shellsung.setBackgroundResource(R.drawable.shellsung2);
-//            shellsung.setEnabled(true);
-//        } else if (unlock.getUnlock(3)) {
-//            alga1.setBackgroundResource(R.drawable.alga1);
-//            alga1.setEnabled(true);
-//        }
-//    }
+    public void Unlock() {
+        unlock.readFile(getApplicationContext());
+        boolean chlock[] = unlock.getUnlock1();
+        for (int i = 0; i < chlock.length; i++) {
+            if (chlock[1]) {
+                house.setBackgroundResource(R.drawable.house);
+                house.setEnabled(true);
+            }
+            if (chlock[2]) {
+                shellsung.setBackgroundResource(R.drawable.shellsung2);
+                shellsung.setEnabled(true);
+            }
+            if (chlock[3]) {
+                alga1.setBackgroundResource(R.drawable.alga1);
+                alga1.setEnabled(true);
+            }
+        }
+    }
 }

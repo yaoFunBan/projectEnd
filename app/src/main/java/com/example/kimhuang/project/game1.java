@@ -52,6 +52,8 @@ public class game1 extends AppCompatActivity {
         gameDb = game1.getWritableDatabase();
         game1.onUpgrade(gameDb, 1, 1);
 
+        game1.onUpgrade(gameDb, 1, 1);
+        
         //เป็นการอ่านค่าในตาราง database ว่าจะให้อ่านค่าเป็นคอลัมไปเรื่อยๆ
         mCursor = gameDb.rawQuery("SELECT * FROM " + game1.TableName, null);
         mCursor.moveToFirst();

@@ -66,6 +66,7 @@ public class VoActivity extends Activity implements View.OnClickListener {
         btnPlay = (Button) findViewById(R.id.btn_play);
         namegame = (ImageView) findViewById(R.id.namegame);
         bar = (ImageView) findViewById(R.id.bar);
+
         btnPause = (Button) findViewById(R.id.btn_pause);
         layout1 = (RelativeLayout) findViewById(R.id.ball1);
         layout2 = (RelativeLayout) findViewById(R.id.ball2);

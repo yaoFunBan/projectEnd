@@ -17,10 +17,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
+import android.widget.ToggleButton;
 
 public class scene3_2 extends AppCompatActivity {
     Button btn_back, btn_next, btn_puase, btnClose;
-    Switch swMusic, swEffect;
+    ToggleButton swMusic, swEffect;
     ImageView sung1, meat1, fish, fish1, bgSun, wood, tree, trees, waterfall, fishes, bro1, bro2;
     ImageView word3_21, word3_22;
     MediaPlayer mediaM, mediaS;
@@ -281,8 +282,8 @@ public class scene3_2 extends AppCompatActivity {
         dsetting.setContentView(R.layout.setting_dialog);
 
         btnClose = (Button) dsetting.findViewById(R.id.btn_closes);
-        swMusic = (Switch) dsetting.findViewById(R.id.sw_music);
-        swEffect = (Switch) dsetting.findViewById(R.id.sw_effect);
+        swMusic = (ToggleButton) dsetting.findViewById(R.id.sw_music);
+        swEffect = (ToggleButton) dsetting.findViewById(R.id.sw_effect);
 
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -34,7 +34,7 @@ public class unlock {
             while (line != null) {
                 line = reader.readLine();
                 lock[i] = Boolean.parseBoolean(line);
-                Log.d("StackOverflow", "lock : " + lock[i]);
+                Log.d("StackOverflow", "lock : " + i + lock[i]);
                 i++;
             }
 
@@ -55,7 +55,6 @@ public class unlock {
             }
 
 
-
             writer.flush();
             writer.close();
         } catch (IOException e) {
@@ -68,12 +67,35 @@ public class unlock {
         Log.d("lock " + index, " is " + lock[index]);
     }
 
-    public boolean getUnlock(int index) {
-        return lock[index];
+    public boolean[] getUnlock1() {
+        boolean[] unlock = new boolean[4];
+        for (int i = 0; i <= 3; i++) {
+            unlock[i] = lock[i];
+        }
+        return unlock;
     }
 
-    public void showAll() {
-        Log.e("show all", "lock : " + lock[3]);
+    public boolean[] getUnlock2() {
+        boolean[] unlock = new boolean[4];
+        for (int i = 0; i <= 3; i++) {
+            unlock[i] = lock[4 + i];
+        }
+        return unlock;
+    }
 
+    public boolean[] getUnlock3() {
+        boolean[] unlock = new boolean[4];
+        for (int i = 0; i <= 3; i++) {
+            unlock[i] = lock[8 + i];
+        }
+        return unlock;
+    }
+
+    public boolean[] getUnlock4() {
+        boolean[] unlock = new boolean[4];
+        for (int i = 0; i <= 3; i++) {
+            unlock[i] = lock[10 + i];
+        }
+        return unlock;
     }
 }

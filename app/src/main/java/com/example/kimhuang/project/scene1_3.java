@@ -18,11 +18,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
+import android.widget.ToggleButton;
 
 public class scene1_3 extends AppCompatActivity {
     ImageView house1, sungthong3, chicken1, grass1, grass2, trees1, box1_3;
     Button btn_back, btn_next, btn_close, btn_pause,btnClose;
-    Switch swMusic, swEffect;
+    ToggleButton swMusic, swEffect;
     //boolean
     boolean chicken = false;
     boolean house = false;
@@ -307,8 +308,8 @@ public class scene1_3 extends AppCompatActivity {
         dsetting.setContentView(R.layout.setting_dialog);
 
         btnClose = (Button) dsetting.findViewById(R.id.btn_closes);
-        swMusic = (Switch) dsetting.findViewById(R.id.sw_music);
-        swEffect = (Switch) dsetting.findViewById(R.id.sw_effect);
+        swMusic = (ToggleButton) dsetting.findViewById(R.id.sw_music);
+        swEffect = (ToggleButton) dsetting.findViewById(R.id.sw_effect);
 
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override

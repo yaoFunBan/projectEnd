@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
+import android.widget.ToggleButton;
 
 /**
  * Created by วัชรัตน์ on 15/2/2559.
@@ -27,7 +28,7 @@ import android.widget.Switch;
 public class scene4_3 extends Activity implements View.OnClickListener {
     Intent intent;
     Button btnNext, btnBack, btnPause;
-    Switch swMusic, swEffect;
+    ToggleButton swMusic, swEffect;
     ImageView bowl, sandThong, cast, Table, box4_3, f1, f2, f3;
     RelativeLayout layoutF;
     AlertDialog.Builder builder;
@@ -248,8 +249,8 @@ public class scene4_3 extends Activity implements View.OnClickListener {
         dsetting.setContentView(R.layout.setting_dialog);
 
         btnClose = (Button) dsetting.findViewById(R.id.btn_closes);
-        swMusic = (Switch) dsetting.findViewById(R.id.sw_music);
-        swEffect = (Switch) dsetting.findViewById(R.id.sw_effect);
+        swMusic = (ToggleButton) dsetting.findViewById(R.id.sw_music);
+        swEffect = (ToggleButton) dsetting.findViewById(R.id.sw_effect);
 
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override

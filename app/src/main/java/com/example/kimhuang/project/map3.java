@@ -9,7 +9,7 @@ import android.widget.ImageView;
 
 public class map3 extends AppCompatActivity {
     Button btn_back;
-    ImageView mapsamon, mapfall, mapmalai, mapball;
+    Button mapsamon, mapfall, mapmalai, mapball;
     unlock unlock;
 
     @Override
@@ -17,7 +17,7 @@ public class map3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map3);
 
-//        unlock = new unlock();
+        unlock = new unlock();
 
         btn_back = (Button) findViewById(R.id.btn_back);
         final Intent n = new Intent(this, map.class);
@@ -29,7 +29,7 @@ public class map3 extends AppCompatActivity {
         });
 
         //mapmalai
-        mapmalai = (ImageView) findViewById(R.id.mapmalai);
+        mapmalai = (Button) findViewById(R.id.mapmalai);
         final Intent malai = new Intent(this, page3_11.class);
         mapmalai.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,7 +39,7 @@ public class map3 extends AppCompatActivity {
         });
 
         //mapwaterfall
-        mapfall = (ImageView) findViewById(R.id.mapfall);
+        mapfall = (Button) findViewById(R.id.mapfall);
         final Intent fall = new Intent(this, page3_21.class);
         mapfall.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +50,7 @@ public class map3 extends AppCompatActivity {
         });
 
         //mapsamon
-        mapsamon = (ImageView) findViewById(R.id.mapsamon);
+        mapsamon = (Button) findViewById(R.id.mapsamon);
         final Intent samon = new Intent(this, page3_3.class);
         mapsamon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +61,7 @@ public class map3 extends AppCompatActivity {
         });
 
         //mapball
-        mapball = (ImageView) findViewById(R.id.mapball);
+        mapball = (Button) findViewById(R.id.mapball);
         final Intent ball = new Intent(this, page3_41.class);
         mapball.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,23 +71,31 @@ public class map3 extends AppCompatActivity {
             }
         });
 
-//        Unlock();
+        Unlock();
 
     }
 
-//    public void Unlock() {
-//        if (unlock.getUnlock(4)) {
-//            mapmalai.setBackgroundResource(R.drawable.boat_map);
-//            mapmalai.setEnabled(true);
-//        } else if (unlock.getUnlock(5)) {
-//            mapfall.setBackgroundResource(R.drawable.mapfall);
-//            mapfall.setEnabled(true);
-//        } else if (unlock.getUnlock(6)) {
-//            mapsamon.setBackgroundResource(R.drawable.mapsamon);
-//            mapsamon.setEnabled(true);
-//        } else if (unlock.getUnlock(7)) {
-//            mapball.setBackgroundResource(R.drawable.mapball);
-//            mapball.setEnabled(true);
-//        }
-//    }
+    public void Unlock() {
+        unlock.readFile(getApplicationContext());
+        boolean chlock[] = unlock.getUnlock3();
+        for (int i = 0; i < chlock.length; i++) {
+            if (chlock[0]) {
+                mapmalai.setBackgroundResource(R.drawable.mapmalai);
+                mapmalai.setEnabled(true);
+            }
+            if (chlock[1]) {
+                mapfall.setBackgroundResource(R.drawable.mapfall);
+                mapfall.setEnabled(true);
+            }
+            if (chlock[2]) {
+                mapsamon.setBackgroundResource(R.drawable.mapsamon);
+                mapsamon.setEnabled(true);
+            }
+
+            if (chlock[3]) {
+                mapball.setBackgroundResource(R.drawable.mapball);
+                mapball.setEnabled(true);
+            }
+        }
+    }
 }

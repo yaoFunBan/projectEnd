@@ -61,7 +61,7 @@
         <activity
             android:name=".map1"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
 
         <!-- page1_1 -->
         <activity
@@ -122,18 +122,18 @@
             android:name=".minigame1"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-
         <!-- Game1 -->
         <activity
             android:name=".game1"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        </activity>
 
 
         <!-- Map2 -->
         <activity
             android:name=".map2"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"></activity>
 
         <!-- page2_1 -->
         <activity
@@ -179,7 +179,7 @@
         <activity
             android:name=".map3"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
 
         <!-- Page3_11 -->
         <activity
@@ -248,7 +248,6 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <!-- game3 -->
-
         <activity
             android:name=".minigame3"
             android:screenOrientation="landscape"
@@ -265,7 +264,7 @@
         <activity
             android:name=".map4"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
 
 
         <!-- page4_11 -->

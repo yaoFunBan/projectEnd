@@ -17,11 +17,12 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 public class game1 extends AppCompatActivity {
     private TextView wordAns;
     Button btn_pause, btnClose;
-    Switch swMusic, swEffect;
+    ToggleButton swMusic, swEffect;
     CountDownTimer cdt;
     TextView tvTimer;
     //Dialog
@@ -49,10 +50,10 @@ public class game1 extends AppCompatActivity {
         //decaler database
         game1 = new datahomony(this);
         gameDb = game1.getWritableDatabase();
-
         game1.onUpgrade(gameDb, 1, 1);
 
-
+        game1.onUpgrade(gameDb, 1, 1);
+        
         //เป็นการอ่านค่าในตาราง database ว่าจะให้อ่านค่าเป็นคอลัมไปเรื่อยๆ
         mCursor = gameDb.rawQuery("SELECT * FROM " + game1.TableName, null);
         mCursor.moveToFirst();
@@ -142,8 +143,8 @@ public class game1 extends AppCompatActivity {
         dsetting.setContentView(R.layout.setting_dialog);
 
         btnClose = (Button) dsetting.findViewById(R.id.btn_closes);
-        swMusic = (Switch) dsetting.findViewById(R.id.sw_music);
-        swEffect = (Switch) dsetting.findViewById(R.id.sw_effect);
+        swMusic = (ToggleButton) dsetting.findViewById(R.id.sw_music);
+        swEffect = (ToggleButton) dsetting.findViewById(R.id.sw_effect);
 
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override

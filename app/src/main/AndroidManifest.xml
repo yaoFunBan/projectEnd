@@ -28,7 +28,7 @@
         <activity
             android:name=".summary"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
 
         <!-- Setting -->
         <activity
@@ -118,6 +118,8 @@
             android:name=".minigame1"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+
+
         <!-- Game1 -->
         <activity
             android:name=".game1"

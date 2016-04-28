@@ -127,7 +127,6 @@
             android:name=".game1"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-        </activity>
 
 
         <!-- Map2 -->

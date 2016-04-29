@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/game1"
-        android:scaleType="fitXY"/>
+        android:scaleType="fitXY" />
 
     <Button
         android:id="@+id/btn_pause"
@@ -18,14 +18,6 @@
         android:layout_alignParentRight="true"
         android:layout_marginLeft="10dp"
         android:background="@drawable/button_pause" />
-
-    <Button
-        android:id="@+id/btn_play_story"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginRight="10dp"
-        android:layout_toLeftOf="@+id/btn_pause"
-        android:background="@drawable/button_again" />
 
     <RelativeLayout
         android:layout_width="250dp"
@@ -44,8 +36,8 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="0"
-            android:textStyle="bold"
-            android:textSize="50sp" />
+            android:textSize="50sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/text"
@@ -64,18 +56,83 @@
             android:layout_marginTop="130dp"
             android:text="วินาที"
             android:textColor="#CC0000"
-            android:textStyle="bold"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
+    </RelativeLayout>
+
+   <!--ลูกบอล-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="500dp">
+
+        <RelativeLayout
+            android:id="@+id/ball1"
+            android:layout_width="230dp"
+            android:layout_height="230dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="50dp"
+            android:background="@drawable/buble">
+
+            <TextView
+                android:id="@+id/str1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="ดอกบัว"
+                android:textColor="#000"
+                android:textSize="40sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/ball2"
+            android:layout_width="230dp"
+            android:layout_height="230dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/buble">
+
+            <TextView
+                android:id="@+id/str2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="ลูกชาย "
+                android:textColor="#000"
+                android:textSize="40sp" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/ball3"
+            android:layout_width="230dp"
+            android:layout_height="230dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/buble">
+
+            <TextView
+                android:id="@+id/str3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="พระอาทิตย์ "
+                android:textColor="#000"
+                android:textSize="40sp" />
+        </RelativeLayout>
     </RelativeLayout>
 
     <TextView
         android:id="@+id/quustion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
         android:text="Answer"
         android:textColor="#000000"
         android:textSize="60sp"

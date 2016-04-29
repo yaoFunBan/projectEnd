@@ -20,13 +20,15 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import android.widget.ToggleButton;
+
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 
 public class game1 extends AppCompatActivity implements View.OnClickListener {
     private TextView wordAns;
     Button btn_pause, btnClose;
-    Switch swMusic, swEffect;
+    ToggleButton swMusic, swEffect;
     CountDownTimer cdt;
     TextView tvTimer, str1, str2, str3;
     //Dialog
@@ -64,6 +66,7 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         gameDb = game1.getWritableDatabase();
         game1.onUpgrade(gameDb, 1, 1);
 
+
 //        //animation ball
 //        YoYo.with(Techniques.StandUp)
 //                .duration(5000)
@@ -75,6 +78,12 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         mCursor.moveToFirst();
         wordAns.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColHomony)));
 
+
+        game1.onUpgrade(gameDb, 1, 1);
+        
+        //เป็นการอ่านค่าในตาราง database ว่าจะให้อ่านค่าเป็นคอลัมไปเรื่อยๆ
+        mCursor = gameDb.rawQuery("SELECT * FROM " + game1.TableName, null);
+        mCursor.moveToFirst();
 
         //CountDownTimer (โดยจะลดลงครั้งละ 1 วินาที)
         CountDownTimer cdt = new CountDownTimer(120000, 1000) {
@@ -95,7 +104,6 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
                 // Finish
             }
         }.start();
-
 
         //button_pause
         btn_pause = (Button) findViewById(R.id.btn_pause);
@@ -167,8 +175,8 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         dsetting.setContentView(R.layout.setting_dialog);
 
         btnClose = (Button) dsetting.findViewById(R.id.btn_closes);
-        swMusic = (Switch) dsetting.findViewById(R.id.sw_music);
-        swEffect = (Switch) dsetting.findViewById(R.id.sw_effect);
+        swMusic = (ToggleButton) dsetting.findViewById(R.id.sw_music);
+        swEffect = (ToggleButton) dsetting.findViewById(R.id.sw_effect);
 
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override

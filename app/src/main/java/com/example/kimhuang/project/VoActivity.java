@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -23,6 +24,7 @@ public class VoActivity extends Activity implements View.OnClickListener {
     private static final String TAG = VoActivity.class.getSimpleName();
     private TextView TvSimple3, TvSimple2, TvSimple1, wordAns, y_scrode, Time, tScore;
     ProgressBar pTime;
+    ImageView namegame, bar;
     private ImageView imgBase;
     private Button btnLeft, btnRigth, btnPause, btnPlay, btnexplain, dialogclose;
     CountDownTimer cdt;
@@ -60,9 +62,17 @@ public class VoActivity extends Activity implements View.OnClickListener {
         this.btnLeft = (Button) findViewById(R.id.btn_back);
         this.btnRigth = (Button) findViewById(R.id.btn_next);
         countBefore = (TextView) findViewById(R.id.count_before);
+<<<<<<< HEAD
 
         btnexplain = (Button) findViewById(R.id.btn_explain);
         btnPlay = (Button) findViewById(R.id.btn_play);
+=======
+        btnexplain = (Button) findViewById(R.id.btn_explain);
+        btnPlay = (Button) findViewById(R.id.btn_play);
+        namegame = (ImageView) findViewById(R.id.namegame);
+        bar = (ImageView) findViewById(R.id.bar);
+
+>>>>>>> 22f4bf4607595c1ab51765c8970e647cf2737673
         btnPause = (Button) findViewById(R.id.btn_pause);
         layout1 = (RelativeLayout) findViewById(R.id.ball1);
         layout2 = (RelativeLayout) findViewById(R.id.ball2);
@@ -186,6 +196,9 @@ public class VoActivity extends Activity implements View.OnClickListener {
                 countBefore.setVisibility(View.VISIBLE);
                 countdownBefore();
                 btnPlay.setVisibility(View.INVISIBLE);
+                namegame.setVisibility(View.INVISIBLE);
+                btnexplain.setVisibility(View.INVISIBLE);
+                bar.setVisibility(View.VISIBLE);
                 break;
             case R.id.btn_explain:
                 dialogEx();

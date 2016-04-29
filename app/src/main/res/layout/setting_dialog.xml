@@ -60,15 +60,18 @@
                 <!--android:textOff=""-->
                 <!--android:textOn="" />-->
 
-                <Switch
+                <ToggleButton
                     android:id="@+id/sw_music"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="40dp"
+                    android:layout_height="20dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
+                    android:background="@drawable/toggle_selector"
+                    android:switchMinWidth="106dp"
                     android:textOff="ปิด"
                     android:textOn="เปิด"
-                    android:textSize="24sp"/>
+                    android:thumb="@color/colorPrimary"
+                    android:track="@color/colorAccent" />
 
             </RelativeLayout>
 
@@ -78,21 +81,25 @@
                 android:layout_weight="1">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
                     android:layout_centerVertical="true"
-                    android:text="เสียงเอฟเฟค"
+                    android:text="แอปเฟก"
                     android:textColor="#000000"
                     android:textSize="24sp" />
 
-                <Switch
+                <ToggleButton
                     android:id="@+id/sw_effect"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="40dp"
+                    android:layout_height="20dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
+                    android:background="@drawable/toggle_selector"
+                    android:switchMinWidth="106dp"
                     android:textOff="ปิด"
-                    android:textOn="เปิด" />
+                    android:textOn="เปิด"
+                    android:thumb="@color/colorPrimary"
+                    android:track="@color/colorAccent" />
             </RelativeLayout>
 
             <View

@@ -21,10 +21,13 @@ public class ExpandableListDataPump {
 
     public static HashMap<String, List<String>> getData() {
 
-        msql = mHelper.getWritableDatabase();
-        mCursor = msql.rawQuery("SELECT * FROM " + mHelper.TableName, null);
-        mCursor.moveToFirst();
-
+//        msql = mHelper.getWritableDatabase();
+//        mCursor = msql.rawQuery("SELECT * FROM " + mHelper.TableName, null);
+//        mCursor.moveToFirst();
+//
+//        while (mCursor.isAfterLast() {
+//            Toast.makeText(Exp, "" + mCursor.getCount(), Toast.LENGTH_LONG).show;
+//        }
 
         HashMap<String, List<String>> expandableListDetail = new HashMap<String, List<String>>();
         List<String> cricket = new ArrayList<String>();

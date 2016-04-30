@@ -20,12 +20,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 public class game3 extends AppCompatActivity {
     Button btn_pause, btnClose;
-    Switch swMusic, swEffect;
+    ToggleButton swMusic, swEffect;
     CountDownTimer cdt;
-    TextView tvTimer, wordQue, ansTrue, ansFalse;
+    TextView tvTimer, wordQue, ansLeft, ansRight;
     ImageView Picture, box1, box2;
 
     //Dialog
@@ -37,6 +38,9 @@ public class game3 extends AppCompatActivity {
     SQLiteDatabase gameDb;
     dataidioms game3;
     Cursor mCursor, wCursor;
+    static int i = 0;
+    //time
+    int time = 50000, tempTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +49,8 @@ public class game3 extends AppCompatActivity {
 
         tvTimer = (TextView) findViewById(R.id.tvTimer);
         wordQue = (TextView) findViewById(R.id.quustion);
-        ansTrue = (TextView) findViewById(R.id.Anstrue);
-        ansFalse = (TextView) findViewById(R.id.Ansfalse);
+        ansLeft = (TextView) findViewById(R.id.AnsLeft);
+        ansRight = (TextView) findViewById(R.id.AnsRight);
         Picture = (ImageView) findViewById(R.id.picture);
 
         //decaler database
@@ -59,8 +63,8 @@ public class game3 extends AppCompatActivity {
         mCursor.moveToFirst();
 
         wordQue.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLIdiom)));
-        ansTrue.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesTrue)));
-        ansFalse.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesFalse)));
+        ansLeft.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesTrue)));
+        ansRight.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesFalse)));
         Picture.setBackgroundResource(mCursor.getInt(mCursor.getColumnIndex(game3.CoLPicture)));
 
         //คลิก กล่องซ้ายมือ
@@ -71,8 +75,8 @@ public class game3 extends AppCompatActivity {
                 mCursor.moveToNext();
                 Picture.setBackgroundResource(mCursor.getInt(mCursor.getColumnIndex(game3.CoLPicture)));
                 wordQue.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLIdiom)));
-                ansTrue.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesTrue)));
-                ansFalse.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesFalse)));
+                ansLeft.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesTrue)));
+                ansRight.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesFalse)));
             }
         });
 
@@ -84,8 +88,8 @@ public class game3 extends AppCompatActivity {
                 mCursor.moveToNext();
                 Picture.setBackgroundResource(mCursor.getInt(mCursor.getColumnIndex(game3.CoLPicture)));
                 wordQue.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLIdiom)));
-                ansTrue.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesTrue)));
-                ansFalse.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesFalse)));
+                ansLeft.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesTrue)));
+                ansRight.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesFalse)));
             }
         });
 
@@ -144,10 +148,15 @@ public class game3 extends AppCompatActivity {
             }
         });
 
-
-        CountDownTimer cdt = new CountDownTimer(10000, 1000) {
+        //CountDownTimer (โดยจะลดลงครั้งละ 1 วินาที)
+        CountDownTimer cdt = new CountDownTimer(100000, 1000) {
             public void onTick(long millisUntilFinished) {
-                // Tick
+
+                //ให้วลานับถอยหลังทีละ 1 วินาที
+                tempTime = (int) millisUntilFinished;
+                tvTimer.setText(String.valueOf(tempTime));
+                String strTime = String.format("%1.0f", (double) millisUntilFinished / 1000);
+                tvTimer.setText(String.valueOf(strTime));
             }
 
             public void onFinish() {
@@ -163,9 +172,8 @@ public class game3 extends AppCompatActivity {
         dsetting.setContentView(R.layout.setting_dialog);
 
         btnClose = (Button) dsetting.findViewById(R.id.btn_close);
-        swMusic = (Switch) dsetting.findViewById(R.id.sw_music);
-        swEffect = (Switch) dsetting.findViewById(R.id.sw_effect);
-
+        swMusic = (ToggleButton) dsetting.findViewById(R.id.sw_music);
+        swEffect = (ToggleButton) dsetting.findViewById(R.id.sw_effect);
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

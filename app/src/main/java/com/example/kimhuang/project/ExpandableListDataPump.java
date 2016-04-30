@@ -11,23 +11,10 @@ import java.util.List;
 
 
 public class ExpandableListDataPump {
-    private static database mHelper;
-    private static SQLiteDatabase msql;
-    private static Cursor mCursor;
 
-    public ExpandableListDataPump(Context ctx) {
-        mHelper = new database(ctx);
-    }
 
     public static HashMap<String, List<String>> getData() {
 
-//        msql = mHelper.getWritableDatabase();
-//        mCursor = msql.rawQuery("SELECT * FROM " + mHelper.TableName, null);
-//        mCursor.moveToFirst();
-//
-//        while (mCursor.isAfterLast() {
-//            Toast.makeText(Exp, "" + mCursor.getCount(), Toast.LENGTH_LONG).show;
-//        }
 
         HashMap<String, List<String>> expandableListDetail = new HashMap<String, List<String>>();
         List<String> cricket = new ArrayList<String>();

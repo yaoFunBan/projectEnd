@@ -1,6 +1,8 @@
 package com.example.kimhuang.project;
 
 import android.app.Activity;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -22,10 +24,27 @@ public class Samnon extends Activity {
     List<String> expandableListTile;
     HashMap<String, List<String>> expandableListDetail;
 
+    SQLiteDatabase mDb;
+    database mHelper;
+    Cursor mCursor;
+    String mQuery;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tab);
+
+        mHelper = new database(this);
+        mQuery = "SELECT * FROM " + mHelper.TableName;
+        mDb = mHelper.getWritableDatabase();
+        mCursor = mDb.rawQuery(mQuery, null);
+        mCursor.moveToFirst();
+
+        while (mCursor.isAfterLast()) {
+//            expandableListDetail.put(mCursor.getString(mCursor.getColumnIndex(mHelper.ColWord)), mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
+        }
+
 
         expandableListView = (ExpandableListView) findViewById(R.id.list_summary);
         expandableListDetail = ExpandableListDataPump.getData();
@@ -39,4 +58,6 @@ public class Samnon extends Activity {
             }
         });
     }
+
+
 }

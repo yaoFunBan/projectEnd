@@ -8,9 +8,10 @@
         android:id="@+id/mean"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
+        android:layout_marginLeft="50dp"
+        android:padding="20dp"
         android:text="ความหมาย"
-        android:textColor="#000000"
-        android:textSize="60sp" />
+        android:textColor="#797979"
+        android:textSize="30sp" />
 
 </LinearLayout>

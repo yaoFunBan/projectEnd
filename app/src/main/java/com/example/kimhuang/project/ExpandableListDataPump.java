@@ -31,29 +31,17 @@ public class ExpandableListDataPump {
 
         HashMap<String, List<String>> expandableListDetail = new HashMap<String, List<String>>();
         List<String> cricket = new ArrayList<String>();
-        cricket.add("India");
-        cricket.add("Pakistan");
-        cricket.add("Australia");
-        cricket.add("England");
-        cricket.add("South Africa");
+        cricket.add("คนโง่มักถูกคนที่ฉลาดกว่าใช้กลอุบายหลอกล่อให้ ยอมทำตามเสมอ");
 
         List<String> football = new ArrayList<String>();
-        football.add("Brazil");
-        football.add("Spain");
-        football.add("Germany");
-        football.add("Netherlands");
-        football.add("Italy");
+        football.add("แม่");
 
         List<String> basketball = new ArrayList<String>();
-        basketball.add("United States");
-        basketball.add("Spain");
-        basketball.add("Argentina");
-        basketball.add("France");
-        basketball.add("Russia");
+        basketball.add("สุริยัน");
 
-        expandableListDetail.put("CRICKET TEAMS", cricket);
-        expandableListDetail.put("FOOTBALL TEAMS", football);
-        expandableListDetail.put("BASKETBALL TEAMS", basketball);
+        expandableListDetail.put("คนโง่ย่อมตกเป็นเหยื่อคนฉลาด", cricket);
+        expandableListDetail.put("พระชนนี", football);
+        expandableListDetail.put("พระอาทิตย์", basketball);
         return expandableListDetail;
     }
 }

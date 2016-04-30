@@ -5,80 +5,104 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.BaseExpandableListAdapter;
+import android.widget.ExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.security.PolicySpi;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by วัชรัตน์ on 21/3/2559.
  */
-public class CustomAdater extends BaseAdapter {
+public class CustomAdater extends BaseExpandableListAdapter implements ExpandableListAdapter {
+    private int[] sound;
+    private String[] word;
+    private String[] mean;
+    private String[] status;
+    private static final int GROUP_ITEM_RESOURCE = R.layout.custom_head_exp;
+    private static final int CHILD_ITEM_RESOURCE = R.layout.childrow;
 
-    private String[] Status;
-    private String[] Mean;
-    private String[] Word;
-    private Context ctx;
-    private LayoutInflater inflater;
+    private Context context;
+    private List<String> expandableListTitle;
+    private HashMap<String, List<String>> expandableListDetail;
 
-    public CustomAdater(Context context, String[] w, String[] m, String[] s) {
-        this.ctx = context;
-        this.Word = w;
-        this.Mean = m;
-        this.Status = s;
-        inflater = (LayoutInflater) context.
-                getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    public CustomAdater(Context context, List<String> expandableListTitle,
+                        HashMap<String, List<String>> expandableListDetail) {
+        this.context = context;
+        this.expandableListTitle = expandableListTitle;
+        this.expandableListDetail = expandableListDetail;
+    }
 
+    // Item group
+    @Override
+    public int getGroupCount() {
+        return expandableListTitle.size();
     }
 
     @Override
-    public int getCount() {
-        return Mean.length;
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return null;
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return 0;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-
-        Holder holder = new Holder();
-        View rowView;
-        rowView = inflater.inflate(R.layout.custom_listview, null);
-        holder.mean = (TextView) rowView.findViewById(R.id.text_mean);
-        holder.word = (TextView) rowView.findViewById(R.id.text_word);
-        holder.img = (ImageView) rowView.findViewById(R.id.img_correct);
-
-        holder.word.setText(Word[position]);
-        holder.mean.setText(Mean[position]);
-
-        if (Status[position].equals("correct")) {
-            holder.img.setImageResource(R.drawable.correct);
-        } else {
-            holder.img.setImageResource(R.drawable.uncorrect);
+    public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+        String listTitle = (String) getGroup(groupPosition);
+        if (convertView == null) {
+            LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.custom_head_exp, null);
         }
-//        holder.tv.setText(result[position]);
-//        holder.img.setImageResource(imageId[position]);
-//        rowView.setOnClickListener(new OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // TODO Auto-generated method stub
-////                Toast.makeText(context, "You Clicked " + result[position], Toast.LENGTH_LONG).show();
-//            }
-//        });
-        return rowView;
+        TextView listTitleTextView = (TextView) convertView
+                .findViewById(R.id.word);
+        listTitleTextView.setText(listTitle);
+        return convertView;
     }
 
-    public class Holder {
-        TextView mean;
-        TextView word;
-        ImageView img;
+    @Override
+    public Object getGroup(int groupPosition) {
+        return this.expandableListTitle.get(groupPosition);
     }
+
+    @Override
+    public long getGroupId(int groupPosition) {
+        return groupPosition;
+    }
+
+
+    // Item childen
+    @Override
+    public int getChildrenCount(int groupPosition) {
+        return expandableListDetail.get(expandableListTitle.get(groupPosition)).size();
+    }
+
+    @Override
+    public Object getChild(int groupPosition, int childPosition) {
+        return this.expandableListDetail.get(this.expandableListTitle.get(groupPosition))
+                .get(childPosition);
+    }
+
+    @Override
+    public long getChildId(int groupPosition, int childPosition) {
+        return childPosition;
+    }
+
+    @Override
+    public boolean hasStableIds() {
+        return false;
+    }
+
+    @Override
+    public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+        final String expandedListText = (String) getChild(groupPosition, childPosition);
+        if (convertView == null) {
+            LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.childrow, null);
+        }
+        TextView listDetailTextView = (TextView) convertView
+                .findViewById(R.id.mean);
+        listDetailTextView.setText(expandedListText);
+        return convertView;
+    }
+
+    @Override
+    public boolean isChildSelectable(int groupPosition, int childPosition) {
+        return true;
+    }
+
 }

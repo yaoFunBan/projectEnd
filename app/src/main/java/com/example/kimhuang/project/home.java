@@ -18,7 +18,7 @@ import android.widget.Switch;
 import android.widget.ToggleButton;
 
 public class home extends AppCompatActivity implements View.OnClickListener {
-    Button btn_play1, btn_setting1, btn_con1, btn_close, btnClose;
+    Button btn_play1, btn_setting1, btn_con1, btn_close, btnClose, btn_summary;
     ToggleButton swMusic, swEffect;
     Intent i;
     AlertDialog.Builder builder;
@@ -48,6 +48,9 @@ public class home extends AppCompatActivity implements View.OnClickListener {
         //button__close
         btn_close = (Button) findViewById(R.id.btn_close);
         btn_close.setOnClickListener(this);
+
+        btn_summary = (Button) findViewById(R.id.btn_summary);
+        btn_summary.setOnClickListener(this);
     }
 
     @Override
@@ -83,6 +86,10 @@ public class home extends AppCompatActivity implements View.OnClickListener {
 
                 builder.setCancelable(false);
                 builder.show();
+                break;
+            case (R.id.btn_summary):
+                i = new Intent(this, summary.class);
+                startActivity(i);
                 break;
         }
     }

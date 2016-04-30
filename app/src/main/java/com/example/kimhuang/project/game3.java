@@ -38,6 +38,9 @@ public class game3 extends AppCompatActivity {
     SQLiteDatabase gameDb;
     dataidioms game3;
     Cursor mCursor, wCursor;
+    static int i = 0;
+    //time
+    int time = 50000, tempTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,10 +148,15 @@ public class game3 extends AppCompatActivity {
             }
         });
 
-
-        CountDownTimer cdt = new CountDownTimer(10000, 1000) {
+        //CountDownTimer (โดยจะลดลงครั้งละ 1 วินาที)
+        CountDownTimer cdt = new CountDownTimer(100000, 1000) {
             public void onTick(long millisUntilFinished) {
-                // Tick
+
+                //ให้วลานับถอยหลังทีละ 1 วินาที
+                tempTime = (int) millisUntilFinished;
+                tvTimer.setText(String.valueOf(tempTime));
+                String strTime = String.format("%1.0f", (double) millisUntilFinished / 1000);
+                tvTimer.setText(String.valueOf(strTime));
             }
 
             public void onFinish() {

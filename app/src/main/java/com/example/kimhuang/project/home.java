@@ -22,15 +22,17 @@ public class home extends AppCompatActivity implements View.OnClickListener {
     ToggleButton swMusic, swEffect;
     Intent i;
     AlertDialog.Builder builder;
-    MediaPlayer player;
+    soundBG soundBG;
     Intent svc;
     Boolean effOpen = false;
-    startEffect cEffect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
+
+        soundBG = new soundBG(this);
+        soundBG.creatSound();
 
         //button_play
         btn_play1 = (Button) findViewById(R.id.btn_play1);
@@ -119,13 +121,14 @@ public class home extends AppCompatActivity implements View.OnClickListener {
         swMusic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                soundBG.turnOnSound();
             }
         });
 
         swEffect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 
             }
         });

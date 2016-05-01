@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
@@ -22,7 +23,7 @@ public class Samnon extends Activity {
     ExpandableListAdapter expandableListAdapter;
     ExpandableListView expandableListView;
     List<String> expandableListTile;
-    HashMap<String, List<String>> expandableListDetail;
+    HashMap<String, String> expandableListDetail;
 
     SQLiteDatabase mDb;
     database mHelper;
@@ -42,21 +43,22 @@ public class Samnon extends Activity {
         mCursor.moveToFirst();
 
         while (mCursor.isAfterLast()) {
-//            expandableListDetail.put(mCursor.getString(mCursor.getColumnIndex(mHelper.ColWord)), mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
+            expandableListDetail.put(mCursor.getString(mCursor.getColumnIndex(mHelper.ColWord)), mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
+            Log.e("show ", "Log " + expandableListDetail.keySet());
         }
 
-
-        expandableListView = (ExpandableListView) findViewById(R.id.list_summary);
-        expandableListDetail = ExpandableListDataPump.getData();
-        expandableListTile = new ArrayList<String>(expandableListDetail.keySet());
-        expandableListAdapter = new CustomAdater(getApplicationContext(), expandableListTile, expandableListDetail);
-        expandableListView.setAdapter(expandableListAdapter);
-        expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
-            @Override
-            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-                return false;
-            }
-        });
+//        Log.e("expandableListDetail", "keySet()" + expandableListDetail.keySet());
+//        expandableListView = (ExpandableListView) findViewById(R.id.list_summary);
+////        expandableListDetail = ExpandableListDataPump.getData();
+//        expandableListTile = new ArrayList<String>(expandableListDetail.keySet());
+//        expandableListAdapter = new CustomAdater(getApplicationContext(), expandableListTile, expandableListDetail);
+//        expandableListView.setAdapter(expandableListAdapter);
+//        expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+//            @Override
+//            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+//                return false;
+//            }
+//        });
     }
 
 

@@ -26,10 +26,10 @@ public class CustomAdater extends BaseExpandableListAdapter implements Expandabl
 
     private Context context;
     private List<String> expandableListTitle;
-    private HashMap<String, List<String>> expandableListDetail;
+    private HashMap<String, String> expandableListDetail;
 
     public CustomAdater(Context context, List<String> expandableListTitle,
-                        HashMap<String, List<String>> expandableListDetail) {
+                        HashMap<String, String> expandableListDetail) {
         this.context = context;
         this.expandableListTitle = expandableListTitle;
         this.expandableListDetail = expandableListDetail;
@@ -68,13 +68,12 @@ public class CustomAdater extends BaseExpandableListAdapter implements Expandabl
     // Item childen
     @Override
     public int getChildrenCount(int groupPosition) {
-        return expandableListDetail.get(expandableListTitle.get(groupPosition)).size();
+        return expandableListTitle.size();
     }
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return this.expandableListDetail.get(this.expandableListTitle.get(groupPosition))
-                .get(childPosition);
+        return this.expandableListTitle.get(childPosition);
     }
 
     @Override

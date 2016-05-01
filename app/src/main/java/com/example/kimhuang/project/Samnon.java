@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,13 +24,16 @@ public class Samnon extends Activity {
     ExpandableListAdapter expandableListAdapter;
     ExpandableListView expandableListView;
     List<String> expandableListTile;
+    //    HashMap<String, List<String>> expandableListDetail;
     HashMap<String, String> expandableListDetail;
 
     SQLiteDatabase mDb;
     database mHelper;
     Cursor mCursor;
     String mQuery;
-
+    int i = 0;
+    String Titlt;
+    String Detail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +46,14 @@ public class Samnon extends Activity {
         mCursor = mDb.rawQuery(mQuery, null);
         mCursor.moveToFirst();
 
-//        while (mCursor.isAfterLast()) {
-//            expandableListDetail.put(mCursor.getString(mCursor.getColumnIndex(mHelper.ColWord)), mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
-//        }
+        expandableListDetail = new HashMap<String, String>();
+
+        while (!mCursor.isAfterLast()) {
+            expandableListDetail.put(mCursor.getString(mCursor.getColumnIndex(mHelper.ColWord)), getString(mCursor.getColumnIndex(mHelper.ColMean)));
+            mCursor.moveToNext();
+        }
 
 
-//        Log.e("expandableListDetail", "keySet()" + expandableListDetail.keySet());
         expandableListView = (ExpandableListView) findViewById(R.id.list_summary);
 //        expandableListDetail = ExpandableListDataPump.getData();
         expandableListTile = new ArrayList<String>(expandableListDetail.keySet());
@@ -59,6 +65,11 @@ public class Samnon extends Activity {
                 return false;
             }
         });
+    }
+
+    public void prepareListData() {
+        expandableListTile = new ArrayList<String>();
+//        expandableListDetail =
     }
 
 

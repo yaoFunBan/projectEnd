@@ -42,23 +42,23 @@ public class Samnon extends Activity {
         mCursor = mDb.rawQuery(mQuery, null);
         mCursor.moveToFirst();
 
-        while (mCursor.isAfterLast()) {
-            expandableListDetail.put(mCursor.getString(mCursor.getColumnIndex(mHelper.ColWord)), mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
-            Log.e("show ", "Log " + expandableListDetail.keySet());
-        }
+//        while (mCursor.isAfterLast()) {
+//            expandableListDetail.put(mCursor.getString(mCursor.getColumnIndex(mHelper.ColWord)), mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
+//        }
+
 
 //        Log.e("expandableListDetail", "keySet()" + expandableListDetail.keySet());
-//        expandableListView = (ExpandableListView) findViewById(R.id.list_summary);
-////        expandableListDetail = ExpandableListDataPump.getData();
-//        expandableListTile = new ArrayList<String>(expandableListDetail.keySet());
-//        expandableListAdapter = new CustomAdater(getApplicationContext(), expandableListTile, expandableListDetail);
-//        expandableListView.setAdapter(expandableListAdapter);
-//        expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
-//            @Override
-//            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-//                return false;
-//            }
-//        });
+        expandableListView = (ExpandableListView) findViewById(R.id.list_summary);
+//        expandableListDetail = ExpandableListDataPump.getData();
+        expandableListTile = new ArrayList<String>(expandableListDetail.keySet());
+        expandableListAdapter = new CustomAdater(getApplicationContext(), expandableListTile, expandableListDetail);
+        expandableListView.setAdapter(expandableListAdapter);
+        expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+                return false;
+            }
+        });
     }
 
 

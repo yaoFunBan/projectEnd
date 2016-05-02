@@ -37,49 +37,47 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="170dp" />
 
-    <ImageView
+    <RelativeLayout
         android:id="@+id/boxmess1"
         android:layout_width="620dp"
         android:layout_height="130dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="25dp"
         android:layout_marginLeft="20dp"
-        android:background="@drawable/boxmess" />
+        android:background="@drawable/boxmess">
 
-    <TextView
-        android:id="@+id/AnsLeft"
-        android:layout_width="540dp"
-        android:layout_height="90dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="40dp"
-        android:layout_marginLeft="70dp"
-        android:text="Answertrue"
-        android:textSize="30dp"
-        android:padding="5dp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/AnsLeft"
+            android:layout_width="500dp"
+            android:layout_height="90dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:padding="5dp"
+            android:text="Answertrue"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
 
-    <ImageView
+    <RelativeLayout
         android:id="@+id/boxmess2"
         android:layout_width="620dp"
         android:layout_height="130dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
         android:layout_marginBottom="25dp"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/boxmess" />
+        android:layout_marginLeft="630dp"
+        android:background="@drawable/boxmess">
 
-    <TextView
-        android:id="@+id/AnsRight"
-        android:layout_width="550dp"
-        android:layout_height="90dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="40dp"
-        android:layout_marginRight="50dp"
-        android:text="Answerfalse"
-        android:padding="5dp"
-        android:textSize="30dp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/AnsRight"
+            android:layout_width="500dp"
+            android:layout_height="90dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:padding="5dp"
+            android:text="Answerfalse"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
 
     <Button
         android:id="@+id/btn_pause"

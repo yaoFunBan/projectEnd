@@ -18,6 +18,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -26,13 +27,14 @@ public class game3 extends AppCompatActivity {
     Button btn_pause, btnClose;
     ToggleButton swMusic, swEffect;
     CountDownTimer cdt;
-    TextView tvTimer, wordQue, ansLeft, ansRight;
-    ImageView Picture, box1, box2;
+    private TextView tvTimer, wordQue, ansLeft, ansRight;
+    ImageView Picture;
 
     //Dialog
     AlertDialog.Builder builder;
     Dialog dialog;
     Button dialogset, dialogexit, dialoghome, dialogclose;
+    RelativeLayout box1, box2;
 
     //Database
     SQLiteDatabase gameDb;
@@ -41,6 +43,10 @@ public class game3 extends AppCompatActivity {
     static int i = 0;
     //time
     int time = 50000, tempTime = 0;
+
+    int randPosi, randPosi2;
+
+    RelativeLayout.LayoutParams params1, params2, paramsBaseR;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +58,8 @@ public class game3 extends AppCompatActivity {
         ansLeft = (TextView) findViewById(R.id.AnsLeft);
         ansRight = (TextView) findViewById(R.id.AnsRight);
         Picture = (ImageView) findViewById(R.id.picture);
+        box1 = (RelativeLayout) findViewById(R.id.boxmess1);
+        box2 = (RelativeLayout) findViewById(R.id.boxmess2);
 
         //decaler database
         game3 = new dataidioms(this);
@@ -61,38 +69,70 @@ public class game3 extends AppCompatActivity {
         //เป็นการอ่านค่าในตาราง database ว่าจะให้อ่านค่าเป็นคอลัมถ์ไปเรื่อยๆ
         mCursor = gameDb.rawQuery("SELECT * FROM " + game3.TableName, null);
         mCursor.moveToFirst();
+        wCursor = gameDb.rawQuery("SELECT * FROM " + game3.TableName, null);
+        wCursor.moveToFirst();
 
-        wordQue.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLIdiom)));
-        ansLeft.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesTrue)));
-        ansRight.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesFalse)));
-        Picture.setBackgroundResource(mCursor.getInt(mCursor.getColumnIndex(game3.CoLPicture)));
+        //ให้ cursor ชี้ไปที่ สำนวน ความหมายถูก รูปภาพ
+        wordQue.setText(wCursor.getString(wCursor.getColumnIndex(game3.CoLIdiom)));
+        ansLeft.setText(wCursor.getString(wCursor.getColumnIndex(game3.CoLMesTrue)));
+        ansRight.setText(wCursor.getString(wCursor.getColumnIndex(game3.CoLMesFalse)));
+        Picture.setBackgroundResource(wCursor.getInt(wCursor.getColumnIndex(game3.CoLPicture)));
 
-        //คลิก กล่องซ้ายมือ
-        box1 = (ImageView) findViewById(R.id.boxmess1);
-        box1.setOnClickListener(new View.OnClickListener() {
+        //
+        params1 = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+        params2 = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+        paramsBaseR = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+        // random ตำแหน่งคำ
+        randPosi = getRandomPosition();
+        randPosi2 = getRandomPosition();
+
+        // set margin ระยะห่างของกรอบ
+        params1.setMargins(randPosi2, 1100, 0, 50);
+        box1.setLayoutParams(params1);
+        box1.getLayoutParams().height = 330;
+        box1.getLayoutParams().width = 1250;
+
+        params2.setMargins(randPosi, 1100, 0, 50);
+        box2.setLayoutParams(params2);
+        box2.getLayoutParams().height = 330;
+        box2.getLayoutParams().width = 1270;
+
+        ansLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mCursor.moveToNext();
-                Picture.setBackgroundResource(mCursor.getInt(mCursor.getColumnIndex(game3.CoLPicture)));
                 wordQue.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLIdiom)));
                 ansLeft.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesTrue)));
                 ansRight.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesFalse)));
+                Picture.setBackgroundResource(mCursor.getInt(mCursor.getColumnIndex(game3.CoLPicture)));
+                randPosi2 = getRandomPosition();
+                params1.setMargins(randPosi2, 1100, 0, 50);
+                box1.setLayoutParams(params1);
             }
         });
 
-        //คลิก กล่องขวามือ
-        box2 = (ImageView) findViewById(R.id.boxmess2);
-        box2.setOnClickListener(new View.OnClickListener() {
+        ansRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mCursor.moveToNext();
-                Picture.setBackgroundResource(mCursor.getInt(mCursor.getColumnIndex(game3.CoLPicture)));
                 wordQue.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLIdiom)));
                 ansLeft.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesTrue)));
                 ansRight.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesFalse)));
+                Picture.setBackgroundResource(mCursor.getInt(mCursor.getColumnIndex(game3.CoLPicture)));
+                randPosi = getRandomPosition();
+                params2.setMargins(randPosi, 1100, 0, 50);
+                box2.setLayoutParams(params2);
             }
         });
-
         //button_pause
         btn_pause = (Button) findViewById(R.id.btn_pause);
         builder = new AlertDialog.Builder(this);
@@ -163,6 +203,14 @@ public class game3 extends AppCompatActivity {
                 // Finish
             }
         }.start();
+    }
+
+    // random ตำแหน่ง
+    private int getRandomPosition() {
+        float b = getApplicationContext().getResources().getDisplayMetrics().density;
+        int[] posiLeft = {20, 650};
+        int num = (int) (Math.random() * posiLeft.length);
+        return (int) (posiLeft[num] * b);
     }
 
     //Dialogsetting

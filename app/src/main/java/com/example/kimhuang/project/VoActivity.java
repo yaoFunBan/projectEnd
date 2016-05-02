@@ -183,7 +183,8 @@ public class VoActivity extends Activity implements View.OnClickListener {
                 handler.removeCallbacks(runnable);
                 break;
             case R.id.btn_back:
-                // move bar to left if position of bar less than 320 set position is 160
+                // move bar to left if po
+                // sition of bar less than 320 set position is 160
                 if (left <= 320) {
                     left = 160;
                 } else {

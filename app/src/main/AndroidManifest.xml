@@ -52,10 +52,6 @@
 
 
         <!-- Setting -->
-        <activity
-            android:name=".Setting"
-            android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <!-- contact -->
         <activity

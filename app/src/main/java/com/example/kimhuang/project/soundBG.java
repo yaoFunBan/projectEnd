@@ -30,7 +30,7 @@ public class soundBG {
 
     public void creatSound() {
         playSound = MediaPlayer.create(this.context, R.raw.bensound);
-        playSound.setVolume(0.2f, 0.2f);
+        playSound.setVolume(0.5f, 0.5f);
         playSound.start();
     }
 

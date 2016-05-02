@@ -30,6 +30,26 @@ public class soundBG {
 
     public void creatSound() {
         playSound = MediaPlayer.create(this.context, R.raw.bensound);
+        playSound.setVolume(0.2f, 0.2f);
         playSound.start();
     }
+
+    public void stopBG() {
+        if (playSound != null) {
+            playSound.stop();
+            playSound.release();
+            playSound = null;
+        }
+    }
+
+    public void pauseBG() {
+        if (playSound != null)
+            playSound.pause();
+    }
+
+    public void startBD() {
+        if (playSound == null)
+            playSound.start();
+    }
+
 }

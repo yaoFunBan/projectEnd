@@ -64,7 +64,7 @@ public class game3 extends AppCompatActivity {
 
         wordQue.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLIdiom)));
         ansLeft.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesTrue)));
-        ansRight.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesFalse)));
+//        ansRight.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesFalse)));
         Picture.setBackgroundResource(mCursor.getInt(mCursor.getColumnIndex(game3.CoLPicture)));
 
         //คลิก กล่องซ้ายมือ

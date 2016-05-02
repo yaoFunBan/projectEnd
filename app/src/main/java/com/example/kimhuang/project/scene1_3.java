@@ -22,7 +22,7 @@ import android.widget.ToggleButton;
 
 public class scene1_3 extends AppCompatActivity {
     ImageView house1, sungthong3, chicken1, grass1, grass2, trees1, box1_3;
-    Button btn_back, btn_next, btn_close, btn_pause,btnClose;
+    Button btn_back, btn_next, btn_close, btn_pause, btnClose;
     ToggleButton swMusic, swEffect;
     //boolean
     boolean chicken = false;
@@ -39,6 +39,7 @@ public class scene1_3 extends AppCompatActivity {
     //etc
     AnimPopUp animPopUp;
     MediaPlayer mediaPlayer;
+    soundBG soundBG;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,9 @@ public class scene1_3 extends AppCompatActivity {
         //animPopUp
         animPopUp = new AnimPopUp();
 
+
+        soundBG = new soundBG(getApplicationContext());
+        soundBG.creatSound();
         //grass1
         grass1 = (ImageView) findViewById(R.id.grass1);
         animPopUp.PlayAnimation(grass1);
@@ -237,7 +241,12 @@ public class scene1_3 extends AppCompatActivity {
                 dialogset.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        displayDiaglogSetting();
+                        DialogSetting setting = new DialogSetting(scene1_3.this);
+                        setting.show();
+
+                        Window window = setting.getWindow();
+                        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                        window.setGravity(Gravity.CENTER);
                     }
                 });
 
@@ -301,42 +310,10 @@ public class scene1_3 extends AppCompatActivity {
         }.start();
     }
 
-    //DiaglogSetting
-    public void displayDiaglogSetting() {
-        final Dialog dsetting = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
-        dsetting.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dsetting.setContentView(R.layout.setting_dialog);
-
-        btnClose = (Button) dsetting.findViewById(R.id.btn_closes);
-        swMusic = (ToggleButton) dsetting.findViewById(R.id.sw_music);
-        swEffect = (ToggleButton) dsetting.findViewById(R.id.sw_effect);
-
-        btnClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dsetting.cancel();
-            }
-        });
-
-        swMusic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        swEffect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-
-        Window window = dsetting.getWindow();
-        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        window.setGravity(Gravity.CENTER);
-        dsetting.show();
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        soundBG.stopBG();
     }
 }
 

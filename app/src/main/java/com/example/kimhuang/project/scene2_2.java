@@ -22,7 +22,7 @@ import android.widget.ToggleButton;
  */
 public class scene2_2 extends AppCompatActivity implements View.OnClickListener {
 
-    Button btnNext, btnBack, btnPause, dialogexit, dialoghome, dialogset, dialogclose,btnClose;
+    Button btnNext, btnBack, btnPause, dialogexit, dialoghome, dialogset, dialogclose, btnClose;
     Intent intentNext;
     boolean checkBtn1;
     ToggleButton swMusic, swEffect;
@@ -30,6 +30,7 @@ public class scene2_2 extends AppCompatActivity implements View.OnClickListener 
     ImageView sandThong, poolGold, sandGold, poolNormal, head1, head2, kong22, wall;
 
     AnimPopUp animPopUp;
+    soundBG soundBG;
 
 
     @Override
@@ -38,6 +39,8 @@ public class scene2_2 extends AppCompatActivity implements View.OnClickListener 
         setContentView(R.layout.scene2_2);
 
         animPopUp = new AnimPopUp();
+        soundBG = new soundBG(getApplicationContext());
+        soundBG.creatSound();
 
         btnNext = (Button) findViewById(R.id.btn_next);
         btnBack = (Button) findViewById(R.id.btn_back);
@@ -149,6 +152,8 @@ public class scene2_2 extends AppCompatActivity implements View.OnClickListener 
 
         ((AnimationDrawable) poolGold.getBackground()).stop();
         ((AnimationDrawable) head1.getBackground()).stop();
+
+        soundBG.stopBG();
     }
 
     public void checkBtn() {
@@ -216,7 +221,12 @@ public class scene2_2 extends AppCompatActivity implements View.OnClickListener 
         dialogset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                displayDiaglogSetting();
+                DialogSetting setting = new DialogSetting(scene2_2.this);
+                setting.show();
+
+                Window window = setting.getWindow();
+                window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                window.setGravity(Gravity.CENTER);
             }
         });
 
@@ -228,43 +238,6 @@ public class scene2_2 extends AppCompatActivity implements View.OnClickListener 
             }
         });
         dialog.show();
-    }
-    //DiaglogSetting
-    public void displayDiaglogSetting() {
-        final Dialog dsetting = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
-        dsetting.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dsetting.setContentView(R.layout.setting_dialog);
-
-        btnClose = (Button) dsetting.findViewById(R.id.btn_closes);
-        swMusic = (ToggleButton) dsetting.findViewById(R.id.sw_music);
-        swEffect = (ToggleButton) dsetting.findViewById(R.id.sw_effect);
-
-        btnClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dsetting.cancel();
-            }
-        });
-
-        swMusic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        swEffect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-
-        Window window = dsetting.getWindow();
-        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        window.setGravity(Gravity.CENTER);
-        dsetting.show();
     }
 }
 

@@ -35,6 +35,7 @@ public class scene4_2 extends Activity implements View.OnClickListener {
 
     boolean flagJantra;
     AnimPopUp animPopUp;
+    soundBG soundBG;
 
 
     @Override
@@ -44,6 +45,8 @@ public class scene4_2 extends Activity implements View.OnClickListener {
         setContentView(R.layout.scene4_2);
 
         animPopUp = new AnimPopUp();
+        soundBG = new soundBG(getApplicationContext());
+        soundBG.creatSound();
 
         box4_2 = (ImageView) findViewById(R.id.box4_2);
         word41 = (ImageView) findViewById(R.id.word41);
@@ -89,7 +92,12 @@ public class scene4_2 extends Activity implements View.OnClickListener {
                 dialogsetting.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        displayDiaglogSetting();
+                        DialogSetting setting = new DialogSetting(scene4_2.this);
+                        setting.show();
+
+                        Window window = setting.getWindow();
+                        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                        window.setGravity(Gravity.CENTER);
                     }
                 });
                 dialogclose.setOnClickListener(new View.OnClickListener() {
@@ -210,6 +218,8 @@ public class scene4_2 extends Activity implements View.OnClickListener {
 
         ((AnimationDrawable) jantawee.getBackground()).stop();
 
+        soundBG.stopBG();
+
     }
 
     @Override
@@ -217,42 +227,5 @@ public class scene4_2 extends Activity implements View.OnClickListener {
         super.onResume();
 
         ((AnimationDrawable) jantawee.getBackground()).start();
-    }
-    //DiaglogSetting
-    public void displayDiaglogSetting() {
-        final Dialog dsetting = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
-        dsetting.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dsetting.setContentView(R.layout.setting_dialog);
-
-        btnClose = (Button) dsetting.findViewById(R.id.btn_closes);
-        swMusic = (ToggleButton) dsetting.findViewById(R.id.sw_music);
-        swEffect = (ToggleButton) dsetting.findViewById(R.id.sw_effect);
-
-        btnClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dsetting.cancel();
-            }
-        });
-
-        swMusic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        swEffect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-
-        Window window = dsetting.getWindow();
-        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        window.setGravity(Gravity.CENTER);
-        dsetting.show();
     }
 }

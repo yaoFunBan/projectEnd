@@ -79,6 +79,8 @@ public class scene1_3 extends AppCompatActivity {
                         house = true;
                         //change image view
                         house1.setBackgroundResource(R.drawable.house3);
+                        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.broke);
+                        mediaPlayer.start();
                     } else {
                         house = false;
                         house1.setBackgroundResource(R.drawable.animate_house);
@@ -289,7 +291,6 @@ public class scene1_3 extends AppCompatActivity {
         new CountDownTimer(1500, 50) {
             @Override
             public void onTick(long millisUntilFinished) {
-
             }
 
             @Override

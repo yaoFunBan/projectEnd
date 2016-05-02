@@ -12,13 +12,14 @@
 
     <Button
         android:id="@+id/palaces"
-        android:layout_width="400dp"
+        android:layout_width="350dp"
         android:layout_height="170dp"
+        android:layout_marginLeft="30dp"
         android:background="@drawable/palaces" />
 
     <Button
         android:id="@+id/house"
-        android:layout_width="300dp"
+        android:layout_width="250dp"
         android:layout_height="250dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"

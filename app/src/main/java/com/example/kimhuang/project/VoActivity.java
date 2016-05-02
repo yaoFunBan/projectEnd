@@ -83,13 +83,18 @@ public class VoActivity extends Activity implements View.OnClickListener {
         mHelper = new database(this);
         mDb = mHelper.getWritableDatabase();
         mHelper.onUpgrade(mDb, 1, 1);
+
+        //query word collect
         mCursor = mDb.rawQuery("SELECT * FROM " + mHelper.TableName, null);
         mCursor.moveToFirst();
 
+        //query word incollect
         wCursor = mDb.rawQuery("SELECT * FROM " + mHelper.TableName, null);
 
+        //query and set textview of Answer
         wordAns.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColWord)));
 
+        //query ,set textvie and random row in table
         TvSimple2.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
         wCursor.moveToPosition(randWrong());
         TvSimple2.setText(wCursor.getString(wCursor.getColumnIndex(mHelper.ColMean)));
@@ -109,6 +114,7 @@ public class VoActivity extends Activity implements View.OnClickListener {
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT);
 
+        //random position of ball
         randPosi2 = getRandomPosition();
         randPosi = getRandomPosition();
         randPosi3 = getRandomPosition();
@@ -124,12 +130,14 @@ public class VoActivity extends Activity implements View.OnClickListener {
         btnexplain.setOnClickListener(this);
 
         countTime(time);
+        //random speed ball 10, 15, 20
         speed2 = randSpeed();
         speed1 = randSpeed();
         speed3 = randSpeed();
     }
 
 
+    //random position
     private int getRandomPosition() {
         float d = getApplicationContext().getResources().getDisplayMetrics().density;
         int[] posiLeft = {95, 255, 415, 575, 735, 895, 990};
@@ -138,6 +146,7 @@ public class VoActivity extends Activity implements View.OnClickListener {
     }
 
 
+    //countdown time 50s when time up set text score is 0 and show dialog showFinalDialog() stop habdler for stop fall down of every ball
     public void countTime(int t) {
         cdt = new CountDownTimer(t, 50) {
 
@@ -148,6 +157,8 @@ public class VoActivity extends Activity implements View.OnClickListener {
                 Time.setText(String.valueOf(tempTime));
                 String strTime = String.format("%.1f"
                         , (double) millisUntilFinished / 1000);
+
+                //when time reduction will set Time in textview
                 Time.setText(String.valueOf(strTime));
 
             }
@@ -172,11 +183,13 @@ public class VoActivity extends Activity implements View.OnClickListener {
                 handler.removeCallbacks(runnable);
                 break;
             case R.id.btn_back:
+                // move bar to left if position of bar less than 320 set position is 160
                 if (left <= 320) {
                     left = 160;
                 } else {
                     left -= 250;
                 }
+                //set margin left for move bar turn left
                 paramsBaseR.setMargins(left, 1370, 0, 0);
                 imgBase.setLayoutParams(paramsBaseR);
                 break;
@@ -186,7 +199,9 @@ public class VoActivity extends Activity implements View.OnClickListener {
                 } else {
                     left += 250;
                 }
+                //set margin left for move bar turn rigth
                 paramsBaseR.setMargins(left, 1370, 0, 0);
+                //set position in layout
                 imgBase.setLayoutParams(paramsBaseR);
                 break;
             case R.id.btn_play:
@@ -203,6 +218,7 @@ public class VoActivity extends Activity implements View.OnClickListener {
         }
     }
 
+    //dialog Explain game
     public void dialogEx() {
         final Dialog exDialog = new Dialog(this);
         exDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -220,6 +236,7 @@ public class VoActivity extends Activity implements View.OnClickListener {
     }
 
 
+    // before start count down 3s
     public void countdownBefore() {
         new CountDownTimer(3000, 50) {
             @Override
@@ -266,6 +283,7 @@ public class VoActivity extends Activity implements View.OnClickListener {
                             params2.setMargins(randPosi2, dy, 0, 0);
                             layout2.setLayoutParams(params2);
 
+                            //check collier collision
                             if ((imgBase.getTop() <= layout2.getTop() + layout2.getHeight())
                                     && (layout2.getTop() <= imgBase.getTop() + imgBase.getHeight())
                                     && (imgBase.getLeft() <= layout2.getLeft() + layout2.getWidth())
@@ -298,6 +316,8 @@ public class VoActivity extends Activity implements View.OnClickListener {
                                 Log.e("" + speed2, "");
                             }
 
+
+                            //if ball move to azis y more than 1200 set invisible and start position -500 and random position, set speed and new word
                             if (dy >= 1200) {
                                 layout2.setVisibility(View.INVISIBLE);
                                 dy = -500;
@@ -312,6 +332,7 @@ public class VoActivity extends Activity implements View.OnClickListener {
                             params.setMargins(randPosi, dy1, 0, 0);
                             layout1.setLayoutParams(params);
 
+                            //check collier collision
                             if ((imgBase.getTop() <= layout1.getTop() + layout1.getHeight())
                                     && (layout1.getTop() <= imgBase.getTop() + imgBase.getHeight())
                                     && (imgBase.getLeft() <= layout1.getLeft() + layout1.getWidth())
@@ -357,6 +378,8 @@ public class VoActivity extends Activity implements View.OnClickListener {
                             params3.setMargins(randPosi3, dy2, 0, 0);
                             layout3.setLayoutParams(params3);
 
+
+                            //check collier collision
                             if ((imgBase.getTop() <= layout3.getTop() + layout3.getHeight())
                                     && (layout3.getTop() <= imgBase.getTop() + imgBase.getHeight())
                                     && (imgBase.getLeft() <= layout3.getLeft() + layout3.getWidth())
@@ -407,10 +430,13 @@ public class VoActivity extends Activity implements View.OnClickListener {
         }.start();
     }
 
+
     public void changeWord() {
         mCursor.moveToNext();
     }
 
+
+    // imcrement score addScore++ and setText
     public void incrementScore() {
         addScore++;
         y_scrode.setText(String.valueOf(addScore));
@@ -428,12 +454,15 @@ public class VoActivity extends Activity implements View.OnClickListener {
         return speed[rand];
     }
 
+    //randdom uncorrect word
+
     public int randWrong() {
         int leg = wCursor.getCount();
         Random r = new Random();
         int i1 = r.nextInt(leg - 4) + 4;
         return i1;
     }
+
 
     public void showFinalDialog() {
         final Dialog fDialog = new Dialog(this);

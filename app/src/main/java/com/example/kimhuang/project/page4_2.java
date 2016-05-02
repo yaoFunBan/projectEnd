@@ -28,9 +28,11 @@ public class page4_2 extends Activity implements View.OnClickListener {
 
     AlertDialog.Builder builder;
     Dialog dialog;
-    Button dialogclose, dialoghome, dialogexit ,dialogsetting, btnPlayAgain;
+    Button dialogclose, dialoghome, dialogexit, dialogsetting, btnPlayAgain;
     Intent i;
     boolean isOpen = false;
+
+    soundBG soundBG;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,8 @@ public class page4_2 extends Activity implements View.OnClickListener {
         //เล่านิทาน
         mediaPlayer = MediaPlayer.create(this, R.raw.pg4_2);
         mediaPlayer.start();
+
+        soundBG = new soundBG(page4_2.this);
 
         btnPlayAgain = (Button) findViewById(R.id.btn_play_story);
 
@@ -59,7 +63,7 @@ public class page4_2 extends Activity implements View.OnClickListener {
                     mediaPlayer.start();
                     btn_music.setBackgroundResource(R.drawable.btn_music);
                     isOpen = false;
-                } else{
+                } else {
                     mediaPlayer.pause();
                     btn_music.setBackgroundResource(R.drawable.btn_music_act);
                     isOpen = true;
@@ -101,7 +105,12 @@ public class page4_2 extends Activity implements View.OnClickListener {
                 dialogsetting.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        displayDiaglogSetting();
+                        DialogSetting setDialog = new DialogSetting(page4_2.this);
+                        setDialog.show();
+
+                        Window window = setDialog.getWindow();
+                        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                        window.setGravity(Gravity.CENTER);
                     }
                 });
                 dialogclose.setOnClickListener(new View.OnClickListener() {
@@ -126,6 +135,7 @@ public class page4_2 extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_back:
+                soundBG.creatSound();
                 finish();
                 break;
             case R.id.btn_next:
@@ -144,6 +154,7 @@ public class page4_2 extends Activity implements View.OnClickListener {
             mediaPlayer.start();
         }
     }
+
     public void onPause() {
         super.onPause();
         mediaPlayer.pause();
@@ -155,40 +166,10 @@ public class page4_2 extends Activity implements View.OnClickListener {
         mediaPlayer.release();
         mediaPlayer = null;
     }
-    //DiaglogSetting
-    public void displayDiaglogSetting() {
-        final Dialog dsetting = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
-        dsetting.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dsetting.setContentView(R.layout.setting_dialog);
 
-        btnClose = (Button) dsetting.findViewById(R.id.btn_closes);
-        swMusic = (ToggleButton) dsetting.findViewById(R.id.sw_music);
-        swEffect = (ToggleButton) dsetting.findViewById(R.id.sw_effect);
-
-        btnClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dsetting.cancel();
-            }
-        });
-
-        swMusic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        swEffect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        Window window = dsetting.getWindow();
-        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        window.setGravity(Gravity.CENTER);
-        dsetting.show();
+    @Override
+    protected void onStart() {
+        super.onStart();
+        soundBG.stopBG();
     }
 }

@@ -18,7 +18,7 @@ import android.widget.Switch;
 import android.widget.ToggleButton;
 
 public class page1_4 extends AppCompatActivity {
-    Button btn_back, btn_next, btn_pause,btnClose, btnPlayAgain;
+    Button btn_back, btn_next, btn_pause, btnClose, btnPlayAgain;
     ToggleButton btn_music;
     ToggleButton swMusic, swEffect;
     MediaPlayer mediaPlayer;
@@ -28,6 +28,7 @@ public class page1_4 extends AppCompatActivity {
     AlertDialog.Builder builder;
     Dialog dialog;
     Button dialogset, dialogexit, dialoghome, dialogclose;
+    soundBG soundBG;
 
 
     @Override
@@ -37,6 +38,9 @@ public class page1_4 extends AppCompatActivity {
 
         mediaPlayer = MediaPlayer.create(this, R.raw.scene4);
         mediaPlayer.start();
+
+        soundBG = new soundBG(page1_4.this);
+        soundBG.creatSound();
 
         btnPlayAgain = (Button) findViewById(R.id.btn_play_story);
 
@@ -105,11 +109,16 @@ public class page1_4 extends AppCompatActivity {
                 dialogset.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        displayDiaglogSetting();
+                        DialogSetting setting = new DialogSetting(page1_4.this);
+                        setting.show();
+
+                        Window window = setting.getWindow();
+                        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                        window.setGravity(Gravity.CENTER);
                     }
                 });
 
-               //button_close
+                //button_close
                 dialogclose.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -125,6 +134,7 @@ public class page1_4 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+                soundBG.creatSound();
             }
         });
         btn_next = (Button) findViewById(R.id.btn_next);
@@ -139,9 +149,9 @@ public class page1_4 extends AppCompatActivity {
 
     public void onResume() {
         super.onResume();
-        if (isOpen == true){
+        if (isOpen == true) {
             mediaPlayer.pause();
-        }else {
+        } else {
             mediaPlayer.start();
         }
     }
@@ -159,42 +169,8 @@ public class page1_4 extends AppCompatActivity {
             mediaPlayer.release();
             mediaPlayer = null;
         }
+
+        soundBG.stopBG();
     }
-    //DiaglogSetting
-    public void displayDiaglogSetting() {
-        final Dialog dsetting = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
-        dsetting.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dsetting.setContentView(R.layout.setting_dialog);
 
-        btnClose = (Button) dsetting.findViewById(R.id.btn_closes);
-        swMusic = (ToggleButton) dsetting.findViewById(R.id.sw_music);
-        swEffect = (ToggleButton) dsetting.findViewById(R.id.sw_effect);
-
-        btnClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dsetting.cancel();
-            }
-        });
-
-        swMusic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        swEffect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-
-        Window window = dsetting.getWindow();
-        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        window.setGravity(Gravity.CENTER);
-        dsetting.show();
-    }
 }

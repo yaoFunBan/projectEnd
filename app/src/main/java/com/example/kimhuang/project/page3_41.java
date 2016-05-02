@@ -27,6 +27,9 @@ public class page3_41 extends AppCompatActivity {
     Dialog dialog;
     Button dialogset, dialogexit, dialoghome, dialogclose, btnPlayAgain;
     boolean isOpen = false;
+
+    soundBG soundBG;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +38,8 @@ public class page3_41 extends AppCompatActivity {
         //เล่านิทาน
         mediaPlayer = MediaPlayer.create(this, R.raw.pg3_41);
         mediaPlayer.start();
+
+        soundBG = new soundBG(page3_41.this);
 
         btnPlayAgain = (Button) findViewById(R.id.btn_play_story);
 
@@ -53,7 +58,7 @@ public class page3_41 extends AppCompatActivity {
                     mediaPlayer.start();
                     btn_music.setBackgroundResource(R.drawable.btn_music);
                     isOpen = false;
-                } else{
+                } else {
                     mediaPlayer.pause();
                     btn_music.setBackgroundResource(R.drawable.btn_music_act);
                     isOpen = true;
@@ -101,7 +106,12 @@ public class page3_41 extends AppCompatActivity {
                 dialogset.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        displayDiaglogSetting();
+                        DialogSetting setDialog = new DialogSetting(page3_41.this);
+                        setDialog.show();
+
+                        Window window = setDialog.getWindow();
+                        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                        window.setGravity(Gravity.CENTER);
                     }
                 });
 
@@ -120,6 +130,7 @@ public class page3_41 extends AppCompatActivity {
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundBG.creatSound();
                 finish();
             }
         });
@@ -132,14 +143,16 @@ public class page3_41 extends AppCompatActivity {
             }
         });
     }
+
     public void onResume() {
         super.onResume();
-        if(isOpen == true) {
+        if (isOpen == true) {
             mediaPlayer.pause();
-        }else{
+        } else {
             mediaPlayer.start();
         }
     }
+
     public void onPause() {
         super.onPause();
         mediaPlayer.pause();
@@ -152,41 +165,9 @@ public class page3_41 extends AppCompatActivity {
         mediaPlayer = null;
     }
 
-    //DiaglogSetting
-    public void displayDiaglogSetting() {
-        final Dialog dsetting = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
-        dsetting.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dsetting.setContentView(R.layout.setting_dialog);
-
-        btnClose = (Button) dsetting.findViewById(R.id.btn_closes);
-        swMusic = (ToggleButton) dsetting.findViewById(R.id.sw_music);
-        swEffect = (ToggleButton) dsetting.findViewById(R.id.sw_effect);
-
-        btnClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dsetting.cancel();
-            }
-        });
-
-        swMusic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        swEffect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-
-        Window window = dsetting.getWindow();
-        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        window.setGravity(Gravity.CENTER);
-        dsetting.show();
+    @Override
+    protected void onStart() {
+        super.onStart();
+        soundBG.stopBG();
     }
 }

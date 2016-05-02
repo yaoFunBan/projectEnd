@@ -54,9 +54,9 @@
 
         <View
             android:id="@+id/view2"
-            android:layout_toRightOf="@+id/btn_replay"
             android:layout_width="165dp"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/btn_replay" />
 
         <Button
             android:id="@+id/btn_home"

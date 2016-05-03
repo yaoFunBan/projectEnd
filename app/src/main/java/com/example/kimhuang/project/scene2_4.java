@@ -16,7 +16,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Switch;
 import android.widget.ToggleButton;
 
 /**
@@ -26,11 +25,12 @@ public class scene2_4 extends AppCompatActivity implements View.OnClickListener 
 
     ImageView kong, val24, kong1, bg_scene;
     boolean clickKong = false;
-    Button btnBack, btnPause, dialogexit, dialoghome, dialogset, dialogclose, btnNext,btnClose;
+    Button btnBack, btnPause, dialogexit, dialoghome, dialogset, dialogclose, btnNext, btnClose;
     RelativeLayout cloud;
     ToggleButton swMusic, swEffect;
     AnimPopUp animPopUp;
     MediaPlayer mediaPlayer;
+    soundBG soundBG;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +38,8 @@ public class scene2_4 extends AppCompatActivity implements View.OnClickListener 
         setContentView(R.layout.scene2_4);
 
         animPopUp = new AnimPopUp();
+        soundBG = new soundBG(getApplicationContext());
+        soundBG.creatSound();
 
         mediaPlayer = MediaPlayer.create(this, R.raw.scence2_4);
 
@@ -124,6 +126,8 @@ public class scene2_4 extends AppCompatActivity implements View.OnClickListener 
         Runtime.getRuntime().gc();
         System.gc();
         ((AnimationDrawable) kong.getBackground()).stop();
+
+        soundBG.stopBG();
     }
 
     @Override
@@ -209,11 +213,17 @@ public class scene2_4 extends AppCompatActivity implements View.OnClickListener 
         dialogset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                displayDiaglogSetting();
+                DialogSetting setting = new DialogSetting(scene2_4.this);
+                setting.show();
+
+                Window window = setting.getWindow();
+                window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                window.setGravity(Gravity.CENTER);
+
             }
         });
 
-                //button_close
+        //button_close
         dialogclose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -223,41 +233,4 @@ public class scene2_4 extends AppCompatActivity implements View.OnClickListener 
         dialog.show();
     }
 
-    //DiaglogSetting
-    public void displayDiaglogSetting() {
-        final Dialog dsetting = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
-        dsetting.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dsetting.setContentView(R.layout.setting_dialog);
-
-        btnClose = (Button) dsetting.findViewById(R.id.btn_closes);
-        swMusic = (ToggleButton) dsetting.findViewById(R.id.sw_music);
-        swEffect = (ToggleButton) dsetting.findViewById(R.id.sw_effect);
-
-        btnClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dsetting.cancel();
-            }
-        });
-
-        swMusic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        swEffect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-
-        Window window = dsetting.getWindow();
-        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        window.setGravity(Gravity.CENTER);
-        dsetting.show();
-    }
 }

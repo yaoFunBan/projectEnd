@@ -41,6 +41,7 @@ public class scene4_1 extends Activity implements View.OnClickListener {
     MediaPlayer mediaPlayer;
 
     AnimPopUp animPopUp;
+    soundBG soundBG;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,8 @@ public class scene4_1 extends Activity implements View.OnClickListener {
         setContentView(R.layout.scene4_1);
 
         animPopUp = new AnimPopUp();
+        soundBG = new soundBG(getApplicationContext());
+        soundBG.creatSound();
 
         box4_1 = (ImageView) findViewById(R.id.box4_1);
         jantra = (ImageView) findViewById(R.id.jantra);
@@ -170,16 +173,22 @@ public class scene4_1 extends Activity implements View.OnClickListener {
             }
         });
         dialoghome.setOnClickListener(new View.OnClickListener() {
-           Intent btnhome = new Intent(getApplicationContext(), map4.class);
+            Intent btnhome = new Intent(getApplicationContext(), map4.class);
+
             @Override
             public void onClick(View v) {
-                        startActivity(btnhome);
+                startActivity(btnhome);
             }
         });
         dialogsetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                displayDiaglogSetting();
+                DialogSetting setting = new DialogSetting(scene4_1.this);
+                setting.show();
+
+                Window window = setting.getWindow();
+                window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                window.setGravity(Gravity.CENTER);
             }
         });
         dialogclose.setOnClickListener(new View.OnClickListener() {
@@ -266,43 +275,6 @@ public class scene4_1 extends Activity implements View.OnClickListener {
         dBoat.show();
         Window window = dBoat.getWindow();
         window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
-    }
-    //DiaglogSetting
-    public void displayDiaglogSetting() {
-        final Dialog dsetting = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
-        dsetting.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dsetting.setContentView(R.layout.setting_dialog);
-
-        btnClose = (Button) dsetting.findViewById(R.id.btn_closes);
-        swMusic = (ToggleButton) dsetting.findViewById(R.id.sw_music);
-        swEffect = (ToggleButton) dsetting.findViewById(R.id.sw_effect);
-
-        btnClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dsetting.cancel();
-            }
-        });
-
-        swMusic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        swEffect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-
-        Window window = dsetting.getWindow();
-        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        window.setGravity(Gravity.CENTER);
-        dsetting.show();
     }
 }
 

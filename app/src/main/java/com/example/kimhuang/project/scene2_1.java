@@ -21,7 +21,7 @@ import android.widget.ToggleButton;
 
 public class scene2_1 extends AppCompatActivity implements View.OnClickListener {
     ImageView forests, giantAnim, giant1, boat, imgBoat, giantTalk, giantWord, mountain;
-    Button btnNext, btnBack, btnPause, dialogexit, dialoghome, dialogset, dialogclose,btnClose;
+    Button btnNext, btnBack, btnPause, dialogexit, dialoghome, dialogset, dialogclose, btnClose;
     Intent intent;
     MediaPlayer mp;
     int pIndex = 0;
@@ -35,6 +35,7 @@ public class scene2_1 extends AppCompatActivity implements View.OnClickListener 
     int i = 0;
 
     MediaPlayer mediaPlayer;
+    soundBG soundBG;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,8 @@ public class scene2_1 extends AppCompatActivity implements View.OnClickListener 
         setContentView(R.layout.scene2_1);
 
         animPopUp = new AnimPopUp();
+        soundBG = new soundBG(getApplicationContext());
+        soundBG.creatSound();
 
 
         mountain = (ImageView) findViewById(R.id.mountain);
@@ -185,6 +188,8 @@ public class scene2_1 extends AppCompatActivity implements View.OnClickListener 
         ((AnimationDrawable) giantAnim.getBackground()).stop();
         ((AnimationDrawable) boat.getBackground()).stop();
 
+        soundBG.stopBG();
+
     }
 
     @Override
@@ -306,11 +311,16 @@ public class scene2_1 extends AppCompatActivity implements View.OnClickListener 
         dialogset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                displayDiaglogSetting();
+                DialogSetting setting = new DialogSetting(scene2_1.this);
+                setting.show();
+
+                Window window = setting.getWindow();
+                window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                window.setGravity(Gravity.CENTER);
             }
         });
 
-                //button_close
+        //button_close
         dialogclose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -319,42 +329,4 @@ public class scene2_1 extends AppCompatActivity implements View.OnClickListener 
         });
         dialog.show();
     }
-    //DiaglogSetting
-    public void displayDiaglogSetting() {
-        final Dialog dsetting = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
-        dsetting.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dsetting.setContentView(R.layout.setting_dialog);
-
-        btnClose = (Button) dsetting.findViewById(R.id.btn_closes);
-        swMusic = (ToggleButton) dsetting.findViewById(R.id.sw_music);
-        swEffect = (ToggleButton) dsetting.findViewById(R.id.sw_effect);
-
-        btnClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dsetting.cancel();
-            }
-        });
-
-        swMusic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        swEffect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-
-        Window window = dsetting.getWindow();
-        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        window.setGravity(Gravity.CENTER);
-        dsetting.show();
-    }
-
 }

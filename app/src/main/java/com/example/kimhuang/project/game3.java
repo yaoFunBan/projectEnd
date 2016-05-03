@@ -107,6 +107,17 @@ public class game3 extends AppCompatActivity {
         box2.getLayoutParams().width = 1270;
 
         ansLeft.setOnClickListener(new View.OnClickListener() {
+
+
+        wordQue.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLIdiom)));
+        ansLeft.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesTrue)));
+//        ansRight.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesFalse)));
+        Picture.setBackgroundResource(mCursor.getInt(mCursor.getColumnIndex(game3.CoLPicture)));
+
+        //คลิก กล่องซ้ายมือ
+        box1 = (ImageView) findViewById(R.id.boxmess1);
+        box1.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 mCursor.moveToNext();

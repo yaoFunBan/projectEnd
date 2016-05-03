@@ -432,7 +432,6 @@ public class VoActivity extends Activity implements View.OnClickListener {
     }
 
 
-
     public void changeWord() {
         mCursor.moveToNext();
     }
@@ -464,7 +463,6 @@ public class VoActivity extends Activity implements View.OnClickListener {
         int i1 = r.nextInt(leg - 4) + 4;
         return i1;
     }
-
 
 
     public void showFinalDialog() {

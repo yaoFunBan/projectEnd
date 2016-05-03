@@ -76,7 +76,8 @@ public class CustomAdater extends BaseExpandableListAdapter implements Expandabl
     @Override
     public Object getChild(int groupPosition, int childPosition) {
 //        return this.expandableListDetail.get(this.expandableListTitle.get(groupPosition)).get(childPosition);
-        return this.expandableListTitle.get(groupPosition);
+//        return this.expandableListDetail
+        return 1;
     }
 
     @Override

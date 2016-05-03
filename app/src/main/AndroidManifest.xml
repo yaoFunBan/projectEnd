@@ -16,6 +16,11 @@
             android:name=".home"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
         </activity>
 
         <!-- Game2 -->
@@ -28,8 +33,9 @@
         <activity
             android:name=".summary"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        </activity>
+
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+
 
         <!--//tab host summary-->
         <activity
@@ -49,10 +55,6 @@
 
 
         <!-- Setting -->
-        <activity
-            android:name=".Setting"
-            android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <!-- contact -->
         <activity
@@ -271,10 +273,6 @@
             android:name=".game3"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <!-- Map4 -->

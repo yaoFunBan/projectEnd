@@ -28,10 +28,14 @@ public class page3_3 extends AppCompatActivity {
     Button dialogset, dialogexit, dialoghome, dialogclose, btnPlayAgain;
     boolean isOpen = false;
 
+    soundBG soundBG;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.page3_3);
+
+        soundBG = new soundBG(page3_3.this);
 
         //เล่านิทาน
         mediaPlayer = MediaPlayer.create(this, R.raw.pg3_31);
@@ -102,7 +106,12 @@ public class page3_3 extends AppCompatActivity {
                 dialogset.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        displayDiaglogSetting();
+                        DialogSetting setDialog = new DialogSetting(page3_3.this);
+                        setDialog.show();
+
+                        Window window = setDialog.getWindow();
+                        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                        window.setGravity(Gravity.CENTER);
                     }
                 });
 
@@ -123,6 +132,7 @@ public class page3_3 extends AppCompatActivity {
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundBG.creatSound();
                 finish();
             }
         });
@@ -162,41 +172,9 @@ public class page3_3 extends AppCompatActivity {
         }
     }
 
-    //DiaglogSetting
-    public void displayDiaglogSetting() {
-        final Dialog dsetting = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
-        dsetting.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dsetting.setContentView(R.layout.setting_dialog);
-
-        btnClose = (Button) dsetting.findViewById(R.id.btn_closes);
-        swMusic = (ToggleButton) dsetting.findViewById(R.id.sw_music);
-        swEffect = (ToggleButton) dsetting.findViewById(R.id.sw_effect);
-
-        btnClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dsetting.cancel();
-            }
-        });
-
-        swMusic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        swEffect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-
-        Window window = dsetting.getWindow();
-        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        window.setGravity(Gravity.CENTER);
-        dsetting.show();
+    @Override
+    protected void onStart() {
+        super.onStart();
+        soundBG.stopBG();
     }
 }

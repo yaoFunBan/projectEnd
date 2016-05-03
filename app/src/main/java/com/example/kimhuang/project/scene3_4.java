@@ -22,7 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.ToggleButton;
 
-public class scene3_4 extends AppCompatActivity implements View.OnClickListener{
+public class scene3_4 extends AppCompatActivity implements View.OnClickListener {
     Button btn_back, btn_next, btn_puase, btnClose;
     ToggleButton swMusic, swEffect;
     ImageView ball, horse, bgSky, prain;
@@ -39,6 +39,7 @@ public class scene3_4 extends AppCompatActivity implements View.OnClickListener{
     Button dialogset, dialogexit, dialoghome, dialogclose;
     boolean flagHorse, flagball;
     AnimPopUp animPopUp;
+    soundBG soundBG;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,8 @@ public class scene3_4 extends AppCompatActivity implements View.OnClickListener{
         setContentView(R.layout.scene3_4);
 
         animPopUp = new AnimPopUp();
+        soundBG = new soundBG(getApplicationContext());
+        soundBG.creatSound();
 
         //bgSky
         bgSky = (ImageView) findViewById(R.id.imgSky);
@@ -202,7 +205,13 @@ public class scene3_4 extends AppCompatActivity implements View.OnClickListener{
                 dialogset.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        displayDiaglogSetting();
+                        DialogSetting setting = new DialogSetting(scene3_4.this);
+                        setting.show();
+
+                        Window window = setting.getWindow();
+                        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                        window.setGravity(Gravity.CENTER);
+
                     }
                 });
 
@@ -257,6 +266,7 @@ public class scene3_4 extends AppCompatActivity implements View.OnClickListener{
             btn_next.setVisibility(View.VISIBLE);
         }
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -275,8 +285,8 @@ public class scene3_4 extends AppCompatActivity implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case  R.id.ball :
+        switch (v.getId()) {
+            case R.id.ball:
                 flagball = true;
                 checkDown();
                 slide = AnimationUtils.loadAnimation(scene3_4.this, R.anim.moveball);
@@ -288,42 +298,17 @@ public class scene3_4 extends AppCompatActivity implements View.OnClickListener{
                 break;
         }
     }
-    //DiaglogSetting
-    public void displayDiaglogSetting() {
-        final Dialog dsetting = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
-        dsetting.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dsetting.setContentView(R.layout.setting_dialog);
-
-        btnClose = (Button) dsetting.findViewById(R.id.btn_closes);
-        swMusic = (ToggleButton) dsetting.findViewById(R.id.sw_music);
-        swEffect = (ToggleButton) dsetting.findViewById(R.id.sw_effect);
-
-        btnClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dsetting.cancel();
-            }
-        });
-
-        swMusic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        swEffect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
 
 
-        Window window = dsetting.getWindow();
-        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        window.setGravity(Gravity.CENTER);
-        dsetting.show();
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        System.runFinalization();
+        Runtime.getRuntime().gc();
+        System.gc();
+
+        soundBG.stopBG();
     }
 }
 

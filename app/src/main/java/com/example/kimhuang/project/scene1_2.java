@@ -25,7 +25,7 @@ public class scene1_2 extends AppCompatActivity {
     ImageView word4, word5;
     ToggleButton swMusic, swEffect;
     //Button
-    Button btn_back, btn_next, btn_pause,btnClose;
+    Button btn_back, btn_next, btn_pause, btnClose;
     //boolean
     boolean oldwomen = false;
     boolean jantawee = false;
@@ -37,7 +37,7 @@ public class scene1_2 extends AppCompatActivity {
     //etc
     AnimPopUp animPopUp;
     MediaPlayer mediaPlayer;
-
+    soundBG soundBG;
     unlock unlock;
 
 
@@ -49,6 +49,10 @@ public class scene1_2 extends AppCompatActivity {
         //animPopUp
         animPopUp = new AnimPopUp();
         unlock = new unlock();
+
+        //playsound
+        soundBG = new soundBG(getApplicationContext());
+        soundBG.creatSound();
 
         //box1_2
         box1_2 = (ImageView) findViewById(R.id.box1_2);
@@ -176,7 +180,12 @@ public class scene1_2 extends AppCompatActivity {
                 dialogset.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        displayDiaglogSetting();
+                        DialogSetting setting = new DialogSetting(scene1_2.this);
+                        setting.show();
+
+                        Window window = setting.getWindow();
+                        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                        window.setGravity(Gravity.CENTER);
                     }
                 });
 
@@ -269,42 +278,12 @@ public class scene1_2 extends AppCompatActivity {
         word4.setVisibility(View.INVISIBLE);
         word5.setVisibility(View.INVISIBLE);
     }
-    //DiaglogSetting
-    public void displayDiaglogSetting() {
-        final Dialog dsetting = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
-        dsetting.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dsetting.setContentView(R.layout.setting_dialog);
 
-        btnClose = (Button) dsetting.findViewById(R.id.btn_closes);
-        swMusic = (ToggleButton) dsetting.findViewById(R.id.sw_music);
-        swEffect = (ToggleButton) dsetting.findViewById(R.id.sw_effect);
-
-        btnClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dsetting.cancel();
-            }
-        });
-
-        swMusic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        swEffect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-
-        Window window = dsetting.getWindow();
-        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        window.setGravity(Gravity.CENTER);
-        dsetting.show();
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        soundBG.stopBG();
     }
+
 }
 

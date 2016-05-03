@@ -36,6 +36,7 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
     Dialog dialog;
     Button dialogset, dialogexit, dialoghome, dialogclose;
     RelativeLayout ball1, ball2, ball3;
+
     //Databas
     SQLiteDatabase gameDb;
     datahomony game1;
@@ -92,16 +93,17 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
                 mCursor.moveToPosition(i);
                 wordAns.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColHomony)));
 
-                //ให้วลานับถอยหลังทีละ 1 วินาที
+                //ให้เวลานับถอยหลังทีละ 1 วินาที
                 tempTime = (int) millisUntilFinished;
                 tvTimer.setText(String.valueOf(tempTime));
                 String strTime = String.format("%1.0f"
                         , (double) millisUntilFinished / 1000);
                 tvTimer.setText(String.valueOf(strTime));
+
             }
 
             public void onFinish() {
-                // Finish
+                tvTimer.setText("0");
             }
         }.start();
 

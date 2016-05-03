@@ -24,7 +24,7 @@ import android.widget.ToggleButton;
  */
 public class scene2_3 extends AppCompatActivity implements View.OnClickListener {
 
-    Button btnNext, btnBack, btnPause, dialogexit, dialoghome, dialogset, dialogclose,btnClose;
+    Button btnNext, btnBack, btnPause, dialogexit, dialoghome, dialogset, dialogclose, btnClose;
     Intent intentNext;
     ImageView sira, sira2, mountain, pasang, giant;
     RelativeLayout tree;
@@ -35,6 +35,8 @@ public class scene2_3 extends AppCompatActivity implements View.OnClickListener 
     MediaPlayer mp;
     AnimPopUp animPopUp;
 
+    soundBG soundBG;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +44,8 @@ public class scene2_3 extends AppCompatActivity implements View.OnClickListener 
 
 
         animPopUp = new AnimPopUp();
+        soundBG = new soundBG(getApplicationContext());
+        soundBG.creatSound();
         mp = MediaPlayer.create(scene2_3.this, R.raw.kung);
         mountain = (ImageView) findViewById(R.id.mountain);
         pasang = (ImageView) findViewById(R.id.pasang);
@@ -160,6 +164,8 @@ public class scene2_3 extends AppCompatActivity implements View.OnClickListener 
 
 
         ((AnimationDrawable) sira.getBackground()).stop();
+
+        soundBG.stopBG();
     }
 
     public void checkPass() {
@@ -246,7 +252,12 @@ public class scene2_3 extends AppCompatActivity implements View.OnClickListener 
         dialogset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                displayDiaglogSetting();
+                DialogSetting setting = new DialogSetting(scene2_3.this);
+                setting.show();
+
+                Window window = setting.getWindow();
+                window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                window.setGravity(Gravity.CENTER);
             }
         });
 
@@ -258,42 +269,5 @@ public class scene2_3 extends AppCompatActivity implements View.OnClickListener 
             }
         });
         dialog.show();
-    }
-    //DiaglogSetting
-    public void displayDiaglogSetting() {
-        final Dialog dsetting = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
-        dsetting.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dsetting.setContentView(R.layout.setting_dialog);
-
-        btnClose = (Button) dsetting.findViewById(R.id.btn_closes);
-        swMusic = (ToggleButton) dsetting.findViewById(R.id.sw_music);
-        swEffect = (ToggleButton) dsetting.findViewById(R.id.sw_effect);
-
-        btnClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dsetting.cancel();
-            }
-        });
-
-        swMusic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        swEffect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-
-        Window window = dsetting.getWindow();
-        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        window.setGravity(Gravity.CENTER);
-        dsetting.show();
     }
 }

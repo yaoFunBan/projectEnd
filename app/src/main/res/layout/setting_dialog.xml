@@ -62,14 +62,14 @@
 
                 <ToggleButton
                     android:id="@+id/sw_music"
-                    android:layout_width="40dp"
-                    android:layout_height="20dp"
+                    android:layout_width="45dp"
+                    android:layout_height="25dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:background="@drawable/toggle_selector"
                     android:switchMinWidth="106dp"
-                    android:textOff="ปิด"
-                    android:textOn="เปิด"
+                    android:textOff=""
+                    android:textOn=""
                     android:thumb="@color/colorPrimary"
                     android:track="@color/colorAccent" />
 
@@ -90,14 +90,14 @@
 
                 <ToggleButton
                     android:id="@+id/sw_effect"
-                    android:layout_width="40dp"
-                    android:layout_height="20dp"
+                    android:layout_width="45dp"
+                    android:layout_height="25dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:background="@drawable/toggle_selector"
                     android:switchMinWidth="106dp"
-                    android:textOff="ปิด"
-                    android:textOn="เปิด"
+                    android:textOff=""
+                    android:textOn=""
                     android:thumb="@color/colorPrimary"
                     android:track="@color/colorAccent" />
             </RelativeLayout>

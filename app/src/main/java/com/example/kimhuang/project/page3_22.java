@@ -27,6 +27,7 @@ public class page3_22 extends AppCompatActivity {
     Dialog dialog;
     Button dialogset, dialogexit, dialoghome, dialogclose, btnPlayAgain;
     boolean isOpen = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +57,7 @@ public class page3_22 extends AppCompatActivity {
                     mediaPlayer.start();
                     btn_music.setBackgroundResource(R.drawable.btn_music);
                     isOpen = false;
-                } else{
+                } else {
                     mediaPlayer.pause();
                     btn_music.setBackgroundResource(R.drawable.btn_music_act);
                     isOpen = true;
@@ -104,7 +105,12 @@ public class page3_22 extends AppCompatActivity {
                 dialogset.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        displayDiaglogSetting();
+                        DialogSetting setDialog = new DialogSetting(page3_22.this);
+                        setDialog.show();
+
+                        Window window = setDialog.getWindow();
+                        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                        window.setGravity(Gravity.CENTER);
                     }
                 });
 
@@ -120,14 +126,14 @@ public class page3_22 extends AppCompatActivity {
         });
 
 
-        btn_back = (Button)findViewById(R.id.btn_back);
+        btn_back = (Button) findViewById(R.id.btn_back);
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-        btn_next = (Button)findViewById(R.id.btn_next);
+        btn_next = (Button) findViewById(R.id.btn_next);
         final Intent a = new Intent(this, scene3_2.class);
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,14 +142,16 @@ public class page3_22 extends AppCompatActivity {
             }
         });
     }
+
     public void onResume() {
         super.onResume();
-        if(isOpen == true) {
+        if (isOpen == true) {
             mediaPlayer.pause();
-        }else{
+        } else {
             mediaPlayer.start();
         }
     }
+
     public void onPause() {
         super.onPause();
         mediaPlayer.pause();
@@ -154,43 +162,5 @@ public class page3_22 extends AppCompatActivity {
         mediaPlayer.stop();
         mediaPlayer.release();
         mediaPlayer = null;
-    }
-
-    //DiaglogSetting
-    public void displayDiaglogSetting() {
-        final Dialog dsetting = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
-        dsetting.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dsetting.setContentView(R.layout.setting_dialog);
-
-        btnClose = (Button) dsetting.findViewById(R.id.btn_closes);
-        swMusic = (ToggleButton) dsetting.findViewById(R.id.sw_music);
-        swEffect = (ToggleButton) dsetting.findViewById(R.id.sw_effect);
-
-        btnClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dsetting.cancel();
-            }
-        });
-
-        swMusic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        swEffect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-
-        Window window = dsetting.getWindow();
-        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        window.setGravity(Gravity.CENTER);
-        dsetting.show();
     }
 }

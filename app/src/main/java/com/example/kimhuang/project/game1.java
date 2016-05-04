@@ -34,7 +34,7 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
     //Dialog
     AlertDialog.Builder builder;
     Dialog dialog;
-    Button dialogset, dialogexit, dialoghome, dialogclose;
+    Button dialogexit, dialoghome, dialogclose;
     RelativeLayout ball1, ball2, ball3;
 
     //Databas
@@ -68,10 +68,11 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         game1.onUpgrade(gameDb, 1, 1);
 
 
-//        //animation ball
-//        YoYo.with(Techniques.StandUp)
-//                .duration(5000)
-//                .playOn(findViewById(R.id.ball1));
+        //animation ball
+        YoYo.with(Techniques.StandUp)
+                .duration(5000)
+                .playOn(findViewById(R.id.ball1));
+
 
 
         //READ DATA (เป็นการอ่านค่าในตาราง database โดยกำหนดให้ mCursor เลื่อนอ่านข้อมูลในแต่ละคอลัมไปเรื่อยๆ)
@@ -116,11 +117,10 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         btn_pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.setContentView(R.layout.btndialog);
+                dialog.setContentView(R.layout.btndialog_r);
                 //TODO findViewBy
                 dialogexit = (Button) dialog.findViewById(R.id.btn_exit);
                 dialoghome = (Button) dialog.findViewById(R.id.btn_home);
-                dialogset = (Button) dialog.findViewById(R.id.btn_setting);
                 dialogclose = (Button) dialog.findViewById(R.id.btn_close);
 
                 //button_exit
@@ -142,14 +142,6 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
                     }
                 });
 
-                //button_setting
-                dialogset.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        displayDiaglogSetting();
-                    }
-                });
-
                 //button_close
                 dialogclose.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -166,7 +158,6 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         ball1.setOnClickListener(this);
         ball2.setOnClickListener(this);
         ball3.setOnClickListener(this);
-
 
     }
 

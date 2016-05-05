@@ -227,7 +227,6 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
 
     public void incrementmCurser() {
         i++;
-        mCursor.moveToPosition(i);
     }
 
 }

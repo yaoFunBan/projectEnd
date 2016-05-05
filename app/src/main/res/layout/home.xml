@@ -27,20 +27,20 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.9" />
+            android:layout_weight="1" />
 
 
         <RelativeLayout
-            android:layout_width="580dp"
+            android:layout_width="600dp"
             android:layout_height="0dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_gravity="center_horizontal|right"
-            android:layout_weight="1.6">
+            android:layout_weight="1.8">
 
             <Button
                 android:id="@+id/btn_con1"
-                android:layout_width="160dp"
+                android:layout_width="170dp"
                 android:layout_height="170dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
@@ -64,16 +64,13 @@
 
             <Button
                 android:id="@+id/btn_summary"
-                android:layout_width="160dp"
+                android:layout_width="170dp"
                 android:layout_height="170dp"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"
                 android:background="@drawable/button_summary" />
 
         </RelativeLayout>
-
-
     </LinearLayout>
-
 
 </RelativeLayout>

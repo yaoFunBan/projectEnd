@@ -3,39 +3,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/game3"
     tools:context="com.example.kimhuang.project.game3">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/game3" />
-
-
-    <ImageView
+    <RelativeLayout
         android:layout_width="750dp"
         android:layout_height="550dp"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="270dp"
-        android:src="@drawable/paper" />
+        android:background="@drawable/paper">
 
-    <TextView
-        android:id="@+id/quustion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="350dp"
-        android:layout_marginTop="60dp"
-        android:text="Question"
-        android:textSize="50dp"
-        android:textStyle="bold"
-        android:visibility="visible" />
+        <TextView
+            android:id="@+id/quustion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="350dp"
+            android:layout_marginTop="60dp"
+            android:text="Question"
+            android:textSize="50dp"
+            android:textStyle="bold"
+            android:visibility="visible" />
 
-    <ImageView
-        android:id="@+id/picture"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="170dp" />
+        <ImageView
+            android:id="@+id/picture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="170dp" />
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/boxmess1"

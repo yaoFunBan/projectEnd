@@ -27,7 +27,7 @@ public class map4 extends AppCompatActivity {
                 startActivity(n);
             }
         });
-
+                
         //houses
         houses = (Button) findViewById(R.id.house);
         final Intent house = new Intent(this, page4_11.class);

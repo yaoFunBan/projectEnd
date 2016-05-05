@@ -28,19 +28,9 @@ public class map4 extends AppCompatActivity {
             }
         });
 
-        //palaces
-        palaces = (Button) findViewById(R.id.palaces);
-        final Intent palace = new Intent(this, page4_11.class);
-        palaces.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(palace);
-            }
-        });
-
         //houses
         houses = (Button) findViewById(R.id.house);
-        final Intent house = new Intent(this, page4_2.class);
+        final Intent house = new Intent(this, page4_11.class);
         houses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,7 +40,7 @@ public class map4 extends AppCompatActivity {
 
         //mapsamon
         mapsamon = (Button) findViewById(R.id.samon);
-        final Intent samon = new Intent(this, page3_3.class);
+        final Intent samon = new Intent(this, page4_2.class);
         mapsamon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,11 +50,21 @@ public class map4 extends AppCompatActivity {
 
         //bowl
         bowls = (Button) findViewById(R.id.bowl);
-        final Intent bowl = new Intent(this, page3_41.class);
+        final Intent bowl = new Intent(this, page4_3.class);
         bowls.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(bowl);
+            }
+        });
+
+        //palaces
+        palaces = (Button) findViewById(R.id.palaces);
+        final Intent palace = new Intent(this, page4_4.class);
+        palaces.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(palace);
             }
         });
 

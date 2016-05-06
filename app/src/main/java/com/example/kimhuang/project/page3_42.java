@@ -25,7 +25,7 @@ public class page3_42 extends AppCompatActivity {
     //Dialog
     AlertDialog.Builder builder;
     Dialog dialog;
-    Button dialogset, dialogexit, dialoghome, dialogclose, btnPlayAgain;
+    Button dialogexit, dialoghome, dialogclose, btnPlayAgain;
     boolean isOpen = false;
 
     @Override
@@ -76,7 +76,6 @@ public class page3_42 extends AppCompatActivity {
                 //TODO findViewBy
                 dialogexit = (Button) dialog.findViewById(R.id.btn_exit);
                 dialoghome = (Button) dialog.findViewById(R.id.btn_home);
-                dialogset = (Button) dialog.findViewById(R.id.btn_setting);
                 dialogclose = (Button) dialog.findViewById(R.id.btn_close);
 
                 //button_exit
@@ -98,20 +97,7 @@ public class page3_42 extends AppCompatActivity {
                     }
                 });
 
-                //button_setting
-                dialogset.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        DialogSetting setDialog = new DialogSetting(page3_42.this);
-                        setDialog.show();
-
-                        Window window = setDialog.getWindow();
-                        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                        window.setGravity(Gravity.CENTER);
-                    }
-                });
-
-//                //button_close
+                //button_close
                 dialogclose.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

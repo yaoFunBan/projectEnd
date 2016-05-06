@@ -47,7 +47,7 @@ public class game3 extends AppCompatActivity {
     int randPosi, randPosi2;
 
     RelativeLayout.LayoutParams params1, params2, paramsBaseR;
-    
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,15 +107,6 @@ public class game3 extends AppCompatActivity {
         box2.getLayoutParams().height = 330;
         box2.getLayoutParams().width = 1270;
 
-        ansLeft.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                wordQue.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLIdiom)));
-                ansLeft.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesTrue)));
-//        ansRight.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesFalse)));
-                Picture.setBackgroundResource(mCursor.getInt(mCursor.getColumnIndex(game3.CoLPicture)));
-            }
-        }) ;
 
         //คลิก กล่องซ้ายมือ
         box1 = (RelativeLayout) findViewById(R.id.boxmess1);
@@ -134,6 +125,17 @@ public class game3 extends AppCompatActivity {
             }
         });
 
+        ansLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                wordQue.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLIdiom)));
+                ansLeft.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesTrue)));
+                ansRight.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesFalse)));
+                Picture.setBackgroundResource(mCursor.getInt(mCursor.getColumnIndex(game3.CoLPicture)));
+            }
+        }) ;
+
+        // คลิกกล่องขวามือ
         ansRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

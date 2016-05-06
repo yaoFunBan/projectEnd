@@ -28,7 +28,7 @@ public class page4_11 extends Activity implements View.OnClickListener {
 
     AlertDialog.Builder builder;
     Dialog dialog;
-    Button dialogclose, dialoghome, dialogexit, dialogsetting, btnPlayAgain;
+    Button dialogclose, dialoghome, dialogexit, btnPlayAgain;
     Intent i;
     boolean isOpen = false;
 
@@ -78,12 +78,11 @@ public class page4_11 extends Activity implements View.OnClickListener {
         btnPause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.setContentView(R.layout.btndialog);
+                dialog.setContentView(R.layout.btndialog_r);
 
                 //TODO findViewby
                 dialogexit = (Button) dialog.findViewById(R.id.btn_exit);
                 dialoghome = (Button) dialog.findViewById(R.id.btn_home);
-                dialogsetting = (Button) dialog.findViewById(R.id.btn_setting);
                 dialogclose = (Button) dialog.findViewById(R.id.btn_close);
 
                 dialogexit.setOnClickListener(new View.OnClickListener() {
@@ -101,17 +100,7 @@ public class page4_11 extends Activity implements View.OnClickListener {
                         startActivity(btnhome);
                     }
                 });
-                dialogsetting.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        DialogSetting setDialog = new DialogSetting(page4_11.this);
-                        setDialog.show();
 
-                        Window window = setDialog.getWindow();
-                        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                        window.setGravity(Gravity.CENTER);
-                    }
-                });
                 dialogclose.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

@@ -25,7 +25,7 @@ public class page3_12 extends AppCompatActivity {
     //Dialog
     AlertDialog.Builder builder;
     Dialog dialog;
-    Button dialogset, dialogexit, dialoghome, dialogclose, btnPlayAgain;
+    Button dialogexit, dialoghome, dialogclose, btnPlayAgain;
     boolean isOpen = false;
 
     @Override
@@ -38,9 +38,7 @@ public class page3_12 extends AppCompatActivity {
 
         mediaPlayer = MediaPlayer.create(this, R.raw.pg3_12);
         mediaPlayer.start();
-
         btnPlayAgain = (Button) findViewById(R.id.btn_play_story);
-
         btnPlayAgain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,12 +72,11 @@ public class page3_12 extends AppCompatActivity {
         btn_pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.setContentView(R.layout.btndialog);
+                dialog.setContentView(R.layout.btndialog_r);
 
                 //TODO findViewBy
                 dialogexit = (Button) dialog.findViewById(R.id.btn_exit);
                 dialoghome = (Button) dialog.findViewById(R.id.btn_home);
-                dialogset = (Button) dialog.findViewById(R.id.btn_setting);
                 dialogclose = (Button) dialog.findViewById(R.id.btn_close);
 
                 //button_exit
@@ -101,20 +98,7 @@ public class page3_12 extends AppCompatActivity {
                     }
                 });
 
-                //button_setting
-                dialogset.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        DialogSetting setDialog = new DialogSetting(page3_12.this);
-                        setDialog.show();
-
-                        Window window = setDialog.getWindow();
-                        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                        window.setGravity(Gravity.CENTER);
-                    }
-                });
-
-//                //button_close
+               //button_close
                 dialogclose.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

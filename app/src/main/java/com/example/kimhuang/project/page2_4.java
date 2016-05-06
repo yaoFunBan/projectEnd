@@ -28,7 +28,7 @@ public class page2_4 extends Activity implements View.OnClickListener {
     boolean isOpen = false;
     Button btnBack, btnNext, btn_pause;
     ToggleButton swMusic, swEffect;
-    Button dialogset, dialogexit, dialoghome, dialogclose, btnPlayAgain, btnClose;
+    Button dialogexit, dialoghome, dialogclose, btnPlayAgain, btnClose;
     AlertDialog.Builder builder;
     Dialog dialog;
     Intent i;
@@ -82,12 +82,11 @@ public class page2_4 extends Activity implements View.OnClickListener {
         btn_pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.setContentView(R.layout.btndialog);
+                dialog.setContentView(R.layout.btndialog_r);
 
                 //TODO findViewBy
                 dialogexit = (Button) dialog.findViewById(R.id.btn_exit);
                 dialoghome = (Button) dialog.findViewById(R.id.btn_home);
-                dialogset = (Button) dialog.findViewById(R.id.btn_setting);
                 dialogclose = (Button) dialog.findViewById(R.id.btn_close);
 
                 //button_exit
@@ -106,19 +105,6 @@ public class page2_4 extends Activity implements View.OnClickListener {
                     public void onClick(View v) {
                         Intent i = new Intent(getApplicationContext(), map2.class);
                         startActivity(i);
-                    }
-                });
-
-                //button_setting
-                dialogset.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        DialogSetting setDialog = new DialogSetting(page2_4.this);
-                        setDialog.show();
-
-                        Window window = setDialog.getWindow();
-                        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                        window.setGravity(Gravity.CENTER);
                     }
                 });
 

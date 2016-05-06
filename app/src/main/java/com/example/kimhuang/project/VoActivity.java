@@ -19,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -34,12 +35,11 @@ public class VoActivity extends Activity implements View.OnClickListener {
     TextView countBefore;
     SQLiteDatabase mDb;
     database mHelper;
-    Cursor mCursor, wCursor;
+    Cursor mCursor;
     int dx = 0, dy = -100, dy1 = -100, dy2 = -100;
     int dxBefore = 0, addScore = 0;
     int left = 1000;
-    int count;
-    int speed2, speed1, speed3;
+
 
     int time = 50000, tempTime = 0;
     RelativeLayout.LayoutParams params, params2, params3, paramBaseL, paramsBaseR;
@@ -47,18 +47,33 @@ public class VoActivity extends Activity implements View.OnClickListener {
     int randPosi, randPosi2, randPosi3;
     Handler handler;
     Runnable runnable;
-    Integer[] shuffle = new Integer[20];
     static int index = 0;
 
+    //word corect and incorect
+
     //fisher
-    ArrayList<Integer> numRand = new ArrayList<Integer>();
+    ArrayList<Integer> numAns = new ArrayList<Integer>();
+    ArrayList<Integer> numUseWord = new ArrayList<Integer>();
+    ArrayList<Integer> tempNumWord = new ArrayList<Integer>();
+
+    //its use when add value in arrayList
     int[] randNum = new int[]
-            {1, 2, 3, 4, 5
+            {0, 1, 2, 3, 4, 5
                     , 6, 7, 8, 9, 10
                     , 11, 12, 13, 14, 15
-                    , 16, 17, 18, 19, 20
+                    , 16, 17, 18, 19
             };
+
+    //Keep the words that were used
     int[] keep = new int[20];
+
+    //keep Word is using
+    static int temp = 0, temp2 = 0;
+    static int val2 = 0;
+
+    //position
+    ArrayList<Integer> position = new ArrayList<Integer>();
+    int[] randPos = new int[]{95, 255, 415, 575, 735, 895, 990};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,87 +119,127 @@ public class VoActivity extends Activity implements View.OnClickListener {
         mCursor = mDb.rawQuery("SELECT * FROM " + mHelper.TableName, null);
         mCursor.moveToFirst();
 
-        //query word incollect
-//        wCursor = mDb.rawQuery("SELECT * FROM " + mHelper.TableName, null);
-//        wCursor.moveToFirst();
-
         //query and set textview of Answer
-//        mCursor.moveToPosition(randWrong());
+        temp2 = randWordAns();
+        mCursor.moveToPosition(temp2);
+        pullQus(temp2);
+        numAns.remove(temp2);
         wordAns.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColWord)));
 
         //query ,set textvie and random row in table
         TvSimple2.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
-//        mCursor.moveToPosition(randWrong());
-        TvSimple3.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
-//        mCursor.moveToPosition(randWrong());
-        TvSimple1.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
+//        TvSimple3.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
+//        TvSimple1.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
 
 
-//        params2 = new RelativeLayout.LayoutParams(
-//                RelativeLayout.LayoutParams.WRAP_CONTENT,
-//                RelativeLayout.LayoutParams.WRAP_CONTENT);
-//
-//        params = new RelativeLayout.LayoutParams(
-//                RelativeLayout.LayoutParams.WRAP_CONTENT,
-//                RelativeLayout.LayoutParams.WRAP_CONTENT);
-//
-//        params3 = new RelativeLayout.LayoutParams(
-//                RelativeLayout.LayoutParams.WRAP_CONTENT,
-//                RelativeLayout.LayoutParams.WRAP_CONTENT);
-
-
-//        btnRigth.setOnClickListener(this);
-//        btnLeft.setOnClickListener(this);
+        btnRigth.setOnClickListener(this);
+        btnLeft.setOnClickListener(this);
 //        btnPause.setOnClickListener(this);
         btnPlay.setOnClickListener(this);
         btnexplain.setOnClickListener(this);
 
+
+        params2 = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+        params = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+        params3 = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+        handlerMove(params2, layout2, 100, TvSimple2, wordAns);
+//        handlerMoveAns(params, layout1, 800, TvSimple1);
+//        handlerMoveAns(params3, layout3, 400, TvSimple3);
+
 //        countTime(time);
     }
 
+    int t = 0;
 
-    //random position
-    private int getRandomPosition() {
-        float d = getApplicationContext().getResources().getDisplayMetrics().density;
-        int[] posiLeft = {95, 255, 415, 575, 735, 895, 990};
-        int num = (int) (Math.random() * posiLeft.length);
-        return (int) (posiLeft[num] * d);
-    }
+    public void handlerMove(final RelativeLayout.LayoutParams params, final RelativeLayout layout, final int pos,
+                            final TextView txt, final TextView txt2) {
+        if (handler == null) {
+            handler = new Handler();
+        }
+        runnable = new Runnable() {
+            public void run() {
 
+                try {
+                    dy += randSpeed();
+                    if (layout.getVisibility() == View.INVISIBLE) {
+                        layout.setVisibility(View.VISIBLE);
+                    }
 
-    //countdown time 50s when time up set text score is 0 and show dialog showFinalDialog() stop habdler for stop fall down of every ball
-    public void countTime(int t) {
-        cdt = new CountDownTimer(t, 50) {
+                    //ball2
+                    params.setMargins(pos, dy, 0, 0);
+                    layout.setLayoutParams(params);
 
-            @Override
-            public void onTick(long millisUntilFinished) {
+                    if (dy >= 1200) {
+                        layout.setVisibility(View.INVISIBLE);
+                        reword(val2);
+                        temp2 = randWordAns();
+                        mCursor.moveToPosition(temp2);
+                        txt.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
+                        txt2.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColWord)));
+                        pullQus(temp2);
+                        numAns.remove(temp2);
+                        dy = -500;
+                    }
 
-                tempTime = (int) millisUntilFinished;
-                Time.setText(String.valueOf(tempTime));
-                String strTime = String.format("%.1f"
-                        , (double) millisUntilFinished / 1000);
-
-                //when time reduction will set Time in textview
-                Time.setText(String.valueOf(strTime));
-
-            }
-
-            @Override
-            public void onFinish() {
-                y_scrode.setText("0");
-                showFinalDialog();
-                handler.removeCallbacks(runnable);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                handler.postDelayed(this, 35);
             }
         };
-        cdt.start();
+        handler.postDelayed(runnable, 35);
     }
 
+    public void handlerMoveAns(final RelativeLayout.LayoutParams params, final RelativeLayout layout, final int pos,
+                               final TextView txt) {
+        if (handler == null) {
+            handler = new Handler();
+        }
+        runnable = new Runnable() {
+            public void run() {
+
+                try {
+                    dy += 5;
+                    if (layout.getVisibility() == View.INVISIBLE) {
+                        layout.setVisibility(View.VISIBLE);
+                    }
+
+                    //ball2
+                    params.setMargins(pos, dy, 0, 0);
+                    layout.setLayoutParams(params);
+
+                    if (dy >= 1200) {
+                        layout.setVisibility(View.INVISIBLE);
+//                        reword(temp2);
+                        temp2 = randWordAns();
+                        mCursor.moveToPosition(temp2);
+                        txt.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
+                        pullQus(temp2);
+                        dy = -500;
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                handler.postDelayed(this, 35);
+            }
+        };
+        handler.postDelayed(runnable, 35);
+    }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_pause:
-                showPauseDialog();
                 cdt.cancel();
                 handler.removeCallbacks(runnable);
                 break;
@@ -196,9 +251,10 @@ public class VoActivity extends Activity implements View.OnClickListener {
                 } else {
                     left -= 250;
                 }
-                //set margin left for move bar turn left
-//                paramsBaseR.setMargins(left, 1370, 0, 0);
-//                imgBase.setLayoutParams(paramsBaseR);
+                paramsBaseR.setMargins(left, 1370, 0, 0);
+                imgBase.setLayoutParams(paramsBaseR);
+//                reword(temp2);
+                Log.e("size of", "temp 2 " + tempNumWord.size());
                 break;
             case R.id.btn_next:
                 if (left >= 2000) {
@@ -206,104 +262,24 @@ public class VoActivity extends Activity implements View.OnClickListener {
                 } else {
                     left += 250;
                 }
-                //set margin left for move bar turn rigth
                 paramsBaseR.setMargins(left, 1370, 0, 0);
-                //set position in layout
                 imgBase.setLayoutParams(paramsBaseR);
+//                reword(temp3);
                 break;
             case R.id.btn_play:
-                int pos = randWord();
-                mCursor.moveToPosition(pos);
-                wordAns.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColWord)));
-//
-//                //query ,set textvie and random row in table
-//                TvSimple2.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
-//                numRand.remove(pos);
-//                Log.e("Size of ", " numRand " + numRand.size());
-//                mCursor.moveToPosition(randWrong());
-//                TvSimple3.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
-//                mCursor.moveToPosition(randWrong());
-//                TvSimple1.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
-
-//                Toast.makeText(getApplicationContext(), "" + mCursor.getCount(), Toast.LENGTH_SHORT).show();
-//                Log.e("getcount ", "of : " + wCursor.getCount());
-//                countBefore.setVisibility(View.VISIBLE);
-//                countdownBefore();
-//                btnPlay.setVisibility(View.INVISIBLE);
-//                namegame.setVisibility(View.INVISIBLE);
-//                btnexplain.setVisibility(View.INVISIBLE);
-//                bar.setVisibility(View.VISIBLE);
+                for (int i = 0; i < numUseWord.size(); i++) {
+                    Log.e("numUseWord", " is " + numUseWord.get(i));
+                }
                 break;
+
             case R.id.btn_explain:
-                for (int i = 0; i < keep.length; i++) {
-                    Log.e("Keep ", " of : " + keep[i]);
+//                reword(temp);
+                for (int i = 0; i < tempNumWord.size(); i++) {
+                    Log.e("tempNumWord", " is " + tempNumWord.get(i));
                 }
 //                dialogEx();
                 break;
         }
-    }
-
-    //dialog Explain game
-    public void dialogEx() {
-        final Dialog exDialog = new Dialog(this);
-        exDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        exDialog.setContentView(R.layout.loggame2);
-        dialogclose = (Button) exDialog.findViewById(R.id.btn_close);
-
-        //button_close
-        dialogclose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                exDialog.cancel();
-            }
-        });
-        exDialog.show();
-    }
-
-
-    // before start count down 3s
-    public void countdownBefore() {
-        new CountDownTimer(3000, 50) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-
-                countBefore.setText(String.valueOf(millisUntilFinished / 1000));
-            }
-
-            @Override
-            public void onFinish() {
-                countBefore.setVisibility(View.INVISIBLE);
-                btnLeft.setVisibility(View.VISIBLE);
-                btnRigth.setVisibility(View.VISIBLE);
-                imgBase.setVisibility(View.VISIBLE);
-                y_scrode.setVisibility(View.VISIBLE);
-                Time.setVisibility(View.VISIBLE);
-                wordAns.setVisibility(View.VISIBLE);
-                tScore.setVisibility(View.VISIBLE);
-                pTime.setVisibility(View.VISIBLE);
-                btnPause.setVisibility(View.VISIBLE);
-
-
-            }
-        }.start();
-    }
-
-
-    public void changeWord() {
-        mCursor.moveToNext();
-    }
-
-
-    // imcrement score addScore++ and setText
-    public void incrementScore() {
-        addScore++;
-        y_scrode.setText(String.valueOf(addScore));
-
-//        if (addScore >= 4) {
-//            addScore = 4;
-//            y_scrode.setText(String.valueOf(addScore));
-//            showFinalDialog();
-//        }
     }
 
     public int randSpeed() {
@@ -312,156 +288,77 @@ public class VoActivity extends Activity implements View.OnClickListener {
         return speed[rand];
     }
 
-    //randdom uncorrect word
-
-    public int randWrong() {
-        int leg = mCursor.getCount();
-        return (int) (Math.random() * leg);
-    }
-
-
-    public void showFinalDialog() {
-        final Dialog fDialog = new Dialog(this);
-        fDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        fDialog.setContentView(R.layout.finishgame);
-
-        TextView showScore = (TextView) fDialog.findViewById(R.id.final_score);
-        Button btn_home = (Button) fDialog.findViewById(R.id.btn_home);
-        Button btn_replay = (Button) fDialog.findViewById(R.id.btn_replay);
-
-        showScore.setText(String.valueOf(addScore));
-
-        btn_replay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cdt.cancel();
-                countspawn();
-                fDialog.cancel();
-            }
-        });
-
-        btn_home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), map.class);
-                startActivity(i);
-            }
-        });
-
-        fDialog.show();
-    }
-
-    public void showPauseDialog() {
-        final Dialog fDialog = new Dialog(this);
-        fDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        fDialog.setContentView(R.layout.pausegame);
-
-
-        Button btnCloase = (Button) fDialog.findViewById(R.id.btn_close);
-        Button btnHome = (Button) fDialog.findViewById(R.id.btn_home);
-        Button btnAgain = (Button) fDialog.findViewById(R.id.btn_again);
-
-        btnAgain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cdt.cancel();
-                countspawn();
-                fDialog.cancel();
-            }
-        });
-
-        btnCloase.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fDialog.cancel();
-                countTime(tempTime);
-                handler.postDelayed(runnable, 35);
-            }
-        });
-
-        btnHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), map.class);
-                startActivity(i);
-            }
-        });
-
-        fDialog.show();
-    }
-
-    public void countspawn() {
-        new CountDownTimer(5000, 50) {
-            @Override
-
-
-            public void onTick(long millisUntilFinished) {
-
-            }
-
-            @Override
-
-
-            public void onFinish() {
-                countTime(50000);
-                handler.postDelayed(runnable, 35);
-
-                dy = -1000;
-                randPosi2 = getRandomPosition();
-                params2.setMargins(randPosi2, dy, 0, 0);
-                mCursor.moveToFirst();
-                wordAns.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColWord)));
-                TvSimple2.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
-                speed2 = randSpeed();
-
-
-                dy1 = -1000;
-                randPosi = getRandomPosition();
-                params.setMargins(randPosi, dy1, 0, 0);
-                randPosi = getRandomPosition();
-                speed1 = randSpeed();
-                wCursor.moveToPosition(randWrong());
-                TvSimple1.setText(wCursor.getString(wCursor.getColumnIndex(mHelper.ColMean)));
-
-                dy2 = -1000;
-                randPosi3 = getRandomPosition();
-                params.setMargins(randPosi3, dy2, 0, 0);
-                speed3 = randSpeed();
-                wCursor.moveToPosition(randWrong());
-                TvSimple3.setText(wCursor.getString(wCursor.getColumnIndex(mHelper.ColMean)));
-
-
-            }
-
-
-        }.start();
-
-    }
-
     //fisher
     public void addList() {
+        // loop add all row of database in variable numRand is type Arraylist<Integer>
         for (int i = 0; i < randNum.length; i++) {
-            numRand.add(randNum[i]);
+            numAns.add(randNum[i]);
+            numUseWord.add(randNum[i]);
         }
     }
 
     Random rand = new Random();
     int pos;
 
+    //random word
+    public int randWordAns() {
+        //check numRand reduce less than 0 ?
+        //If = no
+        //rand row from 0 - max of numRand and keep value in pos;
 
-    public int randWord() {
-        if (numRand.size() != 0) {
-            pos = rand.nextInt(numRand.size());
-            keep[index] = numRand.get(pos);
-            Log.e("Pos ", " is" + pos);
-            Log.e("NumRand ", " get " + numRand.get(pos));
+        if (numAns.size() != 0) {
+            pos = rand.nextInt(numAns.size());
+            //keep[index] get value index = pos of numAns
+            keep[index] = numAns.get(pos);
+            Log.e("Size " + pos, " of numAns" + numAns.size());
             index++;
+            Log.e("Pos  " + index, " Vulse " + mCursor.getString(mCursor.getColumnIndex(mHelper.ColWord)));
             return pos;
+
         }
         return 0;
     }
 
-    //end fisher
+    public int randWordInCorrect() {
+        int r = 0;
+        r = rand.nextInt(numUseWord.size());
+        return r;
+    }
 
+    //pull question in arraylist tempNUmWord and remove value into numUseWord[temp]
+    public void pullQus(int temp) {
+        val2 = numUseWord.get(temp);
+        tempNumWord.add(val2);
+//        Log.e("Use ", "Value : " + numUseWord.get(temp));
+//        Log.e("word ", " Vulse" + numUseWord.get(temp));
+        numUseWord.remove(temp);
+//        Log.e("===== Function ", " pullQus");
+//        Log.e("Temp ", "temp : " + tempNumWord.size());
+//        Log.e("Use ", "Size : " + numUseWord.size());
+    }
+
+    //push question out tempNumWord
+    public void reword(int index) {
+        numUseWord.add(randNum[index]);
+        int del = tempNumWord.indexOf(randNum[index]);
+
+        tempNumWord.remove(del);
+//        Log.e("===== Function ", " reword");
+//        Log.e("Temp ", "Index : " + del);
+//        Log.e("Temp ", "Size : " + tempNumWord.size());
+//        Log.e("Use ", "Size : " + numUseWord.size());
+//        Log.e("Use ", "Value : " + randNum[index]);
+    }
+
+
+    //end random word
+
+    //rand position
+    private int getRandomPosition() {
+//        float d = getApplicationContext().getResources().getDisplayMetrics().density;
+//        int num = (int) (Math.random() * posiLeft.length);
+//        return (int) (posiLeft[num] * d);
+        return 0;
+    }
 
 }

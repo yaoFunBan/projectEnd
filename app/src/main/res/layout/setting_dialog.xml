@@ -84,7 +84,7 @@
                     android:layout_width="100dp"
                     android:layout_height="50dp"
                     android:layout_centerVertical="true"
-                    android:text="แอปเฟก"
+                    android:text="แอปเฟค"
                     android:textColor="#000000"
                     android:textSize="24sp" />
 

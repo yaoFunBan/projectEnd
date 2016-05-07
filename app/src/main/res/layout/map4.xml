@@ -27,8 +27,8 @@
         android:enabled="false" />
 
     <RelativeLayout
-        android:layout_width="630dp"
-        android:layout_height="220dp"
+        android:layout_width="610dp"
+        android:layout_height="180dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="320dp">
@@ -36,7 +36,7 @@
         <Button
             android:id="@+id/samon"
             android:layout_width="350dp"
-            android:layout_height="250dp"
+            android:layout_height="240dp"
             android:layout_alignParentRight="true"
             android:background="@drawable/mapsamon_lock"
             android:enabled="false" />

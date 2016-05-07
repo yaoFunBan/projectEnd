@@ -18,21 +18,21 @@
 
     <Button
         android:id="@+id/btnNext"
-        android:layout_width="150dp"
-        android:layout_height="70dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:textSize="30dp"
-        android:text=">>" />
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/button_next"/>
 
     <Button
         android:id="@+id/btnDone"
-        android:layout_width="150dp"
-        android:layout_height="70dp"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:textSize="30dp"
-        android:text="ต่อไป"
+        android:background="@drawable/button_nexts"
         android:visibility="gone" />
 
 </RelativeLayout>

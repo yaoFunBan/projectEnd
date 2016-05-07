@@ -34,7 +34,7 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
     //Dialog
     AlertDialog.Builder builder;
     Dialog dialog;
-    Button dialogexit, dialoghome, dialogclose;
+    Button dialogexit, dialogagain, dialogclose;
     RelativeLayout ball1, ball2, ball3;
 
     //Databas
@@ -117,10 +117,10 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         btn_pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.setContentView(R.layout.btndialog_r);
+                dialog.setContentView(R.layout.pausegame);
                 //TODO findViewBy
                 dialogexit = (Button) dialog.findViewById(R.id.btn_exit);
-                dialoghome = (Button) dialog.findViewById(R.id.btn_home);
+                dialogagain = (Button) dialog.findViewById(R.id.btn_again);
                 dialogclose = (Button) dialog.findViewById(R.id.btn_close);
 
                 //button_exit
@@ -133,14 +133,14 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
                     }
                 });
 
-                //button_home
-                dialoghome.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent i = new Intent(getApplicationContext(), map1.class);
-                        startActivity(i);
-                    }
-                });
+                //button_again
+//                dialogagain.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Intent i = new Intent(getApplicationContext(), map1.class);
+//                        startActivity(i);
+//                    }
+//                });
 
                 //button_close
                 dialogclose.setOnClickListener(new View.OnClickListener() {

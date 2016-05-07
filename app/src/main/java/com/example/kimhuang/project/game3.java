@@ -23,6 +23,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import java.util.Random;
+
 public class game3 extends AppCompatActivity {
     Button btn_pause, btnClose;
     ToggleButton swMusic, swEffect;
@@ -33,9 +35,11 @@ public class game3 extends AppCompatActivity {
     //Dialog
     AlertDialog.Builder builder;
     Dialog dialog;
-    Button    dialogexit, dialoghome, dialogclose,dialogset;
+    Button dialogexit, dialoghome, dialogclose, dialogset;
     RelativeLayout box1, box2;
 
+    //position ที่ random
+    String[] posiLeft = {"20,1250", "1250,20"};
     //Database
     SQLiteDatabase gameDb;
     dataidioms game3;
@@ -43,8 +47,9 @@ public class game3 extends AppCompatActivity {
     static int i = 0;
     //time
     int time = 50000, tempTime = 0;
+    String []randPos;
 
-    int randPosi, randPosi2;
+    int randPosi;
 
     RelativeLayout.LayoutParams params1, params2, paramsBaseR;
 
@@ -94,15 +99,19 @@ public class game3 extends AppCompatActivity {
 
         // random ตำแหน่งคำ
         randPosi = getRandomPosition();
-        randPosi2 = getRandomPosition();
+        // ตัดให้อยู่ใน array
+        //randPos[0] = 20;
+        //randPos[0] = 1050;
+        randPos = posiLeft[randPosi].split(",");
 
         // set margin ระยะห่างของกรอบ
-        params1.setMargins(randPosi2, 1100, 0, 50);
+        params1.setMargins(Integer.parseInt(randPos[0]), 1100, 0, 50);
         box1.setLayoutParams(params1);
         box1.getLayoutParams().height = 330;
         box1.getLayoutParams().width = 1250;
 
-        params2.setMargins(randPosi, 1100, 0, 50);
+        //                                   left , Top , Rigth, bottom
+        params2.setMargins(Integer.parseInt(randPos[1]), 1100, 0, 50);
         box2.setLayoutParams(params2);
         box2.getLayoutParams().height = 330;
         box2.getLayoutParams().width = 1270;
@@ -110,43 +119,46 @@ public class game3 extends AppCompatActivity {
 
         //คลิก กล่องซ้ายมือ
         box1 = (RelativeLayout) findViewById(R.id.boxmess1);
-        box1.setOnClickListener(new View.OnClickListener() {
+//        box1.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                randPos = posiLeft[randPosi].split(",");
+//                mCursor.moveToNext();
+//                wordQue.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLIdiom)));
+//                ansLeft.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesTrue)));
+//                ansRight.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesFalse)));
+//                Picture.setBackgroundResource(mCursor.getInt(mCursor.getColumnIndex(game3.CoLPicture)));
+//                params1.setMargins(Integer.parseInt(randPos[0]), 1100, 0, 50);
+//                box1.setLayoutParams(params1);
+//            }
+//        });
 
+        ansLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //random index ใน array randPosi
+                randPosi = getRandomPosition();
+                randBox(randPosi);
                 mCursor.moveToNext();
                 wordQue.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLIdiom)));
                 ansLeft.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesTrue)));
                 ansRight.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesFalse)));
                 Picture.setBackgroundResource(mCursor.getInt(mCursor.getColumnIndex(game3.CoLPicture)));
-                randPosi2 = getRandomPosition();
-                params1.setMargins(randPosi2, 1100, 0, 50);
-                box1.setLayoutParams(params1);
             }
         });
-
-        ansLeft.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                wordQue.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLIdiom)));
-                ansLeft.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesTrue)));
-                ansRight.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesFalse)));
-                Picture.setBackgroundResource(mCursor.getInt(mCursor.getColumnIndex(game3.CoLPicture)));
-            }
-        }) ;
 
         // คลิกกล่องขวามือ
         ansRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                randPosi = getRandomPosition();
+                randBox(randPosi);
                 mCursor.moveToNext();
                 wordQue.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLIdiom)));
                 ansLeft.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesTrue)));
                 ansRight.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesFalse)));
                 Picture.setBackgroundResource(mCursor.getInt(mCursor.getColumnIndex(game3.CoLPicture)));
-                randPosi = getRandomPosition();
-                params2.setMargins(randPosi, 1100, 0, 50);
-                box2.setLayoutParams(params2);
             }
         });
         //button_pause
@@ -222,11 +234,23 @@ public class game3 extends AppCompatActivity {
     }
 
     // random ตำแหน่ง
-    private int getRandomPosition() {
-        float b = getApplicationContext().getResources().getDisplayMetrics().density;
-        int[] posiLeft = {20, 650};
-        int num = (int) (Math.random() * posiLeft.length);
-        return (int) (posiLeft[num] * b);
+    Random rand = new Random();
+
+    public int getRandomPosition() {
+        int r = rand.nextInt(posiLeft.length);
+        return r;
+    }
+
+
+    //ตัด string แล้วเก็ยใน array
+    public void randBox(int rand){
+        randPos = posiLeft[rand].split(",");
+
+        params2.setMargins(Integer.parseInt(randPos[0]), 1100, 0, 50);
+        box2.setLayoutParams(params2);
+
+        params1.setMargins(Integer.parseInt(randPos[1]), 1100, 0, 50);
+        box1.setLayoutParams(params1);
     }
 
     //Dialogsetting

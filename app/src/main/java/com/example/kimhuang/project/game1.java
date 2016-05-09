@@ -38,7 +38,7 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
     //Dialog
     AlertDialog.Builder builder;
     Dialog dialog;
-    Button dialogexit, dialogagain, dialogclose;
+    Button dialoghome, dialogagain, dialogclose;
     RelativeLayout ball1, ball2, ball3;
 
     //Databas
@@ -167,28 +167,29 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
             public void onClick(View v) {
                 dialog.setContentView(R.layout.pausegame);
                 //TODO findViewBy
-                dialogexit = (Button) dialog.findViewById(R.id.btn_exit);
+                dialoghome = (Button) dialog.findViewById(R.id.btn_home);
                 dialogagain = (Button) dialog.findViewById(R.id.btn_again);
                 dialogclose = (Button) dialog.findViewById(R.id.btn_close);
 
                 //button_exit
-                dialogexit.setOnClickListener(new View.OnClickListener() {
+                dialoghome.setOnClickListener(new View.OnClickListener() {
 
                     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-                    @Override
-                    public void onClick(View v) {
-                        finishAffinity();
-                    }
-                });
-
-                //button_again
-                dialogagain.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent i = new Intent(getApplicationContext(), map1.class);
                         startActivity(i);
                     }
                 });
+
+//                //button_again
+//                dialogagain.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Intent i = new Intent(getApplicationContext(), map1.class);
+//                        startActivity(i);
+//                    }
+//                });
 
                 //button_close
                 dialogclose.setOnClickListener(new View.OnClickListener() {
@@ -285,7 +286,7 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
 
     //ลดเวลา countTime
     public void countTime(int t) {
-        cdt = new CountDownTimer(5000, 50) {
+        cdt = new CountDownTimer(100000, 50) {
 
             @Override
             public void onTick(long millisUntilFinished) {
@@ -302,7 +303,6 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
                 tvTimer.setText("0");
                 dialogFinish();
 
-
             }
         };
         cdt.start();
@@ -312,7 +312,6 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.finishgame);
-
 
         dialog.show();
     }

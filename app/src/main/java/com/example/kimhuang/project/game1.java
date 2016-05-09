@@ -25,12 +25,14 @@ import android.widget.ToggleButton;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 
+import java.util.Random;
+
 public class game1 extends AppCompatActivity implements View.OnClickListener {
-    private TextView wordAns;
+    private TextView wordAns, tvTimer, str1, str2, str3, score;
     Button btn_pause, btnClose;
     ToggleButton swMusic, swEffect;
     CountDownTimer cdt;
-    TextView tvTimer, str1, str2, str3;
+
     //Dialog
     AlertDialog.Builder builder;
     Dialog dialog;
@@ -42,8 +44,26 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
     datahomony game1;
     Cursor mCursor, wCursor;
     static int i = 0;
+
+    //position ที่ random
+    String[] posiLeft = {"20,500,1250", "1250,500,20"};
+
     //time
     int time = 50000, tempTime = 0;
+    String[] randPos;
+    int randPosi;
+    RelativeLayout.LayoutParams params, params1, params2, paramsBaseR;
+
+    //Ansrandom
+    int a[] = {0, 2, 8, 15, 1, 5, 10, 7, 13, 4, 3, 11, 12, 16, 18, 6, 9, 17, 14, 19};
+    int b[] = {12, 1, 19, 3, 14, 6, 2, 4, 8, 9, 16, 0, 5, 13, 17, 15, 7, 10, 18, 11};
+    int c[] = {18, 5, 2, 17, 4, 9, 6, 3, 0, 12, 10, 1, 13, 15, 14, 19, 16, 7, 11, 8};
+    int index = 0;
+    int chAns = 0;
+    int t = 100000;
+
+    //score
+    int twScore = 0;
 
 
     @Override
@@ -60,7 +80,7 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         ball1 = (RelativeLayout) findViewById(R.id.ball1);
         ball2 = (RelativeLayout) findViewById(R.id.ball2);
         ball3 = (RelativeLayout) findViewById(R.id.ball3);
-
+        score = (TextView) findViewById(R.id.score);
 
         //decaler database
         game1 = new datahomony(this);
@@ -69,71 +89,97 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
 
 
         //animation ball
-        YoYo.with(Techniques.StandUp)
+        YoYo.with(Techniques.Pulse)
                 .duration(5000)
-                .playOn(findViewById(R.id.ball1));
-
+                .playOn(findViewById(R.id.ball2));
 
 
         //READ DATA (เป็นการอ่านค่าในตาราง database โดยกำหนดให้ mCursor เลื่อนอ่านข้อมูลในแต่ละคอลัมไปเรื่อยๆ)
         mCursor = gameDb.rawQuery("SELECT * FROM " + game1.TableName, null);
+
         mCursor.moveToFirst();
         wordAns.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColHomony)));
+        //Upgrade
 
 
-        game1.onUpgrade(gameDb, 1, 1);
-        
         //เป็นการอ่านค่าในตาราง database ว่าจะให้อ่านค่าเป็นคอลัมไปเรื่อยๆ
-        mCursor = gameDb.rawQuery("SELECT * FROM " + game1.TableName, null);
-        mCursor.moveToFirst();
+//        mCursor = gameDb.rawQuery("SELECT * FROM " + game1.TableName, null);
+//        mCursor.moveToFirst();
 
+        countTime(t);
         //CountDownTimer (โดยจะลดลงครั้งละ 1 วินาที)
-        CountDownTimer cdt = new CountDownTimer(120000, 1000) {
-            public void onTick(long millisUntilFinished) {
-                //เมื่อเวลาเริ่มนับ Cursor จะทำการอ่านค่าจาก Columnไปเรื่อยๆ
-                mCursor.moveToPosition(i);
-                wordAns.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColHomony)));
 
-                //ให้เวลานับถอยหลังทีละ 1 วินาที
-                tempTime = (int) millisUntilFinished;
-                tvTimer.setText(String.valueOf(tempTime));
-                String strTime = String.format("%1.0f"
-                        , (double) millisUntilFinished / 1000);
-                tvTimer.setText(String.valueOf(strTime));
+        //เรียกใช้ฟังก์ชัน index
+        addindex(index);
 
-            }
+        //params
+        params = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
 
-            public void onFinish() {
-                tvTimer.setText("0");
-            }
-        }.start();
+        params1 = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
 
-        //button_pause
-        btn_pause = (Button) findViewById(R.id.btn_pause);
-        builder = new AlertDialog.Builder(this);
-        dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        params2 = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
 
-        btn_pause.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.setContentView(R.layout.pausegame);
-                //TODO findViewBy
-                dialogexit = (Button) dialog.findViewById(R.id.btn_exit);
-                dialogagain = (Button) dialog.findViewById(R.id.btn_again);
-                dialogclose = (Button) dialog.findViewById(R.id.btn_close);
+        paramsBaseR = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
 
-                //button_exit
-                dialogexit.setOnClickListener(new View.OnClickListener() {
+        //random ตำแหน่งคำ
+        randPosi = getRandomPosition();
+        // ตัดให้อยู่ใน array randPos[0] = 20; randPos[1] = 500; randPos[2] = 1280;
+        //ตัดคำเมื่อเจอเครื่องหมาย (,)
+        randPos = posiLeft[randPosi].split(",");
 
-                    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-                    @Override
-                    public void onClick(View v) {
-                        finishAffinity();
-                    }
-                });
+        // set margin ระยะห่างของกรอบของ ball1 (ตำแหน่ง ซ้าย บน ขวา ล่าง)
+        params.setMargins(100, 500, 0, 50);
+        ball1.setLayoutParams(params);
+        ball1.getLayoutParams().height = 450;
+        ball1.getLayoutParams().width = 450;
 
-                //button_again
+        // set magin ball2 (ตำแหน่ง ซ้าย บน ขวา ล่าง)
+        params1.setMargins(1000, 20, 0, 50);
+        ball2.setLayoutParams(params1);
+        ball2.getLayoutParams().height = 450;
+        ball2.getLayoutParams().width = 450;
+
+        // set magin ball2 (ตำแหน่ง ซ้าย บน ขวา ล่าง)
+        params2.setMargins(2100, 300, 0, 50);
+        ball3.setLayoutParams(params2);
+        ball3.getLayoutParams().height = 450;
+        ball3.getLayoutParams().width = 450;
+
+
+//        //button_pause
+//        btn_pause = (Button) findViewById(R.id.btn_pause);
+//        builder = new AlertDialog.Builder(this);
+//        dialog = new Dialog(this);
+//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//
+//        btn_pause.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                dialog.setContentView(R.layout.pausegame);
+//                //TODO findViewBy
+//                dialogexit = (Button) dialog.findViewById(R.id.btn_exit);
+//                dialogagain = (Button) dialog.findViewById(R.id.btn_again);
+//                dialogclose = (Button) dialog.findViewById(R.id.btn_close);
+//
+//                //button_exit
+//                dialogexit.setOnClickListener(new View.OnClickListener() {
+//
+//                    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+//                    @Override
+//                    public void onClick(View v) {
+//                        finishAffinity();
+//                    }
+//                });
+//
+//                //button_again
 //                dialogagain.setOnClickListener(new View.OnClickListener() {
 //                    @Override
 //                    public void onClick(View v) {
@@ -141,17 +187,17 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
 //                        startActivity(i);
 //                    }
 //                });
-
-                //button_close
-                dialogclose.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.cancel();
-                    }
-                });
-                dialog.show();
-            }
-        });
+//
+//                //button_close
+//                dialogclose.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        dialog.cancel();
+//                    }
+//                });
+//                dialog.show();
+//            }
+//        });
 
 
         //event click (เรียกใช้ method onClick)
@@ -161,72 +207,95 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
 
     }
 
-    //DiaglogSetting
-    public void displayDiaglogSetting() {
-        final Dialog dsetting = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
-        dsetting.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dsetting.setContentView(R.layout.setting_dialog);
-
-        btnClose = (Button) dsetting.findViewById(R.id.btn_closes);
-        swMusic = (ToggleButton) dsetting.findViewById(R.id.sw_music);
-        swEffect = (ToggleButton) dsetting.findViewById(R.id.sw_effect);
-
-        btnClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dsetting.cancel();
-            }
-        });
-
-        swMusic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        swEffect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-
-        Window window = dsetting.getWindow();
-        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        window.setGravity(Gravity.CENTER);
-        dsetting.show();
-    }
-
-
-    //OnClick
+    //OnClick Ball
     @Override
     public void onClick(View v) {
         int id = v.getId();
         switch (id) {
             case (R.id.ball1):
-                incrementmCurser();
-                wordAns.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColHomony)));
-                str1.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColSemantic)));
+                Ansch(a[index]);
+                index++;
+                //เพิ่มค่าขึ้นมาทีละชุด
+                addindex(index);
+                incrementQuestion();
                 break;
             case (R.id.ball2):
-                incrementmCurser();
-                wordAns.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColHomony)));
-                str2.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColSemantic)));
-                Toast.makeText(getApplicationContext(), "" + mCursor.getPosition(), Toast.LENGTH_LONG).show();
+                Ansch(b[index]);
+                index++;
+                addindex(index);
+                incrementQuestion();
                 break;
             case (R.id.ball3):
-                incrementmCurser();
-                wordAns.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColHomony)));
-                str3.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColSemantic)));
-                Toast.makeText(getApplicationContext(), "" + mCursor.getPosition(), Toast.LENGTH_LONG).show();
+                Ansch(c[index]);
+
+                index++;
+                addindex(index);
+                incrementQuestion();
                 break;
         }
     }
 
-    public void incrementmCurser() {
-        i++;
+    // random ตำแหน่ง
+    Random rand = new Random();
+
+    public int getRandomPosition() {
+        int r = rand.nextInt(posiLeft.length);
+        return r;
+    }
+
+    public void addindex(int index) {
+
+        mCursor.moveToPosition(a[index]);
+        str1.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColSemantic)));
+        mCursor.moveToPosition(b[index]);
+        str2.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColSemantic)));
+        mCursor.moveToPosition(c[index]);
+        str3.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColSemantic)));
+
+    }
+    //wordAns
+    public void incrementQuestion(){
+        mCursor.moveToPosition(chAns);
+        wordAns.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColHomony)));
+    }
+
+    public void Ansch(int index) {
+        if (chAns == index) {
+            //กรณีที่ตอบถูก
+            Toast.makeText(this, "ok", Toast.LENGTH_SHORT).show();
+            twScore += 100;
+            score.setText("" + twScore);
+        } else {
+            Toast.makeText(this, "ผิด", Toast.LENGTH_SHORT).show();
+            cdt.cancel();
+            tempTime -= 5000;
+            countTime(tempTime);
+        }
+
+        chAns++;
+
+    }
+
+    //ลดเวลา countTime
+    public void countTime(int t) {
+        cdt = new CountDownTimer(t, 50) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+                tempTime = (int) millisUntilFinished;
+                tvTimer.setText(String.valueOf(tempTime));
+                String strTime = String.format("%.1f"
+                        , (double) millisUntilFinished / 1000);
+                tvTimer.setText(String.valueOf(strTime));
+            }
+
+            @Override
+            public void onFinish() {
+                tvTimer.setText("0");
+            }
+        };
+        cdt.start();
     }
 
 }

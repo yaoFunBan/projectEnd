@@ -40,7 +40,6 @@ public class VoActivity extends Activity implements View.OnClickListener {
     int dxBefore = 0, addScore = 0;
     int left = 1000;
 
-
     int time = 50000, tempTime = 0;
     RelativeLayout.LayoutParams params, params2, params3, paramBaseL, paramsBaseR;
     RelativeLayout layout1, layout2, layout3, mainLayout, Rbar, RelTime;

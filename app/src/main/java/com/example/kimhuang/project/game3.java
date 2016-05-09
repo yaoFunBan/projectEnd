@@ -38,7 +38,7 @@ public class game3 extends AppCompatActivity {
     Button dialogexit, dialoghome, dialogclose, dialogset;
     RelativeLayout box1, box2;
 
-    //position ที่ random
+    //position ที่ F
     String[] posiLeft = {"20,1250", "1250,20"};
     //Database
     SQLiteDatabase gameDb;
@@ -110,7 +110,7 @@ public class game3 extends AppCompatActivity {
         box1.getLayoutParams().height = 330;
         box1.getLayoutParams().width = 1250;
 
-        //                                   left , Top , Rigth, bottom
+        // left , Top , Rigth, bottom
         params2.setMargins(Integer.parseInt(randPos[1]), 1100, 0, 50);
         box2.setLayoutParams(params2);
         box2.getLayoutParams().height = 330;
@@ -205,7 +205,7 @@ public class game3 extends AppCompatActivity {
                     }
                 });
 
-//                //button_close
+                //button_close
                 dialogclose.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

@@ -17,7 +17,6 @@
             android:layout_alignParentRight="true"
             android:background="@drawable/button_close" />
 
-
     </RelativeLayout>
 
     <LinearLayout
@@ -81,11 +80,11 @@
                 android:layout_weight="1">
 
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="150dp"
                     android:layout_height="50dp"
                     android:layout_centerVertical="true"
-                    android:text="แอปเฟก"
-                    android:textColor="#000000"
+                    android:text="เสียงเอฟเฟค"
+                   android:textColor="#000000"
                     android:textSize="24sp" />
 
                 <ToggleButton

@@ -83,11 +83,7 @@
                     android:layout_width="150dp"
                     android:layout_height="50dp"
                     android:layout_centerVertical="true"
-<<<<<<< HEAD
                     android:text="เสียงเอฟเฟค"
-=======
-                    android:text="แอปเฟค"
->>>>>>> 30e6fe1e4376e98ca4f981f978749b5b7d8b7d2d
                     android:textColor="#000000"
                     android:textSize="24sp" />
 

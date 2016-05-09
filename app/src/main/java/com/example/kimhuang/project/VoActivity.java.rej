@@ -1,0 +1,43 @@
+diff a/app/src/main/java/com/example/kimhuang/project/VoActivity.java b/app/src/main/java/com/example/kimhuang/project/VoActivity.java	(rejected hunks)
+@@ -407,11 +407,36 @@
+     //end random word
+ 
+     //rand position
+-    private int getRandomPosition() {
+-//        float d = getApplicationContext().getResources().getDisplayMetrics().density;
+-//        int num = (int) (Math.random() * posiLeft.length);
+-//        return (int) (posiLeft[num] * d);
+-        return 0;
++    //set postiont
++    public void setPosition() {
++        for (int i = 0; i < randPos.length; i++) {
++            position.add(randPos[i]);
++        }
++    }
++
++    public int getRandomPosition() {
++        int r = rand.nextInt(position.size());
++        return r;
++    }
++
++    public int keepPosition(int pos) {
++        int tPos = position.get(pos);
++        tempPosition.add(tPos);
++        Log.e("keepPosition ", "==============");
++        Log.e("Size ", " of tempposition " + tempPosition.size());
++        Log.e("Size ", " of position " + position.size());
++        position.remove(pos);
++        return tPos;
++    }
++
++    public void rePosition(int val) {
++        int del = tempPosition.indexOf(randPos[val]);
++        position.add(tempPosition.get(val));
++        Log.e("rePosition ", "==============");
++        Log.e("Size ", " of position " + position.size());
++        Log.e("Size ", " of tempposition " + tempPosition.size());
++        tempPosition.remove(del);
++
+     }
+ 
+ }

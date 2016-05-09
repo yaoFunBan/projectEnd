@@ -32,7 +32,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginLeft="460dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="-500dp"
         android:background="@drawable/buble">
 
         <TextView
@@ -69,9 +69,11 @@
 
 
     <RelativeLayout
+        android:id="@+id/RelTime"
         android:layout_width="250dp"
         android:layout_height="200dp"
-        android:layout_marginLeft="20dp">
+        android:layout_marginLeft="20dp"
+        android:visibility="invisible">
 
         <ProgressBar
             android:id="@+id/pbTimer"
@@ -136,8 +138,8 @@
 
     <ImageView
         android:id="@+id/base"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="500dp"
         android:background="@drawable/base"
@@ -145,12 +147,13 @@
 
 
     <RelativeLayout
+        android:id="@+id/bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible">
 
         <ImageView
-            android:id="@+id/bar"
             android:layout_width="200dp"
             android:layout_height="80dp"
             android:src="@drawable/pausestage"
@@ -176,7 +179,7 @@
         android:layout_height="80dp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/button_back"
-        android:visibility="visible" />
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/btn_next"
@@ -185,7 +188,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:background="@drawable/button_next"
-        android:visibility="visible" />
+        android:visibility="invisible" />
 
     <TextView
         android:id="@+id/count_before"
@@ -209,7 +212,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="50dp"
             android:background="@drawable/ribboncolor"
-            android:visibility="invisible" />
+            android:visibility="visible" />
 
         <View
             android:layout_width="match_parent"

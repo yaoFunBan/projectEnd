@@ -153,18 +153,33 @@ public class game3 extends AppCompatActivity {
         ansLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //random index ใน array randPosi
-                randPosi = getRandomPosition();
-                randBox(randPosi);
-                mCursor.moveToNext();
-                wordQue.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLIdiom)));
-                ansLeft.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesTrue)));
-                ansRight.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesFalse)));
-                Picture.setBackgroundResource(mCursor.getInt(mCursor.getColumnIndex(game3.CoLPicture)));
-
-                mark.setBackgroundResource(R.drawable.correct);
-                twscore += 100;
-                Score.setText("" + twscore);
+                    //random index ใน array randPosi
+                    randPosi = getRandomPosition();
+                    randBox(randPosi);
+                    mCursor.moveToNext();
+                    wordQue.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLIdiom)));
+                    ansLeft.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesTrue)));
+                    ansRight.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesFalse)));
+                    Picture.setBackgroundResource(mCursor.getInt(mCursor.getColumnIndex(game3.CoLPicture)));
+//                    if (mark.getVisibility() == View.GONE){
+//                        mark.setVisibility(View.VISIBLE);
+//                    }
+                    mark.setBackgroundResource(R.drawable.correct);
+//                    new CountDownTimer(1000, 50) {
+//
+//                        @Override
+//                        public void onTick(long millisUntilFinished) {
+//
+//                        }
+//
+//                        @Override
+//                        public void onFinish() {
+//                            mark.setVisibility(View.GONE);
+//                        }
+//
+//                    };
+                    twscore += 100;
+                    Score.setText("" + twscore);
             }
         });
 
@@ -179,8 +194,22 @@ public class game3 extends AppCompatActivity {
                 ansLeft.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesTrue)));
                 ansRight.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesFalse)));
                 Picture.setBackgroundResource(mCursor.getInt(mCursor.getColumnIndex(game3.CoLPicture)));
-
-                mark.setBackgroundResource(R.drawable.correct);
+//                if (mark.getVisibility() == View.GONE){
+//                    mark.setVisibility(View.VISIBLE);
+//                }
+                mark.setBackgroundResource(R.drawable.uncorrect);
+//                new CountDownTimer(1000, 50) {
+//
+//                    @Override
+//                    public void onTick(long millisUntilFinished) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onFinish() {
+//                        mark.setVisibility(View.GONE);
+//                    }
+//                };
                 cdt.cancel();
                 tempTime -= 5000;
                 countTime(tempTime);

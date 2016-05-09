@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.Image;
+import android.net.Uri;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.support.v7.app.AlertDialog;
@@ -21,16 +22,22 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
+
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.Random;
 
 public class game3 extends AppCompatActivity {
+    private TextView tvTimer, wordQue, ansLeft, ansRight;
+    TextView Score;
     Button btn_pause, btnClose;
     ToggleButton swMusic, swEffect;
     CountDownTimer cdt;
-    private TextView tvTimer, wordQue, ansLeft, ansRight;
-    ImageView Picture;
+    ImageView Picture, mark;
 
     //Dialog
     AlertDialog.Builder builder;
@@ -40,18 +47,23 @@ public class game3 extends AppCompatActivity {
 
     //position ที่ F
     String[] posiLeft = {"20,1250", "1250,20"};
+
     //Database
     SQLiteDatabase gameDb;
     dataidioms game3;
     Cursor mCursor, wCursor;
     static int i = 0;
+
     //time
     int time = 50000, tempTime = 0;
-    String []randPos;
+    String[] randPos;
 
+    //random
     int randPosi;
-
     RelativeLayout.LayoutParams params1, params2, paramsBaseR;
+
+    //time
+    int twscore = 0;
 
 
     @Override
@@ -66,6 +78,8 @@ public class game3 extends AppCompatActivity {
         Picture = (ImageView) findViewById(R.id.picture);
         box1 = (RelativeLayout) findViewById(R.id.boxmess1);
         box2 = (RelativeLayout) findViewById(R.id.boxmess2);
+        Score = (TextView) findViewById(R.id.score);
+        mark = (ImageView) findViewById(R.id.mark);
 
         //decaler database
         game3 = new dataidioms(this);
@@ -102,6 +116,7 @@ public class game3 extends AppCompatActivity {
         // ตัดให้อยู่ใน array
         //randPos[0] = 20;
         //randPos[0] = 1050;
+        //ตัดคำเมื่อเจอเครื่องหมาย (,)
         randPos = posiLeft[randPosi].split(",");
 
         // set margin ระยะห่างของกรอบ
@@ -116,6 +131,7 @@ public class game3 extends AppCompatActivity {
         box2.getLayoutParams().height = 330;
         box2.getLayoutParams().width = 1270;
 
+        countTime(100000);
 
         //คลิก กล่องซ้ายมือ
         box1 = (RelativeLayout) findViewById(R.id.boxmess1);
@@ -145,6 +161,10 @@ public class game3 extends AppCompatActivity {
                 ansLeft.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesTrue)));
                 ansRight.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesFalse)));
                 Picture.setBackgroundResource(mCursor.getInt(mCursor.getColumnIndex(game3.CoLPicture)));
+
+                mark.setBackgroundResource(R.drawable.correct);
+                twscore += 100;
+                Score.setText("" + twscore);
             }
         });
 
@@ -159,6 +179,11 @@ public class game3 extends AppCompatActivity {
                 ansLeft.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesTrue)));
                 ansRight.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesFalse)));
                 Picture.setBackgroundResource(mCursor.getInt(mCursor.getColumnIndex(game3.CoLPicture)));
+
+                mark.setBackgroundResource(R.drawable.correct);
+                cdt.cancel();
+                tempTime -= 5000;
+                countTime(tempTime);
             }
         });
         //button_pause
@@ -216,21 +241,6 @@ public class game3 extends AppCompatActivity {
             }
         });
 
-        //CountDownTimer (โดยจะลดลงครั้งละ 1 วินาที)
-        CountDownTimer cdt = new CountDownTimer(100000, 1000) {
-            public void onTick(long millisUntilFinished) {
-
-                //ให้วลานับถอยหลังทีละ 1 วินาที
-                tempTime = (int) millisUntilFinished;
-                tvTimer.setText(String.valueOf(tempTime));
-                String strTime = String.format("%1.0f", (double) millisUntilFinished / 1000);
-                tvTimer.setText(String.valueOf(strTime));
-            }
-
-            public void onFinish() {
-                // Finish
-            }
-        }.start();
     }
 
     // random ตำแหน่ง
@@ -242,8 +252,8 @@ public class game3 extends AppCompatActivity {
     }
 
 
-    //ตัด string แล้วเก็ยใน array
-    public void randBox(int rand){
+    //ตัด string แล้วเก็บใน array
+    public void randBox(int rand) {
         randPos = posiLeft[rand].split(",");
 
         params2.setMargins(Integer.parseInt(randPos[0]), 1100, 0, 50);
@@ -287,5 +297,26 @@ public class game3 extends AppCompatActivity {
         window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         window.setGravity(Gravity.CENTER);
         dsetting.show();
+    }
+    //ลดเวลา countTime
+    public void countTime(int t) {
+        cdt = new CountDownTimer(t, 50) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+                tempTime = (int) millisUntilFinished;
+                tvTimer.setText(String.valueOf(tempTime));
+                String strTime = String.format("%.1f"
+                        , (double) millisUntilFinished / 1000);
+                tvTimer.setText(String.valueOf(strTime));
+            }
+
+            @Override
+            public void onFinish() {
+                tvTimer.setText("0");
+            }
+        };
+        cdt.start();
     }
 }

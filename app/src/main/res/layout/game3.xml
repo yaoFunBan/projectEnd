@@ -99,11 +99,20 @@
 
     <TextView
         android:id="@+id/score"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_toLeftOf="@+id/btn_pause"
+        android:paddingTop="10dp"
         android:text="0"
-        android:textSize="70sp"
-        android:layout_toLeftOf="@+id/btn_pause"/>
+        android:textColor="#ffff"
+        android:textSize="50sp" />
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:layout_toLeftOf="@+id/btn_pause"
+        android:background="@drawable/score"></ImageView>
 
     <RelativeLayout
         android:layout_width="250dp"
@@ -151,5 +160,5 @@
         android:layout_height="80dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="40dp"/>
+        android:layout_marginBottom="40dp" />
 </RelativeLayout>

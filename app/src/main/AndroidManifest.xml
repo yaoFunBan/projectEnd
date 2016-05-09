@@ -15,7 +15,12 @@
         <activity
             android:name=".home"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <!-- Game2 -->
         <activity
@@ -263,13 +268,16 @@
         <activity
             android:name=".minigame3"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
 
         <!--game3-->
         <activity
             android:name=".game3"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
 
         <!-- Map4 -->
         <activity

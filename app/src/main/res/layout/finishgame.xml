@@ -20,17 +20,11 @@
             android:layout_width="70dp"
             android:layout_height="100dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="195dp"
+            android:layout_centerHorizontal="true"
             android:text="0"
             android:textSize="80sp" />
 
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/final_score"
-            android:text="/4"
-            android:textSize="80sp" />
+
     </RelativeLayout>
 
     <RelativeLayout

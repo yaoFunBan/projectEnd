@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.support.v7.app.AlertDialog;
@@ -32,6 +33,7 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
     Button btn_pause, btnClose;
     ToggleButton swMusic, swEffect;
     CountDownTimer cdt;
+    MediaPlayer mediaPlayer;
 
     //Dialog
     AlertDialog.Builder builder;
@@ -154,50 +156,50 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         ball3.getLayoutParams().width = 450;
 
 
-//        //button_pause
-//        btn_pause = (Button) findViewById(R.id.btn_pause);
-//        builder = new AlertDialog.Builder(this);
-//        dialog = new Dialog(this);
-//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//
-//        btn_pause.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                dialog.setContentView(R.layout.pausegame);
-//                //TODO findViewBy
-//                dialogexit = (Button) dialog.findViewById(R.id.btn_exit);
-//                dialogagain = (Button) dialog.findViewById(R.id.btn_again);
-//                dialogclose = (Button) dialog.findViewById(R.id.btn_close);
-//
-//                //button_exit
-//                dialogexit.setOnClickListener(new View.OnClickListener() {
-//
-//                    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-//                    @Override
-//                    public void onClick(View v) {
-//                        finishAffinity();
-//                    }
-//                });
-//
-//                //button_again
-//                dialogagain.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        Intent i = new Intent(getApplicationContext(), map1.class);
-//                        startActivity(i);
-//                    }
-//                });
-//
-//                //button_close
-//                dialogclose.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        dialog.cancel();
-//                    }
-//                });
-//                dialog.show();
-//            }
-//        });
+        //button_pause
+        btn_pause = (Button) findViewById(R.id.btn_pause);
+        builder = new AlertDialog.Builder(this);
+        dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        btn_pause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.setContentView(R.layout.pausegame);
+                //TODO findViewBy
+                dialogexit = (Button) dialog.findViewById(R.id.btn_exit);
+                dialogagain = (Button) dialog.findViewById(R.id.btn_again);
+                dialogclose = (Button) dialog.findViewById(R.id.btn_close);
+
+                //button_exit
+                dialogexit.setOnClickListener(new View.OnClickListener() {
+
+                    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+                    @Override
+                    public void onClick(View v) {
+                        finishAffinity();
+                    }
+                });
+
+                //button_again
+                dialogagain.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(getApplicationContext(), map1.class);
+                        startActivity(i);
+                    }
+                });
+
+                //button_close
+                dialogclose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.cancel();
+                    }
+                });
+                dialog.show();
+            }
+        });
 
 
         //event click (เรียกใช้ method onClick)
@@ -265,11 +267,15 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
             Toast.makeText(this, "ok", Toast.LENGTH_SHORT).show();
             twScore += 100;
             score.setText("" + twScore);
+            mediaPlayer = MediaPlayer.create(this, R.raw.correct);
+            mediaPlayer.start();
         } else {
             Toast.makeText(this, "ผิด", Toast.LENGTH_SHORT).show();
             cdt.cancel();
             tempTime -= 5000;
             countTime(tempTime);
+            mediaPlayer = MediaPlayer.create(this, R.raw.wrong);
+            mediaPlayer.start();
         }
 
         chAns++;
@@ -293,6 +299,9 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onFinish() {
                 tvTimer.setText("0");
+                if (tempTime == 0 ){
+
+                }
             }
         };
         cdt.start();

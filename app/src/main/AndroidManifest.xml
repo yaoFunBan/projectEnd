@@ -328,7 +328,11 @@
         <!-- scene4_4 -->
         <activity
             android:name=".scene4_4"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape" /><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>

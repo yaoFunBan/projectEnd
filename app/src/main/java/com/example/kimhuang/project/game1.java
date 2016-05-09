@@ -255,8 +255,9 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         str3.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColSemantic)));
 
     }
+
     //wordAns
-    public void incrementQuestion(){
+    public void incrementQuestion() {
         mCursor.moveToPosition(chAns);
         wordAns.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColHomony)));
     }
@@ -264,13 +265,13 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
     public void Ansch(int index) {
         if (chAns == index) {
             //กรณีที่ตอบถูก
-            Toast.makeText(this, "ok", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "ok", Toast.LENGTH_SHORT).show();
             twScore += 100;
             score.setText("" + twScore);
             mediaPlayer = MediaPlayer.create(this, R.raw.correct);
             mediaPlayer.start();
         } else {
-            Toast.makeText(this, "ผิด", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "ผิด", Toast.LENGTH_SHORT).show();
             cdt.cancel();
             tempTime -= 5000;
             countTime(tempTime);
@@ -284,7 +285,7 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
 
     //ลดเวลา countTime
     public void countTime(int t) {
-        cdt = new CountDownTimer(t, 50) {
+        cdt = new CountDownTimer(5000, 50) {
 
             @Override
             public void onTick(long millisUntilFinished) {
@@ -299,12 +300,21 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onFinish() {
                 tvTimer.setText("0");
-                if (tempTime == 0 ){
+                dialogFinish();
 
-                }
+
             }
         };
         cdt.start();
+    }
+
+    public void dialogFinish() {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.finishgame);
+
+
+        dialog.show();
     }
 
 }

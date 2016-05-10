@@ -27,11 +27,14 @@ public class datahomony extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + TableName + " ( " + ColType + " TEXT, " + ColHomony + " TEXT, " + ColSemantic + " TEXT, " + ColStatus + " TEXT);");
 
-        String[] homony = {"สุริยัน", "มัจฉา", "ดนัย", "บุตรี", "ผกา", "รามสูร", "บรรพต", "ขัตติยะ", "กุญชร", "กระสินธิ์ ","ปฐพี", "อมรินทร์", "อาชาไนย", "บุหลัน"
+        String[] homony = {"สุริยัน", "มัจฉา", "ดนัย", "บุตรี", "ผกา", "รามสูร", "บรรพต", "ขัตติยะ", "กุญชร", "กระสินธิ์ ", "ปฐพี", "อมรินทร์", "อาชาไนย", "บุหลัน"
                 , "พนาดร", "กุมาร", "พารา", "กัลยาณี", "สุราลัย", "ปทุม"};
 
         String[] semantic = {"พระอาทิตย์", "ปลา", "ลูกชาย", "ลูกสาว", "ดอกไม้", "ยักษ์", "ภูเขา", "กษัตริย์", "ช้าง", "น้ำ", "แผ่นดิน", "พระอินทร์", "ม้า", "พระจันทร์",
                 "ป่า", "เด็ก", "เมือง", "ผู้หญิง", "สวรรค์", "ดอกบัว",};
+
+        String[] status = {"correct", "correct", "correct", "uncorrect", "correct", "uncorrect", "correct", "correct", "uncorrect", "uncorrect",
+                "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect"};
 
         //เพิ่มข้อมูลลงตารางเรื่อยๆ
         ContentValues content = new ContentValues();
@@ -39,6 +42,7 @@ public class datahomony extends SQLiteOpenHelper {
             content.put(ColType, "1");
             content.put(ColHomony, homony[i]);
             content.put(ColSemantic, semantic[i]);
+            content.put(ColStatus, status[i]);
 
             db.insert(TableName, null, content);
         }

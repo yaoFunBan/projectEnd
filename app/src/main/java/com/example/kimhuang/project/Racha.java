@@ -1,6 +1,8 @@
 package com.example.kimhuang.project;
 
 import android.app.Activity;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -9,11 +11,20 @@ import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 
 public class Racha extends Activity {
+
+    SQLiteDatabase mDb;
+    database mHelper;
+    Cursor mCursor;
+    String mQuery;
+    List<String> Mean;
+    int i = 0;
+    String[] status;
 
     ExpandableListAdapter expandableListAdapter;
     ExpandableListView expandableListView;
@@ -25,16 +36,40 @@ public class Racha extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tab);
 
-//        expandableListView = (ExpandableListView) findViewById(R.id.list_summary);
+        mHelper = new database(this);
+        mQuery = "SELECT * FROM " + mHelper.TableName;
+        mDb = mHelper.getWritableDatabase();
+        mHelper.onUpgrade(mDb, 1, 1);
+        mCursor = mDb.rawQuery(mQuery, null);
+        mCursor.moveToFirst();
+        status = new String[20];
+
+
+        expandableListDetail = new HashMap<String, List<String>>();
+
+        while (!mCursor.isAfterLast()) {
+            Mean = new ArrayList<String>(Arrays.asList(mCursor.getString(mCursor.getColumnIndex(mHelper.ColWord))));
+            expandableListDetail.put(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)), Mean);
+            status[i] = mCursor.getString(mCursor.getColumnIndex(mHelper.ColStatus));
+            mCursor.moveToNext();
+            i++;
+        }
+
+        expandableListView = (ExpandableListView) findViewById(R.id.list_summary);
 //        expandableListDetail = ExpandableListDataPump.getData();
-//        expandableListTile = new ArrayList<String>(expandableListDetail.keySet());
-//        expandableListAdapter = new CustomAdater(getApplicationContext(), expandableListTile, expandableListDetail);
-//        expandableListView.setAdapter(expandableListAdapter);
-//        expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
-//            @Override
-//            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-//                return false;
-//            }
-//        });
+        expandableListTile = new ArrayList<String>(expandableListDetail.keySet());
+        expandableListAdapter = new CustomAdater(getApplicationContext(), expandableListTile, expandableListDetail, status);
+        expandableListView.setAdapter(expandableListAdapter);
+        expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+                return false;
+            }
+        });
+    }
+
+    public void prepareListData() {
+        expandableListTile = new ArrayList<String>();
+//        expandableListDetail =
     }
 }

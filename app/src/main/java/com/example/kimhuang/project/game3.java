@@ -44,7 +44,7 @@ public class game3 extends AppCompatActivity {
     //Dialog
     AlertDialog.Builder builder;
     Dialog dialog;
-    Button  dialoghome, dialogclose, dialogagain;
+    Button dialoghome, dialogclose, dialogagain;
     RelativeLayout box1, box2;
 
     //position ที่ F
@@ -55,7 +55,7 @@ public class game3 extends AppCompatActivity {
     dataidioms game3;
     Cursor mCursor, wCursor;
     static int i = 0;
-
+    int count = 0;
     //time
     int time = 50000, tempTime = 0;
     String[] randPos;
@@ -136,28 +136,13 @@ public class game3 extends AppCompatActivity {
         box2.getLayoutParams().width = 1270;
 
         countTime(100000);
-
         //คลิก กล่องซ้ายมือ
         box1 = (RelativeLayout) findViewById(R.id.boxmess1);
-//        box1.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                randPos = posiLeft[randPosi].split(",");
-//                mCursor.moveToNext();
-//                wordQue.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLIdiom)));
-//                ansLeft.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesTrue)));
-//                ansRight.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesFalse)));
-//                Picture.setBackgroundResource(mCursor.getInt(mCursor.getColumnIndex(game3.CoLPicture)));
-//                params1.setMargins(Integer.parseInt(randPos[0]), 1100, 0, 50);
-//                box1.setLayoutParams(params1);
-//            }
-//        });
-
         ansLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    //random index ใน array randPosi
+                //random index ใน array randPosi
+                if (!mCursor.isLast()) {
                     randPosi = getRandomPosition();
                     randBox(randPosi);
                     mCursor.moveToNext();
@@ -165,27 +150,13 @@ public class game3 extends AppCompatActivity {
                     ansLeft.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesTrue)));
                     ansRight.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesFalse)));
                     Picture.setBackgroundResource(mCursor.getInt(mCursor.getColumnIndex(game3.CoLPicture)));
-//                    if (mark.getVisibility() == View.GONE){
-//                        mark.setVisibility(View.VISIBLE);
-//                    }
-//                    mark.setBackgroundResource(R.drawable.correct);
-//                    new CountDownTimer(1000, 50) {
-//
-//                        @Override
-//                        public void onTick(long millisUntilFinished) {
-//
-//                        }
-//
-//                        @Override
-//                        public void onFinish() {
-//                            mark.setVisibility(View.GONE);
-//                        }
-//
-//                    };
                     twscore += 100;
                     Score.setText("" + twscore);
-                mediaPlayer = MediaPlayer.create(game3.this, R.raw.correct);
-                mediaPlayer.start();
+                    mediaPlayer = MediaPlayer.create(game3.this, R.raw.correct);
+                    mediaPlayer.start();
+                } else {
+                    dialogfinish();
+                }
             }
         });
 
@@ -193,34 +164,22 @@ public class game3 extends AppCompatActivity {
         ansRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                randPosi = getRandomPosition();
-                randBox(randPosi);
-                mCursor.moveToNext();
-                wordQue.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLIdiom)));
-                ansLeft.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesTrue)));
-                ansRight.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesFalse)));
-                Picture.setBackgroundResource(mCursor.getInt(mCursor.getColumnIndex(game3.CoLPicture)));
-//                if (mark.getVisibility() == View.GONE){
-//                    mark.setVisibility(View.VISIBLE);
-//                }
-//                mark.setBackgroundResource(R.drawable.uncorrect);
-//                new CountDownTimer(1000, 50) {
-//
-//                    @Override
-//                    public void onTick(long millisUntilFinished) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onFinish() {
-//                        mark.setVisibility(View.GONE);
-//                    }
-//                };
-                cdt.cancel();
-                tempTime -= 5000;
-                countTime(tempTime);
-                mediaPlayer = MediaPlayer.create(game3.this, R.raw.wrong);
-                mediaPlayer.start();
+                if (!mCursor.isLast()) {
+                    randPosi = getRandomPosition();
+                    randBox(randPosi);
+                    mCursor.moveToNext();
+                    wordQue.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLIdiom)));
+                    ansLeft.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesTrue)));
+                    ansRight.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesFalse)));
+                    Picture.setBackgroundResource(mCursor.getInt(mCursor.getColumnIndex(game3.CoLPicture)));
+                    cdt.cancel();
+                    tempTime -= 5000;
+                    countTime(tempTime);
+                    mediaPlayer = MediaPlayer.create(game3.this, R.raw.wrong);
+                    mediaPlayer.start();
+                }else{
+                    dialogfinish();
+                }
             }
         });
         //button_pause
@@ -326,6 +285,7 @@ public class game3 extends AppCompatActivity {
         window.setGravity(Gravity.CENTER);
         dsetting.show();
     }
+
     //ลดเวลา countTime
     public void countTime(int t) {
         cdt = new CountDownTimer(t, 50) {
@@ -348,15 +308,16 @@ public class game3 extends AppCompatActivity {
         };
         cdt.start();
     }
-   public void dialogfinish(){
-       final Dialog dialog = new Dialog(this);
-       dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-       dialog.setContentView(R.layout.finishgame);
-       final_score = (TextView) dialog.findViewById(R.id.final_score);
-       final_score.setText("" + twscore);
+    public void dialogfinish() {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false); //แตะแล้วไม่ออกจากหน้าจอ
+        dialog.setContentView(R.layout.finishgame);
+        final_score = (TextView) dialog.findViewById(R.id.final_score);
+        final_score.setText("" + twscore);
 
-       dialog.show();
+        dialog.show();
 
-   }
+    }
 }

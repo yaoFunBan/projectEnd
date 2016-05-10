@@ -29,7 +29,7 @@ import com.daimajia.androidanimations.library.YoYo;
 import java.util.Random;
 
 public class game1 extends AppCompatActivity implements View.OnClickListener {
-    private TextView wordAns, tvTimer, str1, str2, str3, score,final_score;
+    private TextView wordAns, tvTimer, str1, str2, str3, score, final_score;
     Button btn_pause, btnClose;
     ToggleButton swMusic, swEffect;
     CountDownTimer cdt;
@@ -270,6 +270,8 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
             score.setText("" + twScore);
             mediaPlayer = MediaPlayer.create(this, R.raw.correct);
             mediaPlayer.start();
+//            String name = mCursor.getString(mCursor.getColumnIndex(game1.ColHomony));
+//            game1.updateContact(name, "correct");
         } else {
 //            Toast.makeText(this, "ผิด", Toast.LENGTH_SHORT).show();
             cdt.cancel();
@@ -312,8 +314,8 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         dialog.setContentView(R.layout.finishgame);
-        final_score = (TextView)dialog.findViewById(R.id.final_score);
-        final_score.setText(""+twScore);
+        final_score = (TextView) dialog.findViewById(R.id.final_score);
+        final_score.setText("" + twScore);
 
         dialog.show();
     }

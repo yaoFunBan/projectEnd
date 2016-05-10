@@ -16,7 +16,7 @@ public class dataidioms extends SQLiteOpenHelper {
     public static final String CoLMesTrue = "mestrue";
     public static final String CoLMesFalse = "mesfalse";
     public static final String CoLStatus = "Status";
-    public static final String CoLType = "Type";
+    public static final String CoLSound = "Sound";
     public static final String CoLPicture = "pPicture";
 
     public dataidioms(Context context) {
@@ -26,8 +26,8 @@ public class dataidioms extends SQLiteOpenHelper {
     //การ create,insert, delete ข้อมูลใน database
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " + TableName + " ( " + CoLType + " TEXT, " + CoLIdiom + " TEXT, " + CoLMesTrue + " TEXT, "
-                + CoLMesFalse + " TEXT, " + CoLPicture + " INTEGER, " + CoLStatus + " TEXT);");
+        db.execSQL("CREATE TABLE " + TableName + " ( " + CoLIdiom + " TEXT, " + CoLMesTrue + " TEXT, "
+                + CoLMesFalse + " TEXT, " + CoLPicture + " INTEGER, " + CoLStatus + " TEXT , " + CoLSound + " TEXT);");
 
         String[] idiom = {"กระต่ายหมายจันทร์", "กาคาบพริก", "กิ่งทองใบหยก", "ไก่เห็นตีนงู งูเห็นนมไก่", "เข้าด้ายเข้าเข็ม",
                 "เข้าเมืองตาหลิ่ว ต้องหลิ่วตาตาม", "เข็นครกขึ้นภูเขา", "เขียนเสือให้วัวกลัว", "คนโง่ย่อมตกเป็นเหยื่อคนฉลาด",
@@ -49,21 +49,26 @@ public class dataidioms extends SQLiteOpenHelper {
                 "ผู้ที่มีฐานะเดียวกันแต่งงานกัน"};
 
         String[] status = {"correct", "correct", "correct", "uncorrect", "correct", "uncorrect", "correct", "correct", "uncorrect", "uncorrect",
-                "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect"};
+                "uncorrect", "uncorrect", "correct", "uncorrect", "correct", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect"};
 
         int[] pPicture = {R.drawable.rabbit, R.drawable.crow, R.drawable.green, R.drawable.snake, R.drawable.needle,
                 R.drawable.men, R.drawable.mountain, R.drawable.tiger, R.drawable.stupid, R.drawable.twofish,
-                R.drawable.crab, R.drawable.chang, R.drawable.pig,R.drawable.ant, R.drawable.rat};
+                R.drawable.crab, R.drawable.chang, R.drawable.pig, R.drawable.ant, R.drawable.rat};
+
+        int[] sound = {R.raw.janta, R.raw.janta, R.raw.soi, R.raw.jantawee, R.raw.kangkeng,
+                R.raw.jantawee, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee,
+                R.raw.jantawee, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee,
+                R.raw.jantawee, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee};
 
         //เพิ่มข้อมูลลงตารางเรื่อยๆ
         ContentValues content = new ContentValues();
         for (int i = 0; i < idiom.length; i++) {
-            content.put(CoLType, "3");
             content.put(CoLIdiom, idiom[i]);
             content.put(CoLMesTrue, mestrue[i]);
             content.put(CoLMesFalse, mesfalse[i]);
             content.put(CoLPicture, pPicture[i]);
             content.put(CoLStatus, status[i]);
+            content.put(CoLSound, sound[i]);
 
             db.insert(TableName, null, content);
 

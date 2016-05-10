@@ -21,7 +21,7 @@
         android:background="@drawable/paper" />
 
     <ImageView
-        android:layout_width="200dp"
+        android:layout_width="240dp"
         android:layout_height="80dp"
         android:background="@drawable/score"
         android:layout_toLeftOf="@+id/btn_pause"/>
@@ -111,7 +111,7 @@
 
     <TextView
         android:id="@+id/score"
-        android:layout_width="100dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_marginRight="20dp"
         android:layout_toLeftOf="@+id/btn_pause"

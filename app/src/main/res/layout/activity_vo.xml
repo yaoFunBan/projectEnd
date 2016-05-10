@@ -108,24 +108,27 @@
             android:textSize="30sp" />
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/y_scrode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/count_score"
-        android:text=" 0 "
-        android:textSize="50sp"
-        android:visibility="invisible" />
-
-    <TextView
-        android:id="@+id/count_score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
+    <RelativeLayout
+        android:id="@+id/tabScore"
+        android:layout_width="280dp"
+        android:layout_height="80dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
         android:layout_toLeftOf="@+id/btn_pause"
-        android:text=" / 4"
-        android:textSize="50sp"
-        android:visibility="invisible"></TextView>
+        android:background="@drawable/score"
+        android:visibility="invisible">
+
+        <TextView
+            android:id="@+id/count_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="คะแนน"
+            android:textColor="#ffffff"
+            android:textSize="40sp"
+            android:visibility="visible"></TextView>
+    </RelativeLayout>
 
     <Button
         android:id="@+id/btn_pause"

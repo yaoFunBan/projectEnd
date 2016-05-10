@@ -38,7 +38,7 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
     //Dialog
     AlertDialog.Builder builder;
     Dialog dialog;
-    Button dialoghome, dialogagain, dialogclose;
+    Button dialoghome, dialogagain, dialogclose, dialogsummary, dialogreplay;
     RelativeLayout ball1, ball2, ball3;
 
     //Databas
@@ -170,6 +170,7 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
                 dialoghome = (Button) dialog.findViewById(R.id.btn_home);
                 dialogagain = (Button) dialog.findViewById(R.id.btn_again);
                 dialogclose = (Button) dialog.findViewById(R.id.btn_close);
+                cdt.cancel();
 
                 //button_exit
                 dialoghome.setOnClickListener(new View.OnClickListener() {
@@ -183,13 +184,38 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
                 });
 
 //                //button_again
-//                dialogagain.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        Intent i = new Intent(getApplicationContext(), map1.class);
-//                        startActivity(i);
-//                    }
-//                });
+                dialogagain.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mCursor.moveToFirst();
+                        wordAns.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColHomony)));
+                        dialog.cancel();
+                        ball1.setClickable(false);
+                        ball2.setClickable(false);
+                        ball3.setClickable(false);
+                        index = 0;
+                        addindex(index);
+                        chAns = 0;
+
+
+                        new CountDownTimer(1000, 50) {
+                            @Override
+                            public void onTick(long millisUntilFinished) {
+
+                            }
+
+                            @Override
+                            public void onFinish() {
+                                twScore = 0;
+                                score.setText("" + twScore);
+                                ball1.setClickable(true);
+                                ball2.setClickable(true);
+                                ball3.setClickable(true);
+                                countTime(100000);
+                            }
+                        }.start();
+                    }
+                });
 
                 //button_close
                 dialogclose.setOnClickListener(new View.OnClickListener() {
@@ -216,23 +242,38 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         int id = v.getId();
         switch (id) {
             case (R.id.ball1):
+                if (!mCursor.isLast()) {
                 Ansch(a[index]);
                 index++;
                 //เพิ่มค่าขึ้นมาทีละชุด
                 addindex(index);
                 incrementQuestion();
+                }else{
+                    dialogFinish();
+                    cdt.cancel();
+                }
                 break;
             case (R.id.ball2):
+                if (!mCursor.isLast()) {
                 Ansch(b[index]);
                 index++;
                 addindex(index);
                 incrementQuestion();
+                }else{
+                    dialogFinish();
+                    cdt.cancel();
+                }
                 break;
             case (R.id.ball3):
+                if (!mCursor.isLast()) {
                 Ansch(c[index]);
                 index++;
                 addindex(index);
                 incrementQuestion();
+                }else{
+                    dialogFinish();
+                    cdt.cancel();
+                }
                 break;
         }
     }
@@ -314,8 +355,61 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         dialog.setContentView(R.layout.finishgame);
         final_score = (TextView)dialog.findViewById(R.id.final_score);
         final_score.setText(""+twScore);
-
         dialog.show();
+        dialogreplay = (Button) dialog.findViewById(R.id.btn_replay);
+        dialogsummary = (Button) dialog.findViewById(R.id.btn_summary);
+        dialoghome = (Button) dialog.findViewById(R.id.btn_home);
+
+        //Button replay
+        dialogreplay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCursor.moveToFirst();
+                wordAns.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColHomony)));
+                dialog.cancel();
+                ball1.setClickable(false);
+                ball2.setClickable(false);
+                ball3.setClickable(false);
+                index = 0;
+                addindex(index);
+                chAns = 0;
+
+                new CountDownTimer(1000, 50) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        twScore = 0;
+                        score.setText("" + twScore);
+                        ball1.setClickable(true);
+                        ball2.setClickable(true);
+                        ball3.setClickable(true);
+                        countTime(100000);
+                    }
+                }.start();
+            }
+        });
+        //Button summary
+        final Intent g = new Intent(this, summary.class);
+        dialogsummary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(g);
+            }
+        });
+        dialoghome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), map1.class);
+                startActivity(i);
+            }
+        });
+
+
+
     }
 
 }

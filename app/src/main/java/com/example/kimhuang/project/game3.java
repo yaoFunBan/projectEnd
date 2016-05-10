@@ -44,7 +44,7 @@ public class game3 extends AppCompatActivity {
     //Dialog
     AlertDialog.Builder builder;
     Dialog dialog;
-    Button dialoghome, dialogclose, dialogagain;
+    Button dialoghome, dialogclose, dialogagain, dialogreplay, dialogsummary;
     RelativeLayout box1, box2;
 
     //position ที่ F
@@ -156,6 +156,7 @@ public class game3 extends AppCompatActivity {
                     mediaPlayer.start();
                 } else {
                     dialogfinish();
+                    cdt.cancel();
                 }
             }
         });
@@ -179,6 +180,7 @@ public class game3 extends AppCompatActivity {
                     mediaPlayer.start();
                 }else{
                     dialogfinish();
+                    cdt.cancel();
                 }
             }
         });
@@ -191,8 +193,8 @@ public class game3 extends AppCompatActivity {
         btn_pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                cdt.cancel();
                 dialog.setContentView(R.layout.pausegame);
-
                 //TODO findViewBy
 
                 dialoghome = (Button) dialog.findViewById(R.id.btn_home);
@@ -209,19 +211,38 @@ public class game3 extends AppCompatActivity {
                 });
 
                 //button_again
-//                dialogagain.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        Intent i = new Intent(getApplicationContext(),map3.class);
-//                        startActivity(i);
-//                    }
-//                });
+                dialogagain.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mCursor.moveToFirst();
+                        wordQue.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLIdiom)));
+                        ansLeft.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesTrue)));
+                        ansRight.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesFalse)));
+                        Picture.setBackgroundResource(mCursor.getInt(mCursor.getColumnIndex(game3.CoLPicture)));
+                        ansRight.setClickable(false);
+                        dialog.cancel();
+                        new CountDownTimer(1000, 50) {
+                            @Override
+                            public void onTick(long millisUntilFinished) {
+
+                            }
+
+                            @Override
+                            public void onFinish() {
+                                twscore = 0;
+                                Score.setText("" + twscore);
+                                countTime(100000);
+                            }
+                        }.start();
+                    }
+                });
 
                 //button_close
                 dialogclose.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         dialog.cancel();
+                        countTime(tempTime);
                     }
                 });
                 dialog.show();
@@ -316,8 +337,50 @@ public class game3 extends AppCompatActivity {
         dialog.setContentView(R.layout.finishgame);
         final_score = (TextView) dialog.findViewById(R.id.final_score);
         final_score.setText("" + twscore);
-
         dialog.show();
 
+        dialogreplay = (Button) dialog.findViewById(R.id.btn_replay);
+        dialogsummary = (Button) dialog.findViewById(R.id.btn_summary);
+        dialoghome = (Button) dialog.findViewById(R.id.btn_home);
+
+        //Button replay
+        dialogreplay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCursor.moveToFirst();
+                wordQue.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLIdiom)));
+                ansLeft.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesTrue)));
+                ansRight.setText(mCursor.getString(mCursor.getColumnIndex(game3.CoLMesFalse)));
+                Picture.setBackgroundResource(mCursor.getInt(mCursor.getColumnIndex(game3.CoLPicture)));
+                ansRight.setClickable(false);
+                dialog.cancel();
+                new CountDownTimer(1000, 50) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                    }
+                    @Override
+                    public void onFinish() {
+                        twscore = 0;
+                        Score.setText("" + twscore);
+                        countTime(100000);
+                    }
+                }.start();
+            }
+        });
+        //Button summary
+        final Intent g = new Intent(this, summary.class);
+        dialogsummary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(g);
+            }
+        });
+        dialoghome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), map3.class);
+                startActivity(i);
+            }
+        });
     }
 }

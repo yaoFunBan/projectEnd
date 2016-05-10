@@ -20,14 +20,15 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
         <!-- Game2 -->
         <activity
             android:name=".VoActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        </activity>
+
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
 
 
         <!-- summary -->
@@ -137,6 +138,7 @@
             android:name=".minigame1"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+
 
         <!-- Game1 -->
         <activity

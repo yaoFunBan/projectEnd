@@ -30,19 +30,22 @@ public class database extends SQLiteOpenHelper {
         String[] word = {"พระชนนี ", "รองพระบาท ", "สังวาล ", "ชฏา", "พระสนับเพลา"
                 , "พระอุทร", "พระนาสิก", "พระกรรณ", "ข้อพระบาท",
                 "พระโอษฐ์", "พระมังสา", "น้ำพระเนตร", "พระชนก", "พระเชษฐา",
-                "พระสัสสุระ", "พระสวามี", "แบบ", "พระสุณิสา", "พระเทวัน", "พระชามาดา"};
+                "พระสัสสุระ", "พระสวามี", "ฉลองพระองค์", "พระสุณิสา", "พระเทวัน", "พระชามาดา"};
 
         String[] mean = {"แม่", "รองเท้า", "สร้อย", "มงกุฎ", "กางเกง",
                 "ท้อง", "จมูก", "หู", "ข้อเท้า",
-                "ปาก", "เนื้อ", "ผิวหน้า", "พ่อ", "พี่สาว",
-                "พ่อตา", "สามี", "แบบ", "ลูกสะใภ้", "พี่เขย", "ลูกเขย"};
+                "ปาก", "เนื้อ", "ผิวหน้า", "พ่อ", "พี่ชาย",
+                "พ่อตา", "สามี", "เสื้อ", "ลูกสะใภ้", "พี่เขย", "ลูกเขย"};
 
+        String[] status = {"correct", "correct", "correct", "uncorrect", "correct", "uncorrect", "correct", "correct", "uncorrect", "uncorrect",
+                "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect"};
 
         ContentValues content = new ContentValues();
         for (int i = 0; i < word.length; i++) {
             content.put(ColType, "1");
             content.put(ColWord, word[i]);
             content.put(ColMean, mean[i]);
+            content.put(ColStatus, status[i]);
 
             db.insert(TableName, null, content);
         }

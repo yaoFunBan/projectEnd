@@ -1,6 +1,7 @@
 package com.example.kimhuang.project;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,13 +28,14 @@ public class CustomAdater extends BaseExpandableListAdapter implements Expandabl
     private Context context;
     private List<String> expandableListTitle;
     //    private HashMap<String, List<String>> expandableListDetail;
-    private HashMap<String, String> expandableListDetail;
+    private HashMap<String, List<String>> expandableListDetail;
 
     public CustomAdater(Context context, List<String> expandableListTitle,
-                        HashMap<String, String> expandableListDetail) {
+                        HashMap<String, List<String>> expandableListDetail, String[] status) {
         this.context = context;
         this.expandableListTitle = expandableListTitle;
         this.expandableListDetail = expandableListDetail;
+        this.status = status;
     }
 
     // Item group
@@ -41,6 +43,8 @@ public class CustomAdater extends BaseExpandableListAdapter implements Expandabl
     public int getGroupCount() {
         return expandableListTitle.size();
     }
+
+    int i = 0;
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
@@ -51,7 +55,16 @@ public class CustomAdater extends BaseExpandableListAdapter implements Expandabl
         }
         TextView listTitleTextView = (TextView) convertView
                 .findViewById(R.id.word);
+        ImageView imgCorect = (ImageView) convertView.findViewById(R.id.status);
+
+
         listTitleTextView.setText(listTitle);
+
+        if (status[groupPosition].equals("correct")) {
+            imgCorect.setBackgroundResource(R.drawable.correct);
+        } else {
+            imgCorect.setBackgroundResource(R.drawable.uncorrect);
+        }
         return convertView;
     }
 
@@ -69,15 +82,15 @@ public class CustomAdater extends BaseExpandableListAdapter implements Expandabl
     // Item childen
     @Override
     public int getChildrenCount(int groupPosition) {
-//        return this.expandableListDetail.get(this.expandableListTitle.get(groupPosition)).size();
-        return 1;
+        return this.expandableListDetail.get(this.expandableListTitle.get(groupPosition)).size();
+//        return 1;
     }
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-//        return this.expandableListDetail.get(this.expandableListTitle.get(groupPosition)).get(childPosition);
+        return this.expandableListDetail.get(this.expandableListTitle.get(groupPosition)).get(childPosition);
 //        return this.expandableListDetail
-        return 1;
+//        return 1;
     }
 
     @Override
@@ -97,8 +110,11 @@ public class CustomAdater extends BaseExpandableListAdapter implements Expandabl
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.childrow, null);
         }
+
         TextView listDetailTextView = (TextView) convertView
                 .findViewById(R.id.mean);
+
+
         listDetailTextView.setText(expandedListText);
         return convertView;
     }

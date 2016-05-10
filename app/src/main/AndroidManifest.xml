@@ -32,8 +32,7 @@
         <activity
             android:name=".summary"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
 
         <!--//tab host summary-->
         <activity

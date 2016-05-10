@@ -27,41 +27,43 @@ public class Samnon extends Activity {
     List<String> expandableListTile;
     //    HashMap<String, List<String>> expandableListDetail;
     List<String> Mean;
-    HashMap<String, String> expandableListDetail;
+    HashMap<String, List<String>> expandableListDetail;
 
     SQLiteDatabase mDb;
-    database mHelper;
+    dataidioms mHelper;
     Cursor mCursor;
     String mQuery;
     int i = 0;
-    String Titlt;
-    String Detail;
+    String[] status;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tab);
 
-
-        mHelper = new database(this);
+        mHelper = new dataidioms(this);
         mQuery = "SELECT * FROM " + mHelper.TableName;
         mDb = mHelper.getWritableDatabase();
+        mHelper.onUpgrade(mDb, 1, 1);
         mCursor = mDb.rawQuery(mQuery, null);
         mCursor.moveToFirst();
+        status = new String[20];
 
-        expandableListDetail = new HashMap<String, String>();
+        expandableListDetail = new HashMap<String, List<String>>();
 
         while (!mCursor.isAfterLast()) {
-            Mean = new ArrayList<String>(Arrays.asList(getString(mCursor.getColumnIndex(mHelper.ColMean))));
-//            expandableListDetail.put(mCursor.getString(mCursor.getColumnIndex(mHelper.ColWord)), Mean);
+            Mean = new ArrayList<String>(Arrays.asList(mCursor.getString(mCursor.getColumnIndex(mHelper.CoLMesTrue))));
+            expandableListDetail.put(mCursor.getString(mCursor.getColumnIndex(mHelper.CoLIdiom)), Mean);
+            status[i] = mCursor.getString(mCursor.getColumnIndex(mHelper.CoLStatus));
             mCursor.moveToNext();
+            i++;
         }
 
 
         expandableListView = (ExpandableListView) findViewById(R.id.list_summary);
 //        expandableListDetail = ExpandableListDataPump.getData();
         expandableListTile = new ArrayList<String>(expandableListDetail.keySet());
-        expandableListAdapter = new CustomAdater(getApplicationContext(), expandableListTile, expandableListDetail);
+        expandableListAdapter = new CustomAdater(getApplicationContext(), expandableListTile, expandableListDetail, status);
         expandableListView.setAdapter(expandableListAdapter);
         expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override
@@ -70,11 +72,4 @@ public class Samnon extends Activity {
             }
         });
     }
-
-    public void prepareListData() {
-        expandableListTile = new ArrayList<String>();
-//        expandableListDetail =
-    }
-
-
 }

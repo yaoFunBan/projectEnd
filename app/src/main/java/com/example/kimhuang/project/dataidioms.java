@@ -48,6 +48,9 @@ public class dataidioms extends SQLiteOpenHelper {
                 "พาเด็กจับปูใส่กระด้ง", "ความดีที่อยากให้คนรู้กันทั่ว", "งานที่ทำเสร็จทันเวลา ตามกำหนด", "เมื่อมีโอกาสใครช้าก็ย่อมพลาด",
                 "ผู้ที่มีฐานะเดียวกันแต่งงานกัน"};
 
+        String[] status = {"correct", "correct", "correct", "uncorrect", "correct", "uncorrect", "correct", "correct", "uncorrect", "uncorrect",
+                "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect"};
+
         int[] pPicture = {R.drawable.rabbit, R.drawable.crow, R.drawable.green, R.drawable.snake, R.drawable.needle,
                 R.drawable.men, R.drawable.mountain, R.drawable.tiger, R.drawable.stupid, R.drawable.twofish,
                 R.drawable.crab, R.drawable.chang, R.drawable.pig,R.drawable.ant, R.drawable.rat};
@@ -60,6 +63,7 @@ public class dataidioms extends SQLiteOpenHelper {
             content.put(CoLMesTrue, mestrue[i]);
             content.put(CoLMesFalse, mesfalse[i]);
             content.put(CoLPicture, pPicture[i]);
+            content.put(CoLStatus, status[i]);
 
             db.insert(TableName, null, content);
 

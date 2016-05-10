@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,6 +26,7 @@ public class Samnon extends Activity {
     ExpandableListView expandableListView;
     List<String> expandableListTile;
     //    HashMap<String, List<String>> expandableListDetail;
+    List<String> Mean;
     HashMap<String, String> expandableListDetail;
 
     SQLiteDatabase mDb;
@@ -40,6 +42,7 @@ public class Samnon extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tab);
 
+
         mHelper = new database(this);
         mQuery = "SELECT * FROM " + mHelper.TableName;
         mDb = mHelper.getWritableDatabase();
@@ -49,7 +52,8 @@ public class Samnon extends Activity {
         expandableListDetail = new HashMap<String, String>();
 
         while (!mCursor.isAfterLast()) {
-            expandableListDetail.put(mCursor.getString(mCursor.getColumnIndex(mHelper.ColWord)), getString(mCursor.getColumnIndex(mHelper.ColMean)));
+            Mean = new ArrayList<String>(Arrays.asList(getString(mCursor.getColumnIndex(mHelper.ColMean))));
+//            expandableListDetail.put(mCursor.getString(mCursor.getColumnIndex(mHelper.ColWord)), Mean);
             mCursor.moveToNext();
         }
 

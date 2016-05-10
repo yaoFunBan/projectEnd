@@ -29,7 +29,7 @@ import com.daimajia.androidanimations.library.YoYo;
 import java.util.Random;
 
 public class game1 extends AppCompatActivity implements View.OnClickListener {
-    private TextView wordAns, tvTimer, str1, str2, str3, score;
+    private TextView wordAns, tvTimer, str1, str2, str3, score,final_score;
     Button btn_pause, btnClose;
     ToggleButton swMusic, swEffect;
     CountDownTimer cdt;
@@ -230,7 +230,6 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
                 break;
             case (R.id.ball3):
                 Ansch(c[index]);
-
                 index++;
                 addindex(index);
                 incrementQuestion();
@@ -286,7 +285,7 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
 
     //ลดเวลา countTime
     public void countTime(int t) {
-        cdt = new CountDownTimer(100000, 50) {
+        cdt = new CountDownTimer(t, 1000) {
 
             @Override
             public void onTick(long millisUntilFinished) {
@@ -311,7 +310,10 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
     public void dialogFinish() {
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         dialog.setContentView(R.layout.finishgame);
+        final_score = (TextView)dialog.findViewById(R.id.final_score);
+        final_score.setText(""+twScore);
 
         dialog.show();
     }

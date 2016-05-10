@@ -18,6 +18,14 @@
         <TextView
             android:id="@+id/final_score"
             android:layout_width="wrap_content"
+<<<<<<< HEAD
+            android:layout_height="100dp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:text="Score"
+            android:textSize="80sp" />
+
+=======
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
@@ -25,6 +33,7 @@
             android:textSize="80sp" />
 
 
+>>>>>>> 0e701116eb4ec2cabe1865e08b2664fbdf10ebf0
     </RelativeLayout>
 
     <RelativeLayout

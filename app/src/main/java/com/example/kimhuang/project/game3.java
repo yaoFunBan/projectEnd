@@ -2,10 +2,12 @@ package com.example.kimhuang.project;
 
 import android.annotation.TargetApi;
 import android.app.Dialog;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.Image;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.CountDownTimer;
@@ -33,7 +35,7 @@ import java.util.Random;
 
 public class game3 extends AppCompatActivity {
     private TextView tvTimer, wordQue, ansLeft, ansRight;
-    TextView Score;
+    TextView Score, final_score;
     Button btn_pause, btnClose;
     ToggleButton swMusic, swEffect;
     CountDownTimer cdt;
@@ -42,7 +44,7 @@ public class game3 extends AppCompatActivity {
     //Dialog
     AlertDialog.Builder builder;
     Dialog dialog;
-    Button dialogexit, dialoghome, dialogclose, dialogset;
+    Button  dialoghome, dialogclose, dialogagain;
     RelativeLayout box1, box2;
 
     //position ที่ F
@@ -64,6 +66,8 @@ public class game3 extends AppCompatActivity {
 
     //time
     int twscore = 0;
+    //เสียง
+    MediaPlayer mediaPlayer;
 
 
     @Override
@@ -164,7 +168,7 @@ public class game3 extends AppCompatActivity {
 //                    if (mark.getVisibility() == View.GONE){
 //                        mark.setVisibility(View.VISIBLE);
 //                    }
-                    mark.setBackgroundResource(R.drawable.correct);
+//                    mark.setBackgroundResource(R.drawable.correct);
 //                    new CountDownTimer(1000, 50) {
 //
 //                        @Override
@@ -180,6 +184,8 @@ public class game3 extends AppCompatActivity {
 //                    };
                     twscore += 100;
                     Score.setText("" + twscore);
+                mediaPlayer = MediaPlayer.create(game3.this, R.raw.correct);
+                mediaPlayer.start();
             }
         });
 
@@ -197,7 +203,7 @@ public class game3 extends AppCompatActivity {
 //                if (mark.getVisibility() == View.GONE){
 //                    mark.setVisibility(View.VISIBLE);
 //                }
-                mark.setBackgroundResource(R.drawable.uncorrect);
+//                mark.setBackgroundResource(R.drawable.uncorrect);
 //                new CountDownTimer(1000, 50) {
 //
 //                    @Override
@@ -213,6 +219,8 @@ public class game3 extends AppCompatActivity {
                 cdt.cancel();
                 tempTime -= 5000;
                 countTime(tempTime);
+                mediaPlayer = MediaPlayer.create(game3.this, R.raw.wrong);
+                mediaPlayer.start();
             }
         });
         //button_pause
@@ -224,23 +232,13 @@ public class game3 extends AppCompatActivity {
         btn_pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.setContentView(R.layout.btndialog);
+                dialog.setContentView(R.layout.pausegame);
 
                 //TODO findViewBy
-                dialogexit = (Button) dialog.findViewById(R.id.btn_exit);
+
                 dialoghome = (Button) dialog.findViewById(R.id.btn_home);
-                dialogset = (Button) dialog.findViewById(R.id.btn_setting);
+                dialogagain = (Button) dialog.findViewById(R.id.btn_again);
                 dialogclose = (Button) dialog.findViewById(R.id.btn_close);
-
-                //button_exit
-                dialogexit.setOnClickListener(new View.OnClickListener() {
-
-                    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-                    @Override
-                    public void onClick(View v) {
-                        finishAffinity();
-                    }
-                });
 
                 //button_home
                 dialoghome.setOnClickListener(new View.OnClickListener() {
@@ -251,13 +249,14 @@ public class game3 extends AppCompatActivity {
                     }
                 });
 
-                //button_setting
-                dialogset.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        displayDiaglogSetting();
-                    }
-                });
+                //button_again
+//                dialogagain.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Intent i = new Intent(getApplicationContext(),map3.class);
+//                        startActivity(i);
+//                    }
+//                });
 
                 //button_close
                 dialogclose.setOnClickListener(new View.OnClickListener() {
@@ -344,8 +343,20 @@ public class game3 extends AppCompatActivity {
             @Override
             public void onFinish() {
                 tvTimer.setText("0");
+                dialogfinish();
             }
         };
         cdt.start();
     }
+   public void dialogfinish(){
+       final Dialog dialog = new Dialog(this);
+       dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+       dialog.setContentView(R.layout.finishgame);
+       final_score = (TextView) dialog.findViewById(R.id.final_score);
+       final_score.setText("" + twscore);
+
+       dialog.show();
+
+   }
 }

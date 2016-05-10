@@ -264,7 +264,9 @@
         <activity
             android:name=".minigame3"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+        </activity>
 
         <!--game3-->
         <activity

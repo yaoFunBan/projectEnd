@@ -270,7 +270,7 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
             score.setText("" + twScore);
             mediaPlayer = MediaPlayer.create(this, R.raw.correct);
             mediaPlayer.start();
-        } else {
+        } else{
 //            Toast.makeText(this, "ผิด", Toast.LENGTH_SHORT).show();
             cdt.cancel();
             tempTime -= 5000;

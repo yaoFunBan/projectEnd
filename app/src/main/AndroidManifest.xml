@@ -16,19 +16,15 @@
             android:name=".home"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
         </activity>
 
         <!-- Game2 -->
         <activity
             android:name=".VoActivity"
             android:screenOrientation="landscape"
-<<<<<<< HEAD
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
-=======
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
->>>>>>> 0e701116eb4ec2cabe1865e08b2664fbdf10ebf0
+
 
         <!-- summary -->
         <activity

@@ -29,14 +29,12 @@
 
     <TextView
         android:id="@+id/score"
-        android:layout_width="100dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:text="0"
-        android:textSize="50sp"
-        android:paddingTop="10dp"
+        android:textSize="40sp"
+        android:paddingTop="20dp"
         android:textColor="#ffff"
-
-        android:layout_marginRight="20dp"
         android:layout_toLeftOf="@+id/btn_pause">
 
     </TextView>

@@ -22,12 +22,13 @@
             </intent-filter>
         </activity>
 
+
+
         <!-- Game2 -->
         <activity
             android:name=".VoActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
 
         <!-- summary -->
         <activity
@@ -143,8 +144,7 @@
         <activity
             android:name=".game1"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
 
         <!-- Map2 -->
         <activity

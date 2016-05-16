@@ -16,7 +16,7 @@ public class database extends SQLiteOpenHelper {
     public static final String ColMean = "Mean";
     public static final String ColStatus = "Status";
     //type = 1 คือ คำราชาศัพท์ , 2 คือ คำพ้อง รูป พ้องเสียง , 3 คือ สำนวน
-    public static final String ColType = "Type";
+    public static final String ColSound = "Sound";
     public static final String ColPicture = "pPicture";
 
     public database(Context context) {
@@ -25,11 +25,11 @@ public class database extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " + TableName + " ( " + ColType + " TEXT, " + ColWord + " TEXT, " + ColMean + " TEXT, " + ColStatus + " TEXT);");
+        db.execSQL("CREATE TABLE " + TableName + " ( " + ColWord + " TEXT, " + ColMean + " TEXT, " + ColStatus + " TEXT ," + ColSound + " TEXT );");
 
         String[] word = {"พระชนนี ", "รองพระบาท ", "สังวาล ", "ชฏา", "พระสนับเพลา"
                 , "พระอุทร", "พระนาสิก", "พระกรรณ", "ข้อพระบาท",
-                "พระโอษฐ์", "พระมังสา", "น้ำพระเนตร", "พระชนก", "พระเชษฐา",
+                "พระโอษฐ์", "พระมังสา", "พระเนตร", "พระชนก", "พระเชษฐา",
                 "พระสัสสุระ", "พระสวามี", "ฉลองพระองค์", "พระสุณิสา", "พระเทวัน", "พระชามาดา"};
 
         String[] mean = {"แม่", "รองเท้า", "สร้อย", "มงกุฎ", "กางเกง",
@@ -38,14 +38,19 @@ public class database extends SQLiteOpenHelper {
                 "พ่อตา", "สามี", "เสื้อ", "ลูกสะใภ้", "พี่เขย", "ลูกเขย"};
 
         String[] status = {"correct", "correct", "correct", "uncorrect", "correct", "uncorrect", "correct", "correct", "uncorrect", "uncorrect",
-                "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect"};
+                "correct", "correct", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect"};
+
+        int[] sound = {R.raw.janta, R.raw.janta, R.raw.soi, R.raw.jantawee, R.raw.kangkeng,
+                R.raw.jantawee, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee,
+                R.raw.jantawee, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee,
+                R.raw.jantawee, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee};
 
         ContentValues content = new ContentValues();
         for (int i = 0; i < word.length; i++) {
-            content.put(ColType, "1");
             content.put(ColWord, word[i]);
             content.put(ColMean, mean[i]);
             content.put(ColStatus, status[i]);
+            content.put(ColSound, sound[i]);
 
             db.insert(TableName, null, content);
         }

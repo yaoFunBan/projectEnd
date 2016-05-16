@@ -29,7 +29,7 @@ import com.daimajia.androidanimations.library.YoYo;
 import java.util.Random;
 
 public class game1 extends AppCompatActivity implements View.OnClickListener {
-    private TextView wordAns, tvTimer, str1, str2, str3, score,final_score;
+    private TextView wordAns, tvTimer, str1, str2, str3, score, final_score;
     Button btn_pause, btnClose;
     ToggleButton swMusic, swEffect;
     CountDownTimer cdt;
@@ -44,23 +44,14 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
     //Databas
     SQLiteDatabase gameDb;
     datahomony game1;
-    Cursor mCursor, wCursor;
+    Cursor mCursor;
     static int i = 0;
-
-    //position ที่ random
-    String[] posiLeft = {"20,500,1250", "1250,500,20"};
 
     //time
     int time = 50000, tempTime = 0;
-    String[] randPos;
-    int randPosi;
     RelativeLayout.LayoutParams params, params1, params2, paramsBaseR;
 
     //Ansrandom
-    int a[] = {0, 2, 8, 15, 1, 5, 10, 7, 13, 4, 3, 11, 12, 16, 18, 6, 9, 17, 14, 19};
-    int b[] = {12, 1, 19, 3, 14, 6, 2, 4, 8, 9, 16, 0, 5, 13, 17, 15, 7, 10, 18, 11};
-    int c[] = {18, 5, 2, 17, 4, 9, 6, 3, 0, 12, 10, 1, 13, 15, 14, 19, 16, 7, 11, 8};
-    int index = 0;
     int chAns = 0;
     int t = 100000;
 
@@ -90,29 +81,10 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         game1.onUpgrade(gameDb, 1, 1);
 
 
-        //animation ball
-        YoYo.with(Techniques.Pulse)
-                .duration(5000)
-                .playOn(findViewById(R.id.ball2));
-
-
         //READ DATA (เป็นการอ่านค่าในตาราง database โดยกำหนดให้ mCursor เลื่อนอ่านข้อมูลในแต่ละคอลัมไปเรื่อยๆ)
         mCursor = gameDb.rawQuery("SELECT * FROM " + game1.TableName, null);
-
         mCursor.moveToFirst();
         wordAns.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColHomony)));
-        //Upgrade
-
-
-        //เป็นการอ่านค่าในตาราง database ว่าจะให้อ่านค่าเป็นคอลัมไปเรื่อยๆ
-//        mCursor = gameDb.rawQuery("SELECT * FROM " + game1.TableName, null);
-//        mCursor.moveToFirst();
-
-        countTime(t);
-        //CountDownTimer (โดยจะลดลงครั้งละ 1 วินาที)
-
-        //เรียกใช้ฟังก์ชัน index
-        addindex(index);
 
         //params
         params = new RelativeLayout.LayoutParams(
@@ -130,31 +102,6 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         paramsBaseR = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT);
-
-        //random ตำแหน่งคำ
-        randPosi = getRandomPosition();
-        // ตัดให้อยู่ใน array randPos[0] = 20; randPos[1] = 500; randPos[2] = 1280;
-        //ตัดคำเมื่อเจอเครื่องหมาย (,)
-        randPos = posiLeft[randPosi].split(",");
-
-        // set margin ระยะห่างของกรอบของ ball1 (ตำแหน่ง ซ้าย บน ขวา ล่าง)
-        params.setMargins(100, 500, 0, 50);
-        ball1.setLayoutParams(params);
-        ball1.getLayoutParams().height = 450;
-        ball1.getLayoutParams().width = 450;
-
-        // set magin ball2 (ตำแหน่ง ซ้าย บน ขวา ล่าง)
-        params1.setMargins(1000, 20, 0, 50);
-        ball2.setLayoutParams(params1);
-        ball2.getLayoutParams().height = 450;
-        ball2.getLayoutParams().width = 450;
-
-        // set magin ball2 (ตำแหน่ง ซ้าย บน ขวา ล่าง)
-        params2.setMargins(2100, 300, 0, 50);
-        ball3.setLayoutParams(params2);
-        ball3.getLayoutParams().height = 450;
-        ball3.getLayoutParams().width = 450;
-
 
         //button_pause
         btn_pause = (Button) findViewById(R.id.btn_pause);
@@ -174,7 +121,6 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
 
                 //button_exit
                 dialoghome.setOnClickListener(new View.OnClickListener() {
-
                     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
                     @Override
                     public void onClick(View v) {
@@ -183,7 +129,7 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
                     }
                 });
 
-//                //button_again
+                //button_again
                 dialogagain.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -193,15 +139,11 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
                         ball1.setClickable(false);
                         ball2.setClickable(false);
                         ball3.setClickable(false);
-                        index = 0;
-                        addindex(index);
                         chAns = 0;
-
 
                         new CountDownTimer(1000, 50) {
                             @Override
                             public void onTick(long millisUntilFinished) {
-
                             }
 
                             @Override
@@ -211,7 +153,6 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
                                 ball1.setClickable(true);
                                 ball2.setClickable(true);
                                 ball3.setClickable(true);
-                                countTime(100000);
                             }
                         }.start();
                     }
@@ -233,7 +174,6 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         ball1.setOnClickListener(this);
         ball2.setOnClickListener(this);
         ball3.setOnClickListener(this);
-
     }
 
     //OnClick Ball
@@ -242,42 +182,51 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         int id = v.getId();
         switch (id) {
             case (R.id.ball1):
+<<<<<<< HEAD
+                break;
+            case (R.id.ball2):
+                break;
+            case (R.id.ball3):
+=======
                 if (!mCursor.isLast()) {
-                Ansch(a[index]);
-                index++;
-                //เพิ่มค่าขึ้นมาทีละชุด
-                addindex(index);
-                incrementQuestion();
-                }else{
+                    Ansch(a[index]);
+                    index++;
+                    //เพิ่มค่าขึ้นมาทีละชุด
+                    addindex(index);
+                    incrementQuestion();
+                } else {
                     dialogFinish();
                     cdt.cancel();
                 }
                 break;
             case (R.id.ball2):
                 if (!mCursor.isLast()) {
-                Ansch(b[index]);
-                index++;
-                addindex(index);
-                incrementQuestion();
-                }else{
+                    Ansch(b[index]);
+                    index++;
+                    addindex(index);
+                    incrementQuestion();
+                } else {
                     dialogFinish();
                     cdt.cancel();
                 }
                 break;
             case (R.id.ball3):
                 if (!mCursor.isLast()) {
-                Ansch(c[index]);
-                index++;
-                addindex(index);
-                incrementQuestion();
-                }else{
+                    Ansch(c[index]);
+                    index++;
+                    addindex(index);
+                    incrementQuestion();
+                } else {
                     dialogFinish();
                     cdt.cancel();
                 }
+>>>>>>> ce589fb2060c584b6e07c9d9453c13989f5b9c96
                 break;
         }
     }
 
+<<<<<<< HEAD
+=======
     // random ตำแหน่ง
     Random rand = new Random();
 
@@ -311,7 +260,7 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
             score.setText("" + twScore);
             mediaPlayer = MediaPlayer.create(this, R.raw.correct);
             mediaPlayer.start();
-        } else{
+        } else {
 //            Toast.makeText(this, "ผิด", Toast.LENGTH_SHORT).show();
             cdt.cancel();
             tempTime -= 5000;
@@ -353,8 +302,9 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         dialog.setContentView(R.layout.finishgame);
-        final_score = (TextView)dialog.findViewById(R.id.final_score);
-        final_score.setText(""+twScore);
+        final_score = (TextView) dialog.findViewById(R.id.final_score);
+        final_score.setText("" + twScore);
+
         dialog.show();
         dialogreplay = (Button) dialog.findViewById(R.id.btn_replay);
         dialogsummary = (Button) dialog.findViewById(R.id.btn_summary);
@@ -409,7 +359,7 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         });
 
 
-
     }
 
+>>>>>>> ce589fb2060c584b6e07c9d9453c13989f5b9c96
 }

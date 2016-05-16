@@ -53,7 +53,6 @@ public class scene1_4 extends AppCompatActivity {
 
         //frish1
         firsh1 = (ImageView) findViewById(R.id.firsh1);
-        animPopUp.PlayAnimation(firsh1);
 
         //alga1
         alga1 = (ImageView) findViewById(R.id.alga1);

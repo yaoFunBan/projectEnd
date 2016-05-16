@@ -28,7 +28,7 @@ public class page1_1 extends AppCompatActivity {
     AlertDialog.Builder builder;
     Dialog dialog;
     Button dialogexit, dialoghome, dialogclose;
-    //    chUnlock unlock;
+    unlock unlock;
     soundBG soundBG;
 
     @Override

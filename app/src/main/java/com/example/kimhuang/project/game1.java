@@ -29,7 +29,7 @@ import com.daimajia.androidanimations.library.YoYo;
 import java.util.Random;
 
 public class game1 extends AppCompatActivity implements View.OnClickListener {
-    private TextView wordAns, tvTimer, str1, str2, str3, score,final_score;
+    private TextView wordAns, tvTimer, str1, str2, str3, score, final_score;
     Button btn_pause, btnClose;
     ToggleButton swMusic, swEffect;
     CountDownTimer cdt;
@@ -182,12 +182,184 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         int id = v.getId();
         switch (id) {
             case (R.id.ball1):
+<<<<<<< HEAD
                 break;
             case (R.id.ball2):
                 break;
             case (R.id.ball3):
+=======
+                if (!mCursor.isLast()) {
+                    Ansch(a[index]);
+                    index++;
+                    //เพิ่มค่าขึ้นมาทีละชุด
+                    addindex(index);
+                    incrementQuestion();
+                } else {
+                    dialogFinish();
+                    cdt.cancel();
+                }
+                break;
+            case (R.id.ball2):
+                if (!mCursor.isLast()) {
+                    Ansch(b[index]);
+                    index++;
+                    addindex(index);
+                    incrementQuestion();
+                } else {
+                    dialogFinish();
+                    cdt.cancel();
+                }
+                break;
+            case (R.id.ball3):
+                if (!mCursor.isLast()) {
+                    Ansch(c[index]);
+                    index++;
+                    addindex(index);
+                    incrementQuestion();
+                } else {
+                    dialogFinish();
+                    cdt.cancel();
+                }
+>>>>>>> ce589fb2060c584b6e07c9d9453c13989f5b9c96
                 break;
         }
     }
 
+<<<<<<< HEAD
+=======
+    // random ตำแหน่ง
+    Random rand = new Random();
+
+    public int getRandomPosition() {
+        int r = rand.nextInt(posiLeft.length);
+        return r;
+    }
+
+    public void addindex(int index) {
+
+        mCursor.moveToPosition(a[index]);
+        str1.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColSemantic)));
+        mCursor.moveToPosition(b[index]);
+        str2.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColSemantic)));
+        mCursor.moveToPosition(c[index]);
+        str3.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColSemantic)));
+
+    }
+
+    //wordAns
+    public void incrementQuestion() {
+        mCursor.moveToPosition(chAns);
+        wordAns.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColHomony)));
+    }
+
+    public void Ansch(int index) {
+        if (chAns == index) {
+            //กรณีที่ตอบถูก
+//            Toast.makeText(this, "ok", Toast.LENGTH_SHORT).show();
+            twScore += 100;
+            score.setText("" + twScore);
+            mediaPlayer = MediaPlayer.create(this, R.raw.correct);
+            mediaPlayer.start();
+        } else {
+//            Toast.makeText(this, "ผิด", Toast.LENGTH_SHORT).show();
+            cdt.cancel();
+            tempTime -= 5000;
+            countTime(tempTime);
+            mediaPlayer = MediaPlayer.create(this, R.raw.wrong);
+            mediaPlayer.start();
+        }
+
+        chAns++;
+
+    }
+
+    //ลดเวลา countTime
+    public void countTime(int t) {
+        cdt = new CountDownTimer(t, 1000) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+                tempTime = (int) millisUntilFinished;
+                tvTimer.setText(String.valueOf(tempTime));
+                String strTime = String.format("%.1f"
+                        , (double) millisUntilFinished / 1000);
+                tvTimer.setText(String.valueOf(strTime));
+            }
+
+            @Override
+            public void onFinish() {
+                tvTimer.setText("0");
+                dialogFinish();
+
+            }
+        };
+        cdt.start();
+    }
+
+    public void dialogFinish() {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        dialog.setContentView(R.layout.finishgame);
+        final_score = (TextView) dialog.findViewById(R.id.final_score);
+        final_score.setText("" + twScore);
+
+        dialog.show();
+        dialogreplay = (Button) dialog.findViewById(R.id.btn_replay);
+        dialogsummary = (Button) dialog.findViewById(R.id.btn_summary);
+        dialoghome = (Button) dialog.findViewById(R.id.btn_home);
+
+        //Button replay
+        dialogreplay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCursor.moveToFirst();
+                wordAns.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColHomony)));
+                dialog.cancel();
+                ball1.setClickable(false);
+                ball2.setClickable(false);
+                ball3.setClickable(false);
+                index = 0;
+                addindex(index);
+                chAns = 0;
+
+                new CountDownTimer(1000, 50) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        twScore = 0;
+                        score.setText("" + twScore);
+                        ball1.setClickable(true);
+                        ball2.setClickable(true);
+                        ball3.setClickable(true);
+                        countTime(100000);
+                    }
+                }.start();
+            }
+        });
+        //Button summary
+        final Intent g = new Intent(this, summary.class);
+        dialogsummary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(g);
+            }
+        });
+        dialoghome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), map1.class);
+                startActivity(i);
+            }
+        });
+
+
+    }
+
+>>>>>>> ce589fb2060c584b6e07c9d9453c13989f5b9c96
 }

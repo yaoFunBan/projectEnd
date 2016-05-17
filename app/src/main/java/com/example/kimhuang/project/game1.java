@@ -181,18 +181,9 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View v) {
         int id = v.getId();
         switch (id) {
+
             case (R.id.ball1):
-<<<<<<< HEAD
-                break;
-            case (R.id.ball2):
-                break;
-            case (R.id.ball3):
-=======
                 if (!mCursor.isLast()) {
-                    Ansch(a[index]);
-                    index++;
-                    //เพิ่มค่าขึ้นมาทีละชุด
-                    addindex(index);
                     incrementQuestion();
                 } else {
                     dialogFinish();
@@ -201,9 +192,6 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
                 break;
             case (R.id.ball2):
                 if (!mCursor.isLast()) {
-                    Ansch(b[index]);
-                    index++;
-                    addindex(index);
                     incrementQuestion();
                 } else {
                     dialogFinish();
@@ -212,39 +200,18 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
                 break;
             case (R.id.ball3):
                 if (!mCursor.isLast()) {
-                    Ansch(c[index]);
-                    index++;
-                    addindex(index);
                     incrementQuestion();
                 } else {
                     dialogFinish();
                     cdt.cancel();
                 }
->>>>>>> ce589fb2060c584b6e07c9d9453c13989f5b9c96
                 break;
         }
     }
 
-<<<<<<< HEAD
-=======
     // random ตำแหน่ง
     Random rand = new Random();
 
-    public int getRandomPosition() {
-        int r = rand.nextInt(posiLeft.length);
-        return r;
-    }
-
-    public void addindex(int index) {
-
-        mCursor.moveToPosition(a[index]);
-        str1.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColSemantic)));
-        mCursor.moveToPosition(b[index]);
-        str2.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColSemantic)));
-        mCursor.moveToPosition(c[index]);
-        str3.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColSemantic)));
-
-    }
 
     //wordAns
     public void incrementQuestion() {
@@ -320,8 +287,6 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
                 ball1.setClickable(false);
                 ball2.setClickable(false);
                 ball3.setClickable(false);
-                index = 0;
-                addindex(index);
                 chAns = 0;
 
                 new CountDownTimer(1000, 50) {
@@ -360,6 +325,4 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
 
 
     }
-
->>>>>>> ce589fb2060c584b6e07c9d9453c13989f5b9c96
 }

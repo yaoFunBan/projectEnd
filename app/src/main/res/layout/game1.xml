@@ -76,7 +76,7 @@
             android:layout_marginTop="130dp"
             android:text="วินาที"
             android:textColor="#CC0000"
-            android:textSize="30sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
     </RelativeLayout>

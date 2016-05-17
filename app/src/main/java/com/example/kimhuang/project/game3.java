@@ -89,7 +89,6 @@ public class game3 extends AppCompatActivity {
         game3.onUpgrade(gameDb, 1, 1);
 
         //เป็นการอ่านค่าในตาราง database ว่าจะให้อ่านค่าเป็นคอลัมถ์ไปเรื่อยๆ
-
         wCursor = gameDb.rawQuery("SELECT * FROM " + game3.TableName, null);
         Addarray();
         wCursor.moveToFirst();
@@ -134,8 +133,8 @@ public class game3 extends AppCompatActivity {
         box2.setLayoutParams(params2);
         box2.getLayoutParams().height = 330;
         box2.getLayoutParams().width = 1270;
-
         countTime(100000);
+
         //คลิก กล่องซ้ายมือ
         box1 = (RelativeLayout) findViewById(R.id.boxmess1);
         ansLeft.setOnClickListener(new View.OnClickListener() {
@@ -143,7 +142,6 @@ public class game3 extends AppCompatActivity {
             public void onClick(View v) {
                 //random index ใน array randPosi
                 if (called != 15) {
-                    random.remove(random.get(tempWordRand));
                     randPosi = getRandomPosition();
                     randBox(randPosi);
                     tempWordRand = randomInStorage();
@@ -168,7 +166,6 @@ public class game3 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (called != 15) {
-                    random.remove(random.get(tempWordRand));
                     randPosi = getRandomPosition();
                     randBox(randPosi);
                     tempWordRand = randomInStorage();
@@ -223,7 +220,7 @@ public class game3 extends AppCompatActivity {
                         ansLeft.setText(wCursor.getString(wCursor.getColumnIndex(game3.CoLMesTrue)));
                         ansRight.setText(wCursor.getString(wCursor.getColumnIndex(game3.CoLMesFalse)));
                         Picture.setBackgroundResource(wCursor.getInt(wCursor.getColumnIndex(game3.CoLPicture)));
-                        ansRight.setClickable(false);
+//                        ansRight.setClickable(false);
                         dialog.cancel();
                         new CountDownTimer(1000, 50) {
                             @Override
@@ -236,6 +233,9 @@ public class game3 extends AppCompatActivity {
                                 twscore = 0;
                                 Score.setText("" + twscore);
                                 countTime(100000);
+                                random.clear();
+                                Addarray();
+                                randomInStorage();
                             }
                         }.start();
                     }
@@ -356,7 +356,7 @@ public class game3 extends AppCompatActivity {
                 ansLeft.setText(wCursor.getString(wCursor.getColumnIndex(game3.CoLMesTrue)));
                 ansRight.setText(wCursor.getString(wCursor.getColumnIndex(game3.CoLMesFalse)));
                 Picture.setBackgroundResource(wCursor.getInt(wCursor.getColumnIndex(game3.CoLPicture)));
-                ansRight.setClickable(false);
+//                ansRight.setClickable(false);
                 dialog.cancel();
                 new CountDownTimer(1000, 50) {
                     @Override
@@ -368,6 +368,9 @@ public class game3 extends AppCompatActivity {
                         twscore = 0;
                         Score.setText("" + twscore);
                         countTime(100000);
+                        random.clear();
+                        Addarray();
+                        randomInStorage();
                     }
                 }.start();
             }
@@ -404,8 +407,10 @@ public class game3 extends AppCompatActivity {
 
         n = rand.nextInt(random.size()); //แรนด้อมตั้งแต่ 0 หรือ 14
 //        random.remove(n);
+        int val = random.get(n);
+        random.remove(random.indexOf(val));
         Log.d("Size", "" + random.size());
-        return random.get(n);
+        return val;
 
     }
 }

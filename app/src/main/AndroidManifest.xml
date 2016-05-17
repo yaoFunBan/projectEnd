@@ -153,8 +153,12 @@
             </intent-filter>
 =======
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+<<<<<<< HEAD
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 >>>>>>> bcc871a8f4da4425e3b26d70ac9dd491114f203f
+=======
+
+>>>>>>> 0339072484d625736b0ee0bd8ce84d351783a6a1
         </activity>
 
         <!-- Game1 -->
@@ -285,7 +289,6 @@
             android:name=".minigame3"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
         </activity>
 
         <!--game3-->

@@ -35,7 +35,6 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
     private TextView wordAns, tvTimer, str1, str2, str3, score, final_score;
     Button btn_pause, btnClose;
     ToggleButton swMusic, swEffect;
-    CountDownTimer cdt;
     MediaPlayer mediaPlayer;
 
     //Dialog
@@ -52,6 +51,9 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
     Random random = new Random();
 
     //time
+    int twscore = 0;
+    int time = 5000 , tempTime =0 ;
+    CountDownTimer cdt;
     RelativeLayout.LayoutParams params, params1, params2, paramsBaseR;
 
     //random
@@ -65,6 +67,8 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game1);
+
+        countTime(100000);
 
         Random random = new Random();
         //เก็บค่าจำนวนแถวทั้งหมดใน array
@@ -139,8 +143,60 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         ball1.setOnClickListener(this);
         ball2.setOnClickListener(this);
         ball3.setOnClickListener(this);
-    }
 
+
+        //button_pause
+        btn_pause = (Button) findViewById(R.id.btn_pause);
+        builder = new AlertDialog.Builder(this);
+        dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        btn_pause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cdt.cancel();
+                dialog.setContentView(R.layout.pausegame);
+                //TODO findViewBy
+
+                dialoghome = (Button) dialog.findViewById(R.id.btn_home);
+                dialogsetting = (Button) dialog.findViewById(R.id.btn_setting);
+                dialogclose = (Button) dialog.findViewById(R.id.btn_close);
+
+                //button_home
+                dialoghome.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(getApplicationContext(), map1.class);
+                        startActivity(i);
+                    }
+                });
+
+                //button_setting
+                dialogsetting.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DialogSetting setting = new DialogSetting(game1.this);
+                        setting.show();
+
+                        Window window = setting.getWindow();
+                        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                        window.setGravity(Gravity.CENTER);
+                    }
+                });
+
+                //button_close
+                dialogclose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.cancel();
+                        countTime(tempTime);
+                    }
+                });
+                dialog.show();
+            }
+        });
+
+    }
 
     //OnClick Ball
     @Override
@@ -158,7 +214,7 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
                 setBall();
                 break;
             case (R.id.ball3):
-                cAns = str2.getText().toString();
+                cAns = str3.getText().toString();
                 chCorrect(cAns);
                 setBall();
                 break;
@@ -196,8 +252,6 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
 
     }
 
-
-
     //random คำถาม
     public int randQuestion() {
         int rand = random.nextInt(listRow.size());
@@ -210,9 +264,18 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         mCursor.moveToPosition(teamQuestion1);
         String chWord = mCursor.getString(mCursor.getColumnIndex(game1.ColSemantic));
         if(word.equals(chWord)){
-            Toast.makeText(this, "true" ,Toast.LENGTH_SHORT).show();
+            twscore += 100;
+            score.setText(" " +twscore);
+            mediaPlayer = MediaPlayer.create(game1.this, R.raw.correct);
+            mediaPlayer.start();
+//            Toast.makeText(this, "true" ,Toast.LENGTH_SHORT).show();
         }else {
-            Toast.makeText(this,"false", Toast.LENGTH_SHORT).show();
+            cdt.cancel();
+            tempTime -= 5000;
+            countTime(tempTime);
+            mediaPlayer = MediaPlayer.create(game1.this, R.raw.wrong);
+            mediaPlayer.start();
+//            Toast.makeText(this,"false", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -265,8 +328,11 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
     public void cutWord(int word) {
         int index = listRow.indexOf(word);
         listRow.remove(index);
-
         Log.e("vale ", "is" + listRow);
+
+//        if(teamRow == null ){
+//            listRow.add(i);
+//        }
 
     }
 
@@ -292,6 +358,32 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         Log.e("reWord ", "==========================");
         Log.e("val ", " of tempRow : " + teamRow);
         Log.e("val ", " of listAns : " + listAns);
+    }
+
+    //CountDownTimer (โดยจะลดลงครั้งละ 1 วินาที)
+    public void countTime(int t) {
+        cdt = new CountDownTimer(t, 50) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+                tempTime = (int) millisUntilFinished;
+                tvTimer.setText(String.valueOf(tempTime));
+                String strTime = String.format("%.1f"
+                        , (double) millisUntilFinished / 1000);
+                tvTimer.setText(String.valueOf(strTime));
+            }
+
+            @Override
+            public void onFinish() {
+                tvTimer.setText("0");
+                finishDialog();
+            }
+        };
+        cdt.start();
+    }
+
+    private void finishDialog() {
     }
 
 

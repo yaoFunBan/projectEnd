@@ -210,13 +210,9 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
                 break;
         }
     }
-
-<<<<<<< HEAD
-=======
-    // random ตำแหน่ง
     Random rand = new Random();
 
->>>>>>> 0339072484d625736b0ee0bd8ce84d351783a6a1
+
 
     //wordAns
     public void incrementQuestion() {
@@ -328,8 +324,5 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
 
 
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> 0339072484d625736b0ee0bd8ce84d351783a6a1
 }

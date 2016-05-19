@@ -31,7 +31,7 @@ public class VoActivity extends Activity implements View.OnClickListener {
     ProgressBar pTime;
     ImageView namegame;
     private ImageView imgBase;
-    private Button btnLeft, btnRigth, btnPause, btnPlay, btnexplain, dialogclose, btnClose;
+    private Button btnLeft, btnRigth, btnPause, btnPlay, btnexplain, dialogclose,dialogsetting, btnClose;
     TextView countBefore;
     ToggleButton swMusic, swEffect;
     SQLiteDatabase mDb;
@@ -648,8 +648,8 @@ public class VoActivity extends Activity implements View.OnClickListener {
         ctd.cancel();
 
         Button dialoghome = (Button) dialog.findViewById(R.id.btn_home);
-
-        Button agian = (Button) dialog.findViewById(R.id.btn_again);
+//        Button agian = (Button) dialog.findViewById(R.id.btn_again);
+        Button setting = (Button)dialog.findViewById(R.id.btn_setting);
 
         dialogclose = (Button) dialog.findViewById(R.id.btn_close);
 
@@ -662,6 +662,18 @@ public class VoActivity extends Activity implements View.OnClickListener {
             }
         });
 
+        //button_setting
+        dialogsetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogSetting setting = new DialogSetting(VoActivity.this);
+                setting.show();
+
+                Window window = setting.getWindow();
+                window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                window.setGravity(Gravity.CENTER);
+            }
+        });
 
         //button_close
         dialogclose.setOnClickListener(new View.OnClickListener() {
@@ -672,33 +684,33 @@ public class VoActivity extends Activity implements View.OnClickListener {
                 handler.postDelayed(runnable, 35);
             }
         });
-        agian.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.cancel();
-                dy1 -= 600;
-                dy2 -= 500;
-                dy3 -= 400;
-                countTime(5000);
-
-                params.setMargins(randPosi, dy1, 0, 0);
-                layout1.setLayoutParams(params);
-
-                params2.setMargins(randPosi, dy2, 0, 0);
-                layout2.setLayoutParams(params);
-
-                params3.setMargins(randPosi, dy3, 0, 0);
-                layout3.setLayoutParams(params3);
-
-                score = 0;
-                pass = 0;
-                mCursor.moveToFirst();
-                TvSimple2.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
-                wordAns.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColWord)));
-                count_score.setText("" + score);
-                handler.postDelayed(runnable, 35);
-            }
-        });
+//        agian.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                dialog.cancel();
+//                dy1 -= 600;
+//                dy2 -= 500;
+//                dy3 -= 400;
+//                countTime(5000);
+//
+//                params.setMargins(randPosi, dy1, 0, 0);
+//                layout1.setLayoutParams(params);
+//
+//                params2.setMargins(randPosi, dy2, 0, 0);
+//                layout2.setLayoutParams(params);
+//
+//                params3.setMargins(randPosi, dy3, 0, 0);
+//                layout3.setLayoutParams(params3);
+//
+//                score = 0;
+//                pass = 0;
+//                mCursor.moveToFirst();
+//                TvSimple2.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
+//                wordAns.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColWord)));
+//                count_score.setText("" + score);
+//                handler.postDelayed(runnable, 35);
+//            }
+//        });
         dialog.show();
     }
 

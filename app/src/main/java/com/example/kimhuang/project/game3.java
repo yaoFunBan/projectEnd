@@ -40,7 +40,7 @@ public class game3 extends AppCompatActivity {
     //Dialog
     AlertDialog.Builder builder;
     Dialog dialog;
-    Button dialoghome, dialogclose, dialogagain, dialogreplay, dialogsummary;
+    Button dialoghome, dialogsetting, dialogclose, dialogreplay, dialogsummary;
     RelativeLayout box1, box2;
 
     //position ที่ F
@@ -199,7 +199,7 @@ public class game3 extends AppCompatActivity {
                 //TODO findViewBy
 
                 dialoghome = (Button) dialog.findViewById(R.id.btn_home);
-                dialogagain = (Button) dialog.findViewById(R.id.btn_again);
+                dialogsetting = (Button) dialog.findViewById(R.id.btn_setting);
                 dialogclose = (Button) dialog.findViewById(R.id.btn_close);
 
                 //button_home
@@ -211,33 +211,16 @@ public class game3 extends AppCompatActivity {
                     }
                 });
 
-                //button_again
-                dialogagain.setOnClickListener(new View.OnClickListener() {
+                //button_setting
+                dialogsetting.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        wCursor.moveToFirst();
-                        wordQue.setText(wCursor.getString(wCursor.getColumnIndex(game3.CoLIdiom)));
-                        ansLeft.setText(wCursor.getString(wCursor.getColumnIndex(game3.CoLMesTrue)));
-                        ansRight.setText(wCursor.getString(wCursor.getColumnIndex(game3.CoLMesFalse)));
-                        Picture.setBackgroundResource(wCursor.getInt(wCursor.getColumnIndex(game3.CoLPicture)));
-//                        ansRight.setClickable(false);
-                        dialog.cancel();
-                        new CountDownTimer(1000, 50) {
-                            @Override
-                            public void onTick(long millisUntilFinished) {
+                        DialogSetting setting = new DialogSetting(game3.this);
+                        setting.show();
 
-                            }
-
-                            @Override
-                            public void onFinish() {
-                                twscore = 0;
-                                Score.setText("" + twscore);
-                                countTime(100000);
-                                random.clear();
-                                Addarray();
-                                randomInStorage();
-                            }
-                        }.start();
+                        Window window = setting.getWindow();
+                        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                        window.setGravity(Gravity.CENTER);
                     }
                 });
 

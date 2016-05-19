@@ -14,30 +14,16 @@
         <!-- Home -->
         <activity
             android:name=".home"
-<<<<<<< HEAD
-            android:screenOrientation="landscape">
-=======
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
->>>>>>> bcc871a8f4da4425e3b26d70ac9dd491114f203f
         </activity>
-
 
         <!-- Game2 -->
         <activity
             android:name=".VoActivity"
             android:screenOrientation="landscape"
-<<<<<<< HEAD
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
-=======
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-
->>>>>>> bcc871a8f4da4425e3b26d70ac9dd491114f203f
 
         <!-- summary -->
         <activity
@@ -145,20 +131,11 @@
         <activity
             android:name=".minigame1"
             android:screenOrientation="landscape"
-<<<<<<< HEAD
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-=======
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-<<<<<<< HEAD
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
->>>>>>> bcc871a8f4da4425e3b26d70ac9dd491114f203f
-=======
-
->>>>>>> 0339072484d625736b0ee0bd8ce84d351783a6a1
         </activity>
 
         <!-- Game1 -->

@@ -220,6 +220,11 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
                 break;
         }
     }
+<<<<<<< HEAD
+    Random rand = new Random();
+
+
+=======
 
     public void setBall(){
         //เซตให้ค่าของลูกบอลเป็น false คือไม่มีค่าอยู่
@@ -249,6 +254,7 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         mCursor.moveToPosition(teamQuestion3);
         textInAns();
         keepWord(teamQuestion3);
+>>>>>>> d1e1a5a703e50881b08f61fda5b0eb98565c2e56
 
     }
 
@@ -360,6 +366,7 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         Log.e("val ", " of listAns : " + listAns);
     }
 
+<<<<<<< HEAD
     //CountDownTimer (โดยจะลดลงครั้งละ 1 วินาที)
     public void countTime(int t) {
         cdt = new CountDownTimer(t, 50) {
@@ -386,6 +393,11 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
     private void finishDialog() {
     }
 
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> c64a1ab9a313d83c2db08d3524f69af4a212abc9
 
+>>>>>>> d1e1a5a703e50881b08f61fda5b0eb98565c2e56
 }
 

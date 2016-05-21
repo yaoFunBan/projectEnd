@@ -34,8 +34,8 @@ public class datahomony extends SQLiteOpenHelper {
         String[] semantic = {"พระอาทิตย์", "ปลา", "ลูกชาย", "ลูกสาว", "ดอกไม้", "ยักษ์", "ภูเขา", "กษัตริย์", "ช้าง", "น้ำ",
                 "แผ่นดิน", "พระอินทร์", "ม้า", "พระจันทร์", "ป่า", "เด็ก", "เมือง", "ผู้หญิง", "สวรรค์", "ดอกบัว",};
 
-        String[] status = {"correct", "correct", "correct", "uncorrect", "correct", "uncorrect", "correct", "correct", "correct", "uncorrect",
-                "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "correct"};
+        String[] status = {"uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect",
+                "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect"};
 
         int[] sound = {R.raw.janta, R.raw.firsh, R.raw.yotsuwimon, R.raw.jantawee, R.raw.jantawee,
                 R.raw.yuk, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee,

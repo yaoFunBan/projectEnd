@@ -2,6 +2,7 @@ package com.example.kimhuang.project;
 
 import android.annotation.TargetApi;
 import android.app.Dialog;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -52,7 +53,7 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
 
     //time
     int twscore = 0;
-    int time = 5000 , tempTime =0 ;
+    int time = 5000, tempTime = 0;
     CountDownTimer cdt;
     RelativeLayout.LayoutParams params, params1, params2, paramsBaseR;
 
@@ -92,7 +93,7 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         //decaler database
         game1 = new datahomony(this);
         gameDb = game1.getWritableDatabase();
-        game1.onUpgrade(gameDb, 1, 1);
+//        game1.onUpgrade(gameDb, 1, 1);
 
         //READ DATA (เป็นการอ่านค่าในตาราง database โดยกำหนดให้ mCursor เลื่อนอ่านข้อมูลในแต่ละคอลัมไปเรื่อยๆ)
         mCursor = gameDb.rawQuery("SELECT * FROM " + game1.TableName, null);
@@ -220,13 +221,11 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
                 break;
         }
     }
-<<<<<<< HEAD
+
     Random rand = new Random();
 
 
-=======
-
-    public void setBall(){
+    public void setBall() {
         //เซตให้ค่าของลูกบอลเป็น false คือไม่มีค่าอยู่
         resetChAns();
         //reword
@@ -254,8 +253,6 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         mCursor.moveToPosition(teamQuestion3);
         textInAns();
         keepWord(teamQuestion3);
->>>>>>> d1e1a5a703e50881b08f61fda5b0eb98565c2e56
-
     }
 
     //random คำถาม
@@ -266,16 +263,28 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
     }
 
     //fucntion check Answer
-    public void chCorrect(String word){
+    public void chCorrect(String word) {
         mCursor.moveToPosition(teamQuestion1);
         String chWord = mCursor.getString(mCursor.getColumnIndex(game1.ColSemantic));
-        if(word.equals(chWord)){
+        if (word.equals(chWord)) {
             twscore += 100;
-            score.setText(" " +twscore);
+            score.setText(" " + twscore);
             mediaPlayer = MediaPlayer.create(game1.this, R.raw.correct);
             mediaPlayer.start();
+
+            long row = UpdateData(word, "correct");
+            if (row > 0) {
+//                Toast.makeText(game1.this, "Update Data Successfully",
+//                        Toast.LENGTH_LONG).show();
+
+                Log.e("Log ", "Update Data Successfully");
+            } else {
+//                Toast.makeText(game1.this, "Update Data Failed.",
+//                        Toast.LENGTH_LONG).show();
+                Log.e("Log ", "Update Data Failed");
+            }
 //            Toast.makeText(this, "true" ,Toast.LENGTH_SHORT).show();
-        }else {
+        } else {
             cdt.cancel();
             tempTime -= 5000;
             countTime(tempTime);
@@ -315,8 +324,8 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
     }
 
     //เซตค่า chAns ให้กลับเป็น false ทั้งหมด
-    public  void  resetChAns(){
-        for (int i = 0 ; i< chAns.length; i++){
+    public void resetChAns() {
+        for (int i = 0; i < chAns.length; i++) {
             chAns[i] = false;
         }
     }
@@ -366,7 +375,6 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         Log.e("val ", " of listAns : " + listAns);
     }
 
-<<<<<<< HEAD
     //CountDownTimer (โดยจะลดลงครั้งละ 1 วินาที)
     public void countTime(int t) {
         cdt = new CountDownTimer(t, 50) {
@@ -393,11 +401,19 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
     private void finishDialog() {
     }
 
-=======
-<<<<<<< HEAD
-=======
->>>>>>> c64a1ab9a313d83c2db08d3524f69af4a212abc9
+    public long UpdateData(String word, String status) {
+        try {
+            String where = game1.ColSemantic + " = '" + word + "' ";
+            ContentValues cv = new ContentValues();
+            cv.put("Status", status);
 
->>>>>>> d1e1a5a703e50881b08f61fda5b0eb98565c2e56
+            long row = gameDb.update(game1.TableName, cv, where, null);
+
+//            game1.close();
+            return row;
+        } catch (Exception e) {
+            return -1;
+        }
+    }
 }
 

@@ -20,6 +20,8 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.ToggleButton;
 
+import java.io.IOException;
+
 public class scene1_3 extends AppCompatActivity {
     ImageView house1, sungthong3, chicken1, grass1, grass2, trees1, box1_3;
     Button btn_back, btn_next, btn_close, btn_pause, btnClose;
@@ -41,6 +43,8 @@ public class scene1_3 extends AppCompatActivity {
     MediaPlayer mediaPlayer;
     soundBG soundBG;
 
+    unlock unlock;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +52,7 @@ public class scene1_3 extends AppCompatActivity {
 
         //animPopUp
         animPopUp = new AnimPopUp();
+        unlock = new unlock();
 
 
         soundBG = new soundBG(getApplicationContext());
@@ -280,6 +285,13 @@ public class scene1_3 extends AppCompatActivity {
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                unlock.setUnlock(3, true);
+                try {
+                    unlock.writeFile(scene1_3.this);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 startActivity(i);
             }
         });

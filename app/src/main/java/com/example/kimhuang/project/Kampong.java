@@ -45,9 +45,10 @@ public class Kampong extends Activity {
         mHelper = new datahomony(this);
         mQuery = "SELECT * FROM " + mHelper.TableName;
         mDb = mHelper.getWritableDatabase();
-        mHelper.onUpgrade(mDb, 1, 1);
+//        mHelper.onUpgrade(mDb, 1, 1);
         mCursor = mDb.rawQuery(mQuery, null);
         mCursor.moveToFirst();
+        mCursor.getString(0);
 
 
         expandableListDetail = new HashMap<String, List<String>>();

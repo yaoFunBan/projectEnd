@@ -1,7 +1,9 @@
 package com.example.kimhuang.project;
 
 import android.content.Context;
+import android.os.Environment;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -27,9 +29,24 @@ public class unlock {
     public void readFile(Context ctx) {
         String line = null;
         i = 0;
+//        try {
+//            final InputStream file = ctx.getAssets().open(FileName);
+//            reader = new BufferedReader(new InputStreamReader(file));
+//            line = reader.readLine();
+//            while (line != null) {
+//                line = reader.readLine();
+//                lock[i] = Boolean.parseBoolean(line);
+//                Log.d("StackOverflow", "lock : " + i + lock[i]);
+//                i++;
+//            }
+//
+//            file.close();
+//        } catch (IOException ioe) {
+//            ioe.printStackTrace();
+//        }
         try {
-            final InputStream file = ctx.getAssets().open(FileName);
-            reader = new BufferedReader(new InputStreamReader(file));
+            FileInputStream fIn = ctx.openFileInput(FileName);
+            reader = new BufferedReader(new InputStreamReader(fIn));
             line = reader.readLine();
             while (line != null) {
                 line = reader.readLine();
@@ -37,23 +54,21 @@ public class unlock {
                 Log.d("StackOverflow", "lock : " + i + lock[i]);
                 i++;
             }
-
-            file.close();
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
+            fIn.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    public static void writeFile(Context ctx) throws IOException {
+    public void writeFile(Context ctx) throws IOException {
         try {
-            FileOutputStream oFile = ctx.openFileOutput(FileName, Context.MODE_APPEND);
-            OutputStreamWriter writer = new OutputStreamWriter(oFile);
-            writer.write("test");
+            FileOutputStream fout = ctx.openFileOutput(FileName, Context.MODE_PRIVATE);
+            OutputStreamWriter writer = new OutputStreamWriter(fout);
             for (i = 0; i < lock.length; i++) {
                 writer.write(String.valueOf(lock[i]));
-                Log.d("Log" + i, "value = " + lock[i]);
+                writer.write("\r\n");
+//                Log.d("Log" + i, "value = " + lock[i]);
             }
-
 
             writer.flush();
             writer.close();
@@ -98,4 +113,19 @@ public class unlock {
         }
         return unlock;
     }
+
+
+    public void setTure() {
+        for (int i = 0; i < lock.length; i++) {
+            lock[i] = true;
+        }
+    }
+
+    public void setFalse() {
+        for (int i = 0; i < lock.length; i++) {
+            lock[i] = false;
+        }
+    }
+
+
 }

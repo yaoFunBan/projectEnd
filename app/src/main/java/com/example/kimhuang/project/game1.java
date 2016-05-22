@@ -97,6 +97,7 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
 
         //READ DATA (เป็นการอ่านค่าในตาราง database โดยกำหนดให้ mCursor เลื่อนอ่านข้อมูลในแต่ละคอลัมไปเรื่อยๆ)
         mCursor = gameDb.rawQuery("SELECT * FROM " + game1.TableName, null);
+//        mCursor.moveToFirst();
         addToList();
 
         //round1

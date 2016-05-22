@@ -18,6 +18,8 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.ToggleButton;
 
+import java.io.IOException;
+
 /**
  * Created by วัชรัตน์ on 15/2/2559.
  */
@@ -36,6 +38,7 @@ public class scene4_2 extends Activity implements View.OnClickListener {
     boolean flagJantra;
     AnimPopUp animPopUp;
     soundBG soundBG;
+    unlock unlock;
 
 
     @Override
@@ -48,6 +51,7 @@ public class scene4_2 extends Activity implements View.OnClickListener {
         soundBG = new soundBG(getApplicationContext());
         soundBG.creatSound();
 
+        unlock = new unlock();
         box4_2 = (ImageView) findViewById(R.id.box4_2);
         word41 = (ImageView) findViewById(R.id.word41);
         jantawee = (ImageView) findViewById(R.id.jantawee);
@@ -121,6 +125,12 @@ public class scene4_2 extends Activity implements View.OnClickListener {
         switch (id) {
             case R.id.btn_next:
                 intent = new Intent(getApplicationContext(), page4_3.class);
+                unlock.setUnlock(14, true);
+                try {
+                    unlock.writeFile(scene4_2.this);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 startActivity(intent);
                 break;
             case R.id.btn_back:

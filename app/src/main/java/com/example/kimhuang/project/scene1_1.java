@@ -2,6 +2,7 @@ package com.example.kimhuang.project;
 
 import android.annotation.TargetApi;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
@@ -20,8 +21,13 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.ToggleButton;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+
 public class scene1_1 extends AppCompatActivity {
     //ImageView
+    private static final String FileName = "unlock.txt";
     ImageView jantawee1, janta1, yotsawimon1, chair, box1_1;
     ImageView word1, word2, word3;
     ToggleButton swMusic, swEffect;
@@ -238,8 +244,13 @@ public class scene1_1 extends AppCompatActivity {
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                unlock.setUnlock(1, true);
+                try {
+                    unlock.writeFile(scene1_1.this);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 startActivity(i);
-//                unlock.setUnlock(1, true);
             }
         });
 
@@ -310,5 +321,7 @@ public class scene1_1 extends AppCompatActivity {
         super.onDestroy();
         soundBG.stopBG();
     }
+
+
 }
 

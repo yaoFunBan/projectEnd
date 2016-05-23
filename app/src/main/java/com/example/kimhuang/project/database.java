@@ -37,8 +37,8 @@ public class database extends SQLiteOpenHelper {
                 "ปาก", "เนื้อ", "ผิวหน้า", "พ่อ", "พี่ชาย",
                 "พ่อตา", "สามี", "เสื้อ", "ลูกสะใภ้", "พี่เขย", "ลูกเขย"};
 
-        String[] status = {"correct", "correct", "correct", "uncorrect", "correct", "uncorrect", "correct", "correct", "uncorrect", "uncorrect",
-                "correct", "correct", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect"};
+        String[] status = {"uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect",
+                "uncorrect", "uncorrects", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect"};
 
         int[] sound = {R.raw.janta, R.raw.janta, R.raw.soi, R.raw.jantawee, R.raw.kangkeng,
                 R.raw.jantawee, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee,

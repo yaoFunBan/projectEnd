@@ -44,7 +44,7 @@ public class Samnon extends Activity {
         mHelper = new dataidioms(this);
         mQuery = "SELECT * FROM " + mHelper.TableName;
         mDb = mHelper.getWritableDatabase();
-        mHelper.onUpgrade(mDb, 1, 1);
+//        mHelper.onUpgrade(mDb, 1, 1);
         mCursor = mDb.rawQuery(mQuery, null);
         mCursor.moveToFirst();
         status = new String[20];
@@ -52,9 +52,9 @@ public class Samnon extends Activity {
         expandableListDetail = new HashMap<String, List<String>>();
 
         while (!mCursor.isAfterLast()) {
-            Mean = new ArrayList<String>(Arrays.asList(mCursor.getString(mCursor.getColumnIndex(mHelper.CoLMesTrue))));
-            expandableListDetail.put(mCursor.getString(mCursor.getColumnIndex(mHelper.CoLIdiom)), Mean);
-            status[i] = mCursor.getString(mCursor.getColumnIndex(mHelper.CoLStatus));
+            Mean = new ArrayList<String>(Arrays.asList(mCursor.getString(0)));
+            expandableListDetail.put(mCursor.getString(1), Mean);
+            status[i] = mCursor.getString(4);
             mCursor.moveToNext();
             i++;
         }

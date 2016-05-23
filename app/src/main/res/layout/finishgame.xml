@@ -30,7 +30,7 @@
             android:layout_height="100dp"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:text="Score"
+            android:text="คะแนน"
             android:textSize="80sp" />
 
     </RelativeLayout>

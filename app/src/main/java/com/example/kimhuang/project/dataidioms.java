@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class dataidioms extends SQLiteOpenHelper {
     private static final String Dbname = "DBFairy";
     private static final int DB_version = 1;
-    public static final String TableName = "vocabulary";
+    public static final String TableName = "vocIdioms";
     public static final String CoLIdiom = "idiom";
     public static final String CoLMesTrue = "mestrue";
     public static final String CoLMesFalse = "mesfalse";
@@ -48,7 +48,7 @@ public class dataidioms extends SQLiteOpenHelper {
                 "พาเด็กจับปูใส่กระด้ง", "ความดีที่อยากให้คนรู้กันทั่ว", "งานที่ทำเสร็จทันเวลา ตามกำหนด", "เมื่อมีโอกาสใครช้าก็ย่อมพลาด",
                 "ผู้ที่มีฐานะเดียวกันแต่งงานกัน"};
 
-        String[] status = {"correct", "correct", "correct", "uncorrect", "correct", "uncorrect", "correct", "correct", "uncorrect", "uncorrect",
+        String[] status = {"uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect",
                 "uncorrect", "uncorrect", "correct", "uncorrect", "correct", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect"};
 
         int[] pPicture = {R.drawable.rabbit, R.drawable.crow, R.drawable.green, R.drawable.snake, R.drawable.needle,

@@ -93,19 +93,20 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         //decaler database
         game1 = new datahomony(this);
         gameDb = game1.getWritableDatabase();
-//        game1.onUpgrade(gameDb, 1, 1);
+        game1.onUpgrade(gameDb, 1, 1);
 
         //READ DATA (เป็นการอ่านค่าในตาราง database โดยกำหนดให้ mCursor เลื่อนอ่านข้อมูลในแต่ละคอลัมไปเรื่อยๆ)
         mCursor = gameDb.rawQuery("SELECT * FROM " + game1.TableName, null);
-//        mCursor.moveToFirst();
         addToList();
+
+//        mCursor.moveToFirst();
 
         //round1
         teamQuestion1 = randQuestion();
         //เมื่อทำการเรียกใช้คำก็จะทำการลบคำนั้นทิ้งไป
         cutWord(teamQuestion1);
         mCursor.moveToPosition(teamQuestion1);
-        wordAns.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColHomony)));
+        wordAns.setText(mCursor.getString(0));
         randAddBall();
 
         keepWord(teamQuestion1);
@@ -266,7 +267,7 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
     //fucntion check Answer
     public void chCorrect(String word) {
         mCursor.moveToPosition(teamQuestion1);
-        String chWord = mCursor.getString(mCursor.getColumnIndex(game1.ColSemantic));
+        String chWord = mCursor.getString(1);
         if (word.equals(chWord)) {
             twscore += 100;
             score.setText(" " + twscore);
@@ -298,13 +299,13 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
     public void randAddBall() {
         int randBall = random.nextInt(3);
         if (randBall == 0) {
-            str1.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColSemantic)));
+            str1.setText(mCursor.getString(1));
             chAns[0] = true;
         } else if (randBall == 1) {
-            str2.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColSemantic)));
+            str2.setText(mCursor.getString(1));
             chAns[1] = true;
         } else if (randBall == 2) {
-            str3.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColSemantic)));
+            str3.setText(mCursor.getString(1));
             chAns[2] = true;
         }
     }
@@ -313,13 +314,13 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
     //random ball of Ans
     public void textInAns() {
         if (chAns[0] == false) {
-            str1.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColSemantic)));
+            str1.setText(mCursor.getString(1));
             chAns[0] = true;
         } else if (chAns[1] == false) {
-            str2.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColSemantic)));
+            str2.setText(mCursor.getString(1));
             chAns[1] = true;
         } else if (chAns[2] == false) {
-            str3.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColSemantic)));
+            str3.setText(mCursor.getString(1));
             chAns[2] = true;
         }
     }

@@ -12,7 +12,7 @@ import android.util.Log;
 public class datahomony extends SQLiteOpenHelper {
     private static final String DbName = "DBFairy";
     private static final int DB_version = 1;
-    public static final String TableName = "vocabulary";
+    public static final String TableName = "voHomony";
     public static final String ColHomony = "homony";
     public static final String ColSemantic = "semantic";
     public static final String ColStatus = "Status";

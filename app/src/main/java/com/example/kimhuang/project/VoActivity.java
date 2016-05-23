@@ -93,11 +93,11 @@ public class VoActivity extends Activity implements View.OnClickListener {
         //decaler database
         mHelper = new database(this);
         mDb = mHelper.getWritableDatabase();
-        mHelper.onUpgrade(mDb, 1, 1);
+//        mHelper.onUpgrade(mDb, 1, 1);
 
         //query word collect
         mCursor = mDb.rawQuery("SELECT * FROM " + mHelper.TableName, null);
-        mCursor.moveToFirst();
+//        mCursor.moveToFirst();
 
         btnRigth.setOnClickListener(this);
         btnLeft.setOnClickListener(this);
@@ -150,7 +150,7 @@ public class VoActivity extends Activity implements View.OnClickListener {
             public void run() {
 
                 try {
-//                    dy1 += speed1;
+                    dy1 += speed1;
                     dy2 += speed2;
                     dy3 += speed3;
 
@@ -242,8 +242,8 @@ public class VoActivity extends Activity implements View.OnClickListener {
                         temp2 = randWordAns();
                         mCursor.moveToPosition(temp2);
 
-                        wordAns.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColWord)));
-                        TvSimple2.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
+                        wordAns.setText(mCursor.getString(0));
+                        TvSimple2.setText(mCursor.getString(1));
                         pullQus(temp2);
 
                         speed2 = randSpeed();
@@ -292,7 +292,7 @@ public class VoActivity extends Activity implements View.OnClickListener {
 
                         temp3 = randWordInCorrect();
                         mCursor.moveToPosition(temp3);
-                        TvSimple3.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
+                        TvSimple3.setText(mCursor.getString(1));
                         pullQus(temp3);
                         speed3 = randSpeed();
                         dy3 = -300;
@@ -383,9 +383,9 @@ public class VoActivity extends Activity implements View.OnClickListener {
         temp2 = randWordAns();
         mCursor.moveToPosition(temp2);
         pullQus(temp2);
-        wordAns.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColWord)));
+        wordAns.setText(mCursor.getString(0));
         //query ,set textvie and random row in table
-        TvSimple2.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
+        TvSimple2.setText(mCursor.getString(1));
 
 
 //        countTime(100000);
@@ -399,7 +399,7 @@ public class VoActivity extends Activity implements View.OnClickListener {
         temp3 = randWordInCorrect();
         mCursor.moveToPosition(temp3);
         pullQus(temp3);
-        TvSimple3.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
+        TvSimple3.setText(mCursor.getString(1));
 
 
         params2 = new RelativeLayout.LayoutParams(
@@ -497,8 +497,8 @@ public class VoActivity extends Activity implements View.OnClickListener {
 //        mCursor.moveToPosition(numAns.get(temp2));
         mCursor.moveToPosition(pass);
         pullQus(pass);
-        wordAns.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColWord)));
-        TvSimple2.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
+        wordAns.setText(mCursor.getString(0));
+        TvSimple2.setText(mCursor.getString(1));
 
 
 //        numAns.remove(numAns.indexOf(temp2));
@@ -608,8 +608,8 @@ public class VoActivity extends Activity implements View.OnClickListener {
                 score = 0;
                 pass = 0;
                 mCursor.moveToFirst();
-                TvSimple2.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
-                wordAns.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColWord)));
+                TvSimple2.setText(mCursor.getString(0));
+                wordAns.setText(mCursor.getString(1));
                 count_score.setText("" + score);
                 handler.postDelayed(runnable, 35);
 

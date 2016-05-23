@@ -164,11 +164,10 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
                 break;
         }
     }
-<<<<<<< HEAD
+
     Random rand = new Random();
 
 
-=======
 
     public void setBall(){
         //เซตให้ค่าของลูกบอลเป็น false คือไม่มีค่าอยู่
@@ -198,7 +197,6 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         mCursor.moveToPosition(teamQuestion3);
         textInAns();
         keepWord(teamQuestion3);
->>>>>>> d1e1a5a703e50881b08f61fda5b0eb98565c2e56
 
     }
 
@@ -300,9 +298,5 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         Log.e("val ", " of listAns : " + listAns);
     }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> d1e1a5a703e50881b08f61fda5b0eb98565c2e56
 }
 

@@ -21,11 +21,13 @@ import android.widget.Switch;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import java.io.IOException;
+
 public class scene1_4 extends AppCompatActivity {
     ImageView sungthong4, firsh1, firsh2, firsh3, box1_4, alga1, alga2;
     ImageView word6, word7;
     ToggleButton swMusic, swEffect;
-    Button btn_back, btn_next, btn_pause,btnClose;
+    Button btn_back, btn_next, btn_pause, btnClose;
     //boolean
     boolean firsh = false;
     boolean sungthong = false;
@@ -38,6 +40,7 @@ public class scene1_4 extends AppCompatActivity {
     AnimPopUp animPopUp;
     MediaPlayer mediaF, mediaS;
     int count = 0;
+    unlock unlock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,7 @@ public class scene1_4 extends AppCompatActivity {
 
         //animPopUp
         animPopUp = new AnimPopUp();
+        unlock = new unlock();
 
         //box1_4
         box1_4 = (ImageView) findViewById(R.id.box1_4);
@@ -214,6 +218,12 @@ public class scene1_4 extends AppCompatActivity {
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                unlock.setUnlock(4, true);
+                try {
+                    unlock.writeFile(scene1_4.this);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 startActivity(i);
             }
         });
@@ -281,6 +291,7 @@ public class scene1_4 extends AppCompatActivity {
         word6.setVisibility(View.INVISIBLE);
         word7.setVisibility(View.INVISIBLE);
     }
+
     //DiaglogSetting
     public void displayDiaglogSetting() {
         final Dialog dsetting = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);

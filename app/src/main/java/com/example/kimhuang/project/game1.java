@@ -2,6 +2,7 @@ package com.example.kimhuang.project;
 
 import android.annotation.TargetApi;
 import android.app.Dialog;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -35,7 +36,6 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
     private TextView wordAns, tvTimer, str1, str2, str3, score, final_score;
     Button btn_pause, btnClose;
     ToggleButton swMusic, swEffect;
-    CountDownTimer cdt;
     MediaPlayer mediaPlayer;
 
     //Dialog
@@ -52,6 +52,9 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
     Random random = new Random();
 
     //time
+    int twscore = 0;
+    int time = 5000, tempTime = 0;
+    CountDownTimer cdt;
     RelativeLayout.LayoutParams params, params1, params2, paramsBaseR;
 
     //random
@@ -65,6 +68,8 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game1);
+
+        countTime(100000);
 
         Random random = new Random();
         //เก็บค่าจำนวนแถวทั้งหมดใน array
@@ -94,12 +99,14 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         mCursor = gameDb.rawQuery("SELECT * FROM " + game1.TableName, null);
         addToList();
 
+//        mCursor.moveToFirst();
+
         //round1
         teamQuestion1 = randQuestion();
         //เมื่อทำการเรียกใช้คำก็จะทำการลบคำนั้นทิ้งไป
         cutWord(teamQuestion1);
         mCursor.moveToPosition(teamQuestion1);
-        wordAns.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColHomony)));
+        wordAns.setText(mCursor.getString(0));
         randAddBall();
 
         keepWord(teamQuestion1);
@@ -139,8 +146,60 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         ball1.setOnClickListener(this);
         ball2.setOnClickListener(this);
         ball3.setOnClickListener(this);
-    }
 
+
+        //button_pause
+        btn_pause = (Button) findViewById(R.id.btn_pause);
+        builder = new AlertDialog.Builder(this);
+        dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        btn_pause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cdt.cancel();
+                dialog.setContentView(R.layout.pausegame);
+                //TODO findViewBy
+
+                dialoghome = (Button) dialog.findViewById(R.id.btn_home);
+                dialogsetting = (Button) dialog.findViewById(R.id.btn_setting);
+                dialogclose = (Button) dialog.findViewById(R.id.btn_close);
+
+                //button_home
+                dialoghome.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(getApplicationContext(), map1.class);
+                        startActivity(i);
+                    }
+                });
+
+                //button_setting
+                dialogsetting.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DialogSetting setting = new DialogSetting(game1.this);
+                        setting.show();
+
+                        Window window = setting.getWindow();
+                        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                        window.setGravity(Gravity.CENTER);
+                    }
+                });
+
+                //button_close
+                dialogclose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.cancel();
+                        countTime(tempTime);
+                    }
+                });
+                dialog.show();
+            }
+        });
+
+    }
 
     //OnClick Ball
     @Override
@@ -158,7 +217,7 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
                 setBall();
                 break;
             case (R.id.ball3):
-                cAns = str2.getText().toString();
+                cAns = str3.getText().toString();
                 chCorrect(cAns);
                 setBall();
                 break;
@@ -168,8 +227,7 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
     Random rand = new Random();
 
 
-
-    public void setBall(){
+    public void setBall() {
         //เซตให้ค่าของลูกบอลเป็น false คือไม่มีค่าอยู่
         resetChAns();
         //reword
@@ -197,10 +255,7 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         mCursor.moveToPosition(teamQuestion3);
         textInAns();
         keepWord(teamQuestion3);
-
     }
-
-
 
     //random คำถาม
     public int randQuestion() {
@@ -210,26 +265,47 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
     }
 
     //fucntion check Answer
-    public void chCorrect(String word){
+    public void chCorrect(String word) {
         mCursor.moveToPosition(teamQuestion1);
-        String chWord = mCursor.getString(mCursor.getColumnIndex(game1.ColSemantic));
-        if(word.equals(chWord)){
-            Toast.makeText(this, "true" ,Toast.LENGTH_SHORT).show();
-        }else {
-            Toast.makeText(this,"false", Toast.LENGTH_SHORT).show();
+        String chWord = mCursor.getString(1);
+        if (word.equals(chWord)) {
+            twscore += 100;
+            score.setText(" " + twscore);
+            mediaPlayer = MediaPlayer.create(game1.this, R.raw.correct);
+            mediaPlayer.start();
+
+            long row = UpdateData(word, "correct");
+            if (row > 0) {
+//                Toast.makeText(game1.this, "Update Data Successfully",
+//                        Toast.LENGTH_LONG).show();
+
+                Log.e("Log ", "Update Data Successfully");
+            } else {
+//                Toast.makeText(game1.this, "Update Data Failed.",
+//                        Toast.LENGTH_LONG).show();
+                Log.e("Log ", "Update Data Failed");
+            }
+//            Toast.makeText(this, "true" ,Toast.LENGTH_SHORT).show();
+        } else {
+            cdt.cancel();
+            tempTime -= 5000;
+            countTime(tempTime);
+            mediaPlayer = MediaPlayer.create(game1.this, R.raw.wrong);
+            mediaPlayer.start();
+//            Toast.makeText(this,"false", Toast.LENGTH_SHORT).show();
         }
     }
 
     public void randAddBall() {
         int randBall = random.nextInt(3);
         if (randBall == 0) {
-            str1.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColSemantic)));
+            str1.setText(mCursor.getString(1));
             chAns[0] = true;
         } else if (randBall == 1) {
-            str2.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColSemantic)));
+            str2.setText(mCursor.getString(1));
             chAns[1] = true;
         } else if (randBall == 2) {
-            str3.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColSemantic)));
+            str3.setText(mCursor.getString(1));
             chAns[2] = true;
         }
     }
@@ -238,20 +314,20 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
     //random ball of Ans
     public void textInAns() {
         if (chAns[0] == false) {
-            str1.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColSemantic)));
+            str1.setText(mCursor.getString(1));
             chAns[0] = true;
         } else if (chAns[1] == false) {
-            str2.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColSemantic)));
+            str2.setText(mCursor.getString(1));
             chAns[1] = true;
         } else if (chAns[2] == false) {
-            str3.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColSemantic)));
+            str3.setText(mCursor.getString(1));
             chAns[2] = true;
         }
     }
 
     //เซตค่า chAns ให้กลับเป็น false ทั้งหมด
-    public  void  resetChAns(){
-        for (int i = 0 ; i< chAns.length; i++){
+    public void resetChAns() {
+        for (int i = 0; i < chAns.length; i++) {
             chAns[i] = false;
         }
     }
@@ -269,8 +345,11 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
     public void cutWord(int word) {
         int index = listRow.indexOf(word);
         listRow.remove(index);
-
         Log.e("vale ", "is" + listRow);
+
+//        if(teamRow == null ){
+//            listRow.add(i);
+//        }
 
     }
 
@@ -298,5 +377,45 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         Log.e("val ", " of listAns : " + listAns);
     }
 
+    //CountDownTimer (โดยจะลดลงครั้งละ 1 วินาที)
+    public void countTime(int t) {
+        cdt = new CountDownTimer(t, 50) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+                tempTime = (int) millisUntilFinished;
+                tvTimer.setText(String.valueOf(tempTime));
+                String strTime = String.format("%.1f"
+                        , (double) millisUntilFinished / 1000);
+                tvTimer.setText(String.valueOf(strTime));
+            }
+
+            @Override
+            public void onFinish() {
+                tvTimer.setText("0");
+                finishDialog();
+            }
+        };
+        cdt.start();
+    }
+
+    private void finishDialog() {
+    }
+
+    public long UpdateData(String word, String status) {
+        try {
+            String where = game1.ColSemantic + " = '" + word + "' ";
+            ContentValues cv = new ContentValues();
+            cv.put("Status", status);
+
+            long row = gameDb.update(game1.TableName, cv, where, null);
+
+//            game1.close();
+            return row;
+        } catch (Exception e) {
+            return -1;
+        }
+    }
 }
 

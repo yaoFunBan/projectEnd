@@ -8,6 +8,7 @@ import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -16,6 +17,8 @@ import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.ToggleButton;
+
+import java.io.IOException;
 
 public class page1_1 extends AppCompatActivity {
     Button btn_back, btn_next, btn_pause, btnClose, btnPlayAgain;
@@ -38,6 +41,8 @@ public class page1_1 extends AppCompatActivity {
 
         mediaPlayer = MediaPlayer.create(this, R.raw.scene1);
         mediaPlayer.start();
+
+        unlock = new unlock();
 
         btnPlayAgain = (Button) findViewById(R.id.btn_play_story);
 
@@ -125,7 +130,6 @@ public class page1_1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(i);
-//                unlock.setPage11(true);
             }
         });
     }

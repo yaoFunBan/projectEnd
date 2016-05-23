@@ -19,6 +19,8 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.ToggleButton;
 
+import java.io.IOException;
+
 public class scene2_1 extends AppCompatActivity implements View.OnClickListener {
     ImageView forests, giantAnim, giant1, boat, imgBoat, giantTalk, giantWord, mountain;
     Button btnNext, btnBack, btnPause, dialogexit, dialoghome, dialogset, dialogclose, btnClose;
@@ -36,6 +38,7 @@ public class scene2_1 extends AppCompatActivity implements View.OnClickListener 
 
     MediaPlayer mediaPlayer;
     soundBG soundBG;
+    unlock unlock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +49,7 @@ public class scene2_1 extends AppCompatActivity implements View.OnClickListener 
         soundBG = new soundBG(getApplicationContext());
         soundBG.creatSound();
 
-
+        unlock = new unlock();
         mountain = (ImageView) findViewById(R.id.mountain);
         forests = (ImageView) findViewById(R.id.forests);
         boat = (ImageView) findViewById(R.id.boatp);
@@ -265,6 +268,12 @@ public class scene2_1 extends AppCompatActivity implements View.OnClickListener 
                 break;
             case R.id.btn_next:
                 intent = new Intent(getApplicationContext(), page2_2.class);
+                unlock.setUnlock(5, true);
+                try {
+                    unlock.writeFile(scene2_1.this);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 startActivity(intent);
                 break;
             case R.id.btn_back:

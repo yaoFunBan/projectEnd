@@ -45,17 +45,18 @@ public class Kampong extends Activity {
         mHelper = new datahomony(this);
         mQuery = "SELECT * FROM " + mHelper.TableName;
         mDb = mHelper.getWritableDatabase();
-        mHelper.onUpgrade(mDb, 1, 1);
+//        mHelper.onUpgrade(mDb, 1, 1);
         mCursor = mDb.rawQuery(mQuery, null);
         mCursor.moveToFirst();
+//        mCursor.getString(0);
 
 
         expandableListDetail = new HashMap<String, List<String>>();
 
         while (!mCursor.isAfterLast()) {
-            Mean = new ArrayList<String>(Arrays.asList(mCursor.getString(mCursor.getColumnIndex(mHelper.ColHomony))));
-            expandableListDetail.put(mCursor.getString(mCursor.getColumnIndex(mHelper.ColSemantic)), Mean);
-            status[i] = mCursor.getString(mCursor.getColumnIndex(mHelper.ColStatus));
+            Mean = new ArrayList<String>(Arrays.asList(mCursor.getString(1)));
+            expandableListDetail.put(mCursor.getString(0), Mean);
+            status[i] = mCursor.getString(2);
             mCursor.moveToNext();
             i++;
         }

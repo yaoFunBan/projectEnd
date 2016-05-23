@@ -17,6 +17,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ToggleButton;
 
+import java.io.IOException;
+
 /**
  * Created by วัชรัตน์ on 11/12/2558.
  */
@@ -32,6 +34,8 @@ public class scene2_2 extends AppCompatActivity implements View.OnClickListener 
     AnimPopUp animPopUp;
     soundBG soundBG;
 
+    unlock unlock;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,9 @@ public class scene2_2 extends AppCompatActivity implements View.OnClickListener 
         animPopUp = new AnimPopUp();
         soundBG = new soundBG(getApplicationContext());
         soundBG.creatSound();
+
+        unlock = new unlock();
+
 
         btnNext = (Button) findViewById(R.id.btn_next);
         btnBack = (Button) findViewById(R.id.btn_back);
@@ -77,6 +84,12 @@ public class scene2_2 extends AppCompatActivity implements View.OnClickListener 
                 break;
             case R.id.btn_next:
                 intentNext = new Intent(getApplicationContext(), page2_3.class);
+                unlock.setUnlock(6, true);
+                try {
+                    unlock.writeFile(scene2_2.this);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 startActivity(intentNext);
                 break;
             case R.id.poolG:

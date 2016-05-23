@@ -19,6 +19,8 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.ToggleButton;
 
+import java.io.IOException;
+
 public class scene1_2 extends AppCompatActivity {
     //ImageView
     ImageView oldmen1, oldwomen1, jantawee2, box1_2, trees1, trees2;
@@ -216,8 +218,14 @@ public class scene1_2 extends AppCompatActivity {
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(i);
+
                 unlock.setUnlock(2, true);
+                try {
+                    unlock.writeFile(scene1_2.this);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                startActivity(i);
             }
         });
 

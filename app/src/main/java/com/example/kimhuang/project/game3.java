@@ -1,6 +1,7 @@
 package com.example.kimhuang.project;
 
 import android.app.Dialog;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -89,20 +90,20 @@ public class game3 extends AppCompatActivity {
         //decaler database
         game3 = new dataidioms(this);
         gameDb = game3.getWritableDatabase();
-        game3.onUpgrade(gameDb, 1, 1);
+//        game3.onUpgrade(gameDb, 1, 1);
 
         //เป็นการอ่านค่าในตาราง database ว่าจะให้อ่านค่าเป็นคอลัมถ์ไปเรื่อยๆ
         wCursor = gameDb.rawQuery("SELECT * FROM " + game3.TableName, null);
         Addarray();
-        wCursor.moveToFirst();
+//        wCursor.moveToFirst();
         tempWordRand = randomInStorage();
         wCursor.moveToPosition(tempWordRand);
 
         //ให้ cursor ชี้ไปที่ สำนวน ความหมายถูก รูปภาพ
-        wordQue.setText(wCursor.getString(wCursor.getColumnIndex(game3.CoLIdiom)));
-        ansTrue.setText(wCursor.getString(wCursor.getColumnIndex(game3.CoLMesTrue)));
-        ansFalse.setText(wCursor.getString(wCursor.getColumnIndex(game3.CoLMesFalse)));
-        Picture.setBackgroundResource(wCursor.getInt(wCursor.getColumnIndex(game3.CoLPicture)));
+        wordQue.setText(wCursor.getString(0));
+        ansTrue.setText(wCursor.getString(1));
+        ansFalse.setText(wCursor.getString(2));
+        Picture.setBackgroundResource(wCursor.getInt(3));
 
 
         params1 = new RelativeLayout.LayoutParams(
@@ -147,14 +148,22 @@ public class game3 extends AppCompatActivity {
                 if (called != 15) {
                     randPosi = getRandomPosition();
                     randBox(randPosi);
+                    String word = wCursor.getString(0);
+                    long row = UpdateData(word, "correct");
+                    if (row > 0) {
+                        Log.e("Log ", "Update Data Successfully");
+                    } else {
+                        Log.e("Log ", "Update Data Failed");
+                    }
                     tempWordRand = randomInStorage();
                     wCursor.moveToPosition(tempWordRand);
-                    wordQue.setText(wCursor.getString(wCursor.getColumnIndex(game3.CoLIdiom)));
-                    ansTrue.setText(wCursor.getString(wCursor.getColumnIndex(game3.CoLMesTrue)));
-                    ansFalse.setText(wCursor.getString(wCursor.getColumnIndex(game3.CoLMesFalse)));
-                    Picture.setBackgroundResource(wCursor.getInt(wCursor.getColumnIndex(game3.CoLPicture)));
+                    wordQue.setText(wCursor.getString(0));
+                    ansTrue.setText(wCursor.getString(1));
+                    ansFalse.setText(wCursor.getString(2));
+                    Picture.setBackgroundResource(wCursor.getInt(3));
                     twscore += 100;
                     Score.setText("" + twscore);
+
                     mediaPlayer = MediaPlayer.create(game3.this, R.raw.correct);
                     mediaPlayer.start();
                 } else {
@@ -173,10 +182,10 @@ public class game3 extends AppCompatActivity {
                     randBox(randPosi);
                     tempWordRand = randomInStorage();
                     wCursor.moveToPosition(tempWordRand);
-                    wordQue.setText(wCursor.getString(wCursor.getColumnIndex(game3.CoLIdiom)));
-                    ansTrue.setText(wCursor.getString(wCursor.getColumnIndex(game3.CoLMesTrue)));
-                    ansFalse.setText(wCursor.getString(wCursor.getColumnIndex(game3.CoLMesFalse)));
-                    Picture.setBackgroundResource(wCursor.getInt(wCursor.getColumnIndex(game3.CoLPicture)));
+                    wordQue.setText(wCursor.getString(0));
+                    ansTrue.setText(wCursor.getString(1));
+                    ansFalse.setText(wCursor.getString(2));
+                    Picture.setBackgroundResource(wCursor.getInt(3));
                     cdt.cancel();
                     tempTime -= 5000;
                     countTime(tempTime);
@@ -276,11 +285,13 @@ public class game3 extends AppCompatActivity {
 
     // random ตำแหน่ง
     Random rand = new Random();
-//    String[] posiLeft = {"20,1250", "1250,20"};
+
+    //    String[] posiLeft = {"20,1250", "1250,20"};
     public int getRandomPosition() {
         int r = rand.nextInt(posiLeft.length);
         return r;
     }
+
     //ตัด string แล้วเก็บใน array
     //20,1025
 //    String[] posiLeft = {"20,1250", "1250,20"};
@@ -344,6 +355,7 @@ public class game3 extends AppCompatActivity {
                         , (double) millisUntilFinished / 1000);
                 tvTimer.setText(String.valueOf(strTime));
             }
+
             @Override
             public void onFinish() {
                 tvTimer.setText("0");
@@ -352,6 +364,7 @@ public class game3 extends AppCompatActivity {
         };
         cdt.start();
     }
+
     //dialog สรุปคะแนน ขึ้นมาหลังเวลาหมดหรือเล่นเกมจบ
     public void dialogfinish() {
         final Dialog dialog = new Dialog(this);
@@ -371,10 +384,10 @@ public class game3 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                wCursor.moveToFirst();
-                wordQue.setText(wCursor.getString(wCursor.getColumnIndex(game3.CoLIdiom)));
-                ansTrue.setText(wCursor.getString(wCursor.getColumnIndex(game3.CoLMesTrue)));
-                ansFalse.setText(wCursor.getString(wCursor.getColumnIndex(game3.CoLMesFalse)));
-                Picture.setBackgroundResource(wCursor.getInt(wCursor.getColumnIndex(game3.CoLPicture)));
+                wordQue.setText(wCursor.getString(0));
+                ansTrue.setText(wCursor.getString(1));
+                ansFalse.setText(wCursor.getString(2));
+                Picture.setBackgroundResource(wCursor.getInt(3));
 //                        ansTrue.setClickable(false);
                 dialog.cancel();
                 new CountDownTimer(1000, 50) {
@@ -433,5 +446,21 @@ public class game3 extends AppCompatActivity {
         Log.d("Size", "" + random.size());
         return val;
 
+    }
+
+
+    public long UpdateData(String word, String status) {
+        try {
+            String where = game3.CoLIdiom + " = '" + word + "' ";
+            ContentValues cv = new ContentValues();
+            cv.put("Status", status);
+
+            long row = gameDb.update(game3.TableName, cv, where, null);
+
+//            game1.close();
+            return row;
+        } catch (Exception e) {
+            return -1;
+        }
     }
 }

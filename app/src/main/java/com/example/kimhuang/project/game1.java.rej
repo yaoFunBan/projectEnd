@@ -1,0 +1,12 @@
+diff a/app/src/main/java/com/example/kimhuang/project/game1.java b/app/src/main/java/com/example/kimhuang/project/game1.java	(rejected hunks)
+@@ -255,8 +255,9 @@
+         str3.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColSemantic)));
+ 
+     }
++
+     //wordAns
+-    public void incrementQuestion(){
++    public void incrementQuestion() {
+         mCursor.moveToPosition(chAns);
+         wordAns.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColHomony)));
+     }

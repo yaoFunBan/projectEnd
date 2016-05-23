@@ -19,6 +19,8 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.ToggleButton;
 
+import java.io.IOException;
+
 public class scene3_3 extends AppCompatActivity {
     Button btn_back, btn_next, btn_puase, btnClose;
     ToggleButton swMusic, swEffect;
@@ -36,6 +38,7 @@ public class scene3_3 extends AppCompatActivity {
     AlertDialog.Builder builder;
     Dialog dialog;
     Button dialogset, dialogexit, dialoghome, dialogclose;
+    unlock unlock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +48,7 @@ public class scene3_3 extends AppCompatActivity {
         animPopUp = new AnimPopUp();
         soundBG = new soundBG(getApplicationContext());
         soundBG.creatSound();
-
+        unlock = new unlock();
         //bgSky
         bgSky = (ImageView) findViewById(R.id.imgSky);
         animPopUp.PlayAnimation(bgSky);
@@ -198,6 +201,12 @@ public class scene3_3 extends AppCompatActivity {
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View b) {
+                unlock.setUnlock(11, true);
+                try {
+                    unlock.writeFile(scene3_3.this);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 startActivity(a);
             }
         });

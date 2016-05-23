@@ -14,18 +14,17 @@
         <!-- Home -->
         <activity
             android:name=".home"
-            android:screenOrientation="landscape">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:screenOrientation="landscape"></activity>
 
         <!-- Game2 -->
         <activity
             android:name=".VoActivity"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <!-- summary -->
@@ -68,7 +67,7 @@
         <activity
             android:name=".map"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
 
         <!-- map1 -->
         <activity
@@ -134,8 +133,12 @@
         <activity
             android:name=".minigame1"
             android:screenOrientation="landscape"
+<<<<<<< HEAD
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
+=======
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+>>>>>>> 84f1d8b5b15ea2f87ca2b764e35f9486516d5de6
 
         <!-- Game1 -->
         <activity
@@ -264,8 +267,7 @@
         <activity
             android:name=".minigame3"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
 
         <!--game3-->
         <activity

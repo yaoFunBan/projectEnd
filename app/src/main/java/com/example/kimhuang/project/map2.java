@@ -14,7 +14,7 @@ import android.widget.ImageView;
 public class map2 extends Activity implements View.OnClickListener {
     Intent i;
     Button btn_back;
-    ImageView boat, city1, mount, city2;
+    Button boat, city1, mount, city2;
     unlock unlock;
 
 
@@ -26,10 +26,10 @@ public class map2 extends Activity implements View.OnClickListener {
 
         unlock = new unlock();
 
-        boat = (ImageView) findViewById(R.id.boatM);
-        city1 = (ImageView) findViewById(R.id.castled1);
-        mount = (ImageView) findViewById(R.id.mountain);
-        city2 = (ImageView) findViewById(R.id.city);
+        boat = (Button) findViewById(R.id.boatM);
+        city1 = (Button) findViewById(R.id.castled1);
+        mount = (Button) findViewById(R.id.mountain);
+        city2 = (Button) findViewById(R.id.city);
 
         btn_back = (Button) findViewById(R.id.btn_back);
         final Intent n = new Intent(this, map.class);

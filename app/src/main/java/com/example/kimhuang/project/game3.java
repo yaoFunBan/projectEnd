@@ -51,7 +51,7 @@ public class game3 extends AppCompatActivity {
 
     //Database
     SQLiteDatabase gameDb;
-    dataidioms game3;
+    dataFairy game3;
     Cursor wCursor;
     static int i = 0;
     int count = 0;
@@ -88,12 +88,12 @@ public class game3 extends AppCompatActivity {
 //        mark = (ImageView) findViewById(R.id.mark);
 
         //decaler database
-        game3 = new dataidioms(this);
+        game3 = new dataFairy(this);
         gameDb = game3.getWritableDatabase();
 //        game3.onUpgrade(gameDb, 1, 1);
 
         //เป็นการอ่านค่าในตาราง database ว่าจะให้อ่านค่าเป็นคอลัมถ์ไปเรื่อยๆ
-        wCursor = gameDb.rawQuery("SELECT * FROM " + game3.TableName, null);
+        wCursor = gameDb.rawQuery("SELECT * FROM " + game3.Table_Samnon, null);
         Addarray();
 //        wCursor.moveToFirst();
         tempWordRand = randomInStorage();
@@ -450,11 +450,11 @@ public class game3 extends AppCompatActivity {
 
     public long UpdateData(String word, String status) {
         try {
-            String where = game3.CoLIdiom + " = '" + word + "' ";
+            String where = game3.Col_Word_Samnon + " = '" + word + "' ";
             ContentValues cv = new ContentValues();
-            cv.put("Status", status);
+            cv.put("sSamon", status);
 
-            long row = gameDb.update(game3.TableName, cv, where, null);
+            long row = gameDb.update(game3.Table_Samnon, cv, where, null);
 
 //            game1.close();
             return row;

@@ -14,18 +14,18 @@
         <!-- Home -->
         <activity
             android:name=".home"
-            android:screenOrientation="landscape"></activity>
-
-        <!-- Game2 -->
-        <activity
-            android:name=".VoActivity"
-            android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Game2 -->
+        <activity
+            android:name=".VoActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
 
         <!-- summary -->
         <activity

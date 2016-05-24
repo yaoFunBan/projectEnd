@@ -46,7 +46,7 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
 
     //Databas
     SQLiteDatabase gameDb;
-    datahomony game1;
+    dataFairy game1;
     Cursor mCursor;
     static int i = 0;
     Random random = new Random();
@@ -91,12 +91,12 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         btn_pause = (Button) findViewById(R.id.btn_pause);
 
         //decaler database
-        game1 = new datahomony(this);
+        game1 = new dataFairy(this);
         gameDb = game1.getWritableDatabase();
-        game1.onUpgrade(gameDb, 1, 1);
+//        game1.onUpgrade(gameDb, 1, 1);
 
         //READ DATA (เป็นการอ่านค่าในตาราง database โดยกำหนดให้ mCursor เลื่อนอ่านข้อมูลในแต่ละคอลัมไปเรื่อยๆ)
-        mCursor = gameDb.rawQuery("SELECT * FROM " + game1.TableName, null);
+        mCursor = gameDb.rawQuery("SELECT * FROM " + game1.Table_Kaphong, null);
         addToList();
 
 //        mCursor.moveToFirst();
@@ -240,7 +240,7 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         //เมื่อทำการเรียกใช้คำก็จะทำการลบคำนั้นทิ้งไป
         cutWord(teamQuestion1);
         mCursor.moveToPosition(teamQuestion1);
-        wordAns.setText(mCursor.getString(mCursor.getColumnIndex(game1.ColHomony)));
+        wordAns.setText(mCursor.getString(mCursor.getColumnIndex(game1.Col_Word_Kaphong)));
         randAddBall();
         keepWord(teamQuestion1);
 
@@ -268,24 +268,19 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
     public void chCorrect(String word) {
         mCursor.moveToPosition(teamQuestion1);
         String chWord = mCursor.getString(1);
+        Log.e("1.word : " + word, "teamQuestion1 : " + teamQuestion1);
         if (word.equals(chWord)) {
             twscore += 100;
             score.setText(" " + twscore);
             mediaPlayer = MediaPlayer.create(game1.this, R.raw.correct);
             mediaPlayer.start();
-
+            Log.e("2.word : " + word, "chWord : " + chWord);
             long row = UpdateData(word, "correct");
             if (row > 0) {
-//                Toast.makeText(game1.this, "Update Data Successfully",
-//                        Toast.LENGTH_LONG).show();
-
                 Log.e("Log ", "Update Data Successfully");
             } else {
-//                Toast.makeText(game1.this, "Update Data Failed.",
-//                        Toast.LENGTH_LONG).show();
                 Log.e("Log ", "Update Data Failed");
             }
-//            Toast.makeText(this, "true" ,Toast.LENGTH_SHORT).show();
         } else {
             cdt.cancel();
             tempTime -= 5000;
@@ -362,9 +357,9 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         teamRow.add(teamWord);
         int re = listAns.indexOf(teamWord);
         listAns.remove(re);
-        Log.e("KeepWord ", " =======================");
-        Log.e("val ", " of tempRow : " + teamRow);
-        Log.e("val ", " of listAns : " + listAns);
+//        Log.e("KeepWord ", " =======================");
+//        Log.e("val ", " of tempRow : " + teamRow);
+//        Log.e("val ", " of listAns : " + listAns);
 
     }
 
@@ -372,9 +367,9 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         int keep = teamRow.indexOf(teamWord);
         listAns.add(teamWord);
         teamRow.remove(keep);
-        Log.e("reWord ", "==========================");
-        Log.e("val ", " of tempRow : " + teamRow);
-        Log.e("val ", " of listAns : " + listAns);
+//        Log.e("reWord ", "==========================");
+//        Log.e("val ", " of tempRow : " + teamRow);
+//        Log.e("val ", " of listAns : " + listAns);
     }
 
     //CountDownTimer (โดยจะลดลงครั้งละ 1 วินาที)
@@ -405,11 +400,12 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
 
     public long UpdateData(String word, String status) {
         try {
-            String where = game1.ColSemantic + " = '" + word + "' ";
+            String where = game1.Col_Mean_Kaphong + " = '" + word + "' ";
+            Log.e("2.word : " + word, "chWord : ");
             ContentValues cv = new ContentValues();
-            cv.put("Status", status);
+            cv.put("sKaphong", status);
 
-            long row = gameDb.update(game1.TableName, cv, where, null);
+            long row = gameDb.update(game1.Table_Kaphong, cv, where, null);
 
 //            game1.close();
             return row;

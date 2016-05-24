@@ -11,13 +11,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class database extends SQLiteOpenHelper {
     private static final String DbName = "DBFairy";
     private static final int DB_version = 1;
-    public static final String TableName = "vocabulary";
+    public static final String TableName = "Racha";
     public static final String ColWord = "word";
     public static final String ColMean = "Mean";
     public static final String ColStatus = "Status";
     //type = 1 คือ คำราชาศัพท์ , 2 คือ คำพ้อง รูป พ้องเสียง , 3 คือ สำนวน
     public static final String ColSound = "Sound";
-    public static final String ColPicture = "pPicture";
 
     public database(Context context) {
         super(context, DbName, null, DB_version);
@@ -25,7 +24,7 @@ public class database extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " + TableName + " ( " + ColWord + " TEXT, " + ColMean + " TEXT, " + ColStatus + " TEXT ," + ColSound + " TEXT );");
+        db.execSQL("CREATE TABLE " + TableName + " ( " + ColWord + " TEXT PRIMARY KEY, " + ColMean + " TEXT, " + ColStatus + " TEXT ," + ColSound + " TEXT );");
 
         String[] word = {"พระชนนี ", "รองพระบาท ", "สังวาล ", "ชฏา", "พระสนับเพลา"
                 , "พระอุทร", "พระนาสิก", "พระกรรณ", "ข้อพระบาท",

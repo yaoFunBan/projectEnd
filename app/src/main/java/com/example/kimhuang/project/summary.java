@@ -30,7 +30,9 @@ public class summary extends Activity implements View.OnClickListener {
     Button btnBack;
 
     LocalActivityManager localActivityManager;
-
+    datahomony homoney;
+    dataidioms idioms;
+    SQLiteDatabase mDb, mDb2;
     TabHost tabHost;
 
     @Override
@@ -41,7 +43,7 @@ public class summary extends Activity implements View.OnClickListener {
 
         localActivityManager = new LocalActivityManager(this, false);
         localActivityManager.dispatchCreate(savedInstanceState);
-
+        
 
         tabHost = (TabHost) findViewById(R.id.tabhost);
         tabHost.setup(localActivityManager);
@@ -50,7 +52,6 @@ public class summary extends Activity implements View.OnClickListener {
         TabHost.TabSpec tabSpec = tabHost.newTabSpec("tab1").setIndicator("คำราชาศัพท์").setContent(new Intent(this, Racha.class));
         TabHost.TabSpec tabSpec2 = tabHost.newTabSpec("tab2").setIndicator("คำพ้อง").setContent(new Intent(this, Kampong.class));
         TabHost.TabSpec tabSpec3 = tabHost.newTabSpec("tab3").setIndicator("สำนวน").setContent(new Intent(this, Samnon.class));
-
 
 
         tabHost.addTab(tabSpec);

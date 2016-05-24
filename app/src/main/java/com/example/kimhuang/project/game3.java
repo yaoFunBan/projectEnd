@@ -440,6 +440,7 @@ public class game3 extends AppCompatActivity {
         int n;
         n = rand.nextInt(random.size()); //แรนด้อมตั้งแต่ 0 หรือ 14
 //        random.remove(n);
+
         int val = random.get(n);
         random.remove(random.indexOf(val));
         Log.d("Size", "" + random.size());

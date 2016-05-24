@@ -133,7 +133,12 @@
         <activity
             android:name=".minigame1"
             android:screenOrientation="landscape"
+<<<<<<< HEAD
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
+=======
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+>>>>>>> 84f1d8b5b15ea2f87ca2b764e35f9486516d5de6
 
         <!-- Game1 -->
         <activity

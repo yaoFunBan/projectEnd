@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class dataidioms extends SQLiteOpenHelper {
     private static final String Dbname = "DBFairy";
     private static final int DB_version = 1;
-    public static final String TableName = "vocIdioms";
+    public static final String TableName = "vocidioms";
     public static final String CoLIdiom = "idiom";
     public static final String CoLMesTrue = "mestrue";
     public static final String CoLMesFalse = "mesfalse";
@@ -26,7 +26,7 @@ public class dataidioms extends SQLiteOpenHelper {
     //การ create,insert, delete ข้อมูลใน database
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " + TableName + " ( " + CoLIdiom + " TEXT, " + CoLMesTrue + " TEXT, "
+        db.execSQL("CREATE TABLE " + TableName + " ( " + CoLIdiom + " TEXT PRIMARY KEY, " + CoLMesTrue + " TEXT, "
                 + CoLMesFalse + " TEXT, " + CoLPicture + " INTEGER, " + CoLStatus + " TEXT , " + CoLSound + " TEXT);");
 
         String[] idiom = {"กระต่ายหมายจันทร์", "กาคาบพริก", "กิ่งทองใบหยก", "ไก่เห็นตีนงู งูเห็นนมไก่", "เข้าด้ายเข้าเข็ม",

@@ -27,7 +27,7 @@ public class Kampong extends Activity {
     HashMap<String, List<String>> expandableListDetail;
 
     SQLiteDatabase mDb;
-    datahomony mHelper;
+    dataFairy mHelper;
     Cursor mCursor;
     String mQuery;
     List<String> Mean;
@@ -42,8 +42,8 @@ public class Kampong extends Activity {
         setContentView(R.layout.tab);
 
         status = new String[20];
-        mHelper = new datahomony(this);
-        mQuery = "SELECT * FROM " + mHelper.TableName;
+        mHelper = new dataFairy(this);
+        mQuery = "SELECT * FROM " + mHelper.Table_Kaphong;
         mDb = mHelper.getWritableDatabase();
 //        mHelper.onUpgrade(mDb, 1, 1);
         mCursor = mDb.rawQuery(mQuery, null);

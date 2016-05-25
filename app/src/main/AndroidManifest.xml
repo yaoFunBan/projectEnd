@@ -26,6 +26,7 @@
             android:name=".VoActivity"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
         </activity>
 
         <!-- summary -->

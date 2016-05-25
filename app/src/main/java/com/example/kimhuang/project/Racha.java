@@ -19,7 +19,7 @@ import java.util.List;
 public class Racha extends Activity {
 
     SQLiteDatabase mDb;
-    database mHelper;
+    dataFairy mHelper;
     Cursor mCursor;
     String mQuery;
     List<String> Mean;
@@ -36,10 +36,9 @@ public class Racha extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tab);
 
-        mHelper = new database(this);
-        mQuery = "SELECT * FROM " + mHelper.TableName;
+        mHelper = new dataFairy(this);
+        mQuery = "SELECT * FROM " + mHelper.Table_Racha;
         mDb = mHelper.getWritableDatabase();
-//        mHelper.onUpgrade(mDb, 1, 1);
         mCursor = mDb.rawQuery(mQuery, null);
         mCursor.moveToFirst();
         status = new String[20];

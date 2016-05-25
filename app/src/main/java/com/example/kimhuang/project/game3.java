@@ -90,7 +90,7 @@ public class game3 extends AppCompatActivity {
         //decaler database
         game3 = new dataidioms(this);
         gameDb = game3.getWritableDatabase();
-//        game3.onUpgrade(gameDb, 1, 1);
+        game3.onUpgrade(gameDb, 1, 1);
 
         //เป็นการอ่านค่าในตาราง database ว่าจะให้อ่านค่าเป็นคอลัมถ์ไปเรื่อยๆ
         wCursor = gameDb.rawQuery("SELECT * FROM " + game3.TableName, null);

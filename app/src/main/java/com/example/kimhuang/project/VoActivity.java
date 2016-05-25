@@ -93,7 +93,7 @@ public class VoActivity extends Activity implements View.OnClickListener {
         //decaler database
         mHelper = new database(this);
         mDb = mHelper.getWritableDatabase();
-//        mHelper.onUpgrade(mDb, 1, 1);
+        mHelper.onUpgrade(mDb, 1, 1);
 
         //query word collect
         mCursor = mDb.rawQuery("SELECT * FROM " + mHelper.TableName, null);

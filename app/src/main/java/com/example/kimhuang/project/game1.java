@@ -407,7 +407,7 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
 
             long row = gameDb.update(game1.Table_Kaphong, cv, where, null);
 
-//            game1.close();
+//      game1.close();
             return row;
         } catch (Exception e) {
             return -1;

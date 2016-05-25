@@ -19,7 +19,7 @@ import java.util.List;
 public class Racha extends Activity {
 
     SQLiteDatabase mDb;
-    database mHelper;
+    dataFairy mHelper;
     Cursor mCursor;
     String mQuery;
     List<String> Mean;
@@ -36,10 +36,9 @@ public class Racha extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tab);
 
-        mHelper = new database(this);
-        mQuery = "SELECT * FROM " + mHelper.TableName;
+        mHelper = new dataFairy(this);
+        mQuery = "SELECT * FROM " + mHelper.Table_Racha;
         mDb = mHelper.getWritableDatabase();
-        mHelper.onUpgrade(mDb, 1, 1);
         mCursor = mDb.rawQuery(mQuery, null);
         mCursor.moveToFirst();
         status = new String[20];
@@ -48,9 +47,9 @@ public class Racha extends Activity {
         expandableListDetail = new HashMap<String, List<String>>();
 
         while (!mCursor.isAfterLast()) {
-            Mean = new ArrayList<String>(Arrays.asList(mCursor.getString(mCursor.getColumnIndex(mHelper.ColWord))));
-            expandableListDetail.put(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)), Mean);
-            status[i] = mCursor.getString(mCursor.getColumnIndex(mHelper.ColStatus));
+            Mean = new ArrayList<String>(Arrays.asList(mCursor.getString(1)));
+            expandableListDetail.put(mCursor.getString(0), Mean);
+            status[i] = mCursor.getString(2);
             mCursor.moveToNext();
             i++;
         }

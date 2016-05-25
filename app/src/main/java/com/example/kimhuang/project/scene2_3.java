@@ -19,6 +19,8 @@ import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.ToggleButton;
 
+import java.io.IOException;
+
 /**
  * Created by วัชรัตน์ on 11/12/2558.
  */
@@ -34,7 +36,7 @@ public class scene2_3 extends AppCompatActivity implements View.OnClickListener 
     int[] resBoat = {R.drawable.kung, R.drawable.gone};
     MediaPlayer mp;
     AnimPopUp animPopUp;
-
+    unlock unlock;
     soundBG soundBG;
 
     @Override
@@ -44,6 +46,7 @@ public class scene2_3 extends AppCompatActivity implements View.OnClickListener 
 
 
         animPopUp = new AnimPopUp();
+        unlock = new unlock();
         soundBG = new soundBG(getApplicationContext());
         soundBG.creatSound();
         mp = MediaPlayer.create(scene2_3.this, R.raw.kung);
@@ -201,6 +204,12 @@ public class scene2_3 extends AppCompatActivity implements View.OnClickListener 
         switch (v.getId()) {
             case R.id.btn_next:
                 intentNext = new Intent(getApplicationContext(), page2_4.class);
+                unlock.setUnlock(7, true);
+                try {
+                    unlock.writeFile(scene2_3.this);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 startActivity(intentNext);
                 break;
             case R.id.btn_back:

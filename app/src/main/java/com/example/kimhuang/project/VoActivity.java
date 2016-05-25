@@ -3,6 +3,7 @@ package com.example.kimhuang.project;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -31,12 +32,12 @@ public class VoActivity extends Activity implements View.OnClickListener {
     ProgressBar pTime;
     ImageView namegame;
     private ImageView imgBase;
-    private Button btnLeft, btnRigth, btnPause, btnPlay, btnexplain, dialogclose,dialogsetting, btnClose;
+    private Button btnLeft, btnRigth, btnPause, btnPlay, btnexplain, dialogclose, dialogsetting, btnClose;
     TextView countBefore;
     ToggleButton swMusic, swEffect;
     SQLiteDatabase mDb;
     CountDownTimer ctd;
-    database mHelper;
+    dataFairy mHelper;
     Cursor mCursor;
     int dx = 0, dy3 = -100, dy1 = -100, dy2 = -100;
     int dxBefore = 0, addScore = 0;
@@ -91,13 +92,13 @@ public class VoActivity extends Activity implements View.OnClickListener {
         initialViews();
 
         //decaler database
-        mHelper = new database(this);
+        mHelper = new dataFairy(this);
         mDb = mHelper.getWritableDatabase();
-        mHelper.onUpgrade(mDb, 1, 1);
+//        mHelper.onUpgrade(mDb, 1, 1);
 
         //query word collect
-        mCursor = mDb.rawQuery("SELECT * FROM " + mHelper.TableName, null);
-        mCursor.moveToFirst();
+        mCursor = mDb.rawQuery("SELECT * FROM " + mHelper.Table_Racha, null);
+//        mCursor.moveToFirst();
 
         btnRigth.setOnClickListener(this);
         btnLeft.setOnClickListener(this);
@@ -150,9 +151,9 @@ public class VoActivity extends Activity implements View.OnClickListener {
             public void run() {
 
                 try {
-                    dy1 += speed1;
+//                    dy1 += speed1;
                     dy2 += speed2;
-                    dy3 += speed3;
+//                    dy3 += speed3;
 
                     if (layout2.getVisibility() == View.INVISIBLE) {
                         layout2.setVisibility(View.VISIBLE);
@@ -163,49 +164,49 @@ public class VoActivity extends Activity implements View.OnClickListener {
                     }
 
                     //start ball 1
+                    Log.e("get ", " top" + layout2.getTop());
+//                    params.setMargins(randPosi, dy1, 0, 0);
+//                    layout1.setLayoutParams(params);
+//                    if ((imgBase.getTop() <= layout1.getTop() + layout1.getHeight())
+//                            && (layout1.getTop() <= imgBase.getTop() + imgBase.getHeight())
+//                            && (imgBase.getLeft() <= layout1.getLeft() + layout1.getWidth())
+//                            && (layout1.getLeft() <= imgBase.getLeft() + imgBase.getWidth())) {
+//
+//                        layout1.setVisibility(View.INVISIBLE);
+//                        rePosition(tPos1);
+//                        reword(temp1);
+//                        dy1 = -500;
+//
+//                        //position
+//                        randPosi = getRandomPosition();
+//                        tPos1 = keepPosition(randPosi);
+//
+//                        temp1 = randWordInCorrect();
+//                        mCursor.moveToPosition(temp1);
+//                        TvSimple1.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
+//                        pullQus(temp1);
+//                        speed1 = randSpeed();
+//                        ctd.cancel();
+//                        tempTime -= 3000;
+//                        countTime(tempTime);
+//
+//                    }
 
-                    params.setMargins(randPosi, dy1, 0, 0);
-                    layout1.setLayoutParams(params);
-                    if ((imgBase.getTop() <= layout1.getTop() + layout1.getHeight())
-                            && (layout1.getTop() <= imgBase.getTop() + imgBase.getHeight())
-                            && (imgBase.getLeft() <= layout1.getLeft() + layout1.getWidth())
-                            && (layout1.getLeft() <= imgBase.getLeft() + imgBase.getWidth())) {
-
-                        layout1.setVisibility(View.INVISIBLE);
-                        rePosition(tPos1);
-                        reword(temp1);
-                        dy1 = -500;
-
-                        //position
-                        randPosi = getRandomPosition();
-                        tPos1 = keepPosition(randPosi);
-
-                        temp1 = randWordInCorrect();
-                        mCursor.moveToPosition(temp1);
-                        TvSimple1.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
-                        pullQus(temp1);
-                        speed1 = randSpeed();
-                        ctd.cancel();
-                        tempTime -= 3000;
-                        countTime(tempTime);
-
-                    }
-
-                    if (dy1 >= 1200) {
-                        layout1.setVisibility(View.INVISIBLE);
-                        reword(temp1);
-                        rePosition(tPos1);
-                        //position
-                        randPosi = getRandomPosition();
-                        tPos1 = keepPosition(randPosi);
-
-                        temp1 = randWordInCorrect();
-                        mCursor.moveToPosition(temp1);
-                        TvSimple1.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
-                        pullQus(temp1);
-                        speed1 = randSpeed();
-                        dy1 = -300;
-                    }
+//                    if (dy1 >= 1200) {
+//                        layout1.setVisibility(View.INVISIBLE);
+//                        reword(temp1);
+//                        rePosition(tPos1);
+//                        //position
+//                        randPosi = getRandomPosition();
+//                        tPos1 = keepPosition(randPosi);
+//
+//                        temp1 = randWordInCorrect();
+//                        mCursor.moveToPosition(temp1);
+//                        TvSimple1.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
+//                        pullQus(temp1);
+//                        speed1 = randSpeed();
+//                        dy1 = -300;
+//                    }
 
                     //end ball1
 
@@ -223,30 +224,37 @@ public class VoActivity extends Activity implements View.OnClickListener {
                         randPosi2 = getRandomPosition();
                         tPos2 = keepPosition(randPosi2);
 
-
                         speed2 = randSpeed();
                         x = true;
                         dy2 = -600;
 
                     }
 
+                    if (dy2 >= -500 && x == true) {
+                        mCursor.moveToPosition(temp2);
+                        String word = mCursor.getString(0);
+                        long row = UpdateData(word, "correct");
+                        if (row > 0) {
+                            Log.e("Log ", "Update Data Successfully");
+                        } else {
+                            Log.e("Log ", "Update Data Failed");
+                        }
+                        reword(temp2);
+                        temp2 = randWordAns();
+                        mCursor.moveToPosition(temp2);
+
+                        wordAns.setText(mCursor.getString(0));
+                        TvSimple2.setText(mCursor.getString(1));
+                        pullQus(temp2);
+                        incrementScore();
+                        x = false;
+                    }
+
                     if (dy2 >= 1200) {
                         layout2.setVisibility(View.INVISIBLE);
                         rePosition(tPos2);
-                        //position
-//                        reword(word2);
-
                         randPosi2 = getRandomPosition();
                         tPos2 = keepPosition(randPosi2);
-
-//                        temp2 = randWordAns();
-//                        mCursor.moveToPosition(numAns.get(temp2));
-//
-//                        wordAns.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColWord)));
-//                        TvSimple2.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
-//                        word2 = pullQus(temp2);
-//                        numAns.remove(numAns.indexOf(temp2));
-
                         speed2 = randSpeed();
                         dy2 = -300;
                     }
@@ -254,57 +262,50 @@ public class VoActivity extends Activity implements View.OnClickListener {
 //                    //end ball 2 and ans
 
 
-                    params3.setMargins(randPosi3, dy3, 0, 0);
-                    layout3.setLayoutParams(params3);
+//                    params3.setMargins(randPosi3, dy3, 0, 0);
+//                    layout3.setLayoutParams(params3);
+//
+//                    if ((imgBase.getTop() <= layout3.getTop() + layout3.getHeight())
+//                            && (layout3.getTop() <= imgBase.getTop() + imgBase.getHeight())
+//                            && (imgBase.getLeft() <= layout3.getLeft() + layout3.getWidth())
+//                            && (layout3.getLeft() <= imgBase.getLeft() + imgBase.getWidth())) {
+//                        dy3 = -600;
+//                        layout3.setVisibility(View.INVISIBLE);
+//                        reword(temp3);
+//                        rePosition(tPos3);
+////                        x = true;
+//                        //position
+//                        randPosi3 = getRandomPosition();
+//                        tPos3 = keepPosition(randPosi3);
+//
+//                        temp3 = randWordInCorrect();
+//                        mCursor.moveToPosition(temp3);
+//                        TvSimple3.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
+//                        pullQus(temp3);
+//                        speed3 = randSpeed();
+//
+//                        ctd.cancel();
+//                        tempTime -= 3000;
+//                        countTime(tempTime);
+//                    }
 
-                    if ((imgBase.getTop() <= layout3.getTop() + layout3.getHeight())
-                            && (layout3.getTop() <= imgBase.getTop() + imgBase.getHeight())
-                            && (imgBase.getLeft() <= layout3.getLeft() + layout3.getWidth())
-                            && (layout3.getLeft() <= imgBase.getLeft() + imgBase.getWidth())) {
-                        dy3 = -600;
-                        layout3.setVisibility(View.INVISIBLE);
-                        reword(temp3);
-                        rePosition(tPos3);
-//                        x = true;
-                        //position
-                        randPosi3 = getRandomPosition();
-                        tPos3 = keepPosition(randPosi3);
 
-                        temp3 = randWordInCorrect();
-                        mCursor.moveToPosition(temp3);
-                        TvSimple3.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
-                        pullQus(temp3);
-                        speed3 = randSpeed();
-
-                        ctd.cancel();
-                        tempTime -= 3000;
-                        countTime(tempTime);
-                    }
-
-
-                    if (dy3 >= 1200) {
-                        layout3.setVisibility(View.INVISIBLE);
-                        reword(temp3);
-                        rePosition(tPos3);
-
-                        //position
-                        randPosi3 = getRandomPosition();
-                        tPos3 = keepPosition(randPosi3);
-
-                        temp3 = randWordInCorrect();
-                        mCursor.moveToPosition(temp3);
-                        TvSimple3.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
-                        Log.e("Pos  dy 3 ", "==============================");
-                        Log.e("Pos  dy 3 ", " Vulse " + tPos3);
-                        pullQus(temp3);
-                        speed3 = randSpeed();
-                        dy3 = -300;
-                    }
-
-                    if (x && layout2.getVisibility() == View.VISIBLE) {
-                        incrementScore();
-                        x = false;
-                    }
+//                    if (dy3 >= 1200) {
+//                        layout3.setVisibility(View.INVISIBLE);
+//                        reword(temp3);
+//                        rePosition(tPos3);
+//
+//                        //position
+//                        randPosi3 = getRandomPosition();
+//                        tPos3 = keepPosition(randPosi3);
+//
+//                        temp3 = randWordInCorrect();
+//                        mCursor.moveToPosition(temp3);
+//                        TvSimple3.setText(mCursor.getString(1));
+//                        pullQus(temp3);
+//                        speed3 = randSpeed();
+//                        dy3 = -300;
+//                    }
 
 
                 } catch (Exception e) {
@@ -383,53 +384,52 @@ public class VoActivity extends Activity implements View.OnClickListener {
     public void playGame() {
         //word
         //query and set textview of Answer
-//                temp2 = randWordAns();
-        mCursor.moveToFirst();
-        pullQus(pass);
-//                numAns.remove(temp2);
-        wordAns.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColWord)));
+        temp2 = randWordAns();
+        mCursor.moveToPosition(temp2);
+        pullQus(temp2);
+        wordAns.setText(mCursor.getString(0));
         //query ,set textvie and random row in table
-        TvSimple2.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
+        TvSimple2.setText(mCursor.getString(1));
 
 
         countTime(100000);
         //Ans 1
-        temp1 = randWordInCorrect();
-        mCursor.moveToPosition(temp1);
-        pullQus(temp1);
-        TvSimple1.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
+//        temp1 = randWordInCorrect();
+//        mCursor.moveToPosition(temp1);
+//        pullQus(temp1);
+//        TvSimple1.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
 //
 ////        Ans3
-        temp3 = randWordInCorrect();
-        mCursor.moveToPosition(temp3);
-        pullQus(temp3);
-        TvSimple3.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
+//        temp3 = randWordInCorrect();
+//        mCursor.moveToPosition(temp3);
+//        pullQus(temp3);
+//        TvSimple3.setText(mCursor.getString(1));
 
 
         params2 = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT);
 
-        params = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.WRAP_CONTENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT);
+//        params = new RelativeLayout.LayoutParams(
+//                RelativeLayout.LayoutParams.WRAP_CONTENT,
+//                RelativeLayout.LayoutParams.WRAP_CONTENT);
+//
+//        params3 = new RelativeLayout.LayoutParams(
+//                RelativeLayout.LayoutParams.WRAP_CONTENT,
+//                RelativeLayout.LayoutParams.WRAP_CONTENT);
 
-        params3 = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.WRAP_CONTENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT);
-
-        randPosi = getRandomPosition();
-        tPos1 = keepPosition(randPosi);
+//        randPosi = getRandomPosition();
+//        tPos1 = keepPosition(randPosi);
 
         randPosi2 = getRandomPosition();
         tPos2 = keepPosition(randPosi2);
 
-        randPosi3 = getRandomPosition();
-        tPos3 = keepPosition(randPosi3);
+//        randPosi3 = getRandomPosition();
+//        tPos3 = keepPosition(randPosi3);
 
-        speed1 = randSpeed();
+//        speed1 = randSpeed();
         speed2 = randSpeed();
-        speed3 = randSpeed();
+//        speed3 = randSpeed();
         moveBall();
     }
 
@@ -446,6 +446,8 @@ public class VoActivity extends Activity implements View.OnClickListener {
     int pos;
 
     //random word
+    int valGet;
+
     public int randWordAns() {
         //check numRand reduce less than 0 ?
         //If = no
@@ -454,19 +456,18 @@ public class VoActivity extends Activity implements View.OnClickListener {
         if (numAns.size() != 0) {
             pos = rand.nextInt(numAns.size());
             //keep[index] get value index = pos of numAns
-            keep[index] = numAns.get(pos);
-            Log.e("Size " + pos, " of numAns" + numAns.size());
-            index++;
-            Log.e("Pos  " + index, " Vulse " + mCursor.getString(mCursor.getColumnIndex(mHelper.ColWord)));
-            return numAns.get(pos);
+            valGet = numAns.get(pos);
+            numAns.remove(pos);
+            Log.e("============= round " + index, "=============" + valGet);
+            Log.e("numAns : ", " is " + numAns);
+
         }
-        return 0;
+        return valGet;
     }
 
     public int randWordInCorrect() {
         int r = 0;
         r = rand.nextInt(numUseWord.size());
-        Log.e("Size : ", " is " + numUseWord.size());
         return r;
     }
 
@@ -475,6 +476,8 @@ public class VoActivity extends Activity implements View.OnClickListener {
     public void pullQus(int temp) {
         tempNumWord.add(temp);
         numUseWord.remove(numUseWord.indexOf(temp));
+        Log.e("numUseWord : ", " is " + numUseWord);
+        Log.e("tempNumWord : ", " is " + tempNumWord);
     }
 
     //push question out tempNumWord
@@ -490,21 +493,6 @@ public class VoActivity extends Activity implements View.OnClickListener {
     public void incrementScore() {
         score += 100;
         count_score.setText("" + score);
-//        reword(word2);
-        reword(pass);
-
-        pass++;
-//        temp2 = randWordAns();
-//        mCursor.moveToPosition(numAns.get(temp2));
-        mCursor.moveToPosition(pass);
-        pullQus(pass);
-        wordAns.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColWord)));
-        TvSimple2.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
-
-
-//        numAns.remove(numAns.indexOf(temp2));
-
-
     }
 
     //rand position
@@ -609,8 +597,8 @@ public class VoActivity extends Activity implements View.OnClickListener {
                 score = 0;
                 pass = 0;
                 mCursor.moveToFirst();
-                TvSimple2.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
-                wordAns.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColWord)));
+                TvSimple2.setText(mCursor.getString(0));
+                wordAns.setText(mCursor.getString(1));
                 count_score.setText("" + score);
                 handler.postDelayed(runnable, 35);
 
@@ -648,8 +636,7 @@ public class VoActivity extends Activity implements View.OnClickListener {
         ctd.cancel();
 
         Button dialoghome = (Button) dialog.findViewById(R.id.btn_home);
-//        Button agian = (Button) dialog.findViewById(R.id.btn_again);
-        Button setting = (Button)dialog.findViewById(R.id.btn_setting);
+        Button setting = (Button) dialog.findViewById(R.id.btn_setting);
 
         dialogclose = (Button) dialog.findViewById(R.id.btn_close);
 
@@ -663,7 +650,7 @@ public class VoActivity extends Activity implements View.OnClickListener {
         });
 
         //button_setting
-        dialogsetting.setOnClickListener(new View.OnClickListener() {
+        setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DialogSetting setting = new DialogSetting(VoActivity.this);
@@ -684,34 +671,23 @@ public class VoActivity extends Activity implements View.OnClickListener {
                 handler.postDelayed(runnable, 35);
             }
         });
-//        agian.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                dialog.cancel();
-//                dy1 -= 600;
-//                dy2 -= 500;
-//                dy3 -= 400;
-//                countTime(5000);
-//
-//                params.setMargins(randPosi, dy1, 0, 0);
-//                layout1.setLayoutParams(params);
-//
-//                params2.setMargins(randPosi, dy2, 0, 0);
-//                layout2.setLayoutParams(params);
-//
-//                params3.setMargins(randPosi, dy3, 0, 0);
-//                layout3.setLayoutParams(params3);
-//
-//                score = 0;
-//                pass = 0;
-//                mCursor.moveToFirst();
-//                TvSimple2.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
-//                wordAns.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColWord)));
-//                count_score.setText("" + score);
-//                handler.postDelayed(runnable, 35);
-//            }
-//        });
         dialog.show();
+    }
+
+
+    public long UpdateData(String word, String status) {
+        try {
+            String where = mHelper.Col_Word_Racha + " = '" + word + "' ";
+            ContentValues cv = new ContentValues();
+            cv.put("sRacha", status);
+
+            long row = mDb.update(mHelper.Table_Racha, cv, where, null);
+
+//            game1.close();
+            return row;
+        } catch (Exception e) {
+            return -1;
+        }
     }
 
 

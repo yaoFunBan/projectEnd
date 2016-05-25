@@ -12,7 +12,7 @@ import android.util.Log;
 public class datahomony extends SQLiteOpenHelper {
     private static final String DbName = "DBFairy";
     private static final int DB_version = 1;
-    public static final String TableName = "vocabulary";
+    public static final String TableName = "vohomony";
     public static final String ColHomony = "homony";
     public static final String ColSemantic = "semantic";
     public static final String ColStatus = "Status";
@@ -26,7 +26,7 @@ public class datahomony extends SQLiteOpenHelper {
     //การ create, inset, delete ข้อมูลใน database
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " + TableName + " ( " + ColHomony + " TEXT, " + ColSemantic + " TEXT, " + ColStatus + " TEXT," + ColSound + " TEXT );");
+        db.execSQL("CREATE TABLE " + TableName + " ( " + ColHomony + " TEXT PRIMARY KEY, " + ColSemantic + " TEXT, " + ColStatus + " TEXT," + ColSound + " TEXT );");
 
         String[] homony = {"สุริยัน", "มัจฉา", "ดนัย", "บุตรี", "ผกา", "รามสูร", "บรรพต", "ขัตติยะ", "กุญชร", "กระสินธิ์ ",
                 "ปฐพี", "อมรินทร์", "อาชาไนย", "บุหลัน", "พนาดร", "กุมาร", "พารา", "กัลยาณี", "สุราลัย", "ปทุม"};
@@ -34,8 +34,8 @@ public class datahomony extends SQLiteOpenHelper {
         String[] semantic = {"พระอาทิตย์", "ปลา", "ลูกชาย", "ลูกสาว", "ดอกไม้", "ยักษ์", "ภูเขา", "กษัตริย์", "ช้าง", "น้ำ",
                 "แผ่นดิน", "พระอินทร์", "ม้า", "พระจันทร์", "ป่า", "เด็ก", "เมือง", "ผู้หญิง", "สวรรค์", "ดอกบัว",};
 
-        String[] status = {"correct", "correct", "correct", "uncorrect", "correct", "uncorrect", "correct", "correct", "correct", "uncorrect",
-                "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "correct"};
+        String[] status = {"uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect",
+                "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect"};
 
         int[] sound = {R.raw.janta, R.raw.firsh, R.raw.yotsuwimon, R.raw.jantawee, R.raw.jantawee,
                 R.raw.yuk, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee,

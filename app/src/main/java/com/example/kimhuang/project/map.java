@@ -13,18 +13,31 @@ import android.view.Window;
 import android.view.animation.Animation;
 import android.widget.Button;
 
+import java.io.IOException;
+
 public class map extends AppCompatActivity implements View.OnClickListener {
     Button btn_scene1, btn_scene2, btn_scene3, btn_scene4;
     Button btn_back;
     Intent i;
 
-//    chUnlock unlock11;
+    unlock unlock;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map);
 
+        unlock = new unlock();
+        unlock.setTure();
+//        unlock.setFalse();
+
+
+        try {
+            unlock.writeFile(map.this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         //btn_scene1
         btn_scene1 = (Button) findViewById(R.id.btn_scene1);
         btn_scene1.setOnClickListener(this);
@@ -45,8 +58,7 @@ public class map extends AppCompatActivity implements View.OnClickListener {
         //button_back
         btn_back = (Button) findViewById(R.id.btn_back);
         final Intent n = new Intent(this, home.class);
-        btn_back.setOnClickListener(new View.OnClickListener()
-        {
+        btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(n);
@@ -82,5 +94,7 @@ public class map extends AppCompatActivity implements View.OnClickListener {
         super.onDestroy();
 
     }
+
+
 }
 

@@ -76,7 +76,6 @@ public class game3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game3);
 
-
         tvTimer = (TextView) findViewById(R.id.tvTimer);
         wordQue = (TextView) findViewById(R.id.quustion);
         ansTrue = (TextView) findViewById(R.id.AnsTrue);
@@ -85,7 +84,6 @@ public class game3 extends AppCompatActivity {
         box1 = (RelativeLayout) findViewById(R.id.boxmess1);
         box2 = (RelativeLayout) findViewById(R.id.boxmess2);
         Score = (TextView) findViewById(R.id.score);
-//        mark = (ImageView) findViewById(R.id.mark);
 
         //decaler database
         game3 = new dataFairy(this);
@@ -122,7 +120,7 @@ public class game3 extends AppCompatActivity {
         randPosi = getRandomPosition();
         // ตัดให้อยู่ใน array
         //randPos[0] = 20;
-        //randPos[0] = 1050;
+        //randPos[0] = 1250;
         //ตัดคำเมื่อเจอเครื่องหมาย (,)
         randPos = posiLeft[randPosi].split(",");
 
@@ -223,39 +221,6 @@ public class game3 extends AppCompatActivity {
                     }
                 });
 
-
-                //button_again
-//                dialogagain.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-////                        wCursor.moveToFirst();
-//                        tempWordRand = randomInStorage();
-//                        wCursor.moveToPosition(tempWordRand);
-//                        wordQue.setText(wCursor.getString(wCursor.getColumnIndex(game3.CoLIdiom)));
-//                        ansTrue.setText(wCursor.getString(wCursor.getColumnIndex(game3.CoLMesTrue)));
-//                        ansFalse.setText(wCursor.getString(wCursor.getColumnIndex(game3.CoLMesFalse)));
-//                        Picture.setBackgroundResource(wCursor.getInt(wCursor.getColumnIndex(game3.CoLPicture)));
-////                        ansTrue.setClickable(false);
-//                        dialog.cancel();
-//                        new CountDownTimer(1000, 50) {
-//                            @Override
-//                            public void onTick(long millisUntilFinished) {
-//
-//                            }
-//
-//                            @Override
-//                            public void onFinish() {
-//                                twscore = 0;
-//                                Score.setText("" + twscore);
-//                                countTime(100000);
-//                                random.clear();
-//                                Addarray();
-//                                randomInStorage();
-//                            }
-//                        }.start();
-//                    }
-//                });
-
                 //button_setting
                 dialogsetting.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -293,7 +258,7 @@ public class game3 extends AppCompatActivity {
     }
 
     //ตัด string แล้วเก็บใน array
-    //20,1025
+    //20,1250
 //    String[] posiLeft = {"20,1250", "1250,20"};
     public void randBox(int rand) {
         //ranPos[0] = 20
@@ -403,8 +368,20 @@ public class game3 extends AppCompatActivity {
                         Score.setText("" + twscore);
                         countTime(100000);
                         random.clear();
-                        Addarray();
-                        randomInStorage();
+                        called = 0;
+
+                        if (random.size() <= 0) {
+                            Addarray();
+
+                            tempWordRand = randomInStorage();
+                            wCursor.moveToPosition(tempWordRand);
+
+                            wordQue.setText(wCursor.getString(0));
+                            ansTrue.setText(wCursor.getString(1));
+                            ansFalse.setText(wCursor.getString(2));
+                            Picture.setBackgroundResource(wCursor.getInt(3));
+                        }
+
                     }
                 }.start();
             }

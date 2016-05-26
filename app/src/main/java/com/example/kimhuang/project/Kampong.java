@@ -15,10 +15,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
-/**
- * Created by วัชรัตน์ on 30/4/2559.
- */
+
 public class Kampong extends Activity {
 
     ExpandableListAdapter expandableListAdapter;
@@ -34,6 +33,9 @@ public class Kampong extends Activity {
 
     int i = 0;
     String[] status;
+    String[] key;
+    int[] sound;
+    int sizeS;
 
 
     @Override
@@ -41,31 +43,46 @@ public class Kampong extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tab);
 
-        status = new String[20];
         mHelper = new dataFairy(this);
         mQuery = "SELECT * FROM " + mHelper.Table_Kaphong;
         mDb = mHelper.getWritableDatabase();
 //        mHelper.onUpgrade(mDb, 1, 1);
         mCursor = mDb.rawQuery(mQuery, null);
         mCursor.moveToFirst();
-//        mCursor.getString(0);
 
+        status = new String[mCursor.getCount()];
+        key = new String[mCursor.getCount()];
+        sound = new int[mCursor.getCount()];
+        sizeS = status.length;
 
+        Mean = new ArrayList<String>();
         expandableListDetail = new HashMap<String, List<String>>();
-
         while (!mCursor.isAfterLast()) {
             Mean = new ArrayList<String>(Arrays.asList(mCursor.getString(1)));
             expandableListDetail.put(mCursor.getString(0), Mean);
-            status[i] = mCursor.getString(2);
+//            Log.e("Value ", "of Titles : " + expandableListDetail);
             mCursor.moveToNext();
+        }
+        for (String k : expandableListDetail.keySet()) {
+            key[i] = k;
             i++;
         }
 
 
+        for (int i = 0; i < key.length; i++) {
+            mCursor.moveToFirst();
+            while (!mCursor.isAfterLast()) {
+                if (mCursor.getString(0).equals(key[i])) {
+                    status[i] = mCursor.getString(2);
+                    sound[i] = mCursor.getInt(3);
+                }
+                mCursor.moveToNext();
+            }
+        }
+
         expandableListView = (ExpandableListView) findViewById(R.id.list_summary);
-//        expandableListDetail = ExpandableListDataPump.getData();
         expandableListTile = new ArrayList<String>(expandableListDetail.keySet());
-        expandableListAdapter = new CustomAdater(getApplicationContext(), expandableListTile, expandableListDetail, status);
+        expandableListAdapter = new CustomAdater(getApplicationContext(), expandableListTile, expandableListDetail, status, sound);
         expandableListView.setAdapter(expandableListAdapter);
         expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override
@@ -73,11 +90,6 @@ public class Kampong extends Activity {
                 return false;
             }
         });
-    }
-
-    public void prepareListData() {
-        expandableListTile = new ArrayList<String>();
-//        expandableListDetail =
     }
 
 

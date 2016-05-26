@@ -17,7 +17,7 @@ import java.io.IOException;
 
 public class map extends AppCompatActivity implements View.OnClickListener {
     Button btn_scene1, btn_scene2, btn_scene3, btn_scene4;
-    Button btn_back;
+    Button btn_back, game1, game2, game3;
     Intent i;
 
     unlock unlock;
@@ -54,6 +54,14 @@ public class map extends AppCompatActivity implements View.OnClickListener {
         btn_scene4 = (Button) findViewById(R.id.btn_scene4);
         btn_scene4.setOnClickListener(this);
 
+        game1 = (Button) findViewById(R.id.btn_game1);
+        game2 = (Button) findViewById(R.id.btn_game2);
+        game3 = (Button) findViewById(R.id.btn_game3);
+
+        game1.setOnClickListener(this);
+        game2.setOnClickListener(this);
+        game3.setOnClickListener(this);
+
 
         //button_back
         btn_back = (Button) findViewById(R.id.btn_back);
@@ -86,6 +94,19 @@ public class map extends AppCompatActivity implements View.OnClickListener {
                 i = new Intent(this, map4.class);
                 startActivity(i);
                 break;
+            case (R.id.btn_game1):
+                i = new Intent(this, VoActivity.class);
+                startActivity(i);
+                break;
+            case (R.id.btn_game2):
+                i = new Intent(this, minigame1.class);
+                startActivity(i);
+                break;
+            case (R.id.btn_game3):
+                i = new Intent(this, minigame3.class);
+                startActivity(i);
+                break;
+
         }
     }
 

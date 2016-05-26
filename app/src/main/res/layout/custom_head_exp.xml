@@ -23,7 +23,7 @@
         android:id="@+id/soundtrack"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:background="@drawable/btn_music"
+        android:background="@drawable/button_music"
         android:gravity="center_vertical" />
 
     <ImageView

@@ -47,7 +47,7 @@ public class game3 extends AppCompatActivity {
 
     //position ที่ F
     String[] posiLeft = {"20,1250", "1250,20"};
-    int tempWordRand;
+int tempWordRand;
 
     //Database
     SQLiteDatabase gameDb;
@@ -119,7 +119,9 @@ public class game3 extends AppCompatActivity {
         // random ตำแหน่งคำ
         randPosi = getRandomPosition();
         // ตัดให้อยู่ใน array
+        // " 20 , 1250"
         //randPos[0] = 20;
+        //randPos[1] = 1050;
         //randPos[0] = 1250;
         //ตัดคำเมื่อเจอเครื่องหมาย (,)
         randPos = posiLeft[randPosi].split(",");

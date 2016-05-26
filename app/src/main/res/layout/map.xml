@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
-        android:src="@drawable/map"/>
+        android:src="@drawable/map" />
 
     <Button
         android:id="@+id/btn_back"
@@ -20,74 +20,137 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="3">
+        android:orientation="horizontal">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:weightSum="3">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center_horizontal">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2" />
 
-            <Button
-                android:id="@+id/btn_scene1"
-                android:layout_width="350dp"
-                android:layout_height="100dp"
-                android:layout_centerHorizontal="true"
-                android:layout_margin="20dp"
-                android:background="@drawable/button_scene1" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_horizontal">
 
-        </RelativeLayout>
+                <Button
+                    android:id="@+id/btn_scene1"
+                    android:layout_width="350dp"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/button_scene1" />
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center_horizontal">
+            </RelativeLayout>
 
-            <Button
-                android:id="@+id/btn_scene2"
-                android:layout_width="350dp"
-                android:layout_height="100dp"
-                android:layout_centerHorizontal="true"
-                android:layout_margin="20dp"
-                android:background="@drawable/button_scene2" />
-        </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_horizontal">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center_horizontal">
+                <Button
+                    android:id="@+id/btn_scene2"
+                    android:layout_width="350dp"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/button_scene2" />
+            </RelativeLayout>
 
-            <Button
-                android:id="@+id/btn_scene3"
-                android:layout_width="350dp"
-                android:layout_height="100dp"
-                android:layout_centerHorizontal="true"
-                android:layout_margin="20dp"
-                android:background="@drawable/button_scene3" />
-        </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_horizontal">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center_horizontal">
+                <Button
+                    android:id="@+id/btn_scene3"
+                    android:layout_width="350dp"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/button_scene3" />
+            </RelativeLayout>
 
-            <Button
-                android:id="@+id/btn_scene4"
-                android:layout_width="350dp"
-                android:layout_height="100dp"
-                android:layout_centerHorizontal="true"
-                android:layout_margin="20dp"
-                android:background="@drawable/button_scene4" />
-        </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_horizontal">
+
+                <Button
+                    android:id="@+id/btn_scene4"
+                    android:layout_width="350dp"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/button_scene4" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="100dp"></View>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_horizontal">
+
+                <Button
+                    android:id="@+id/btn_game1"
+                    android:layout_width="350dp"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/btn_game1" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_horizontal">
+
+                <Button
+                    android:id="@+id/btn_game2"
+                    android:layout_width="350dp"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/btn_game2" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_horizontal">
+
+                <Button
+                    android:id="@+id/btn_game3"
+                    android:layout_width="350dp"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/btn_game3" />
+            </RelativeLayout>
+
+        </LinearLayout>
     </LinearLayout>
-
 </RelativeLayout>

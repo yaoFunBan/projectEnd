@@ -436,14 +436,37 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
                         twscore = 0;
                         score.setText("" + twscore);
                         countTime(100000);
-                        addToList();
-                        //ทำการ random คำตอบใหม่ทั้งสามคำเมื่อมีการกดเริ่มเล่นใหม่
-                        mCursor.moveToPosition(teamQuestion1);
-                        str1.setText(mCursor.getString(1));
-                        mCursor.moveToPosition(teamQuestion2);
-                        str2.setText(mCursor.getString(1));
-                        mCursor.moveToPosition(teamQuestion3);
-                        str3.setText(mCursor.getString(1));
+                        listRow.clear();
+                        listAns.clear();
+                        called = 0;
+
+                        if (listAns.isEmpty()) {
+                            addToList();
+
+                            //ทำการ random คำตอบใหม่ทั้งสามคำเมื่อมีการกดเริ่มเล่นใหม่
+                            //round1
+                            teamQuestion1 = randQuestion();
+                            //เมื่อทำการเรียกใช้คำก็จะทำการลบคำนั้นทิ้งไป
+                            cutWord(teamQuestion1);
+                            mCursor.moveToPosition(teamQuestion1);
+                            wordAns.setText(mCursor.getString(0));
+                            randAddBall();
+
+                            keepWord(teamQuestion1);
+
+
+                            //round2
+                            teamQuestion2 = randAns();
+                            mCursor.moveToPosition(teamQuestion2);
+                            textInAns();
+                            keepWord(teamQuestion2);
+
+                            //round3
+                            teamQuestion3 = randAns();
+                            mCursor.moveToPosition(teamQuestion3);
+                            textInAns();
+                            keepWord(teamQuestion3);
+                        }
                     }
                 }.start();
             }

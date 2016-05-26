@@ -132,10 +132,6 @@
         <activity
             android:name=".minigame1"
             android:screenOrientation="landscape">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
 
@@ -266,7 +262,8 @@
         <activity
             android:name=".minigame3"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+          </activity>
 
         <!--game3-->
         <activity

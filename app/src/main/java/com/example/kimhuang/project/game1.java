@@ -63,6 +63,7 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
     boolean[] chAns = {false, false, false};
     String cAns;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -337,6 +338,7 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         int index = listRow.indexOf(word);
         listRow.remove(index);
         Log.e("vale ", "is" + listRow);
+
     }
 
     public int randAns() {

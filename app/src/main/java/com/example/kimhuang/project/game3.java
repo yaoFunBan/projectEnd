@@ -384,6 +384,7 @@ public class game3 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                wCursor.moveToFirst();
+
                 wordQue.setText(wCursor.getString(0));
                 ansTrue.setText(wCursor.getString(1));
                 ansFalse.setText(wCursor.getString(2));

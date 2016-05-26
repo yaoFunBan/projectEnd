@@ -21,15 +21,13 @@
         <activity
             android:name=".VoActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
 
         <!-- summary -->
         <activity
             android:name=".summary"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
 
         <!--//tab host summary-->
         <activity
@@ -58,7 +56,7 @@
         <!-- Example -->
         <activity
             android:name=".DisableSwipeIntro2"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape" />
 
         <!-- map -->
         <activity
@@ -264,8 +262,7 @@
         <activity
             android:name=".minigame3"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
 
         <!--game3-->
         <activity

@@ -63,7 +63,6 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
     boolean[] chAns = {false, false, false};
     String cAns;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,13 +92,11 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         //decaler database
         game1 = new dataFairy(this);
         gameDb = game1.getWritableDatabase();
-//        game1.onUpgrade(gameDb, 1, 1);
 
         //READ DATA (เป็นการอ่านค่าในตาราง database โดยกำหนดให้ mCursor เลื่อนอ่านข้อมูลในแต่ละคอลัมไปเรื่อยๆ)
         mCursor = gameDb.rawQuery("SELECT * FROM " + game1.Table_Kaphong, null);
         addToList();
 
-//        mCursor.moveToFirst();
 
         //round1
         teamQuestion1 = randQuestion();
@@ -287,7 +284,6 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
             countTime(tempTime);
             mediaPlayer = MediaPlayer.create(game1.this, R.raw.wrong);
             mediaPlayer.start();
-//            Toast.makeText(this,"false", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -341,11 +337,6 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         int index = listRow.indexOf(word);
         listRow.remove(index);
         Log.e("vale ", "is" + listRow);
-
-//        if(teamRow == null ){
-//            listRow.add(i);
-//        }
-
     }
 
     public int randAns() {
@@ -357,19 +348,12 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         teamRow.add(teamWord);
         int re = listAns.indexOf(teamWord);
         listAns.remove(re);
-//        Log.e("KeepWord ", " =======================");
-//        Log.e("val ", " of tempRow : " + teamRow);
-//        Log.e("val ", " of listAns : " + listAns);
-
     }
 
     public void reWord(int teamWord) {
         int keep = teamRow.indexOf(teamWord);
         listAns.add(teamWord);
         teamRow.remove(keep);
-//        Log.e("reWord ", "==========================");
-//        Log.e("val ", " of tempRow : " + teamRow);
-//        Log.e("val ", " of listAns : " + listAns);
     }
 
     //CountDownTimer (โดยจะลดลงครั้งละ 1 วินาที)
@@ -389,13 +373,10 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onFinish() {
                 tvTimer.setText("0");
-                finishDialog();
+                dialogfinish();
             }
         };
         cdt.start();
-    }
-
-    private void finishDialog() {
     }
 
     public long UpdateData(String word, String status) {
@@ -412,6 +393,68 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
         } catch (Exception e) {
             return -1;
         }
+    }
+
+    //dialog สรุปคะแนน ขึ้นมาหลังเวลาหมดหรือเล่นเกมจบ
+    public void dialogfinish() {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false); //แตะแล้วไม่ออกจากหน้าจอ
+        dialog.setContentView(R.layout.finishgame);
+        final_score = (TextView) dialog.findViewById(R.id.final_score);
+        final_score.setText("" + twscore);
+        dialog.show();
+
+        dialogreplay = (Button) dialog.findViewById(R.id.btn_replay);
+        dialogsummary = (Button) dialog.findViewById(R.id.btn_summary);
+        dialoghome = (Button) dialog.findViewById(R.id.btn_home);
+
+        //Button replay
+        dialogreplay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //จะทำการ random คำถามใหม่มื่อกดเล่นใหม่
+                wordAns.setText(mCursor.getString(0));
+
+                dialog.cancel();
+                new CountDownTimer(1000, 50) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        twscore = 0;
+                        score.setText("" + twscore);
+                        countTime(100000);
+                        addToList();
+                        //ทำการ random คำตอบใหม่ทั้งสามคำเมื่อมีการกดเริ่มเล่นใหม่
+                        mCursor.moveToPosition(teamQuestion1);
+                        str1.setText(mCursor.getString(1));
+                        mCursor.moveToPosition(teamQuestion2);
+                        str2.setText(mCursor.getString(1));
+                        mCursor.moveToPosition(teamQuestion3);
+                        str3.setText(mCursor.getString(1));
+                    }
+                }.start();
+            }
+        });
+
+        //Button summary
+        final Intent g = new Intent(this, summary.class);
+        dialogsummary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(g);
+            }
+        });
+        dialoghome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), map3.class);
+                startActivity(i);
+            }
+        });
     }
 }
 

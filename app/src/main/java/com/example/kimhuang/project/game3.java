@@ -76,7 +76,6 @@ int tempWordRand;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game3);
 
-
         tvTimer = (TextView) findViewById(R.id.tvTimer);
         wordQue = (TextView) findViewById(R.id.quustion);
         ansTrue = (TextView) findViewById(R.id.AnsTrue);
@@ -85,12 +84,11 @@ int tempWordRand;
         box1 = (RelativeLayout) findViewById(R.id.boxmess1);
         box2 = (RelativeLayout) findViewById(R.id.boxmess2);
         Score = (TextView) findViewById(R.id.score);
-//        mark = (ImageView) findViewById(R.id.mark);
 
         //decaler database
         game3 = new dataFairy(this);
         gameDb = game3.getWritableDatabase();
-//        game3.onUpgrade(gameDb, 1, 1);
+        game3.onUpgrade(gameDb, 1, 1);
 
         //เป็นการอ่านค่าในตาราง database ว่าจะให้อ่านค่าเป็นคอลัมถ์ไปเรื่อยๆ
         wCursor = gameDb.rawQuery("SELECT * FROM " + game3.Table_Samnon, null);
@@ -124,6 +122,7 @@ int tempWordRand;
         // " 20 , 1250"
         //randPos[0] = 20;
         //randPos[1] = 1050;
+        //randPos[0] = 1250;
         //ตัดคำเมื่อเจอเครื่องหมาย (,)
         randPos = posiLeft[randPosi].split(",");
 
@@ -224,39 +223,6 @@ int tempWordRand;
                     }
                 });
 
-
-                //button_again
-//                dialogagain.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-////                        wCursor.moveToFirst();
-//                        tempWordRand = randomInStorage();
-//                        wCursor.moveToPosition(tempWordRand);
-//                        wordQue.setText(wCursor.getString(wCursor.getColumnIndex(game3.CoLIdiom)));
-//                        ansTrue.setText(wCursor.getString(wCursor.getColumnIndex(game3.CoLMesTrue)));
-//                        ansFalse.setText(wCursor.getString(wCursor.getColumnIndex(game3.CoLMesFalse)));
-//                        Picture.setBackgroundResource(wCursor.getInt(wCursor.getColumnIndex(game3.CoLPicture)));
-////                        ansTrue.setClickable(false);
-//                        dialog.cancel();
-//                        new CountDownTimer(1000, 50) {
-//                            @Override
-//                            public void onTick(long millisUntilFinished) {
-//
-//                            }
-//
-//                            @Override
-//                            public void onFinish() {
-//                                twscore = 0;
-//                                Score.setText("" + twscore);
-//                                countTime(100000);
-//                                random.clear();
-//                                Addarray();
-//                                randomInStorage();
-//                            }
-//                        }.start();
-//                    }
-//                });
-
                 //button_setting
                 dialogsetting.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -294,7 +260,7 @@ int tempWordRand;
     }
 
     //ตัด string แล้วเก็บใน array
-    //20,1025
+    //20,1250
 //    String[] posiLeft = {"20,1250", "1250,20"};
     public void randBox(int rand) {
         //ranPos[0] = 20
@@ -385,6 +351,7 @@ int tempWordRand;
             @Override
             public void onClick(View v) {
 //                wCursor.moveToFirst();
+
                 wordQue.setText(wCursor.getString(0));
                 ansTrue.setText(wCursor.getString(1));
                 ansFalse.setText(wCursor.getString(2));
@@ -403,8 +370,20 @@ int tempWordRand;
                         Score.setText("" + twscore);
                         countTime(100000);
                         random.clear();
-                        Addarray();
-                        randomInStorage();
+                        called = 0;
+
+                        if (random.size() <= 0) {
+                            Addarray();
+
+                            tempWordRand = randomInStorage();
+                            wCursor.moveToPosition(tempWordRand);
+
+                            wordQue.setText(wCursor.getString(0));
+                            ansTrue.setText(wCursor.getString(1));
+                            ansFalse.setText(wCursor.getString(2));
+                            Picture.setBackgroundResource(wCursor.getInt(3));
+                        }
+
                     }
                 }.start();
             }

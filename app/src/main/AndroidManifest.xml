@@ -50,7 +50,6 @@
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
 
-
         <!-- Setting -->
 
         <!-- contact -->
@@ -263,14 +262,15 @@
         <activity
             android:name=".minigame3"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
+
 
         <!--game3-->
         <activity
             android:name=".game3"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-
 
         <!-- Map4 -->
         <activity
@@ -322,9 +322,11 @@
         <activity
             android:name=".scene4_4"
             android:screenOrientation="landscape" />
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
     </application>
 
 </manifest>

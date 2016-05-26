@@ -63,6 +63,9 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
     boolean[] chAns = {false, false, false};
     String cAns;
 
+    //เช็คค่าไม่ให้เกิน
+    static int called = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -202,22 +205,27 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        switch (id) {
-            case (R.id.ball1):
-                cAns = str1.getText().toString();
-                chCorrect(cAns);
-                setBall();
-                break;
-            case (R.id.ball2):
-                cAns = str2.getText().toString();
-                chCorrect(cAns);
-                setBall();
-                break;
-            case (R.id.ball3):
-                cAns = str3.getText().toString();
-                chCorrect(cAns);
-                setBall();
-                break;
+        if (called != 20) {
+            switch (id) {
+                case (R.id.ball1):
+                    cAns = str1.getText().toString();
+                    chCorrect(cAns);
+                    setBall();
+                    break;
+                case (R.id.ball2):
+                    cAns = str2.getText().toString();
+                    chCorrect(cAns);
+                    setBall();
+                    break;
+                case (R.id.ball3):
+                    cAns = str3.getText().toString();
+                    chCorrect(cAns);
+                    setBall();
+                    break;
+            }
+        } else {
+            dialogfinish();
+            cdt.cancel();
         }
     }
 
@@ -256,6 +264,7 @@ public class game1 extends AppCompatActivity implements View.OnClickListener {
 
     //random คำถาม
     public int randQuestion() {
+        called += 1;
         int rand = random.nextInt(listRow.size());
         Log.e("val", "random" + listRow.get(rand));
         return listRow.get(rand);

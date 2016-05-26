@@ -33,8 +33,11 @@ public class Samnon extends Activity {
     dataFairy mHelper;
     Cursor mCursor;
     String mQuery;
+
     int i = 0;
     String[] status;
+    String[] key;
+    int[] sound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,23 +49,41 @@ public class Samnon extends Activity {
         mDb = mHelper.getWritableDatabase();
         mCursor = mDb.rawQuery(mQuery, null);
         mCursor.moveToFirst();
-        status = new String[20];
 
+        status = new String[mCursor.getCount()];
+        key = new String[mCursor.getCount()];
+        sound = new int[mCursor.getCount()];
+
+        Mean = new ArrayList<String>();
         expandableListDetail = new HashMap<String, List<String>>();
 
         while (!mCursor.isAfterLast()) {
-            Mean = new ArrayList<String>(Arrays.asList(mCursor.getString(0)));
-            expandableListDetail.put(mCursor.getString(1), Mean);
-            status[i] = mCursor.getString(4);
+            Mean = new ArrayList<String>(Arrays.asList(mCursor.getString(1)));
+            expandableListDetail.put(mCursor.getString(0), Mean);
+//            Log.e("Value ", "of Titles : " + expandableListDetail);
             mCursor.moveToNext();
+        }
+        for (String k : expandableListDetail.keySet()) {
+            key[i] = k;
             i++;
         }
 
 
+        for (int i = 0; i < key.length; i++) {
+            mCursor.moveToFirst();
+            while (!mCursor.isAfterLast()) {
+                if (mCursor.getString(0).equals(key[i])) {
+                    status[i] = mCursor.getString(4);
+                    sound[i] = mCursor.getInt(5);
+                }
+                mCursor.moveToNext();
+            }
+        }
+
+
         expandableListView = (ExpandableListView) findViewById(R.id.list_summary);
-//        expandableListDetail = ExpandableListDataPump.getData();
         expandableListTile = new ArrayList<String>(expandableListDetail.keySet());
-        expandableListAdapter = new CustomAdater(getApplicationContext(), expandableListTile, expandableListDetail, status);
+        expandableListAdapter = new CustomAdater(getApplicationContext(), expandableListTile, expandableListDetail, status, sound);
         expandableListView.setAdapter(expandableListAdapter);
         expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override

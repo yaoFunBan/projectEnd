@@ -1,16 +1,20 @@
 package com.example.kimhuang.project;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.ExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -19,23 +23,22 @@ import java.util.List;
  */
 public class CustomAdater extends BaseExpandableListAdapter implements ExpandableListAdapter {
     private int[] sound;
-    private String[] word;
-    private String[] mean;
     private String[] status;
     private static final int GROUP_ITEM_RESOURCE = R.layout.custom_head_exp;
     private static final int CHILD_ITEM_RESOURCE = R.layout.childrow;
+    MediaPlayer mediaPlayer;
 
     private Context context;
     private List<String> expandableListTitle;
-    //    private HashMap<String, List<String>> expandableListDetail;
     private HashMap<String, List<String>> expandableListDetail;
 
     public CustomAdater(Context context, List<String> expandableListTitle,
-                        HashMap<String, List<String>> expandableListDetail, String[] status) {
+                        HashMap<String, List<String>> expandableListDetail, String[] status, int[] sound) {
         this.context = context;
         this.expandableListTitle = expandableListTitle;
         this.expandableListDetail = expandableListDetail;
         this.status = status;
+        this.sound = sound;
     }
 
     // Item group
@@ -47,7 +50,7 @@ public class CustomAdater extends BaseExpandableListAdapter implements Expandabl
     int i = 0;
 
     @Override
-    public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+    public View getGroupView(final int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         String listTitle = (String) getGroup(groupPosition);
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -56,6 +59,7 @@ public class CustomAdater extends BaseExpandableListAdapter implements Expandabl
         TextView listTitleTextView = (TextView) convertView
                 .findViewById(R.id.word);
         ImageView imgCorect = (ImageView) convertView.findViewById(R.id.status);
+        ImageView btnSound = (ImageView) convertView.findViewById(R.id.soundtrack);
 
 
         listTitleTextView.setText(listTitle);
@@ -65,6 +69,16 @@ public class CustomAdater extends BaseExpandableListAdapter implements Expandabl
         } else {
             imgCorect.setBackgroundResource(R.drawable.uncorrect);
         }
+
+
+        btnSound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "here", Toast.LENGTH_SHORT).show();
+                mediaPlayer = MediaPlayer.create(context, sound[groupPosition]);
+                mediaPlayer.start();
+            }
+        });
         return convertView;
     }
 

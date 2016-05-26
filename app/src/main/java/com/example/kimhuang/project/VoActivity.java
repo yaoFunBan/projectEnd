@@ -151,9 +151,9 @@ public class VoActivity extends Activity implements View.OnClickListener {
             public void run() {
 
                 try {
-//                    dy1 += speed1;
+                    dy1 += speed1;
                     dy2 += speed2;
-//                    dy3 += speed3;
+                    dy3 += speed3;
 
                     if (layout2.getVisibility() == View.INVISIBLE) {
                         layout2.setVisibility(View.VISIBLE);
@@ -164,49 +164,48 @@ public class VoActivity extends Activity implements View.OnClickListener {
                     }
 
                     //start ball 1
-                    Log.e("get ", " top" + layout2.getTop());
-//                    params.setMargins(randPosi, dy1, 0, 0);
-//                    layout1.setLayoutParams(params);
-//                    if ((imgBase.getTop() <= layout1.getTop() + layout1.getHeight())
-//                            && (layout1.getTop() <= imgBase.getTop() + imgBase.getHeight())
-//                            && (imgBase.getLeft() <= layout1.getLeft() + layout1.getWidth())
-//                            && (layout1.getLeft() <= imgBase.getLeft() + imgBase.getWidth())) {
-//
-//                        layout1.setVisibility(View.INVISIBLE);
-//                        rePosition(tPos1);
-//                        reword(temp1);
-//                        dy1 = -500;
-//
-//                        //position
-//                        randPosi = getRandomPosition();
-//                        tPos1 = keepPosition(randPosi);
-//
-//                        temp1 = randWordInCorrect();
-//                        mCursor.moveToPosition(temp1);
-//                        TvSimple1.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
-//                        pullQus(temp1);
-//                        speed1 = randSpeed();
-//                        ctd.cancel();
-//                        tempTime -= 3000;
-//                        countTime(tempTime);
-//
-//                    }
+                    params.setMargins(randPosi, dy1, 0, 0);
+                    layout1.setLayoutParams(params);
+                    if ((imgBase.getTop() <= layout1.getTop() + layout1.getHeight())
+                            && (layout1.getTop() <= imgBase.getTop() + imgBase.getHeight())
+                            && (imgBase.getLeft() <= layout1.getLeft() + layout1.getWidth())
+                            && (layout1.getLeft() <= imgBase.getLeft() + imgBase.getWidth())) {
 
-//                    if (dy1 >= 1200) {
-//                        layout1.setVisibility(View.INVISIBLE);
-//                        reword(temp1);
-//                        rePosition(tPos1);
-//                        //position
-//                        randPosi = getRandomPosition();
-//                        tPos1 = keepPosition(randPosi);
-//
-//                        temp1 = randWordInCorrect();
-//                        mCursor.moveToPosition(temp1);
-//                        TvSimple1.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
-//                        pullQus(temp1);
-//                        speed1 = randSpeed();
-//                        dy1 = -300;
-//                    }
+                        layout1.setVisibility(View.INVISIBLE);
+                        rePosition(tPos1);
+                        reword(temp1);
+                        dy1 = -500;
+
+                        //position
+                        randPosi = getRandomPosition();
+                        tPos1 = keepPosition(randPosi);
+
+                        temp1 = randWordInCorrect();
+                        mCursor.moveToPosition(temp1);
+                        TvSimple1.setText(mCursor.getString(1));
+                        pullQus(temp1);
+                        speed1 = randSpeed();
+                        ctd.cancel();
+                        tempTime -= 3000;
+                        countTime(tempTime);
+
+                    }
+
+                    if (dy1 >= 1200) {
+                        layout1.setVisibility(View.INVISIBLE);
+                        reword(temp1);
+                        rePosition(tPos1);
+                        //position
+                        randPosi = getRandomPosition();
+                        tPos1 = keepPosition(randPosi);
+
+                        temp1 = randWordInCorrect();
+                        mCursor.moveToPosition(temp1);
+                        TvSimple1.setText(mCursor.getString(1));
+                        pullQus(temp1);
+                        speed1 = randSpeed();
+                        dy1 = -300;
+                    }
 
                     //end ball1
 
@@ -262,50 +261,50 @@ public class VoActivity extends Activity implements View.OnClickListener {
 //                    //end ball 2 and ans
 
 
-//                    params3.setMargins(randPosi3, dy3, 0, 0);
-//                    layout3.setLayoutParams(params3);
-//
-//                    if ((imgBase.getTop() <= layout3.getTop() + layout3.getHeight())
-//                            && (layout3.getTop() <= imgBase.getTop() + imgBase.getHeight())
-//                            && (imgBase.getLeft() <= layout3.getLeft() + layout3.getWidth())
-//                            && (layout3.getLeft() <= imgBase.getLeft() + imgBase.getWidth())) {
-//                        dy3 = -600;
-//                        layout3.setVisibility(View.INVISIBLE);
-//                        reword(temp3);
-//                        rePosition(tPos3);
-////                        x = true;
-//                        //position
-//                        randPosi3 = getRandomPosition();
-//                        tPos3 = keepPosition(randPosi3);
-//
-//                        temp3 = randWordInCorrect();
-//                        mCursor.moveToPosition(temp3);
-//                        TvSimple3.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
-//                        pullQus(temp3);
-//                        speed3 = randSpeed();
-//
-//                        ctd.cancel();
-//                        tempTime -= 3000;
-//                        countTime(tempTime);
-//                    }
+                    params3.setMargins(randPosi3, dy3, 0, 0);
+                    layout3.setLayoutParams(params3);
+
+                    if ((imgBase.getTop() <= layout3.getTop() + layout3.getHeight())
+                            && (layout3.getTop() <= imgBase.getTop() + imgBase.getHeight())
+                            && (imgBase.getLeft() <= layout3.getLeft() + layout3.getWidth())
+                            && (layout3.getLeft() <= imgBase.getLeft() + imgBase.getWidth())) {
+                        dy3 = -600;
+                        layout3.setVisibility(View.INVISIBLE);
+                        reword(temp3);
+                        rePosition(tPos3);
+//                        x = true;
+                        //position
+                        randPosi3 = getRandomPosition();
+                        tPos3 = keepPosition(randPosi3);
+
+                        temp3 = randWordInCorrect();
+                        mCursor.moveToPosition(temp3);
+                        TvSimple3.setText(mCursor.getString(1));
+                        pullQus(temp3);
+                        speed3 = randSpeed();
+
+                        ctd.cancel();
+                        tempTime -= 3000;
+                        countTime(tempTime);
+                    }
 
 
-//                    if (dy3 >= 1200) {
-//                        layout3.setVisibility(View.INVISIBLE);
-//                        reword(temp3);
-//                        rePosition(tPos3);
-//
-//                        //position
-//                        randPosi3 = getRandomPosition();
-//                        tPos3 = keepPosition(randPosi3);
-//
-//                        temp3 = randWordInCorrect();
-//                        mCursor.moveToPosition(temp3);
-//                        TvSimple3.setText(mCursor.getString(1));
-//                        pullQus(temp3);
-//                        speed3 = randSpeed();
-//                        dy3 = -300;
-//                    }
+                    if (dy3 >= 1200) {
+                        layout3.setVisibility(View.INVISIBLE);
+                        reword(temp3);
+                        rePosition(tPos3);
+
+                        //position
+                        randPosi3 = getRandomPosition();
+                        tPos3 = keepPosition(randPosi3);
+
+                        temp3 = randWordInCorrect();
+                        mCursor.moveToPosition(temp3);
+                        TvSimple3.setText(mCursor.getString(1));
+                        pullQus(temp3);
+                        speed3 = randSpeed();
+                        dy3 = -300;
+                    }
 
 
                 } catch (Exception e) {
@@ -394,42 +393,42 @@ public class VoActivity extends Activity implements View.OnClickListener {
 
         countTime(100000);
         //Ans 1
-//        temp1 = randWordInCorrect();
-//        mCursor.moveToPosition(temp1);
-//        pullQus(temp1);
-//        TvSimple1.setText(mCursor.getString(mCursor.getColumnIndex(mHelper.ColMean)));
-//
+        temp1 = randWordInCorrect();
+        mCursor.moveToPosition(temp1);
+        pullQus(temp1);
+        TvSimple1.setText(mCursor.getString(1));
+
 ////        Ans3
-//        temp3 = randWordInCorrect();
-//        mCursor.moveToPosition(temp3);
-//        pullQus(temp3);
-//        TvSimple3.setText(mCursor.getString(1));
+        temp3 = randWordInCorrect();
+        mCursor.moveToPosition(temp3);
+        pullQus(temp3);
+        TvSimple3.setText(mCursor.getString(1));
 
 
         params2 = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT);
 
-//        params = new RelativeLayout.LayoutParams(
-//                RelativeLayout.LayoutParams.WRAP_CONTENT,
-//                RelativeLayout.LayoutParams.WRAP_CONTENT);
-//
-//        params3 = new RelativeLayout.LayoutParams(
-//                RelativeLayout.LayoutParams.WRAP_CONTENT,
-//                RelativeLayout.LayoutParams.WRAP_CONTENT);
+        params = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
 
-//        randPosi = getRandomPosition();
-//        tPos1 = keepPosition(randPosi);
+        params3 = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+        randPosi = getRandomPosition();
+        tPos1 = keepPosition(randPosi);
 
         randPosi2 = getRandomPosition();
         tPos2 = keepPosition(randPosi2);
 
-//        randPosi3 = getRandomPosition();
-//        tPos3 = keepPosition(randPosi3);
+        randPosi3 = getRandomPosition();
+        tPos3 = keepPosition(randPosi3);
 
-//        speed1 = randSpeed();
+        speed1 = randSpeed();
         speed2 = randSpeed();
-//        speed3 = randSpeed();
+        speed3 = randSpeed();
         moveBall();
     }
 
@@ -580,10 +579,10 @@ public class VoActivity extends Activity implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 dialog.cancel();
-                dy1 -= 600;
-                dy2 -= 500;
-                dy3 -= 400;
-                countTime(5000);
+                dy1 = -600;
+                dy2 = -500;
+                dy3 = -400;
+                countTime(100000);
 
                 params.setMargins(randPosi, dy1, 0, 0);
                 layout1.setLayoutParams(params);
@@ -600,7 +599,18 @@ public class VoActivity extends Activity implements View.OnClickListener {
                 TvSimple2.setText(mCursor.getString(0));
                 wordAns.setText(mCursor.getString(1));
                 count_score.setText("" + score);
-                handler.postDelayed(runnable, 35);
+                new CountDownTimer(5000, 100) {
+
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        handler.postDelayed(runnable, 35);
+                    }
+                }.start();
 
             }
         });

@@ -52,8 +52,8 @@ public class home extends AppCompatActivity implements View.OnClickListener {
     protected void onStart() {
         super.onStart();
         //class soundBG
-        soundBG = new soundBG(this);
-        soundBG.creatSound();
+//        soundBG = new soundBG(this);
+//        soundBG.creatSound();
     }
 
     @Override
@@ -105,7 +105,7 @@ public class home extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        soundBG.stopBG();
+//        soundBG.stopBG();
     }
 
     @Override
@@ -117,6 +117,6 @@ public class home extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onRestart() {
         super.onRestart();
-        soundBG.startBD();
+//        soundBG.startBD();
     }
 }

@@ -57,7 +57,7 @@ public class dataFairy extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_Kaphong = "CREATE TABLE " + Table_Kaphong +
             "( " + Col_Word_Kaphong + " TEXT PRIMARY KEY, " +
             Col_Mean_Kaphong + " TEXT, " +
-            Col_Stat_Kaphong + " TEXT ," +
+            Col_Stat_Kaphong + " TEXT, " +
             Col_Sound_Kaphong + " TEXT );";
 
     private static final String CREATE_TABLE_SUPAR = "CREATE TABLE " + Table_Samnon +
@@ -65,7 +65,7 @@ public class dataFairy extends SQLiteOpenHelper {
             Col_Mean_Samon_T + " TEXT, " +
             Col_Mean_Samon_F + " TEXT, " +
             Col_Pic_Samon + " INTEGER, " +
-            Col_Stat_Samon + " TEXT , " +
+            Col_Stat_Samon + " TEXT, " +
             Col_Sound_Samon + " TEXT);";
 
     //data in table Racha
@@ -88,19 +88,19 @@ public class dataFairy extends SQLiteOpenHelper {
             R.raw.jantawee, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee};
 
     //data in table kahong
-    String[] wKahong = {"สุริยัน", "มัจฉา", "ดนัย", "บุตรี", "ผกา", "รามสูร", "บรรพต", "ขัตติยะ", "กุญชร", "กระสินธิ์ ",
+    String[] wKahong = {"สุริยัน", "มัจฉา", "โอรส", "บุตรี", "ผกา", "รามสูร", "บรรพต", "ขัตติยะ", "กุญชร", "กระสินธิ์ ",
             "ปฐพี", "อมรินทร์", "อาชาไนย", "บุหลัน", "พนาดร", "กุมาร", "พารา", "กัลยาณี", "สุราลัย", "ปทุม"};
 
-    String[] mKaphong = {"พระอาทิตย์", "ปลา", "ลูกชาย", "ลูกสาว", "ดอกไม้", "ยักษ์", "ภูเขา", "กษัตริย์", "ช้าง", "น้ำ",
+    String[] mKaphong = {"พระอาทิตย์", "ปลา", "ลูกชาย", "ลูกหญิง", "ดอกไม้", "ยักษ์", "ภูเขา", "กษัตริย์", "ช้าง", "น้ำ",
             "แผ่นดิน", "พระอินทร์", "ม้า", "พระจันทร์", "ป่า", "เด็ก", "เมือง", "ผู้หญิง", "สวรรค์", "ดอกบัว",};
 
-    String[] stKaphong = {"uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect",
-            "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect"};
+    String[] stKaphong = {"uncorrect", "correct", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect",
+            "uncorrect", "correct", "correct", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect"};
 
-    int[] soKaphong = {R.raw.janta, R.raw.firsh, R.raw.yotsuwimon, R.raw.jantawee, R.raw.jantawee,
-            R.raw.yuk, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee,
-            R.raw.jantawee, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee,
-            R.raw.jantawee, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee};
+    int[] soKaphong = {R.raw.sunka, R.raw.firsh, R.raw.lukchaika, R.raw.lukgingka, R.raw.flowka,
+            R.raw.yuk, R.raw.mountka, R.raw.kingka, R.raw.elephantka,
+            R.raw.waterka, R.raw.landka, R.raw.painka, R.raw.horseka, R.raw.moonka,
+            R.raw.forestka, R.raw.childk, R.raw.mungka, R.raw.poolgingka, R.raw.heavyka, R.raw.lotuska};
 
     //data in table Samon
     String[] wSamon = {"กระต่ายหมายจันทร์", "กาคาบพริก", "กิ่งทองใบหยก", "ไก่เห็นตีนงู งูเห็นนมไก่", "เข้าด้ายเข้าเข็ม",

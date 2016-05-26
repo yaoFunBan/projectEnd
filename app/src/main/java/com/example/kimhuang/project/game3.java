@@ -349,12 +349,6 @@ public class game3 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                wCursor.moveToFirst();
-                Addarray();
-                randomInStorage();
-                wordQue.setText(wCursor.getString(0));
-                ansTrue.setText(wCursor.getString(1));
-                ansFalse.setText(wCursor.getString(2));
-                Picture.setBackgroundResource(wCursor.getInt(3));
 //                        ansTrue.setClickable(false);
                 dialog.cancel();
                 new CountDownTimer(1000, 50) {
@@ -369,7 +363,19 @@ public class game3 extends AppCompatActivity {
                         Score.setText("" + twscore);
                         countTime(100000);
                         random.clear();
+                        called = 0;
 
+                        if (random.size() <= 0) {
+                            Addarray();
+
+                            tempWordRand = randomInStorage();
+                            wCursor.moveToPosition(tempWordRand);
+
+                            wordQue.setText(wCursor.getString(0));
+                            ansTrue.setText(wCursor.getString(1));
+                            ansFalse.setText(wCursor.getString(2));
+                            Picture.setBackgroundResource(wCursor.getInt(3));
+                        }
 
                     }
                 }.start();

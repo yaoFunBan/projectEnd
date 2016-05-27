@@ -32,7 +32,7 @@ public class VoActivity extends Activity implements View.OnClickListener {
     ProgressBar pTime;
     ImageView namegame;
     private ImageView imgBase;
-    private Button btnLeft, btnRigth, btnPause, btnPlay, btnexplain, dialogclose, dialogsetting, btnClose;
+    private Button btnLeft, btnRigth, btnPause, btnPlay, btnexplain, dialogclose, dialogsetting, btnClose, btn_back1;
     TextView countBefore;
     ToggleButton swMusic, swEffect;
     SQLiteDatabase mDb;
@@ -105,6 +105,7 @@ public class VoActivity extends Activity implements View.OnClickListener {
         btnPause.setOnClickListener(this);
         btnPlay.setOnClickListener(this);
         btnexplain.setOnClickListener(this);
+        btn_back1.setOnClickListener(this);
 
         paramsBaseR = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
@@ -137,6 +138,7 @@ public class VoActivity extends Activity implements View.OnClickListener {
         layout3 = (RelativeLayout) findViewById(R.id.ball3);
         mainLayout = (RelativeLayout) findViewById(R.id.mainLayout);
         Rbar = (RelativeLayout) findViewById(R.id.bar);
+        btn_back1 = (Button) findViewById(R.id.btn_back1);
         RelTime = (RelativeLayout) findViewById(R.id.RelTime);
         tvTimer = (TextView) findViewById(R.id.tvTimer);
         tabScore = (RelativeLayout) findViewById(R.id.tabScore);
@@ -320,6 +322,9 @@ public class VoActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.btn_back1:
+                finish();
+                break;
             case R.id.btn_pause:
                 dialogPause();
                 ctd.cancel();
@@ -366,6 +371,7 @@ public class VoActivity extends Activity implements View.OnClickListener {
                 tabScore.setVisibility(View.VISIBLE);
 
                 playGame();
+                btn_back1.setVisibility(View.GONE);
 
                 break;
             case R.id.btn_explain:
@@ -463,10 +469,11 @@ public class VoActivity extends Activity implements View.OnClickListener {
         }
         return valGet;
     }
-
+    int r;
     public int randWordInCorrect() {
-        int r = 0;
         r = rand.nextInt(numUseWord.size());
+        Log.e("randWordInCorrect : ", " ======================");
+        Log.e("r : ", " is " + r);
         return r;
     }
 
@@ -475,6 +482,7 @@ public class VoActivity extends Activity implements View.OnClickListener {
     public void pullQus(int temp) {
         tempNumWord.add(temp);
         numUseWord.remove(numUseWord.indexOf(temp));
+        Log.e("pullQus : ", " ======================");
         Log.e("numUseWord : ", " is " + numUseWord);
         Log.e("tempNumWord : ", " is " + tempNumWord);
     }
@@ -522,7 +530,7 @@ public class VoActivity extends Activity implements View.OnClickListener {
 
     //CountDownTimer (โดยจะลดลงครั้งละ 1 วินาที)
     public void countTime(int t) {
-        ctd = new CountDownTimer(t, 50) {
+        ctd = new CountDownTimer(10000, 50) {
 
             @Override
             public void onTick(long millisUntilFinished) {
@@ -579,8 +587,8 @@ public class VoActivity extends Activity implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 dialog.cancel();
-                dy1 = -600;
-                dy2 = -500;
+                dy1 = -400;
+                dy2 = -400;
                 dy3 = -400;
                 countTime(100000);
 

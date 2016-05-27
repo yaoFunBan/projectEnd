@@ -80,6 +80,7 @@ public class Kampong extends Activity {
             }
         }
 
+
         expandableListView = (ExpandableListView) findViewById(R.id.list_summary);
         expandableListTile = new ArrayList<String>(expandableListDetail.keySet());
         expandableListAdapter = new CustomAdater(getApplicationContext(), expandableListTile, expandableListDetail, status, sound);

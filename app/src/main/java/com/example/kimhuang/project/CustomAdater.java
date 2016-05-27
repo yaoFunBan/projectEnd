@@ -70,12 +70,11 @@ public class CustomAdater extends BaseExpandableListAdapter implements Expandabl
             imgCorect.setBackgroundResource(R.drawable.uncorrect);
         }
 
-
+        mediaPlayer = MediaPlayer.create(context, sound[groupPosition]);
         btnSound.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, "here", Toast.LENGTH_SHORT).show();
-                mediaPlayer = MediaPlayer.create(context, sound[groupPosition]);
                 mediaPlayer.start();
             }
         });

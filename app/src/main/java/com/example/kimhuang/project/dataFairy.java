@@ -70,32 +70,32 @@ public class dataFairy extends SQLiteOpenHelper {
 
     //data in table Racha
     String[] wRach = {"พระชนนี ", "รองพระบาท ", "สังวาล ", "ชฏา", "พระสนับเพลา"
-            , "พระอุทร", "พระนาสิก", "พระกรรณ", "ข้อพระบาท",
-            "พระโอษฐ์", "พระมังสา", "พระเนตร", "พระชนก", "พระเชษฐา",
+            , "พระทวาร", "พระนาสิก", "พระกรรณ", "ข้อพระบาท",
+            "พระโอษฐ์", "ของเสวย", "พระเนตร", "พระชนก", "พระเชษฐา",
             "พระสัสสุระ", "พระสวามี", "ฉลองพระองค์", "พระสุณิสา", "พระเทวัน", "พระชามาดา"};
 
     String[] mRacha = {"แม่", "รองเท้า", "สร้อย", "มงกุฎ", "กางเกง",
-            "ท้อง", "จมูก", "หู", "ข้อเท้า",
-            "ปาก", "เนื้อ", "ผิวหน้า", "พ่อ", "พี่ชาย",
+            "ประตู", "จมูก", "หู", "ข้อเท้า",
+            "ปาก", "เครื่อง ", "ผิวหน้า", "พ่อ", "พี่ชาย",
             "พ่อตา", "สามี", "เสื้อ", "ลูกสะใภ้", "พี่เขย", "ลูกเขย"};
 
     String[] stRacha = {"uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect",
             "uncorrect", "uncorrects", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect"};
 
-    int[] soRacha = {R.raw.janta, R.raw.janta, R.raw.soi, R.raw.jantawee, R.raw.kangkeng,
-            R.raw.jantawee, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee,
-            R.raw.jantawee, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee,
-            R.raw.jantawee, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee};
+    int[] soRacha = {R.raw.momr, R.raw.yotsuwimon, R.raw.soi, R.raw.jantawee, R.raw.kangkeng,
+            R.raw.doorr, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee,
+            R.raw.eatr, R.raw.jantawee, R.raw.dadr, R.raw.brotherr, R.raw.dadeyer, R.raw.samer,
+            R.raw.shiter, R.raw.luksapair, R.raw.brotherker, R.raw.lukkenr};
 
     //data in table kahong
-    String[] wKahong = {"สุริยัน", "มัจฉา", "โอรส", "บุตรี", "ผกา", "รามสูร", "บรรพต", "ขัตติยะ", "กุญชร", "กระสินธิ์ ",
-            "ปฐพี", "อมรินทร์", "อาชาไนย", "บุหลัน", "พนาดร", "กุมาร", "พารา", "กัลยาณี", "สุราลัย", "ปทุม"};
+    String[] wKahong = {"สุริยัน", "มัจฉา", "โอรส", "บุตรี", "ผกา", "รามสูร", "บรรพต", "ขัตติยะ", "กุญชร", "ชลธี ",
+            "ปฐพี", "อมรินทร์", "อาชาไนย", "รัชนีกร", "พนาดร", "กุมาร", "ธานี", "กัลยาณี", "สุราลัย", "ปทุม"};
 
     String[] mKaphong = {"พระอาทิตย์", "ปลา", "ลูกชาย", "ลูกหญิง", "ดอกไม้", "ยักษ์", "ภูเขา", "กษัตริย์", "ช้าง", "น้ำ",
             "แผ่นดิน", "พระอินทร์", "ม้า", "พระจันทร์", "ป่า", "เด็ก", "เมือง", "ผู้หญิง", "สวรรค์", "ดอกบัว",};
 
-    String[] stKaphong = {"uncorrect", "correct", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect",
-            "uncorrect", "correct", "correct", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect"};
+    String[] stKaphong = {"uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect",
+            "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect", "uncorrect"};
 
     int[] soKaphong = {R.raw.sunka, R.raw.firsh, R.raw.lukchaika, R.raw.lukgingka, R.raw.flowka,
             R.raw.yuk, R.raw.mountka, R.raw.kingka, R.raw.elephantka,
@@ -129,10 +129,9 @@ public class dataFairy extends SQLiteOpenHelper {
             R.drawable.men, R.drawable.mountain, R.drawable.tiger, R.drawable.stupid, R.drawable.twofish,
             R.drawable.crab, R.drawable.chang, R.drawable.pig, R.drawable.ant, R.drawable.rat};
 
-    int[] soSamon = {R.raw.janta, R.raw.janta, R.raw.soi, R.raw.jantawee, R.raw.kangkeng,
-            R.raw.jantawee, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee,
-            R.raw.jantawee, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee,
-            R.raw.jantawee, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee, R.raw.jantawee};
+    int[] soSamon = {R.raw.rabits, R.raw.crows, R.raw.limbs, R.raw.snacks, R.raw.needles,
+            R.raw.incitys, R.raw.mortars, R.raw.tigers, R.raw.stupits, R.raw.tohands,
+            R.raw.pures, R.raw.elephants, R.raw.pigs, R.raw.watercomes, R.raw.rats};
 
 
     public dataFairy(Context context) {

@@ -26,7 +26,7 @@ public class CustomAdater extends BaseExpandableListAdapter implements Expandabl
     private String[] status;
     private static final int GROUP_ITEM_RESOURCE = R.layout.custom_head_exp;
     private static final int CHILD_ITEM_RESOURCE = R.layout.childrow;
-    MediaPlayer mediaPlayer;
+    MediaPlayer mediaPlayer[];
 
     private Context context;
     private List<String> expandableListTitle;
@@ -39,6 +39,13 @@ public class CustomAdater extends BaseExpandableListAdapter implements Expandabl
         this.expandableListDetail = expandableListDetail;
         this.status = status;
         this.sound = sound;
+
+        mediaPlayer = new MediaPlayer[sound.length];
+
+        for (int i = 0; i < sound.length; i++) {
+//            Log.e("Show", "Sound : " + sound[i]);
+            mediaPlayer[i] = MediaPlayer.create(context, sound[i]);
+        }
     }
 
     // Item group
@@ -70,12 +77,12 @@ public class CustomAdater extends BaseExpandableListAdapter implements Expandabl
             imgCorect.setBackgroundResource(R.drawable.uncorrect);
         }
 
-        mediaPlayer = MediaPlayer.create(context, sound[groupPosition]);
+
         btnSound.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "here", Toast.LENGTH_SHORT).show();
-                mediaPlayer.start();
+                Log.e("Show", "Sound : " + sound[groupPosition]);
+                mediaPlayer[groupPosition].start();
             }
         });
         return convertView;

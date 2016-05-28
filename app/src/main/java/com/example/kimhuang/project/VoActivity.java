@@ -474,7 +474,7 @@ public class VoActivity extends Activity implements View.OnClickListener {
         r = rand.nextInt(numUseWord.size());
         Log.e("randWordInCorrect : ", " ======================");
         Log.e("r : ", " is " + r);
-        return r;
+        return numUseWord.get(r);
     }
 
 
@@ -530,7 +530,7 @@ public class VoActivity extends Activity implements View.OnClickListener {
 
     //CountDownTimer (โดยจะลดลงครั้งละ 1 วินาที)
     public void countTime(int t) {
-        ctd = new CountDownTimer(10000, 50) {
+        ctd = new CountDownTimer(20000, 50) {
 
             @Override
             public void onTick(long millisUntilFinished) {
@@ -546,9 +546,6 @@ public class VoActivity extends Activity implements View.OnClickListener {
             public void onFinish() {
                 tvTimer.setText("0");
                 finishDialog();
-
-                handler.removeCallbacks(runnable);
-
             }
         };
         ctd.start();
@@ -556,6 +553,9 @@ public class VoActivity extends Activity implements View.OnClickListener {
 
 
     public void finishDialog() {
+
+        handler.removeCallbacks(runnable);
+
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.finishgame);
@@ -607,7 +607,7 @@ public class VoActivity extends Activity implements View.OnClickListener {
                 TvSimple2.setText(mCursor.getString(0));
                 wordAns.setText(mCursor.getString(1));
                 count_score.setText("" + score);
-                new CountDownTimer(5000, 100) {
+                new CountDownTimer(2000, 100) {
 
                     @Override
                     public void onTick(long millisUntilFinished) {
